@@ -1,11 +1,15 @@
-import React from 'react'
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import LoginPage from './pages/LoginPage';
 
 function App() {
   return (
     <div>
-      <div>조단템플릿</div>
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+      </Routes>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
