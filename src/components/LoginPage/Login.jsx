@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Logos } from './loginItems/loginItemCss';
 
 import {
@@ -76,7 +76,7 @@ export default function Login() {
           name="id"
           value={id}
           required
-          placeholder="아이디를 입력해주세요."
+          placeholder="아이디"
           onChange={(event) => inputChangeHandler('id', event.target.value)}
         />
         <UserInput
@@ -84,7 +84,7 @@ export default function Login() {
           name="password"
           value={password}
           required
-          placeholder="비밀번호를 입력해주세요."
+          placeholder="비밀번호"
           onChange={(event) =>
             inputChangeHandler('password', event.target.value)
           }
@@ -94,8 +94,12 @@ export default function Login() {
         </SubmitBtn>
       </LoginForm>
       <AccountManagement>
-        <p>회원 가입</p>
-        <p>아이디 · 비밀번호 찾기</p>
+        <Link
+          to={'/signup'}
+          style={{ textDecoration: 'none', color: 'inherit' }}
+        >
+          회원 가입
+        </Link>
       </AccountManagement>
     </PageContainer>
   );

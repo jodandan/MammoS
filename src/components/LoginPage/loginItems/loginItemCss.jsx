@@ -1,13 +1,10 @@
 import styled from 'styled-components';
+import logo from './Logo.png';
 
 export function Logos() {
   return (
     <>
-      <img
-        style={{ height: '200px' }}
-        src="https://i.namu.wiki/i/GJbyYln_LVx1CAfcEA53aO8cC8i271s5kIXAfExNLxoVUPm8E7D-H75YRo2aQrA9KBYMk-x2BokkDOAbYiPgX4wnGqz67Ns0kIOV0Ii3pqNqo63JBYP3hR6HcNbhZK4UwXMs-xEEVb1_Q-wVdImVgQ.webp"
-        alt="¸¾¸ð½º·Î°í"
-      />
+      <img style={{ height: '126px' }} src={logo} alt="ë§˜ëª¨ìŠ¤" />
     </>
   );
 }
@@ -32,9 +29,16 @@ export const LoginForm = styled.form`
 `;
 
 export const SubmitBtn = styled.button`
-  border: none;
+  height: 40px;
+  width: 110px;
+  border: solid;
+  border-radius: 10px 10px 10px 10px;
+  border-color: #a7cf41;
+  box-shadow: 1px 2px 2px 0px gray;
+  background-color: transparent;
   background-color: inherit;
-  font-size: 20px;
+  font-size: 15px;
+  font-weight: bold;
   margin-top: 4vh;
 `;
 
@@ -46,10 +50,12 @@ export const AccountManagement = styled.div`
 export const UserInput = styled.input`
   border: none;
   border-bottom: 1px solid black;
-  padding: 2vh;
-  margin-bottom: 2vh;
-  width: 100%;
+  padding: 1vh;
+  margin-bottom: 3vh;
+  width: 200px;
+  margin-left: 20%;
+  margin-right: 20%;
   box-sizing: border-box;
   text-align: center;
-  font-size: 20px;
+  font-size: 15px;
 `;
