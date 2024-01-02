@@ -83,9 +83,6 @@ export default function Signup() {
         setSelectedUniversity(selectedValue);
 
         const univId = getKeyByValue(univMap, selectedValue);
-        console.log(event.target.value);
-        console.log(selectedUniversity);
-        console.log(univId);
         // 해당 대학의 단과대학 목록 조회
         const response = await axios.get(
           'http://localhost:8080/api/v1/signup/college/' + univId
@@ -258,7 +255,7 @@ export default function Signup() {
           name="id"
           value={id}
           required
-          placeholder=" 아이디"
+          placeholder="아이디"
           onChange={(event) => inputChangeHandler('id', event.target.value)}
         />
         <UserInput
@@ -266,21 +263,23 @@ export default function Signup() {
           name="password"
           value={password}
           required
-          placeholder=" 비밀번호"
+          placeholder="비밀번호"
           onChange={(event) =>
             inputChangeHandler('password', event.target.value)
           }
         />
-        <SelectUniv onChange={(event) => selectChangeHandler('univ', event)}>
-          <option value="" hidden>
-            대학을 선택해주세요.
-          </option>
+        <SelectUniv
+          isHidden={selectedUniversity === ''}
+          onChange={(event) => selectChangeHandler('univ', event)}
+        >
+          <option hidden>대학을 선택해주세요.</option>
           {Object.values(univMap).map((name) => (
             <option key={name}>{name}</option>
           ))}
         </SelectUniv>
         <HorizontalInputBox>
           <SelectCollege
+            isHidden={selectedCollege === ''}
             onChange={(event) => selectChangeHandler('college', event)}
             style={{ borderRadius: '0px 0px 0px 20px' }}
           >
@@ -292,6 +291,7 @@ export default function Signup() {
             ))}
           </SelectCollege>
           <SelectMajor
+            isHidden={selectedMajor === ''}
             onChange={(event) => selectChangeHandler('major', event)}
             style={{ borderRadius: '0px 0px 20px 0px' }}
           >
@@ -310,7 +310,7 @@ export default function Signup() {
           name="name"
           value={name}
           required
-          placeholder=" 이름"
+          placeholder="이름"
           onChange={(event) => inputChangeHandler('name', event.target.value)}
         />
         <EmailInput>
@@ -319,7 +319,7 @@ export default function Signup() {
             name="email"
             value={email}
             required
-            placeholder=" 이메일"
+            placeholder="이메일"
             onChange={(event) =>
               inputChangeHandler('email', event.target.value)
             }
@@ -336,7 +336,7 @@ export default function Signup() {
               name="auth"
               value={auth}
               required
-              placeholder=" 인증번호"
+              placeholder="인증번호"
               disabled
               onChange={(event) =>
                 inputChangeHandler('auth', event.target.value)
@@ -352,7 +352,7 @@ export default function Signup() {
               name="auth"
               value={auth}
               required
-              placeholder=" 인증번호"
+              placeholder="인증번호"
               onChange={(event) =>
                 inputChangeHandler('auth', event.target.value)
               }
@@ -390,16 +390,16 @@ export default function Signup() {
 
             <StyledLabel
               style={{ marginTop: '5px' }}
-              htmlFor="아래 약관에 모두 동의합니다."
-              key="아래 약관에 모두 동의합니다."
+              htmlFor="위 약관에 모두 동의합니다."
+              key="위 약관에 모두 동의합니다."
             >
               <StyledInput
                 type="checkbox"
-                name="아래 약관에 모두 동의합니다."
+                name="위 약관에 모두 동의합니다."
                 onChange={(event) => handleAllCheck(event.target.checked)}
                 checked={checkedItems.length === issues.length ? true : false}
               />
-              <StyledP isBold>아래 약관에 모두 동의합니다.</StyledP>
+              <StyledP isbold="true">위 약관에 모두 동의합니다.</StyledP>
             </StyledLabel>
           </StyledFieldset>
         </form>

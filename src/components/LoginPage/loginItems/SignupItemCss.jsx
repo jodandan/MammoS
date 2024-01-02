@@ -23,11 +23,15 @@ export const PageContainer = styled.div`
 export const UserInput = styled.input`
   border: 3px solid black;
   padding: 2vh;
+  padding-left: 1.2%;
   margin-bottom: -0.4vh;
-  width: 30%;
+  width: 40%;
   box-sizing: border-box;
-
-  font-size: 15px;
+  font-size: 20px;
+  &::placeholder {
+    color: #a6a6a6;
+    font-weight: bold;
+  }
 `;
 
 export const Title = styled.h1`
@@ -35,27 +39,33 @@ export const Title = styled.h1`
 `;
 
 export const SelectUniv = styled.select`
-  width: 30%;
+  width: 40%;
   border: 3px solid black;
   padding: 2vh;
-  font-size: 15px;
+  font-size: 20px;
+  color: ${(props) => (props.isHidden ? '#a6a6a6' : 'black')};
+  font-weight: bold;
   margin-bottom: -0.4vh;
 `;
 
 export const SelectCollege = styled.select`
-  width: 15.1%;
+  width: 20.1%;
   border: 3px solid black;
   padding: 2vh;
-  font-size: 15px;
+  font-size: 20px;
+  color: ${(props) => (props.isHidden ? '#a6a6a6' : 'black')};
+  font-weight: bold;
   margin-right: -0.2vh;
 `;
 
 export const SelectMajor = styled.select`
-  width: 15.1%;
+  width: 20.1%;
   border: 3px solid black;
   padding: 2vh;
   margin-left: -0.2vh;
-  font-size: 15px;
+  font-size: 20px;
+  color: ${(props) => (props.isHidden ? '#a6a6a6' : 'black')};
+  font-weight: bold;
 `;
 
 export const HorizontalInputBox = styled.div`
@@ -87,13 +97,13 @@ export const StyledInput = styled.input`
 
 export const StyledP = styled.p`
   margin-left: 0.5rem;
-  font-weight: ${(props) => (props.isBold ? 'bold' : 'normal')};
+  font-weight: ${(props) => (props.isbold ? 'bold' : 'normal')};
 `;
 
 export const EmailInput = styled.div`
   position: relative;
   width: 100%;
-  left: 35%;
+  left: 30%;
 `;
 
 export const EmailButton = styled.button`
@@ -102,8 +112,10 @@ export const EmailButton = styled.button`
   border-left: none;
   padding: 1.96vh;
   margin-top: 2px;
-  margin-left: -6%;
-
+  margin-left: -8%;
+  font-size: 18px;
+  font-weight: bold;
+  color: #90c20d;
   background-color: transparent;
   cursor: pointer;
 `;
