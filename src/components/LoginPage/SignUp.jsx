@@ -90,6 +90,8 @@ export default function Signup() {
 
         const { responseData } = response.data;
         setCollegeMap(responseData);
+        setSelectedCollege('');
+        setSelectedMajor('');
       } else if (input === 'college') {
         // 단과대를 선택했을 때
         setSelectedCollege(event.target.value);
@@ -102,6 +104,7 @@ export default function Signup() {
 
         const { responseData } = response.data;
         setMajorMap(responseData);
+        setSelectedMajor('');
       } else {
         // 전공을 선택했을 때
         setSelectedMajor(event.target.value);
@@ -335,9 +338,8 @@ export default function Signup() {
               type="number"
               name="auth"
               value={auth}
-              required
               placeholder="인증번호"
-              disabled
+              readOnly
               onChange={(event) =>
                 inputChangeHandler('auth', event.target.value)
               }

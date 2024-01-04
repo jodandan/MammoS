@@ -32,6 +32,13 @@ export const UserInput = styled.input`
     color: #a6a6a6;
     font-weight: bold;
   }
+  ::-webkit-inner-spin-button{
+    -webkit-appearance: none; 
+    margin: 0; 
+    }
+    ::-webkit-outer-spin-button{
+    -webkit-appearance: none; 
+    margin: 0; 
 `;
 
 export const Title = styled.h1`
