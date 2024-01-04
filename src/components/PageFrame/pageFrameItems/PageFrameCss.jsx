@@ -31,9 +31,11 @@ export const NavigationMenu = styled.li`
 `;
 
 export const Background = styled.div`
-  margin-left: -5vw;
+  display: flex;
+  position: relative;
+  margin-left: -1vw;
   background-color: red;
   height: 38.8889vh;
-  width: 110vw;
+  width: 101vw;
   background: linear-gradient(#e5f1c6, #ffffff);
 `;
