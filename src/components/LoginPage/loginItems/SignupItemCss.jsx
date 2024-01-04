@@ -101,7 +101,8 @@ export const StyledP = styled.p`
 `;
 
 export const EmailInput = styled.div`
-  position: relative;
+  display: flex;
+  justify-content: center;
   width: 100%;
   left: 30%;
 `;
@@ -109,10 +110,9 @@ export const EmailInput = styled.div`
 export const EmailButton = styled.button`
   position: absolute;
   border: none;
-  border-left: none;
   padding: 1.96vh;
   margin-top: 2px;
-  margin-left: -8%;
+  margin-left: 30vw;
   font-size: 18px;
   font-weight: bold;
   color: #90c20d;

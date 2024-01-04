@@ -404,10 +404,10 @@ export default function Signup() {
           </StyledFieldset>
         </form>
 
-        <div>
+        <>
           <SubmitBtn onClick={signupHandler}>가입 완료</SubmitBtn>
           <SubmitBtn onClick={() => navigate('/')}>뒤로 가기</SubmitBtn>
-        </div>
+        </>
       </PageContainer>
     </>
   );
