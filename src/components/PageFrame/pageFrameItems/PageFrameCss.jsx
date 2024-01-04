@@ -34,8 +34,8 @@ export const Background = styled.div`
   display: flex;
   position: relative;
   margin-left: -1vw;
-  background-color: red;
   height: 38.8889vh;
   width: 101vw;
   background: linear-gradient(#e5f1c6, #ffffff);
+  justify-content: center;
 `;

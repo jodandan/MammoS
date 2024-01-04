@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 const PageContainer = styled.div`
   display: flex;
   position: absolute;
-  text-align: center;
 `;
 
 export default function PageFrame(props) {
