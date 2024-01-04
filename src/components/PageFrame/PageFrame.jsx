@@ -1,5 +1,5 @@
-import NavigationBar from './NavigationBar';
-import { Background } from './PageFrameCss';
+import NavigationBar from './pageFrameItems/NavigationBar';
+import { Background } from './pageFrameItems/PageFrameCss';
 
 export default function PageFrame() {
   return (
