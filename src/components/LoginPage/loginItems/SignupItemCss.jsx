@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import logo from './Logo.png';
+import logo from '../../assets/Logo.png';
 
 export function Logos() {
   return (

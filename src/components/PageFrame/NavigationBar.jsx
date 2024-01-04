@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom';
-import logo from '../HomePage/HomeItems/Logo.png';
+import logo from '../assets/Logo.png';
 import {
   NavBar,
   Logos,
   Title,
   NavigationMenus,
   NavigationMenu,
-} from './PageFrameCSS';
+} from './PageFrameCss';
 
 export default function NavigationBar() {
   const navigate = useNavigate();
