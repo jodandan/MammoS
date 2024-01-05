@@ -8,7 +8,7 @@ export const NavBar = styled.div`
   height: 6.25vh;
   padding-top: 2.8vh;
   padding-bottom: 2.8vh;
-  margin: 0 auto; // 이 부분을 추가해줘요.
+  margin: 0 auto;
 `;
 
 export const Title = styled.h1`
@@ -23,7 +23,7 @@ export const Logos = styled.img`
 
 export const NavigationMenus = styled.ul`
   display: flex;
-  white-space: nowrap; // 이 부분을 추가해주세요.
+  white-space: nowrap;
   line-height: 100%;
 `;
 
