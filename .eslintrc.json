@@ -29,7 +29,7 @@
     "react/react-in-jsx-scope": "off",
     "prettier/prettier": "off",
     "indent": "off",
-    "linebreak-style": ["error", "unix"],
+    "linebreak-style": "off",
     "quotes": ["error", "single"],
     "semi": "off",
     "no-extra-semi": "off",

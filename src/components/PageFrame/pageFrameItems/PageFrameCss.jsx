@@ -3,30 +3,34 @@ import styled from 'styled-components';
 export const NavBar = styled.div`
   display: flex;
   justify-content: center;
-  width: 99vw;
+  text-align: center;
+  width: 61vw;
   height: 6.25vh;
   padding-top: 2.8vh;
   padding-bottom: 2.8vh;
+  margin: 0 auto; // 이 부분을 추가해줘요.
 `;
 
 export const Title = styled.h1`
-  margin-top: 5px;
-  padding-right: 6vw;
+  padding-right: 2vw;
+  line-height: 50%;
 `;
 
 export const Logos = styled.img`
-  height: 48px;
+  height: 3vw;
   justify-content: center;
 `;
 
 export const NavigationMenus = styled.ul`
   display: flex;
+  white-space: nowrap; // 이 부분을 추가해주세요.
+  line-height: 100%;
 `;
 
 export const NavigationMenu = styled.li`
-  padding-right: 5vw;
+  padding-left: 5vw;
   list-style: none;
-  font-size: 20px;
+  font-size: 17px;
   font-weight: bold;
 `;
 
