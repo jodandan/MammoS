@@ -1,41 +1,101 @@
 import styled from 'styled-components';
 import PageFrame from '../PageFrame/PageFrame';
+import HomeSection from './HomeItems/HomeSection';
+import AchivementSection from './HomeItems/AchivementSection';
+import TodoSection from './HomeItems/TodoSection';
+import FriendSection from './HomeItems/FriendSection';
+import CalendarSection from './HomeItems/CalendarSection';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
-const HomeSection = styled.div``;
-
-const Title = styled.h3`
+export const Title = styled.h3`
+  cursor: pointer;
   font-size: 20px;
   margin-bottom: 1.5vh;
 `;
 
-const HomeBox = styled.div`
-  width: 13vw;
-  height: 13vw;
-  border: 3px solid #b9d967;
-  margin-right: 3vw;
-  border-radius: 30px 30px 30px 30px;
+const Top = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 
-const AchivementSection = styled.div``;
+const Left = styled.div`
+  margin-left: 19.5vw;
+`;
 
-const AchivementBox = styled.div`
-  width: 45vw;
-  height: 13vw;
-  border: 3px solid #b9d967;
-  border-radius: 30px 30px 30px 30px;
+const Right = styled.div`
+  margin-left: 3vw;
+  margin-bottom: 3vw;
+`;
+
+const Bottom = styled.div`
+  display: flex;
 `;
 
 export default function Home() {
+  const [achievement, setAchievement] = useState('');
+  const [calendar, setCalendar] = useState('');
+  const [friend, setFriend] = useState('');
+  const [home, setHome] = useState('');
+  const [todo, setTodo] = useState('');
+
+  useEffect(() => {
+    async function fetchPage() {
+      try {
+        // 토큰 가져오기
+        const token = localStorage.getItem('token');
+        // 토큰 설정
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        // 정보 받아오기
+        const response = await axios.get('http://localhost:8080/api/v1/home');
+        // 정보 저장
+        if (response.data.httpResponseStatus === 'SUCCESS') {
+          setAchievement(response.data.responseData.achievement);
+          setCalendar(response.data.responseData.calendar);
+          setFriend(response.data.responseData.friend);
+          setHome(response.data.responseData.home);
+          setTodo(response.data.responseData.todo);
+
+          console.log(response);
+        } else {
+          console.log(response);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    fetchPage();
+  }, []);
+
   return (
     <PageFrame>
-      <HomeSection>
-        <Title>HOME</Title>
-        <HomeBox></HomeBox>
-      </HomeSection>
-      <AchivementSection>
-        <Title>ACHIVEMENT</Title>
-        <AchivementBox></AchivementBox>
-      </AchivementSection>
+      <Top>
+        <HomeSection
+          name={home.name}
+          id={home.id}
+          universityName={home.universityName}
+          majorName={home.majorName}
+        />
+        <AchivementSection
+          currentStreak={achievement.currentStreakDays}
+          tierDistribution={achievement.tierDistribution}
+          tierName={achievement.tierName}
+          tierProgress={achievement.tierProgress}
+          topStreak={achievement.topStreakDays}
+          totalCompleteSchedules={achievement.totalCompleteSchedules}
+          totalStudyTime={achievement.totalStudyTimes}
+        />
+      </Top>
+      <Bottom>
+        <Left>
+          <TodoSection />
+          <FriendSection />
+        </Left>
+        <Right>
+          <CalendarSection />
+        </Right>
+      </Bottom>
     </PageFrame>
   );
 }

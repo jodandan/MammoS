@@ -35,7 +35,6 @@ export const NavigationMenu = styled.li`
 `;
 
 export const Background = styled.div`
-  display: flex;
   position: relative;
   margin-left: -1vw;
   height: 38.8889vh;
