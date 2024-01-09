@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 import { Title } from '../Home';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { useState } from 'react';
+import PropTypes from 'prop-types';
 
 const TodoBox = styled.div`
   display: flex;
@@ -45,71 +48,81 @@ const TodoContent = styled.p`
   overflow: hidden;
 `;
 
-export default function TodoSection() {
+export default function TodoSection(todo) {
   const navigate = useNavigate();
 
   function clickHander() {
     navigate('/planner');
   }
 
+  function makeTodos() {
+    const result = [];
+
+    for (let i = 0; i < 5; i++) {
+      result.push(<TodoLine>{makeTodo(i)}</TodoLine>);
+    }
+
+    return result;
+  }
+
+  function TodoItem({ plan }) {
+    const [isChecked, setIsChecked] = useState(plan.isComplete);
+
+    const checkHandler = async () => {
+      setIsChecked(!isChecked);
+
+      await axios.patch(`http://localhost:8080/api/v1/home/${plan.planIdx}`);
+    };
+
+    return (
+      <Todo>
+        <TodoBtn
+          type="checkbox"
+          name={plan.planIdx}
+          onChange={checkHandler}
+          checked={isChecked}
+        />
+        <TodoContent>{plan.planName}</TodoContent>
+      </Todo>
+    );
+  }
+
+  TodoItem.propTypes = {
+    plan: PropTypes.shape({
+      planIdx: PropTypes.number.isRequired,
+      planName: PropTypes.string.isRequired,
+      isComplete: PropTypes.bool.isRequired,
+    }).isRequired,
+  };
+
+  function makeTodo(line) {
+    const result = [];
+
+    for (let i = 0; i < 2; i++) {
+      if (todo.plan.length > line * 2 + i) {
+        result.push(
+          <TodoItem
+            key={todo.plan[line * 2 + i].planIdx}
+            plan={todo.plan[line * 2 + i]}
+          />
+        );
+      } else {
+        result.push(
+          <Todo key={i}>
+            <TodoBtn type="checkbox" />
+            <TodoContent></TodoContent>
+          </Todo>
+        );
+      }
+    }
+
+    return result;
+  }
+
   return (
     <div>
       <Title onClick={() => clickHander()}>TODAY&apos;S TO DO</Title>
-      <TodoBox>
-        <TodoLine>
-          <Todo>
-            <TodoBtn type="checkbox" />
-            <TodoContent>
-              해야 할 일 1 해야 할 일 1 해야 할 일 1 해야 할 일 1 해야 할 일 1
-              해야 할 일 1 해야 할 일 1
-            </TodoContent>
-          </Todo>
-          <Todo>
-            <TodoBtn type="checkbox" />
-            <TodoContent>해야 할 일 2</TodoContent>
-          </Todo>
-        </TodoLine>
-        <TodoLine>
-          <Todo>
-            <TodoBtn type="checkbox" />
-            <TodoContent>해야 할 일 3</TodoContent>
-          </Todo>
-          <Todo>
-            <TodoBtn type="checkbox" />
-            <TodoContent>해야 할 일 4</TodoContent>
-          </Todo>
-        </TodoLine>
-        <TodoLine>
-          <Todo>
-            <TodoBtn type="checkbox" />
-            <TodoContent>해야 할 일 5</TodoContent>
-          </Todo>
-          <Todo>
-            <TodoBtn type="checkbox" />
-            <TodoContent>해야 할 일 6</TodoContent>
-          </Todo>
-        </TodoLine>
-        <TodoLine>
-          <Todo>
-            <TodoBtn type="checkbox" />
-            <TodoContent>해야 할 일 7</TodoContent>
-          </Todo>
-          <Todo>
-            <TodoBtn type="checkbox" />
-            <TodoContent>해야 할 일 8</TodoContent>
-          </Todo>
-        </TodoLine>
-        <TodoLine>
-          <Todo>
-            <TodoBtn type="checkbox" />
-            <TodoContent>해야 할 일 9</TodoContent>
-          </Todo>
-          <Todo>
-            <TodoBtn type="checkbox" />
-            <TodoContent>해야 할 일 10</TodoContent>
-          </Todo>
-        </TodoLine>
-      </TodoBox>
+      <TodoBox>{makeTodos()}</TodoBox>
     </div>
   );
 }

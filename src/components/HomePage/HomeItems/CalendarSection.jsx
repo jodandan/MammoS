@@ -2,8 +2,12 @@ import styled from 'styled-components';
 import { Title } from '../Home';
 import Calendar from './Calendar';
 import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const CalendarBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   background-color: #ecf1e0;
   width: 29vw;
   height: 29.5vw;
@@ -11,11 +15,12 @@ const CalendarBox = styled.div`
   border-radius: 30px 30px 30px 30px;
 `;
 
-const Weeks = styled.ul``;
-
-const Days = styled.li``;
-
-export default function CalendarSection() {
+export default function CalendarSection({
+  calendarIdx,
+  month,
+  planDays,
+  projects,
+}) {
   const navigate = useNavigate();
 
   function clickHandler() {
@@ -26,8 +31,20 @@ export default function CalendarSection() {
     <div>
       <Title onClick={() => clickHandler()}>CALENDAR</Title>
       <CalendarBox>
-        <Calendar />
+        <Calendar
+          key={calendarIdx}
+          month={month}
+          planDays={planDays}
+          projects={projects}
+        />
       </CalendarBox>
     </div>
   );
 }
+
+CalendarSection.propTypes = {
+  calendarIdx: PropTypes.number.isRequired,
+  month: PropTypes.string.isRequired,
+  planDays: PropTypes.arrayOf(PropTypes.number).isRequired,
+  projects: PropTypes.array.isRequired,
+};

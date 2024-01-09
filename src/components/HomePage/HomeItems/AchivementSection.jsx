@@ -174,6 +174,7 @@ const CurrentStreak = styled.p`
 `;
 
 const StreakBox = styled.div`
+  display: flex;
   margin-left: 0.5vw;
   margin-right: -0.5vw;
   height: 5vw;
@@ -183,14 +184,19 @@ const StreakBox = styled.div`
 
 const StreakLine = styled.div`
   display: flex;
-  height: 0.6vw;
-  margin-bottom: 0.2vw;
+  flex-direction: column;
+  border-radius: 15px 15px 15px 15px;
+  height: 6vw;
+  margin-left: 0.1vw;
+  margin-right: 0.1vw;
+  flex-wrap: wrap;
 `;
 
 const Streak = styled.img`
   height: 0.6vw;
   width: 0.6vw;
-  margin-right: 0.2vw;
+  margin-top: 0.1vw;
+  margin-bottom: 0.1vw;
 `;
 
 export default function AchivementSection({
@@ -201,11 +207,42 @@ export default function AchivementSection({
   topStreak,
   totalCompleteSchedules,
   totalStudyTime,
+  streakList,
 }) {
   const navigate = useNavigate();
 
   function clickHander() {
     navigate('/challenge');
+  }
+
+  function makeStreaks() {
+    const result = [];
+
+    for (let i = 0; i < 21; i++) {
+      result.push(<StreakLine>{makeStreak(i)}</StreakLine>);
+    }
+
+    return result;
+  }
+
+  function makeStreak(line) {
+    const result = [];
+
+    for (let i = 1; i < 8; i++) {
+      const reverseStreakList = Object.values(streakList).reverse();
+      // 스트릭 범위 밖은 offStreak 처리
+      if (Object.keys(streakList).length < 148 - (line * 7 + i)) {
+        result.push(<Streak src={offStreak}></Streak>);
+      } else {
+        if (reverseStreakList[147 - (line * 7 + i)].streakLevel) {
+          result.push(<Streak src={onStreak}></Streak>);
+        } else {
+          result.push(<Streak src={offStreak}></Streak>);
+        }
+      }
+    }
+
+    return result;
   }
 
   return (
@@ -241,169 +278,7 @@ export default function AchivementSection({
           </MyInfoBox>
           <StreakSection>
             <div className="left">
-              <StreakBox>
-                <StreakLine>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                </StreakLine>
-                <StreakLine>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                </StreakLine>
-                <StreakLine>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                </StreakLine>
-                <StreakLine>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                </StreakLine>
-                <StreakLine>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                </StreakLine>
-                <StreakLine>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                </StreakLine>
-                <StreakLine>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={onStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                  <Streak src={offStreak}></Streak>
-                </StreakLine>
-              </StreakBox>
+              <StreakBox>{makeStreaks()}</StreakBox>
               <div className="right">
                 <CurrentStreakBox>
                   <CurrentStreak className="title">
@@ -435,4 +310,5 @@ AchivementSection.propTypes = {
   totalCompleteSchedules: PropTypes.number.isRequired,
   totalSchedules: PropTypes.number.isRequired,
   totalStudyTime: PropTypes.number.isRequired,
+  streakList: PropTypes.array.isRequired,
 };

@@ -33,11 +33,34 @@ const Bottom = styled.div`
 `;
 
 export default function Home() {
-  const [achievement, setAchievement] = useState('');
-  const [calendar, setCalendar] = useState('');
-  const [friend, setFriend] = useState('');
-  const [home, setHome] = useState('');
-  const [todo, setTodo] = useState('');
+  const [achievement, setAchievement] = useState({
+    currentStreakDays: 0,
+    tierDistribution: '',
+    tierName: '',
+    tierProgress: 0,
+    topStreakDays: 0,
+    totalCompleteSchedules: 0,
+    totalStudyTimes: 0,
+    streakList: [],
+  });
+  const [calendar, setCalendar] = useState({
+    idx: 0,
+    month: '',
+    monthValue: 0,
+    planDays: [],
+    projects: [],
+    year: 0,
+  });
+  const [friend, setFriend] = useState([]);
+  const [home, setHome] = useState({
+    id: '',
+    majorName: '',
+    name: '',
+    pfp: '',
+    universityName: '',
+    badgeIcon: [],
+  });
+  const [todo, setTodo] = useState([]);
 
   useEffect(() => {
     async function fetchPage() {
@@ -85,15 +108,21 @@ export default function Home() {
           topStreak={achievement.topStreakDays}
           totalCompleteSchedules={achievement.totalCompleteSchedules}
           totalStudyTime={achievement.totalStudyTimes}
+          streakList={achievement.streakList}
         />
       </Top>
       <Bottom>
         <Left>
-          <TodoSection />
-          <FriendSection />
+          <TodoSection plan={todo} />
+          <FriendSection friends={friend} />
         </Left>
         <Right>
-          <CalendarSection />
+          <CalendarSection
+            calendarIdx={calendar.idx}
+            month={calendar.month}
+            planDays={calendar.planDays}
+            projects={calendar.projects}
+          />
         </Right>
       </Bottom>
     </PageFrame>
