@@ -21,8 +21,6 @@ const PfpImg = styled.img.attrs({ alt: '프사' })`
   margin-left: 0vw;
   width: 5vw;
   height: 5vw;
-  border: 3px solid black;
-  border-radius: 10px 10px 10px 10px;
 `;
 
 const LogoutBtn = styled.button`
@@ -71,15 +69,21 @@ const Badges = styled.div`
 
 const Badge = styled.img`
   width: 3.5vw;
-  border: 1px solid black;
-  border-radius: 10px 10px 10px 10px;
+
   &.center {
     margin-left: 0.75vw;
     margin-right: 0.75vw;
   }
 `;
 
-export default function HomeSection({ id, name, universityName, majorName }) {
+export default function HomeSection({
+  id,
+  name,
+  universityName,
+  majorName,
+  pfp,
+  badgeIcon,
+}) {
   const navigate = useNavigate();
 
   function clickHander() {
@@ -90,7 +94,7 @@ export default function HomeSection({ id, name, universityName, majorName }) {
     <div>
       <Title onClick={() => clickHander()}>HOME</Title>
       <HomeBox>
-        <PfpImg></PfpImg>
+        <PfpImg src={pfp} />
         <LogoutBtn>로그아웃</LogoutBtn>
         <MyInfo>
           <MyInfoFont1>{name}</MyInfoFont1>
@@ -99,9 +103,12 @@ export default function HomeSection({ id, name, universityName, majorName }) {
           <MyInfoFont2>{majorName}</MyInfoFont2>
         </MyInfo>
         <Badges>
-          <Badge alt="도전과제1" />
-          <Badge alt="도전과제2" className="center" />
-          <Badge alt="도전과제3" />
+          {badgeIcon.map((badge) => (
+            <Badge key={badge} src={badge} />
+          ))}
+          {/* <Badge />
+          <Badge className="center" />
+          <Badge /> */}
         </Badges>
       </HomeBox>
     </div>
@@ -111,6 +118,8 @@ export default function HomeSection({ id, name, universityName, majorName }) {
 HomeSection.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  badgeIcon: PropTypes.array.isRequired,
+  pfp: PropTypes.string.isRequired,
   universityName: PropTypes.string.isRequired,
   majorName: PropTypes.string.isRequired,
 };

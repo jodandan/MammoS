@@ -20,8 +20,6 @@ const TierImg = styled.img`
   width: 12vw;
   height: 12vw;
   margin-right: 1vw;
-  border: 3px solid black;
-  border-radius: 30px 30px 30px 30px;
 `;
 
 const TierInfoBox = styled.div`
@@ -202,6 +200,7 @@ const Streak = styled.img`
 export default function AchivementSection({
   currentStreak,
   tierDistribution,
+  tierIcon,
   tierName,
   tierProgress,
   topStreak,
@@ -249,7 +248,7 @@ export default function AchivementSection({
     <div>
       <Title onClick={() => clickHander()}>ACHIEVEMENT</Title>
       <AchivementBox>
-        <TierImg />
+        <TierImg src={tierIcon} />
         <div>
           <TierInfoBox>
             <TierTitle>{tierName}</TierTitle>
@@ -304,6 +303,7 @@ export default function AchivementSection({
 AchivementSection.propTypes = {
   currentStreak: PropTypes.number.isRequired,
   tierDistribution: PropTypes.string.isRequired,
+  tierIcon: PropTypes.string.isRequired,
   tierName: PropTypes.string.isRequired,
   tierProgress: PropTypes.number.isRequired,
   topStreak: PropTypes.number.isRequired,

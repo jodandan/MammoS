@@ -99,10 +99,13 @@ export default function Home() {
           id={home.id}
           universityName={home.universityName}
           majorName={home.majorName}
+          pfp={home.pfp}
+          badgeIcon={home.badgeIcon}
         />
         <AchivementSection
           currentStreak={achievement.currentStreakDays}
           tierDistribution={achievement.tierDistribution}
+          tierIcon={achievement.tierIcon}
           tierName={achievement.tierName}
           tierProgress={achievement.tierProgress}
           topStreak={achievement.topStreakDays}
