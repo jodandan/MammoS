@@ -4,7 +4,7 @@ export const FriendBox = styled.div`
   display: flex;
   align-items: center;
   width: 28vw;
-  height: 9vw;
+  height: 10vw;
   border: 3px solid #b9d967;
   border-radius: 30px 30px 30px 30px;
   justify-content: center;
@@ -18,6 +18,7 @@ export const ScrollBox = styled.div`
   display: flex;
   height: 90%;
   width: 95%;
+  align-items: center;
 
   &.overflow {
     overflow-x: auto;
