@@ -1,36 +1,13 @@
-import styled from 'styled-components';
 import PageFrame from '../PageFrame/PageFrame';
-import HomeSection from './HomeItems/HomeSection';
-import AchivementSection from './HomeItems/AchivementSection';
-import TodoSection from './HomeItems/TodoSection';
-import FriendSection from './HomeItems/FriendSection';
-import CalendarSection from './HomeItems/CalendarSection';
+import HomeSection from './HomeItems/HomeSection/HomeSection';
+import AchivementSection from './HomeItems/AchievementSection/AchievementSection';
+import TodoSection from './HomeItems/TodoSection/TodoSection';
+import FriendSection from './HomeItems/FriendSection/FriendSection';
+import CalendarSection from './HomeItems/CalendarSection/CalendarSection';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-export const Title = styled.h3`
-  cursor: pointer;
-  font-size: 20px;
-  margin-bottom: 1.5vh;
-`;
-
-const Top = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-
-const Left = styled.div`
-  margin-left: 19.5vw;
-`;
-
-const Right = styled.div`
-  margin-left: 3vw;
-  margin-bottom: 3vw;
-`;
-
-const Bottom = styled.div`
-  display: flex;
-`;
+import { Top, Left, Right, Bottom } from './HomeItems/HomeItemCss';
 
 export default function Home() {
   const [achievement, setAchievement] = useState({
