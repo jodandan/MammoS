@@ -14,8 +14,31 @@ import {
 function ChartHandler(projects) {
   projects.forEach((project) => {
     let chartLevel = 1;
-    const projectStartDate = new Date(project.projectStartTime).getDate();
-    const projectEndDate = new Date(project.projectEndTime).getDate();
+
+    let projectStartDate = new Date(project.projectStartTime).getDate();
+    let projectEndDate = new Date(project.projectEndTime).getDate();
+
+    // 만약 한달을 넘기는 프로젝트라면 시작과 끝을 1일과 말일로 설정
+    if (
+      new Date(project.projectStartTime).getFullYear() <
+        new Date().getFullYear() ||
+      new Date(project.projectStartTime).getMonth() < new Date().getMonth()
+    ) {
+      projectStartDate = 1;
+    }
+    if (
+      new Date(project.projectEndTime).getFullYear() >
+        new Date().getFullYear() ||
+      new Date(project.projectEndTime).getMonth() > new Date().getMonth()
+    ) {
+      const currentDate = new Date();
+
+      projectEndDate = new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth() + 1,
+        0
+      ).getDate();
+    }
 
     // 맨 아래서부터 차트 몇번째 칸에 칠할지 탐색 (빈칸 탐색)
     // 라인 순서대로 탐색
@@ -42,7 +65,7 @@ function ChartHandler(projects) {
       if (isExist === false) {
         break;
       }
-    } // 차트 빈칸 탐색
+    }
 
     // 차트 칠하기
     for (let i = projectStartDate; i <= projectEndDate; i++) {
@@ -62,16 +85,12 @@ function ChartHandler(projects) {
 
       if (leftIndex >= 0 && leftIndex < chartSameLine.length) {
         const left = chartSameLine[leftIndex];
-        console.log('left');
-        console.log(left);
         left.style.borderRadius = '5px 0px 0px 5px';
         left.style.marginRight = '-2px';
       }
 
       if (rightIndex >= 0 && rightIndex < chartSameLine.length) {
         const right = chartSameLine[rightIndex];
-        console.log('right');
-        console.log(right);
         right.style.borderRadius = '0px 5px 5px 0px';
         right.style.marginLeft = '-2px';
         right.style.width = '98%';

@@ -132,13 +132,8 @@ export default function Signup() {
           setIsSent(true);
         } else {
           // 인증 요청 실패
-          if (responseData.message === '이미 완료된 요청입니다.') {
-            console.log('이미 사용 중인 이메일입니다.');
-            alert('이미 사용 중인 이메일입니다.');
-          } else {
-            console.log(responseData.message);
-            alert(responseData.message);
-          }
+          console.log(responseData.message);
+          alert(responseData.message);
         }
       } else {
         console.log('이메일을 입력해주세요.');
