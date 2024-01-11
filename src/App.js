@@ -1,11 +1,14 @@
-import React from "react"
-
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import SocialPage from './pages/SocialPage';
 function App() {
   return (
     <div>
-      <div>조단템플릿</div>
+        <Routes>
+            <Route path ="/social" element={<SocialPage />}/>
+        </Routes>
     </div>
   )
 }
 
-export default App
+export default App;
