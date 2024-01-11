@@ -189,14 +189,19 @@ export default function Signup() {
     ) {
       if (checkedItems.length === 4) {
         if (isAuth) {
-          await axios.post('http://localhost:8080/api/v1/signup', {
-            isCertified: isAuth,
-            id: id,
-            pwd: password,
-            email: email,
-            majorIdx: getKeyByValue(majorMap, selectedMajor),
-            name: name,
-          });
+          const response = await axios.post(
+            'http://localhost:8080/api/v1/signup',
+            {
+              isCertified: isAuth,
+              id: id,
+              pwd: password,
+              email: email,
+              majorIdx: getKeyByValue(majorMap, selectedMajor),
+              name: name,
+            }
+          );
+
+          alert(response.data.message);
 
           navigate('/');
         } else {
@@ -259,6 +264,7 @@ export default function Signup() {
           value={id}
           required
           placeholder="아이디"
+          maxLength="15"
           onChange={(event) => inputChangeHandler('id', event.target.value)}
         />
         <UserInput
@@ -267,6 +273,7 @@ export default function Signup() {
           value={password}
           required
           placeholder="비밀번호"
+          maxLength="20"
           onChange={(event) =>
             inputChangeHandler('password', event.target.value)
           }
@@ -340,12 +347,9 @@ export default function Signup() {
               value={auth}
               placeholder="인증번호"
               readOnly
-              onChange={(event) =>
-                inputChangeHandler('auth', event.target.value)
-              }
             />
           )}
-          {isSent && (
+          {isSent && !isAuth && (
             <UserInput
               style={{
                 borderRadius: '0px 0px 20px 20px',
@@ -360,21 +364,34 @@ export default function Signup() {
               }
             />
           )}
+          {isSent && isAuth && (
+            <UserInput
+              style={{
+                borderRadius: '0px 0px 20px 20px',
+              }}
+              type="number"
+              name="auth"
+              value={auth}
+              required
+              placeholder="인증번호"
+              readOnly
+            />
+          )}
           {isSent && !isAuth && (
             <EmailButton onClick={authCheckHandler}>인증 확인</EmailButton>
           )}
-          {isAuth && (
-            <p
-              style={{
-                marginLeft: '10px',
-                color: 'green',
-                marginBottom: '-10px',
-              }}
-            >
-              인증이 완료되었습니다.
-            </p>
-          )}
         </EmailInput>
+        {isAuth && (
+          <p
+            style={{
+              marginLeft: '-30%',
+              color: 'green',
+              marginBottom: '-10px',
+            }}
+          >
+            인증이 완료되었습니다.
+          </p>
+        )}
 
         <form>
           <StyledFieldset>
@@ -406,10 +423,10 @@ export default function Signup() {
           </StyledFieldset>
         </form>
 
-        <>
+        <div style={{ display: 'flex' }}>
           <SubmitBtn onClick={signupHandler}>가입 완료</SubmitBtn>
           <SubmitBtn onClick={() => navigate('/')}>뒤로 가기</SubmitBtn>
-        </>
+        </div>
       </PageContainer>
     </>
   );

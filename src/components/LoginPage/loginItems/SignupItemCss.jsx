@@ -32,13 +32,14 @@ export const UserInput = styled.input`
     color: #a6a6a6;
     font-weight: bold;
   }
-  ::-webkit-inner-spin-button{
-    -webkit-appearance: none; 
-    margin: 0; 
-    }
-    ::-webkit-outer-spin-button{
-    -webkit-appearance: none; 
-    margin: 0; 
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 `;
 
 export const Title = styled.h1`
@@ -128,6 +129,7 @@ export const EmailButton = styled.button`
 `;
 
 export const SubmitBtn = styled.button`
+  display: flex;
   height: 49px;
   width: 214px;
   font-weight: bold;
@@ -140,7 +142,12 @@ export const SubmitBtn = styled.button`
   margin-top: 20px;
   margin-left: 50px;
   margin-right: 50px;
-  margin-bottom: 20px;
+  margin-bottom: 2vw;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  justify-content: center;
+  align-items: center;
+}
 `;
 
 export const Top = styled.div`
