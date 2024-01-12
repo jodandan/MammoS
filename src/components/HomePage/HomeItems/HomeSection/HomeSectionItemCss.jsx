@@ -12,6 +12,7 @@ export const HomeBox = styled.div`
 `;
 
 export const PfpImg = styled.img.attrs({ alt: '프사' })`
+  border: 1px solid black;
   margin-top: 2vw;
   margin-left: 0vw;
   width: 5vw;
@@ -54,6 +55,7 @@ export const MyInfoFont2 = styled.p`
 `;
 
 export const Badges = styled.div`
+  border: 1px; solid
   display: flex;
   justify-content: center;
   position: absolute;
@@ -64,7 +66,7 @@ export const Badges = styled.div`
 
 export const Badge = styled.img`
   width: 3.5vw;
-
+  border: 1px solid black;
   &.center {
     margin-left: 0.75vw;
     margin-right: 0.75vw;
