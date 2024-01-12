@@ -39,7 +39,6 @@ export default function Home() {
     badgeIcon: [],
   });
   const [todo, setTodo] = useState([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchPage() {
