@@ -111,7 +111,8 @@ export default function AchivementSection({
             <div className="left">
               <Comment className="gauge">현재 티어 진행도</Comment>
               <GaugeBox>
-                <Gauge percent={tierProgress} />
+                {tierProgress <= 100 && <Gauge percent={tierProgress} />}
+                {tierProgress > 100 && <Gauge percent={100} />}
               </GaugeBox>
             </div>
             <div className="right">
