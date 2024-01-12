@@ -5,80 +5,78 @@ import PropTypes from 'prop-types';
 
 const FriendBox = styled.div`
   display: flex;
-  flex-wrap: nowrap;
-  position: relative;
-  width: 46.5278vw;
-  height: 13.1944vw;
-  margin: 2vw;
+  justify-content: center;
+  width: 34vw;
+  height: 8.5vw;
+  margin-top: 1.5vw;
   border: 3px solid #b9d967;
-  border-radius: 30px 30px 30px 30px;
-  justify-content: space-around;
-  background-color: #ecf1e0;
+  border-radius: 10px;
+  background-color: white;
 `;
 
-const PfpImg = styled.img`
-  position: absolute;
-  flex-wrap: nowrap;
-  margin-right: 35vw;
-  margin-top: 3vw;
+const ProfileBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 7vw;
-  height: 7vw;
-  border: 3px solid black;
-  background-color: darkgray;
+`;
+
+
+const PfpImg = styled.img`
+  width: 5vw;
+  height: 5vw;
+  background-color: #D9D9D9;
   border-radius: 50%;
 `;
 
-const FriendInfo = styled.div`
-  position: absolute;
+const FriendInfoBox = styled.div`
   display: flex;
-  flex-wrap: nowrap;
-  background-color: blueviolet;
-  margin-top: 1.5vw;
-  width: 27vw;
-  height: 10vw;  
+  width: 20vw;
 `;
 
-const FriendSetting = styled.div`
+const FriendSettingBox = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  position: absolute;
-  background-color: chartreuse;
+  flex-direction: column; // 요소들을 세로로 쌓음
+  width: 7vw;
+`;
+
+const ButtonRow = styled.div`
+  display: flex;
   justify-content: center;
-  align-items: center;
-  width: 10vw;
-  height: 6vw;
+  margin-bottom: 0.5vw; // 다음 버튼 줄과의 간격
+`;
+
+const FixButton = styled.img`
+  width: 2vw;
+  height: 2vw;
+`;
+
+
+const DeleteButton = styled.img`
+  width: 2vw;
+  height: 2vw;
+`;
+
+const FriendPlanner = styled.button`
+  width: 3vw;
+  height: 2vw;
 `;
 
 const FriendTimeInfo = styled.div`
   display: flex;
   position: absolute;
-  flex-wrap: wrap;
 `;
 
 const FriendInfoFont1 = styled.p`
   font-weight: bold;
-  font-size: 1vw;
+  font-size: 1px;
 `;
 
 const FriendInfoFont2 = styled.p`
-  font-size: 15px;
-`;
-
-const FixButton = styled.button`
-  background-color: red;
-  width: 1vw;
+  font-size: 1px;
 `;
 
 
-const DeleteButton = styled.button`
-  background-color: blue;
-  width: 1vw;
-`;
-
-const FriendPlanner = styled.button`
-  background-color: green;
-  width: 1vw;
-`;
 
 const TodayTime = styled.p`
   font-size: 15px;
@@ -101,25 +99,31 @@ const FriendInfoFont3 = styled.p`
 const FriendCard = () => {
     return (
         <FriendBox>
-            <PfpImg src="path_to_default_image.png"></PfpImg>
-            <FriendInfo>
-                <FriendInfoFont1>name</FriendInfoFont1>
-                <FriendInfoFont1>id</FriendInfoFont1>
-                <FriendInfoFont2>universityName</FriendInfoFont2>
-                <FriendInfoFont2>majorName</FriendInfoFont2>
-                <FriendTimeInfo>
-                    <TodayTime>todayTime</TodayTime>
-                    <FriendInfoFont2>Today</FriendInfoFont2>
-                    <WeekTime>weekTime</WeekTime>
-                    <FriendInfoFont2>Week</FriendInfoFont2>
-                </FriendTimeInfo>
-                <FriendInfoFont3>갓생중</FriendInfoFont3>
-            </FriendInfo>
-            <FriendSetting>
-                <FixButton>핀</FixButton>
-                <DeleteButton>쓰레기통</DeleteButton>
-                <FriendPlanner>플래너</FriendPlanner>
-            </FriendSetting>
+            <ProfileBox>
+                <PfpImg src="path_to_default_image.png"></PfpImg>
+            </ProfileBox>
+            <FriendInfoBox>
+                {/*<FriendInfoFont1>name</FriendInfoFont1>*/}
+                {/*<FriendInfoFont1>id</FriendInfoFont1>*/}
+                {/*<FriendInfoFont2>universityName</FriendInfoFont2>*/}
+                {/*<FriendInfoFont2>majorName</FriendInfoFont2>*/}
+                {/*<FriendTimeInfo>*/}
+                {/*    <TodayTime>todayTime</TodayTime>*/}
+                {/*    <FriendInfoFont2>Today</FriendInfoFont2>*/}
+                {/*    <WeekTime>weekTime</WeekTime>*/}
+                {/*    <FriendInfoFont2>Week</FriendInfoFont2>*/}
+                {/*</FriendTimeInfo>*/}
+                {/*<FriendInfoFont3>갓생중</FriendInfoFont3>*/}
+            </FriendInfoBox>
+            <FriendSettingBox>
+                <ButtonRow>
+                    <FixButton></FixButton>
+                    <DeleteButton></DeleteButton>
+                </ButtonRow>
+                <ButtonRow>
+                    <FriendPlanner></FriendPlanner>
+                </ButtonRow>
+            </FriendSettingBox>
         </FriendBox>
     );
 };

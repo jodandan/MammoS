@@ -5,7 +5,7 @@ export const NavBar = styled.div`
   justify-content: center;
   text-align: center;
   width: 61vw;
-  height: 6.25vh;
+  height: 5.5vh;
   padding-top: 2.8vh;
   padding-bottom: 2.8vh;
   margin: 0 auto;

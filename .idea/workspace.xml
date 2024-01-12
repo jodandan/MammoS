@@ -5,13 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9cd23309-90b5-4c7e-824f-c32b258ab5f9" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PageFrame/pageFrameItems/PageFrameCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PageFrame/pageFrameItems/PageFrameCss.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SocialPage/Social.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SocialPage/Social.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/FriendCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/FriendCard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/FriendSection.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/FriendSection.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/RankingSection.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/RankingSection.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +96,7 @@
       <workItem from="1704265651909" duration="184000" />
       <workItem from="1704266016035" duration="15986000" />
       <workItem from="1704527916772" duration="9496000" />
-      <workItem from="1704611942884" duration="31310000" />
+      <workItem from="1704611942884" duration="38203000" />
     </task>
     <servers />
   </component>

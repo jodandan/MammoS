@@ -10,6 +10,7 @@ import {useState} from 'react';
 const Top = styled.div`
   display: flex;
   justify-content: center;
+  height: 25vw;
 `;
 
 const Bottom = styled.div`

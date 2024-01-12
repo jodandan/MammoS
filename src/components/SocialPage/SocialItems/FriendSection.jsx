@@ -4,16 +4,20 @@ import styled from 'styled-components';
 
 const FriendSectionBox = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
   align-items: center;
-  background-color: aqua;
+  width: 71vw;
 `;
-
 
 
 export default function FriendSection() {
     return (
         <FriendSectionBox>
+            <FriendCard></FriendCard>
+            <FriendCard></FriendCard>
+            <FriendCard></FriendCard>
+            <FriendCard></FriendCard>
             <FriendCard></FriendCard>
         </FriendSectionBox>
     );
