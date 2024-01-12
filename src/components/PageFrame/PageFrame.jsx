@@ -2,9 +2,10 @@ import styled from 'styled-components';
 import NavigationBar from './pageFrameItems/NavigationBar';
 import { Background } from './pageFrameItems/PageFrameCss';
 import PropTypes from 'prop-types';
-import { useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+
 
 const PageContainer = styled.div`
   display: flex;
