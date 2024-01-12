@@ -23,7 +23,7 @@ export default function TodoSection(todo) {
     const result = [];
 
     for (let i = 0; i < 5; i++) {
-      result.push(<TodoLine>{makeTodo(i)}</TodoLine>);
+      result.push(<TodoLine key={i}>{makeTodo(i)}</TodoLine>);
     }
 
     return result;

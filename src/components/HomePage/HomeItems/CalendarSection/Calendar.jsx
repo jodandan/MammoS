@@ -54,7 +54,7 @@ function ChartHandler(projects) {
 
         // 이미 칠해진 차트가 있다면 isExist를 true로 바꾸고, chartLevel을 다음 단계로
         chartSameLine.forEach((chart) => {
-          if (!isExist && chart.getAttribute('isSelected') === 'true') {
+          if (!isExist && chart.getAttribute('isselected') === 'true') {
             chartLevel++;
             isExist = true;
             return;
@@ -75,7 +75,7 @@ function ChartHandler(projects) {
 
       for (let j = 0; j < chartSameLine.length; j++) {
         const chart = chartSameLine[j];
-        chart.setAttribute('isSelected', 'true');
+        chart.setAttribute('isselected', 'true');
         chart.style.backgroundColor = '#90C20D';
       }
 
@@ -159,7 +159,7 @@ const Calendar = ({ month, planDays, projects }) => {
         lastDayOfPrevMonth - i
       );
       days.push(
-        <Day key={date} isOutsideMonth>
+        <Day key={date} isoutsidemonth="true">
           {date.getDate()}
         </Day>
       );
@@ -178,17 +178,17 @@ const Calendar = ({ month, planDays, projects }) => {
       const isPlanDay = planDays.includes(day);
 
       days.push(
-        <Day key={date} id="day" isSelected={isPlanDay}>
-          <Circle isSelected={isPlanDay}></Circle>
+        <Day key={date} id="day" isselected={isPlanDay.toString()}>
+          <Circle isselected={isPlanDay.toString()}></Circle>
           <DayFont style={{ color: dayCnt % 7 === 0 ? 'red' : 'inherit' }}>
             {day}
           </DayFont>
           <ChartBox id={'day' + date.getDate()}>
-            <Chart id="line1" isSelected={false} />
-            <Chart id="line2" isSelected={false} />
-            <Chart id="line3" isSelected={false} />
-            <Chart id="line4" isSelected={false} />
-            <Chart id="line5" isSelected={false} />
+            <Chart id="line1" isselected="false" />
+            <Chart id="line2" isselected="false" />
+            <Chart id="line3" isselected="false" />
+            <Chart id="line4" isselected="false" />
+            <Chart id="line5" isselected="false" />
           </ChartBox>
         </Day>
       );
@@ -205,7 +205,7 @@ const Calendar = ({ month, planDays, projects }) => {
         i
       );
       days.push(
-        <Day key={date} isOutsideMonth>
+        <Day key={date} isoutsidemonth="true">
           {date.getDate()}
         </Day>
       );

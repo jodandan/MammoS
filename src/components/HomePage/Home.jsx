@@ -6,6 +6,7 @@ import FriendSection from './HomeItems/FriendSection/FriendSection';
 import CalendarSection from './HomeItems/CalendarSection/CalendarSection';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 import { Top, Left, Right, Bottom } from './HomeItems/HomeItemCss';
 
@@ -38,6 +39,7 @@ export default function Home() {
     badgeIcon: [],
   });
   const [todo, setTodo] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchPage() {

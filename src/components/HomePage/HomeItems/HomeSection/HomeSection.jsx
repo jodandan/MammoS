@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 
 import {
   HomeBox,
@@ -27,12 +28,25 @@ export default function HomeSection({
     navigate('/home');
   }
 
+  async function logoutHandler() {
+    try {
+      // 로그아웃 서버에 요청
+      await axios.get('http://localhost:8080/api/v1/logout');
+      // 로컬 스토리지에 저장된 토큰 삭제
+      localStorage.removeItem('token');
+      // 로그인 화면으로 navigate
+      navigate('/');
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div>
       <Title onClick={() => clickHander()}>HOME</Title>
       <HomeBox>
         <PfpImg src={pfp} />
-        <LogoutBtn>로그아웃</LogoutBtn>
+        <LogoutBtn onClick={logoutHandler}>로그아웃</LogoutBtn>
         <MyInfo>
           <MyInfoFont1>{name}</MyInfoFont1>
           <MyInfoFont1>{id}</MyInfoFont1>
@@ -43,9 +57,6 @@ export default function HomeSection({
           {badgeIcon.map((badge) => (
             <Badge key={badge} src={badge} />
           ))}
-          {/* <Badge />
-          <Badge className="center" />
-          <Badge /> */}
         </Badges>
       </HomeBox>
     </div>
