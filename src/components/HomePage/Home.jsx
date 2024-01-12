@@ -44,20 +44,6 @@ export default function Home() {
   useEffect(() => {
     async function fetchPage() {
       try {
-        if (
-          new Date(localStorage.getItem('expiredTime')).getTime() <
-          new Date().getTime()
-        ) {
-          // 로그아웃 서버에 요청
-          await axios.get('http://localhost:8080/api/v1/logout');
-          // 로컬 스토리지에 저장된 토큰 삭제
-          localStorage.removeItem('token');
-          // 경고창
-          alert('토큰 만료: 다시 로그인해주세요.');
-          // 로그인 화면으로 navigate
-          navigate('/');
-        }
-
         // 토큰 가져오기
         const token = localStorage.getItem('token');
         // 토큰 설정
