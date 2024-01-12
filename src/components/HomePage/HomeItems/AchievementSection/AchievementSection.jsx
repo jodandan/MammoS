@@ -57,14 +57,31 @@ export default function AchivementSection({
     const result = [];
 
     for (let i = 1; i < 8; i++) {
+      let thisDay = new Date();
+      thisDay.setDate(thisDay.getDate() - (147 - (line * 7 + i)));
+
+      let thisDayStreak;
+      streakList.forEach((streak) => {
+        const streakDay = new Date(streak.streakDate);
+        if (streakDay.getFullYear() === thisDay.getFullYear()) {
+          if (streakDay.getMonth() === thisDay.getMonth()) {
+            if (streakDay.getDate() === thisDay.getDate())
+              thisDayStreak = streak;
+          }
+        }
+      });
+
+      console.log(thisDayStreak);
+
       const reverseStreakList = Object.values(streakList).reverse();
+
       // 스트릭 범위 밖은 offStreak 처리
-      if (Object.keys(streakList).length < 148 - (line * 7 + i)) {
+      if (thisDayStreak === undefined) {
         result.push(
           <Streak key={148 - (line * 7 + i)} src={offStreak}></Streak>
         );
       } else {
-        if (reverseStreakList[147 - (line * 7 + i)].streakLevel) {
+        if (thisDayStreak.streakLevel) {
           result.push(
             <Streak key={148 - (line * 7 + i)} src={onStreak}></Streak>
           );
