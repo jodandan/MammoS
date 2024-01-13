@@ -42,6 +42,11 @@ export default function Login() {
         // 로그인 성공
         // JWT 토큰 localStorage에 저장
         localStorage.setItem('token', responseData);
+        // expiredTime localStorage에 저장
+        let date = new Date();
+        console.log(date);
+        date.setHours(date.getHours() + 1);
+        localStorage.setItem('expiredTime', date);
         // 홈페이지로 이동
         navigate('/home');
       } else {
