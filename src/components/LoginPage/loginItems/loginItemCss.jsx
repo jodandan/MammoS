@@ -40,6 +40,7 @@ export const SubmitBtn = styled.button`
   font-size: 15px;
   font-weight: bold;
   margin-top: 4vh;
+  margin-bottom: 2vh;
 `;
 
 export const AccountManagement = styled.div`
