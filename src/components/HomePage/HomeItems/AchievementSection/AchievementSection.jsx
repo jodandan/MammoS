@@ -37,6 +37,8 @@ export default function AchivementSection({
 }) {
   const navigate = useNavigate();
 
+  console.log(tierIcon);
+
   function clickHander() {
     navigate('/challenge');
   }
@@ -45,7 +47,7 @@ export default function AchivementSection({
     const result = [];
 
     for (let i = 0; i < 21; i++) {
-      result.push(<StreakLine>{makeStreak(i)}</StreakLine>);
+      result.push(<StreakLine key={i}>{makeStreak(i)}</StreakLine>);
     }
 
     return result;
@@ -58,12 +60,18 @@ export default function AchivementSection({
       const reverseStreakList = Object.values(streakList).reverse();
       // 스트릭 범위 밖은 offStreak 처리
       if (Object.keys(streakList).length < 148 - (line * 7 + i)) {
-        result.push(<Streak src={offStreak}></Streak>);
+        result.push(
+          <Streak key={148 - (line * 7 + i)} src={offStreak}></Streak>
+        );
       } else {
         if (reverseStreakList[147 - (line * 7 + i)].streakLevel) {
-          result.push(<Streak src={onStreak}></Streak>);
+          result.push(
+            <Streak key={148 - (line * 7 + i)} src={onStreak}></Streak>
+          );
         } else {
-          result.push(<Streak src={offStreak}></Streak>);
+          result.push(
+            <Streak key={148 - (line * 7 + i)} src={offStreak}></Streak>
+          );
         }
       }
     }
@@ -135,7 +143,6 @@ AchivementSection.propTypes = {
   tierProgress: PropTypes.number.isRequired,
   topStreak: PropTypes.number.isRequired,
   totalCompleteSchedules: PropTypes.number.isRequired,
-  totalSchedules: PropTypes.number.isRequired,
   totalStudyTime: PropTypes.number.isRequired,
   streakList: PropTypes.array.isRequired,
 };

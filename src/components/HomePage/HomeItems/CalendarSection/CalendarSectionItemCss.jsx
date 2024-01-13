@@ -28,7 +28,7 @@ export const Day = styled.div`
   z-index: 1;
   background-color: transparent;
   color: inherit;
-  opacity: ${({ isOutsideMonth }) => (isOutsideMonth ? 0.3 : 1)};
+  opacity: ${({ isoutsidemonth }) => (isoutsidemonth ? 0.3 : 1)};
   position: relative;
   &.frame {
     height: 2vw;
@@ -49,7 +49,7 @@ export const Circle = styled.div`
   opacity: 0.5;
   z-index: 2;
   transform: translateX(-50%);
-  display: ${({ isSelected }) => (isSelected ? 'flex' : 'none')};
+  display: ${({ isselected }) => (isselected === 'true' ? 'flex' : 'none')};
 `;
 
 export const Month = styled.h2`
@@ -84,5 +84,5 @@ export const Chart = styled.div`
   margin-bottom: 2px;
   padding-left: 8%;
   background-color: ${(props) =>
-    props.isSelected ? '#90C20D' : 'transparent'};
+    props.isselected === 'true' ? '#90C20D' : 'transparent'};
 `;
