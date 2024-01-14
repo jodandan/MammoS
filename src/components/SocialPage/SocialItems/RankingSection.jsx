@@ -2,20 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 import RankingCard from './RankingCard';
 
-const RankingBox = styled.div`
+const RankingSectionBox = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
-  
+  justify-content: space-between;
+  width: 30vw
 `;
 
 const RankingSection = () => {
     return (
-        <RankingBox>
+        <RankingSectionBox>
             <RankingCard></RankingCard>
             <RankingCard></RankingCard>
             <RankingCard></RankingCard>
-        </RankingBox>
+        </RankingSectionBox>
     );
 };
 

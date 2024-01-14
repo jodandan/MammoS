@@ -9,8 +9,11 @@ const FriendBox = styled.div`
   width: 34vw;
   height: 8.5vw;
   margin-top: 1.5vw;
-  border: 3px solid #b9d967;
+  border: 3px solid transparent;
+  background-image: linear-gradient(#fff, #fff), linear-gradient(to bottom, #A6E087, #96A3D4, #AEC0FF);
   border-radius: 10px;
+  background-origin: border-box;
+  background-clip: content-box,border-box;
   background-color: white;
 `;
 
@@ -31,7 +34,16 @@ const PfpImg = styled.img`
 
 const FriendInfoBox = styled.div`
   display: flex;
-  width: 20vw;
+  flex-direction: column;
+  width: 10vw;
+  padding-top: 20px;
+  padding-left: 10px;
+`;
+
+const FriendTimeBox = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  width: 10vw;
 `;
 
 const FriendSettingBox = styled.div`
@@ -44,6 +56,13 @@ const ButtonRow = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 0.5vw; // 다음 버튼 줄과의 간격
+`;
+
+const TimeRow = styled.div`
+  display: flex;
+  justify-content: center;
+  padding-left: 2vw;
+  padding-top: 0.7vw;
 `;
 
 const FixButton = styled.img`
@@ -62,37 +81,38 @@ const FriendPlanner = styled.button`
   height: 2vw;
 `;
 
-const FriendTimeInfo = styled.div`
-  display: flex;
-  position: absolute;
-`;
 
-const FriendInfoFont1 = styled.p`
+const FriendFont = styled.p`
   font-weight: bold;
-  font-size: 1px;
-`;
+  font-size: 12px;
+  margin-top: 0px;
 
-const FriendInfoFont2 = styled.p`
-  font-size: 1px;
-`;
-
-
-
-const TodayTime = styled.p`
-  font-size: 15px;
-  font-weight: bold;
-`;
-
-const WeekTime = styled.p`
-  font-size: 15px;
-  font-weight: bold;
-`;
-
-
-
-const FriendInfoFont3 = styled.p`
-  font-size: 15px;
-  margin: 0;
+  &.major {
+    font-weight: bold;
+    font-size: 12px;
+    color: dimgray;
+    margin-top: -9px;
+  }
+  
+  &.state {
+    font-weight: bold;
+    font-size: 10px;
+    color: limegreen;
+  }
+  
+  &.day {
+    font-weight: bold;
+    font-size: 12px;
+    padding-top: 13px;
+    color: gray;
+  }
+  
+  &.time {
+    font-size: 25px;
+    font-weight: bold;
+    padding-top: 0px;
+    padding-left: 12px;
+  }
 `;
 
 
@@ -103,18 +123,21 @@ const FriendCard = () => {
                 <PfpImg src="path_to_default_image.png"></PfpImg>
             </ProfileBox>
             <FriendInfoBox>
-                {/*<FriendInfoFont1>name</FriendInfoFont1>*/}
-                {/*<FriendInfoFont1>id</FriendInfoFont1>*/}
-                {/*<FriendInfoFont2>universityName</FriendInfoFont2>*/}
-                {/*<FriendInfoFont2>majorName</FriendInfoFont2>*/}
-                {/*<FriendTimeInfo>*/}
-                {/*    <TodayTime>todayTime</TodayTime>*/}
-                {/*    <FriendInfoFont2>Today</FriendInfoFont2>*/}
-                {/*    <WeekTime>weekTime</WeekTime>*/}
-                {/*    <FriendInfoFont2>Week</FriendInfoFont2>*/}
-                {/*</FriendTimeInfo>*/}
-                {/*<FriendInfoFont3>갓생중</FriendInfoFont3>*/}
+                <FriendFont>김충영 / chungyomi</FriendFont>
+                <FriendFont>가천대학교</FriendFont>
+                <FriendFont className="major">AI소프트웨어전공</FriendFont>
+                <FriendFont className="state">갓생중</FriendFont>
             </FriendInfoBox>
+            <FriendTimeBox>
+                <TimeRow>
+                    <FriendFont className="day">Today</FriendFont>
+                    <FriendFont className="time">10:11</FriendFont>
+                </TimeRow>
+                <TimeRow>
+                    <FriendFont className="day">Week</FriendFont>
+                    <FriendFont className="time">20:31</FriendFont>
+                </TimeRow>
+            </FriendTimeBox>
             <FriendSettingBox>
                 <ButtonRow>
                     <FixButton></FixButton>
