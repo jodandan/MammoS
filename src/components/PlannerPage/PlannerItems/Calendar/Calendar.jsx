@@ -16,6 +16,8 @@ import {
   PrevMonthBtn,
   NextMonthBtn,
   BackgroundColor,
+  Today,
+  TodayFont,
 } from './CalendarItemCss';
 
 function ChartHandler(projects) {
@@ -61,7 +63,7 @@ function ChartHandler(projects) {
 
         // 이미 칠해진 차트가 있다면 isExist를 true로 바꾸고, chartLevel을 다음 단계로
         chartSameLine.forEach((chart) => {
-          if (!isExist && chart.getAttribute('isselected') === 'true') {
+          if (!isExist && chart.getAttribute('isplanned') === 'true') {
             chartLevel++;
             isExist = true;
             return;
@@ -82,8 +84,8 @@ function ChartHandler(projects) {
 
       for (let j = 0; j < chartSameLine.length; j++) {
         const chart = chartSameLine[j];
-        chart.setAttribute('isselected', 'true');
-        chart.style.backgroundColor = '#90C20D';
+        chart.setAttribute('isplanned', 'true');
+        chart.style.backgroundColor = '#B6DC79';
       }
 
       // 양 끝 border-radius 적용
@@ -120,13 +122,27 @@ function ChartHandler(projects) {
   });
 }
 
-const Calendar = ({ month, year, planDays, projects }) => {
+const Calendar = ({
+  month,
+  monthValue,
+  year,
+  selectedDay,
+  planDays,
+  projects,
+  fetchPage,
+}) => {
   const weeks = ['SUN', 'MON', 'TUE', 'WED', 'THR', 'FRI', 'SAT'];
   let dayCnt = 0;
 
   useEffect(() => {
     ChartHandler(projects);
   }, []);
+
+  function ClickDayHandler(clickedDay) {
+    const clickedDate = new Date(year, monthValue - 1, clickedDay + 1);
+
+    fetchPage(clickedDate, false);
+  }
 
   const renderDays = () => {
     const days = [];
@@ -188,17 +204,26 @@ const Calendar = ({ month, year, planDays, projects }) => {
       }
 
       days.push(
-        <Day key={date} id="day" isselected={isPlanDay.toString()}>
-          <Circle isselected={isPlanDay.toString()}></Circle>
+        <Day
+          key={date}
+          id="day"
+          isplanned={isPlanDay.toString()}
+          onClick={() => ClickDayHandler(day)}
+        >
+          {day === selectedDay && <Today />}
+          {day === new Date().getDate() &&
+            monthValue - 1 === new Date().getMonth() &&
+            year === new Date().getFullYear() && <TodayFont>Today</TodayFont>}
+          <Circle isplanned={isPlanDay.toString()}></Circle>
           <DayFont style={{ color: dayCnt % 7 === 0 ? 'red' : 'inherit' }}>
             {day}
           </DayFont>
           <ChartBox id={'day' + date.getDate()}>
-            <Chart id="line1" isselected="false" />
-            <Chart id="line2" isselected="false" />
-            <Chart id="line3" isselected="false" />
-            <Chart id="line4" isselected="false" />
-            <Chart id="line5" isselected="false" />
+            <Chart id="line1" isplanned="false" />
+            <Chart id="line2" isplanned="false" />
+            <Chart id="line3" isplanned="false" />
+            <Chart id="line4" isplanned="false" />
+            <Chart id="line5" isplanned="false" />
           </ChartBox>
         </Day>
       );
@@ -224,16 +249,37 @@ const Calendar = ({ month, year, planDays, projects }) => {
     return days;
   };
 
+  function CalendarButtonClickHandler(input) {
+    let targetMonth;
+    if (input === 'prev') {
+      // 현재 달이 1월이면 작년 12월로 설정
+      if (monthValue === 1) {
+        targetMonth = new Date(year - 1, 11, 2);
+        console.log(true);
+      } else {
+        console.log(monthValue);
+        targetMonth = new Date(year, monthValue - 2, 2);
+        console.log(false);
+      }
+    } else {
+      // 다음 달의 첫 날
+      targetMonth = new Date(year, monthValue, 2);
+    }
+    console.log(targetMonth);
+
+    fetchPage(targetMonth, true);
+  }
+
   return (
     <CalendarBox>
       <BackgroundColor>
         <Top>
-          <PrevMonthBtn />
+          <PrevMonthBtn onClick={() => CalendarButtonClickHandler('prev')} />
           <Title>
             <Month>{month}</Month>
             <Year>{year}</Year>
           </Title>
-          <NextMonthBtn />
+          <NextMonthBtn onClick={() => CalendarButtonClickHandler('next')} />
         </Top>
       </BackgroundColor>
       <CalendarContainer>{renderDays()}</CalendarContainer>
@@ -245,7 +291,10 @@ export default Calendar;
 
 Calendar.propTypes = {
   month: PropTypes.string.isRequired,
-  year: PropTypes.string.isRequired,
+  year: PropTypes.number.isRequired,
+  selectedDay: PropTypes.number.isRequired,
+  monthValue: PropTypes.number.isRequired,
   planDays: PropTypes.arrayOf(PropTypes.number).isRequired,
   projects: PropTypes.array.isRequired,
+  fetchPage: PropTypes.func.isRequired,
 };

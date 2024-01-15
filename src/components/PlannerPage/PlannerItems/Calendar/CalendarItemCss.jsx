@@ -21,6 +21,7 @@ export const CalendarContainer = styled.div`
 `;
 
 export const Day = styled.div`
+  cursor: ${({ isoutsidemonth }) => (isoutsidemonth ? 'default' : 'pointer')};
   display: flex;
   font-weight: bold;
   width: 3.5vw;
@@ -36,6 +37,8 @@ export const Day = styled.div`
     height: 2vw;
     color: ${({ day }) => (day === 'SUN' ? 'red' : 'inherit')};
   }
+
+  border-radius: 10px;
 `;
 
 export const Circle = styled.div`
@@ -51,7 +54,7 @@ export const Circle = styled.div`
   opacity: 0.5;
   z-index: 2;
   transform: translateX(-50%);
-  display: ${({ isselected }) => (isselected === 'true' ? 'flex' : 'none')};
+  display: ${({ isplanned }) => (isplanned === 'true' ? 'flex' : 'none')};
 `;
 
 export const Month = styled.h2`
@@ -72,7 +75,7 @@ export const ChartBox = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 50%;
-  height: 50%;
+  height: 65%;
   width: 100%;
   align-items: baseline;
 `;
@@ -80,12 +83,10 @@ export const ChartBox = styled.div`
 export const Chart = styled.div`
   display: flex;
   flex-direction: column;
-  height: 18%;
+  height: 14%;
   width: 100%;
-  margin-bottom: 2px;
+  margin-bottom: 4px;
   padding-left: 8%;
-  background-color: ${(props) =>
-    props.isselected === 'true' ? '#90C20D' : 'transparent'};
 `;
 
 export const Top = styled.div`
@@ -138,4 +139,25 @@ export const BackgroundColor = styled.div`
   width: 100%;
   border-radius: 40px 40px 0px 0px;
   background: linear-gradient(rgba(167, 207, 65, 0.3), #ffffff);
+`;
+
+export const Today = styled.div`
+  position: absolute;
+  padding: 0px;
+  margin: 0px;
+  width: 3.7vw; /* Day의 너비와 동일하게 설정 */
+  margin-left: -0.6vw;
+  margin-top: -0.5vw;
+  height: 5.2vw;
+  border: 3px solid #90c20d;
+  border-radius: 10px;
+  box-shadow: 4px 4px 4px 2px rgba(160, 160, 160, 0.5);
+`;
+
+export const TodayFont = styled.p`
+  position: absolute;
+  font-size: 10px;
+  margin-left: 1.5vw;
+  margin-top: 0.2vw;
+  color: black;
 `;

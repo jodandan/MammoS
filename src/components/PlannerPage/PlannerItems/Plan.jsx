@@ -310,13 +310,7 @@ export default function Plan(plan) {
 
   return (
     <PlanContainer>
-      <PlanBox>
-        {makePlans()}
-        <UserPlan />
-        <UserPlan />
-        <UserPlan />
-        <UserPlan />
-      </PlanBox>
+      <PlanBox>{makePlans()}</PlanBox>
       <StudyTime>
         <StudyTimeFont>Total Time Spent</StudyTimeFont>
         <StudyTimeFont className="time">

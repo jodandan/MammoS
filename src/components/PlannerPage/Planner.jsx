@@ -28,37 +28,63 @@ export default function Planner() {
     month: '',
     projects: [],
   });
-  const [planner, setPlanner] = useState([]);
+  const [planner, setPlanner] = useState({
+    day: 0,
+    month: 0,
+    plannerIdx: 0,
+    plans: [
+      {
+        planIndex: 0,
+        planIsComplete: false,
+        planName: '',
+        planStudyTime: 0,
+        studytimeStartTime: new Date(),
+      },
+    ],
+    todayStudyTime: 0,
+  });
   const [project, setProject] = useState([]);
 
-  useEffect(() => {
-    async function fetchPage() {
-      try {
-        // 토큰 가져오기
-        const token = localStorage.getItem('token');
-        // 토큰 설정
-        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-        // 정보 받아오기
-        const now = new Date().toISOString().substring(0, 10);
+  async function fetchPage(date, isMonthBtn) {
+    try {
+      // 토큰 가져오기
+      const token = localStorage.getItem('token');
+      // 토큰 설정
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      // 정보 받아오기
 
-        const response = await axios.get(
-          'http://localhost:8080/api/v1/planner/' + now
-        );
-        // 정보 저장
-        if (response.data.httpResponseStatus === 'SUCCESS') {
-          setCalendar(response.data.responseData.calendar);
-          setPlanner(response.data.responseData.planner);
-          setProject(response.data.responseData.project);
-
-          console.log(response);
-        } else {
-          console.log(response);
+      if (isMonthBtn) {
+        if (
+          new Date(date).getFullYear() === new Date().getFullYear() &&
+          new Date(date).getMonth() === new Date().getMonth()
+        ) {
+          date = new Date();
         }
-      } catch (error) {
-        console.log(error);
       }
+
+      const now = date.toISOString().substring(0, 10);
+      console.log(now);
+
+      const response = await axios.get(
+        'http://localhost:8080/api/v1/planner/' + now
+      );
+      // 정보 저장
+      if (response.data.httpResponseStatus === 'SUCCESS') {
+        setCalendar(response.data.responseData.calendar);
+        setPlanner(response.data.responseData.planner);
+        setProject(response.data.responseData.project);
+
+        console.log(response);
+      } else {
+        console.log(response);
+      }
+    } catch (error) {
+      console.log(error);
     }
-    fetchPage();
+  }
+
+  useEffect(() => {
+    fetchPage(new Date());
   }, []);
 
   return (
@@ -67,9 +93,12 @@ export default function Planner() {
         <Calendar
           key={calendar.idx}
           month={calendar.month}
+          monthValue={calendar.monthValue}
           planDays={calendar.planDays}
-          projects={calendar.projects}
           year={calendar.year}
+          projects={calendar.projects}
+          fetchPage={fetchPage}
+          selectedDay={planner.day}
         />
         <Right>
           <Plan plan={planner.plans} totalStudyTime={planner.todayStudyTime} />

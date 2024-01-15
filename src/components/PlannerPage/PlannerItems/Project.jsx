@@ -46,11 +46,7 @@ const UserProject = styled.div`
   margin-bottom: 0.4vw;
   height: ${({ ischecked }) => (ischecked === 'true' ? '1.6vw' : '2.5vw')};
   background-color: ${({ ischecked, isrunning }) =>
-    ischecked === 'true'
-      ? '#454545'
-      : isrunning === 'true'
-        ? '#90C20D'
-        : '#C6EF5E'};
+    ischecked === 'true' ? '#454545' : '#90C20D'};
   box-shadow: 0px 3px 3px 0px rgb(0, 0, 0, 0.25);
   display: flex;
   align-items: center;
@@ -74,7 +70,7 @@ const UserProject = styled.div`
 `;
 
 const ProjectContentBox = styled.div`
-  width: 62%;
+  width: 56.5%;
 `;
 
 const ProjectContent = styled.p`
@@ -132,6 +128,21 @@ const TrashBtn = styled.img`
   margin-left: 0.8vw;
 `;
 
+const CalendarBtn = styled.img`
+  background-color: transparent;
+  height: 18px;
+  width: 18px;
+  border: 1px solid black;
+`;
+
+const ButtonBox = styled.div`
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  width: 60px;
+  margin-right: 3%;
+`;
+
 const AddBtn = styled.div`
   display: flex;
   width: 80px;
@@ -176,7 +187,10 @@ export default function Project(project) {
             <Duration className="start">{startDate}</Duration>
             <Duration>~</Duration>
             <Duration className="end">{endDate}</Duration>
-            <TrashBtn />
+            <ButtonBox>
+              <CalendarBtn />
+              <TrashBtn />
+            </ButtonBox>
           </UserProject>
         );
       });
@@ -201,7 +215,10 @@ export default function Project(project) {
             <Duration className="start">{startDate}</Duration>
             <Duration>~</Duration>
             <Duration className="end">{endDate}</Duration>
-            <TrashBtn />
+            <ButtonBox>
+              <CalendarBtn />
+              <TrashBtn />
+            </ButtonBox>
           </UserProject>
         );
       });
