@@ -4,16 +4,7 @@ import Plan from './PlannerItems/Plan';
 import Project from './PlannerItems/Project';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-
-const Calendar = styled.div`
-  width: 30vw;
-  border: 1px solid black;
-  justify-content: center;
-  height: 35vw;
-  margin-left: 2vw;
-  margin-right: 2vw;
-  border-radius: 40px;
-`;
+import Calendar from './PlannerItems/Calendar/Calendar';
 
 const Right = styled.div`
   width: 27vw;
@@ -73,7 +64,13 @@ export default function Planner() {
   return (
     <PageFrame>
       <PageContainer>
-        <Calendar />
+        <Calendar
+          key={calendar.idx}
+          month={calendar.month}
+          planDays={calendar.planDays}
+          projects={calendar.projects}
+          year={calendar.year}
+        />
         <Right>
           <Plan plan={planner.plans} totalStudyTime={planner.todayStudyTime} />
           <Project project={project} />

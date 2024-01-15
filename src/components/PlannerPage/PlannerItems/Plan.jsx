@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
 const PlanContainer = styled.div`
-  background-color: #ecf1e0;
+  background-color: transparent;
   width: 100%;
   height: 55%;
-  border: 3px solid #b9d967;
+  border: 1px solid rgba(160, 160, 160, 0.5);
+  box-shadow: 0px 0px 10px 4px rgba(160, 160, 160, 0.5);
   margin-bottom: 2vw;
   border-radius: 20px;
 `;
@@ -16,14 +17,18 @@ const PlanBox = styled.div`
   overflow: auto;
 
   &::-webkit-scrollbar {
-    border-left: 9px solid #ecf1e0;
-    border-right: 9px solid #ecf1e0;
+    border-left: 9px solid;
+    border-right: 9px solid;
+    border-image: linear-gradient(#e8f3ce, #ffffff);
+    border-image-slice: 1;
     background-color: #b9d967;
     width: 20px;
   }
   &::-webkit-scrollbar-thumb {
-    border-left: 5px solid #ecf1e0;
-    border-right: 5px solid #ecf1e0;
+    border-left: 5px solid;
+    border-right: 5px solid;
+    border-image: linear-gradient(#e8f3ce, #ffffff);
+    border-image-slice: 1;
     background-color: #b9d967;
     border-radius: 7px;
   }
@@ -305,7 +310,13 @@ export default function Plan(plan) {
 
   return (
     <PlanContainer>
-      <PlanBox>{makePlans()}</PlanBox>
+      <PlanBox>
+        {makePlans()}
+        <UserPlan />
+        <UserPlan />
+        <UserPlan />
+        <UserPlan />
+      </PlanBox>
       <StudyTime>
         <StudyTimeFont>Total Time Spent</StudyTimeFont>
         <StudyTimeFont className="time">

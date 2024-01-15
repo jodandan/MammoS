@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 
 const ProjectContainer = styled.div`
-  background-color: #ecf1e0;
+  background-color: white;
   width: 100%;
   height: 39%;
-  border: 3px solid #b9d967;
+  border: 1px solid rgba(160, 160, 160, 0.5);
+  box-shadow: 0px 0px 10px 4px rgba(160, 160, 160, 0.5);
   border-radius: 20px;
 `;
 
@@ -16,14 +16,14 @@ const ProjectBox = styled.div`
   height: 83%;
   overflow: auto;
   &::-webkit-scrollbar {
-    border-left: 9px solid #ecf1e0;
-    border-right: 9px solid #ecf1e0;
+    border-left: 9px solid white;
+    border-right: 9px solid white;
     background-color: #b9d967;
     width: 20px;
   }
   &::-webkit-scrollbar-thumb {
-    border-left: 5px solid #ecf1e0;
-    border-right: 5px solid #ecf1e0;
+    border-left: 5px solid white;
+    border-right: 5px solid white;
     background-color: #b9d967;
     border-radius: 7px;
   }
@@ -153,7 +153,6 @@ export default function Project(project) {
   function makeProjects() {
     const projects = project.project.project;
     const result = [];
-    console.log();
 
     // 정렬
     if (projects) {
