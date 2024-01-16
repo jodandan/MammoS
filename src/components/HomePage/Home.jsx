@@ -48,7 +48,7 @@ export default function Home() {
         // 토큰 설정
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         // 정보 받아오기
-        const response = await axios.get('http://localhost:8080/api/v1/home');
+        const response = await axios.get('http://3.38.7.193:8080/api/v1/home');
         // 정보 저장
         if (response.data.httpResponseStatus === 'SUCCESS') {
           setAchievement(response.data.responseData.achievement);

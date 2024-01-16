@@ -6,7 +6,6 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
-
 const PageContainer = styled.div`
   display: flex;
   position: absolute;
@@ -22,7 +21,7 @@ export default function PageFrame(props) {
         new Date().getTime()
       ) {
         // 로그아웃 서버에 요청
-        await axios.get('http://localhost:8080/api/v1/logout');
+        await axios.get('http://3.38.7.193:8080/api/v1/logout');
         // 로컬 스토리지에 저장된 토큰 삭제
         localStorage.removeItem('token');
         // 경고창

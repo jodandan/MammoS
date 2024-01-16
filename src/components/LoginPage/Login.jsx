@@ -29,7 +29,7 @@ export default function Login() {
 
     try {
       // id, pwd를 담고있는 requestBody와 함께 위 주소에 POST 요청
-      const response = await axios.post('http://localhost:8080/api/v1/login', {
+      const response = await axios.post('http://3.38.7.193:8080/api/v1/login', {
         id: id,
         pwd: password,
       });

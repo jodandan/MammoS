@@ -66,7 +66,7 @@ export default function Planner() {
       console.log(now);
 
       const response = await axios.get(
-        'http://localhost:8080/api/v1/planner/' + now
+        'http://3.38.7.193:8080/api/v1/planner/' + now
       );
       // 정보 저장
       if (response.data.httpResponseStatus === 'SUCCESS') {
