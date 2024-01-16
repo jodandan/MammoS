@@ -2,15 +2,14 @@ import styled from 'styled-components';
 
 export const TotalBox = styled.div`
     width: 100%;
-    height: 100%;
+    height: 387px;
     display: flex;
     flex-direction: column;
-    padding-top: 7vh;
 `;
 
 export const Container = styled.div`
     width: 100%;
-    height: 50%;
+    height: 297px;
     flex-shrink: 0;
     background-color: transparent;
     stroke-width: 4px;

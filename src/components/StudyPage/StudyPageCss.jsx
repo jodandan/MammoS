@@ -22,7 +22,7 @@ export const ContainerBox = styled.div`
 export const TextBox = styled.div`
     margin: 0 auto;
     width: 100%;
-    height: 30%;
+    height: 20%;
 `;
 
 
@@ -48,7 +48,9 @@ export const SubText = styled.div`
     width: 75%;
 `;
 
-
-
-
+export const SecondLine = styled.div`
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+`;
 

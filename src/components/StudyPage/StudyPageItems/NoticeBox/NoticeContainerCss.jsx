@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-    width: 35%;
+    width: 61%;
     height: 60%;
     flex-shrink: 0;
     background-color: transparent;
@@ -23,12 +23,12 @@ export const Title = styled.div`
     padding: 10px;
 `;
 
-export const MemberList = styled.div`
+export const NoticeList = styled.div`
     width: 95%;
     height: 70%;
     max-height: 300px;
     overflow-y: auto; 
-    
+    padding: 10px;
     &::-webkit-scrollbar {
     border-left: 9px solid white;
     border-right: 9px solid white;
@@ -46,13 +46,11 @@ export const MemberList = styled.div`
   }
 `;
 
-
-export const MemberItem = styled.div`
-  display: flex;
-  padding: 0.5rem;
-
-  div {
-    flex: 1;
-  }
+export const NoticeItem = styled.div`
+    display: flex;
+    padding: 0.5rem;
+    border: 2px solid #A7CF41;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
 `;
-
