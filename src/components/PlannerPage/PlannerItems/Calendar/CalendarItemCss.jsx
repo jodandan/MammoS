@@ -157,7 +157,7 @@ export const Today = styled.div`
 export const TodayFont = styled.p`
   position: absolute;
   font-size: 10px;
-  margin-left: 1.5vw;
+  margin-left: 1.4vw;
   margin-top: 0.2vw;
   color: black;
 `;
