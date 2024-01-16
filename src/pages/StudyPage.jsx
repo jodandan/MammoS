@@ -1,8 +1,8 @@
 import React from 'react'
-import Study from '../components/StudyPage/Study';
+import StudyHome from '../components/StudyPage/StudyHome';
 
-export default function StudyPage() {
+export default function StudyHomePage() {
   return (
-    <Study />
+    <StudyHome />
   )
 }

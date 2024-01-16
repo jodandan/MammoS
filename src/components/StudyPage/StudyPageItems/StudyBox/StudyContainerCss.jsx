@@ -1,16 +1,13 @@
 import styled from 'styled-components';
 
 export const TotalBox = styled.div`
-    width: 100%;
-    height: 100%;
+    height: 387px;
     display: flex;
     flex-direction: column;
-    padding-top: 7vh;
 `;
 
 export const Container = styled.div`
-    width: 100%;
-    height: 50%;
+    height: 297px;
     flex-shrink: 0;
     background-color: transparent;
     stroke-width: 4px;
@@ -30,15 +27,14 @@ export const BoxTitle = styled.div`
 `;
 
 export const FirstLine = styled.div`
-    width: 95%;
     display: flex;
     flex-direction: row;
     padding: 0.5rem;
-    border: 1px solid blue;
+    //border: 1px solid blue;
 `;
 
 export const LeftSide = styled.div`
-    width: 50%;
+    width: 95%;
     color: #000;
     font-family: Pretendard Variable;
     font-size: 20px;
@@ -48,7 +44,7 @@ export const LeftSide = styled.div`
 `;
 
 export const DataBox = styled.div`
-    width: 60%;
+    width: 80%;
     color: #000;
     font-family: Pretendard Variable;
     font-size: 20px;
@@ -97,20 +93,21 @@ export const Title = styled.div`
 `;
 
 export const EditBox = styled.div`
-    width: 10%;
+    width: 5%;
 `;
 
-export const InputBox = styled.input`
+export const InputBox = styled.div`
     width: 376px;
     height: 110px;
     background-color: transparent;
-    border: 1px solid blue;
+    //border: 1px solid blue;
     margin: 0.5rem;
 `;
 
 export const PeopleListBox = styled.div`
     width: 20%;
-    border: 1px solid red;
+    //border: 1px solid red;
+    padding-left: 20px;
 `;
 
 export const ListTitle = styled.div`
@@ -127,7 +124,7 @@ export const ListTitle = styled.div`
 export const PeopleList = styled.div`
     width: 100%;
     height: 80%;
-    border: 1px solid black;
+    //border: 1px solid black;
 `;
 
 export const CheckBoxLabel = styled.label`
