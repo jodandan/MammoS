@@ -12,7 +12,6 @@
       <change beforePath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/FriendResponseButton.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/FriendResponseButton.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/FriendSection.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/FriendSection.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/RankingCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/RankingCard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/RankingSection.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/RankingSection.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,6 +100,8 @@
       <workItem from="1704611942884" duration="38553000" />
       <workItem from="1705133429354" duration="5772000" />
       <workItem from="1705216829210" duration="5077000" />
+      <workItem from="1705313706305" duration="8581000" />
+      <workItem from="1705373946404" duration="5038000" />
     </task>
     <servers />
   </component>

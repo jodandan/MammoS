@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-
+import FriendSection from './FriendSection';
 
 const FriendBox = styled.div`
   display: flex;
@@ -116,48 +116,71 @@ const FriendFont = styled.p`
 `;
 
 
-const FriendCard = () => {
+const FriendCard = ({
+    id,
+    name,
+    universityName,
+    majorName,
+    pfp,
+    weekTime,
+    todayTime,
+    planner
+}) => {
+
+    function pinClickHandler(){
+        console.log('고정핀')
+    }
+
+    function deleteClickHandler(){
+        console.log('삭제 팝업')
+    }
+    function plannerClickHandler() {
+        console.log('플래너 화면');
+    }
+
     return (
         <FriendBox>
             <ProfileBox>
-                <PfpImg src="path_to_default_image.png"></PfpImg>
+                <PfpImg src={pfp} />
             </ProfileBox>
             <FriendInfoBox>
-                <FriendFont>김충영 / chungyomi</FriendFont>
-                <FriendFont>가천대학교</FriendFont>
-                <FriendFont className="major">AI소프트웨어전공</FriendFont>
-                <FriendFont className="state">갓생중</FriendFont>
+                <FriendFont>{name}</FriendFont>
+                <FriendFont>{id}</FriendFont>
+                <FriendFont>{universityName}</FriendFont>
+                <FriendFont className="major">{majorName}</FriendFont>
+                <FriendFont className="state">온라인</FriendFont>
             </FriendInfoBox>
             <FriendTimeBox>
                 <TimeRow>
                     <FriendFont className="day">Today</FriendFont>
-                    <FriendFont className="time">10:11</FriendFont>
+                    <FriendFont className="time">{todayTime}</FriendFont>
                 </TimeRow>
                 <TimeRow>
                     <FriendFont className="day">Week</FriendFont>
-                    <FriendFont className="time">20:31</FriendFont>
+                    <FriendFont className="time">{weekTime}</FriendFont>
                 </TimeRow>
             </FriendTimeBox>
             <FriendSettingBox>
                 <ButtonRow>
-                    <FixButton></FixButton>
-                    <DeleteButton></DeleteButton>
+                    <FixButton onClick={pinClickHandler}></FixButton>
+                    <DeleteButton onClick={deleteClickHandler}></DeleteButton>
                 </ButtonRow>
                 <ButtonRow>
-                    <FriendPlanner></FriendPlanner>
+                    <FriendPlanner onClick={plannerClickHandler}>{planner}</FriendPlanner>
                 </ButtonRow>
             </FriendSettingBox>
         </FriendBox>
     );
 };
 
-// FriendCard.propTypes = {
-//     id: PropTypes.string.isRequired,
-//     name: PropTypes.string.isRequired,
-//     universityName: PropTypes.string.isRequired,
-//     majorName: PropTypes.string.isRequired,
-//     todayTime: PropTypes.string.isRequired,
-//     weekTime: PropTypes.string.isRequired,
-// };
-
+FriendCard.propTypes = {
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    weekTime: PropTypes.string.isRequired,
+    todayTime: PropTypes.string.isRequired,
+    planner: PropTypes.string.isRequired,
+    pfp: PropTypes.string.isRequired,
+    universityName: PropTypes.string.isRequired,
+    majorName: PropTypes.string.isRequired,
+};
 export default FriendCard;

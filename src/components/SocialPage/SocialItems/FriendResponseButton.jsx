@@ -9,15 +9,33 @@ const FriendResponseBox = styled.div`
   height: 8vw;
 `;
 
+const CountBadge = styled.div`
+  background-color: red;
+  color: white;
+  text-align: center;
+  border-radius: 50%;
+  width: 1.5vw;
+  height: 1.5vw;
+  margin-bottom: 0.3vw;
+  margin-right: -0.3vw;
+`;
+
 const ResponseButton = styled.button`
-  width: 4vw;
+  width: 5vw;
   height: 2vw;
-  font-size: 11px;
+  font-size: 15px;
+  font-weight: bold;
+  background: none;
+  border: none; 
+  outline: none; 
+  cursor: pointer; 
+  text-decoration: underline;
 `;
 
 const FriendResponseButton = () => {
     return(
         <FriendResponseBox>
+            <CountBadge>1</CountBadge>
             <ResponseButton>친구요청</ResponseButton>
         </FriendResponseBox>
     );

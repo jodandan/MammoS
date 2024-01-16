@@ -5,7 +5,8 @@ import FriendCard from './SocialItems/FriendCard';
 import FriendSection from './SocialItems/FriendSection';
 import FriendResponseButton from './SocialItems/FriendResponseButton';
 import RankingSection from './SocialItems/RankingSection';
-import {useState} from 'react';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 const Top = styled.div`
   display: flex;
@@ -21,6 +22,7 @@ const Bottom = styled.div`
 `;
 
 export default function Social() {
+    const [friendSection, setFriendSection] = useState()
     return (
         <PageFrame>
             <Top>
@@ -28,7 +30,7 @@ export default function Social() {
             </Top>
             <Bottom>
                 <FriendResponseButton></FriendResponseButton>
-                <FriendSection></FriendSection>
+                <FriendSection friendSection={friendSection}></FriendSection>
             </Bottom>
         </PageFrame>
     );

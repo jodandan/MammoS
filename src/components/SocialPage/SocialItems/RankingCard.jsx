@@ -55,7 +55,6 @@ const FontRow = styled.div`
   justify-content: center;
   font-weight: bold;
   font-size: 13px;
-  
   &.user_info {
     margin-top: 25px;
   }
@@ -69,7 +68,7 @@ const RankingCard = () => {
                 <RankBadge>1</RankBadge>
             </RankCard>
             <FontRow className="user_info">
-                <RankingCardFont>김충영 / </RankingCardFont>
+                <RankingCardFont>김충영</RankingCardFont>
                 <RankingCardFont>chungyomi</RankingCardFont>
             </FontRow>
             <FontRow>

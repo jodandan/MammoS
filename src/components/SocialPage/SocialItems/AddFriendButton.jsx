@@ -1,6 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import AddButtonImg from '../../assets/AddButton.png'
+import AddFriendModal from './AddFriendModal'; // 만들어야 하는 모달 컴포넌트
+import PropTypes from 'prop-types';
 
 const AddFriendButtonBox = styled.div`
   display: flex;
@@ -22,14 +24,21 @@ const AddButton = styled.img`
   height: 2.7vw; 
   background-color: #D9D9D9;
   border-radius: 50%;
-  
 `;
 
 const AddFriendButton = () => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const handleAddButtonClick = () => {
+        setIsModalOpen(true); // 모달 열기
+    };
+
     return (
-        <AddFriendButtonBox>
-            <AddButton src={AddButtonImg}></AddButton>
-        </AddFriendButtonBox>
+        <>
+            <AddFriendButtonBox>
+                <AddButton src={AddButtonImg} onClick={handleAddButtonClick}></AddButton>
+            </AddFriendButtonBox>
+            {isModalOpen && <AddFriendModal onClose={() => setIsModalOpen(false)} />}
+        </>
     );
 };
 
