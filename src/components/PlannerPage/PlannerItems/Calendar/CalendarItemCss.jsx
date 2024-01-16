@@ -114,6 +114,9 @@ export const Title = styled.div`
 `;
 
 export const PrevMonthBtn = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   height: 2vw;
   width: 2vw;
@@ -124,6 +127,9 @@ export const PrevMonthBtn = styled.button`
 `;
 
 export const NextMonthBtn = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   height: 2vw;
   width: 2vw;

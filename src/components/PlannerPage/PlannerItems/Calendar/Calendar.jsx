@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { Icon } from '@iconify/react';
 
 import {
   CalendarContainer,
@@ -274,12 +275,32 @@ const Calendar = ({
     <CalendarBox>
       <BackgroundColor>
         <Top>
-          <PrevMonthBtn onClick={() => CalendarButtonClickHandler('prev')} />
+          <PrevMonthBtn onClick={() => CalendarButtonClickHandler('prev')}>
+            <Icon
+              style={{
+                marginLeft: '-2px',
+                height: '30px',
+                width: '30px',
+                color: '#9D9D9D',
+              }}
+              icon="mingcute:left-fill"
+            />
+          </PrevMonthBtn>
           <Title>
             <Month>{month}</Month>
             <Year>{year}</Year>
           </Title>
-          <NextMonthBtn onClick={() => CalendarButtonClickHandler('next')} />
+          <NextMonthBtn onClick={() => CalendarButtonClickHandler('next')}>
+            <Icon
+              style={{
+                marginRight: '-2px',
+                height: '30px',
+                width: '30px',
+                color: '#9D9D9D',
+              }}
+              icon="mingcute:right-fill"
+            />
+          </NextMonthBtn>
         </Top>
       </BackgroundColor>
       <CalendarContainer>{renderDays()}</CalendarContainer>

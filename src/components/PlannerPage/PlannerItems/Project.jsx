@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Icon } from '@iconify/react';
 
 const ProjectContainer = styled.div`
   background-color: white;
@@ -188,8 +189,14 @@ export default function Project(project) {
             <Duration>~</Duration>
             <Duration className="end">{endDate}</Duration>
             <ButtonBox>
-              <CalendarBtn />
-              <TrashBtn />
+              <Icon
+                style={{ height: '20px', width: '20px' }}
+                icon="lucide:calendar"
+              />
+              <Icon
+                style={{ height: '20px', width: '20px' }}
+                icon="mdi:trashcan-outline"
+              />
             </ButtonBox>
           </UserProject>
         );
@@ -216,8 +223,33 @@ export default function Project(project) {
             <Duration>~</Duration>
             <Duration className="end">{endDate}</Duration>
             <ButtonBox>
-              <CalendarBtn />
-              <TrashBtn />
+              <Icon
+                style={{
+                  height: '20px',
+                  width: '20px',
+                }}
+                icon="mdi:trashcan-outline"
+              />
+              {!project.projectIsVisible && (
+                <Icon
+                  style={{
+                    height: '20px',
+                    width: '20px',
+                    marginLeft: '0.9vw',
+                  }}
+                  icon="tabler:calendar-up"
+                />
+              )}
+              {project.projectIsVisible && (
+                <Icon
+                  style={{
+                    height: '20px',
+                    width: '20px',
+                    marginLeft: '0.9vw',
+                  }}
+                  icon="tabler:calendar-off"
+                />
+              )}
             </ButtonBox>
           </UserProject>
         );
