@@ -171,6 +171,22 @@ export default function Plan(plan) {
     '0'
   );
 
+  async function ButtonClickHandler(input, idx) {
+    if (input === 'start') {
+      // 토큰 가져오기
+      const token = localStorage.getItem('token');
+      // 토큰 설정
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      // 타이머 On/Off
+      // const response = await axios.patch(
+      //   'http://3.38.7.193:8080/api/v1/planner/projects/display/' + idx
+      // );
+      // 페이지 패치
+      plan.fetchPage();
+    } else {
+    }
+  }
+
   function makePlans() {
     const result = [];
 
