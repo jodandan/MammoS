@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Icon } from '@iconify/react';
+import axios from 'axios';
 
 const PlanContainer = styled.div`
   background-color: transparent;
@@ -183,7 +184,6 @@ export default function Plan(plan) {
       // );
       // 페이지 패치
       plan.fetchPage();
-    } else {
     }
   }
 
