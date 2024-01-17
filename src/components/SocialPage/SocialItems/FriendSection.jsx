@@ -21,8 +21,11 @@ export default function FriendSection() {
 
     return (
         <FriendSectionBox>
+            <FriendCard></FriendCard>
+            <FriendCard></FriendCard>
+            <FriendCard></FriendCard>
             {friends.map((friend) => (
-            <FriendCard key={friend.id} {...friend} />
+                <FriendCard key={friend.id} {...friend} />
             ))}
             <AddFriendButton onAddFriend={handleAddFriend} />
         </FriendSectionBox>

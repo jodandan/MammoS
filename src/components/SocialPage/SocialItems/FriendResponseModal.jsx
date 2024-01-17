@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import PropTypes from 'prop-types';
@@ -71,27 +71,9 @@ const SearchButton = styled.button`
 `;
 
 
-const AddFriendModal = ({ isOpen, onClose, onAddFriend}) => {
-    const [friendId, setFriendId] = useState(''); // 사용자가 입력한 친구 ID를 저장하기 위한 상태
-    const [isLoading, setIsLoading] = useState(false);
-    const handleSearch = async () => {
-        if (!friendId) return; // ID가 비어있으면 요청을 보내지 않음
-        setIsLoading(true);
-        try {
-            const response = await axios.post('http://localhost:8080/api/v1/request/:friendId', { id: friendId });
-            if (response.data.success) {
-                onAddFriend(response.data.friend); // FriendSection에 친구 추가
-                onClose(); // 모달 닫기
-            } else {
-                alert(response.data.message);
-            }
-        } catch (error) {
-            console.error('Error searching friend:', error);
-             alert('친구 검색 중 오류가 발생했습니다.');
-        } finally {
-            setIsLoading(false);
-        }
-    };
+const AddFriendModal = ({ isOpen, onClose}) => {
+    const [friendId, setFriendId] = useState('');
+
 
     return (
         <ModalFrame onClick={onClose}>
@@ -104,7 +86,7 @@ const AddFriendModal = ({ isOpen, onClose, onAddFriend}) => {
                         onChange={(e) => setFriendId(e.target.value)}
                         placeholder="친구 ID를 입력하세요"
                     />
-                    <SearchButton src= {SearchButtonImg} onClick={handleSearch} disabled={isLoading}/>
+                    <SearchButton src= {SearchButtonImg} />
                 </SearchContainer>
             </ModalBox>
         </ModalFrame>
@@ -114,7 +96,6 @@ const AddFriendModal = ({ isOpen, onClose, onAddFriend}) => {
 AddFriendModal.propTypes = {
     isOpen: PropTypes.bool.isRequired,
     onClose: PropTypes.func.isRequired,
-    onAddFriend: PropTypes.func.isRequired,
 };
 
 export default AddFriendModal;

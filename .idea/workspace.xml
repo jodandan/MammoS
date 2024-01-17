@@ -6,8 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="9cd23309-90b5-4c7e-824f-c32b258ab5f9" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/SocialPage/Social.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SocialPage/Social.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/AddFriendButton.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/AddFriendButton.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/AddFriendModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/AddFriendModal.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/FriendCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/FriendCard.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/FriendResponseButton.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/FriendResponseButton.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/FriendSection.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/FriendSection.jsx" afterDir="false" />
@@ -101,7 +104,8 @@
       <workItem from="1705133429354" duration="5772000" />
       <workItem from="1705216829210" duration="5077000" />
       <workItem from="1705313706305" duration="8581000" />
-      <workItem from="1705373946404" duration="5038000" />
+      <workItem from="1705373946404" duration="5416000" />
+      <workItem from="1705465424347" duration="12702000" />
     </task>
     <servers />
   </component>

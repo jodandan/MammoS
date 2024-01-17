@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
 import AddButtonImg from '../../assets/AddButton.png'
-import AddFriendModal from './AddFriendModal'; // 만들어야 하는 모달 컴포넌트
+import AddFriendModal from './AddFriendModal';
 import PropTypes from 'prop-types';
 
 const AddFriendButtonBox = styled.div`

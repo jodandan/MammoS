@@ -1,5 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
+import FriendResponseModal from './FriendResponseModal';
+import AddFriendModal from './AddFriendModal';
 
 const FriendResponseBox = styled.div`
   display: flex;
@@ -33,10 +35,15 @@ const ResponseButton = styled.button`
 `;
 
 const FriendResponseButton = () => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const handleRequestButtonClick = () => {
+        setIsModalOpen(true); // 모달 열기
+    };
     return(
         <FriendResponseBox>
             <CountBadge>1</CountBadge>
-            <ResponseButton>친구요청</ResponseButton>
+            <ResponseButton onClick={handleRequestButtonClick}>친구요청</ResponseButton>
+            {isModalOpen && <AddFriendModal onClose={() => setIsModalOpen(false)} />}
         </FriendResponseBox>
     );
 }

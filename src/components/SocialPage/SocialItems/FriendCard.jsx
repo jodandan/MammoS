@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import FixButtonImg from '../../assets/FixButton.png'
+import DeleteButtonImg from '../../assets/DeleteButton.png'
 import FriendSection from './FriendSection';
 
 const FriendBox = styled.div`
@@ -50,6 +52,7 @@ const FriendSettingBox = styled.div`
   display: flex;
   flex-direction: column; // 요소들을 세로로 쌓음
   width: 7vw;
+  align-items: flex-end;
 `;
 
 const ButtonRow = styled.div`
@@ -66,19 +69,44 @@ const TimeRow = styled.div`
 `;
 
 const FixButton = styled.img`
-  width: 2vw;
-  height: 2vw;
+  background-color: transparent;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  padding-top:12px;
+  padding-right: 10px;
+
+  &:hover {
+    opacity: 0.6; // 마우스 오버시 버튼 투명도 변경
+  }
 `;
 
 
 const DeleteButton = styled.img`
-  width: 2vw;
-  height: 2vw;
+  background-color: transparent;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  padding-top:12px;
+  padding-right: 10px;
+
+  &:hover {
+    opacity: 0.6; // 마우스 오버시 버튼 투명도 변경
+  }
 `;
 
 const FriendPlanner = styled.button`
-  width: 3vw;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  width: 4vw;
   height: 2vw;
+  font-size: 0.8vw;
+  padding-bottom: 20px;
+  text-decoration: underline;
+  &:hover {
+    opacity: 0.6; // 마우스 오버시 버튼 투명도 변경
+  }
 `;
 
 
@@ -162,11 +190,11 @@ const FriendCard = ({
             </FriendTimeBox>
             <FriendSettingBox>
                 <ButtonRow>
-                    <FixButton onClick={pinClickHandler}></FixButton>
-                    <DeleteButton onClick={deleteClickHandler}></DeleteButton>
+                    <FixButton onClick={pinClickHandler} src={FixButtonImg}></FixButton>
+                    <DeleteButton onClick={deleteClickHandler} src={DeleteButtonImg}></DeleteButton>
                 </ButtonRow>
                 <ButtonRow>
-                    <FriendPlanner onClick={plannerClickHandler}>{planner}</FriendPlanner>
+                    <FriendPlanner onClick={plannerClickHandler}>{planner}플래너</FriendPlanner>
                 </ButtonRow>
             </FriendSettingBox>
         </FriendBox>

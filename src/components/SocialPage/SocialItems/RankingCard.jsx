@@ -40,7 +40,7 @@ const RankBadge = styled.div`
   font-weight: bold;
   font-size: 1.3vw;
   position: absolute;
-  transform: translate(-50%, 330%); // 왼쪽으로 50%, 아래로 뱃지 높이만큼 이동
+  transform: translate(-50%, 330%); 
 `;
 
 const RankingCardFont = styled.p`
