@@ -206,11 +206,14 @@ export default function Project(project) {
             <ButtonBox>
               <Icon
                 style={{ height: '20px', width: '20px' }}
-                icon="lucide:calendar"
+                icon="mdi:trashcan-outline"
               />
               <Icon
                 style={{ height: '20px', width: '20px' }}
-                icon="mdi:trashcan-outline"
+                icon="lucide:calendar"
+                onClick={() =>
+                  buttonClickHandler('calendar', project.projectIndex)
+                }
               />
             </ButtonBox>
           </UserProject>
