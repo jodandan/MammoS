@@ -26,7 +26,21 @@ export default function Planner() {
     year: 0,
     monthValue: 0,
     month: '',
-    projects: [],
+    projects: [
+      {
+        projectEndTime: '',
+        projectIndex: 0,
+        projectIsAttend: false,
+        projectIsComplete: false,
+        projectIsStudy: false,
+        projectIsVisible: false,
+        projectMemo: '',
+        projectName: '',
+        projectNumber: 0,
+        projectPlace: '',
+        projectStartTime: '',
+      },
+    ],
   });
   const [planner, setPlanner] = useState({
     day: 0,
@@ -44,6 +58,34 @@ export default function Planner() {
     todayStudyTime: 0,
   });
   const [project, setProject] = useState([]);
+
+  function projectVisibility(index) {
+    if (calendar) {
+      // 기존 배열 복사
+      const updatedProjects = [...calendar.projects];
+      // projectIndex 값이 일치하는 프로젝트 찾기
+      const foundProjectIndex = updatedProjects.findIndex(
+        (proj) => proj.projectIndex === index
+      );
+
+      console.log(foundProjectIndex);
+
+      if (foundProjectIndex !== -1) {
+        // projectIsVisible 값 변경
+        updatedProjects[foundProjectIndex] = {
+          ...updatedProjects[foundProjectIndex],
+          projectIsVisible:
+            !updatedProjects[foundProjectIndex].projectIsVisible,
+        };
+
+        // 변경된 project.project 상태 업데이트
+        setCalendar({ ...calendar, projects: updatedProjects });
+        console.log(calendar);
+      } else {
+        console.log(`Project with index ${index} not found.`);
+      }
+    }
+  }
 
   async function fetchPage(date, isMonthBtn) {
     try {
@@ -102,7 +144,19 @@ export default function Planner() {
         />
         <Right>
           <Plan plan={planner.plans} totalStudyTime={planner.todayStudyTime} />
-          <Project project={project} />
+          <Project
+            project={project}
+            fetchPage={() =>
+              fetchPage(
+                new Date(
+                  calendar.year,
+                  calendar.monthValue - 1,
+                  planner.day + 1
+                )
+              )
+            }
+            calendarProjects={calendar.projects}
+          />
         </Right>
       </PageContainer>
     </PageFrame>
