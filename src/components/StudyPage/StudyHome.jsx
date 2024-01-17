@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import NavigationBar from '../PageFrame/pageFrameItems/NavigationBar.jsx';
 import {
     FrameContainer,
@@ -22,6 +23,7 @@ import User from '../assets/User.png';
 import List from '../assets/List.png';
 
 export default function StudyHome() {
+    const navigate = useNavigate();
     const [studyData, setStudyData] = useState(null);
 
     useEffect(() => {
@@ -48,10 +50,10 @@ export default function StudyHome() {
             <FrameContainer>
                 <SideMenuBar>
                     <CheckContainer>
-                        <Img src={Clickhome} alt='홈' />
+                        <Img onClick={() => navigate('/studyHome')} src={Clickhome} alt='홈' />
                     </CheckContainer>
                     <Container>
-                        <Img src={Calender} alt='캘린더' />
+                        <Img onClick={() => navigate('/studyCalender')} src={Calender} alt='캘린더' />
                     </Container>
                     <Container>
                         <Img src={User} alt='유저' />
