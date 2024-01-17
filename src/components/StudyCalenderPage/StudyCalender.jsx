@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import NavigationBar from '../PageFrame/pageFrameItems/NavigationBar.jsx';
 import { useNavigate } from 'react-router-dom';
@@ -21,35 +22,43 @@ import {
     EditBox,
     InputBox,
     LeftBox,
+    RightBox,
 } from './StudyCalenderCss.jsx';
 import home from '../assets/Home.png';
 import ClickCalender from '../assets/ClickCalender.png';
 import User from '../assets/User.png';
 import List from '../assets/List.png';
 import Edit from '../assets/Edit.png';
+import NoticeList from './StudyCalenderItems/NoticeList/NoticeList.jsx';
+import MemberList from './StudyCalenderItems/MemberList/MemberList.jsx';
 
-export default function StudyCalender() {
+export default function StudyCalender({ currentIndex, onIndexChange }) {
     const [studyData, setStudyData] = useState(null);
     const navigate = useNavigate();
+    const [projectIndex, setProjectIndex] = useState(0);
+
+    const handleProjectSelect = (index) => {
+        setProjectIndex(index);
+    };
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const token = localStorage.getItem('token');
-                console.log(token);
                 const response = await axios.get('http://3.38.7.193:8080/api/v1/study', {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
                 });
-                setStudyData(response.data.responseData.content[0]);
+                setStudyData(response.data.responseData);
+                console.log('캘린더 페이지에서의 인덱스:', currentIndex);
             } catch (error) {
                 console.error('Error fetching study information:', error);
             }
         };
 
         fetchData();
-    }, []);
+    }, [currentIndex]);
     return (
         <>
             <NavigationBar />
@@ -71,35 +80,46 @@ export default function StudyCalender() {
                 <ContainerBox>
                     {studyData && (
                         <TextBox>
-                            <StudyTitle>{studyData.home.title}</StudyTitle>
-                            <SubText>{studyData.home.summary !== null ? studyData.home.summary : '없음'}</SubText>
+                            <StudyTitle>{studyData[currentIndex].home.title || '없음'}</StudyTitle>
+                            <SubText>{studyData[currentIndex].home.summary !== null ? studyData.home.summary : '없음'}</SubText>
                         </TextBox>
                     )}
-                    <LeftBox>
-                        {studyData && studyData.home && (
-                            <FirstLine>
-                                <LeftSide>{studyData.home.projectTabResponseDto.projectTitle}</LeftSide>
-                                <DataBox>{studyData.home.projectTabResponseDto.startDate} ~ {studyData.home.projectTabResponseDto.endDate}</DataBox>
-                                <LocationBox>{studyData.home.projectTabResponseDto.place}</LocationBox>
-                            </FirstLine>
-                        )}
-
-                        <NoticeBox>
-                            <div style={{ display: 'flex', flexDirection: 'columns', padding: '0.5rem 0.5rem 0.1rem 0.5rem' }}>
-                                <Title>Study Summary</Title>
-                                <EditBox>
-                                    <img src={Edit} alt='수정' style={{ width: '12px', height: '12px;' }} />
-                                </EditBox>
-                            </div>
-                            {studyData && studyData.home && (
-                                <InputBox>
-                                    {studyData.home.projectTabResponseDto.studySummary}
-                                </InputBox>
+                    <div style={{ display: 'flex', flexDirection: 'row', height: '100%' }}>
+                        <LeftBox>
+                            {studyData && (
+                                <FirstLine>
+                                    <LeftSide>{studyData[currentIndex].project[projectIndex].projectTitle || '없음'}</LeftSide>
+                                    <DataBox>{studyData[currentIndex].project[projectIndex].startDate || '미정'} ~ {studyData[currentIndex].project[projectIndex].endDate || '미정'}</DataBox>
+                                    <LocationBox>{studyData[currentIndex].project[projectIndex].place || '없음'}</LocationBox>
+                                </FirstLine>
                             )}
-                        </NoticeBox>
-                    </LeftBox>
+
+                            <NoticeBox>
+                                <div style={{ display: 'flex', flexDirection: 'columns', padding: '0.5rem 0.5rem 0.1rem 0.5rem' }}>
+                                    <Title>Study Summary</Title>
+                                    <EditBox>
+                                        <img src={Edit} alt='수정' style={{ width: '12px', height: '12px;' }} />
+                                    </EditBox>
+                                </div>
+                                {studyData && (
+                                    <InputBox>
+                                        {studyData[currentIndex].project[projectIndex].studySummary}
+                                    </InputBox>
+                                )}
+                            </NoticeBox>
+                        </LeftBox>
+                        <RightBox>
+                            <NoticeList currentIndex={currentIndex} onProjectSelect={handleProjectSelect} />
+                            <MemberList projectIndex={projectIndex} currentIndex={currentIndex} />
+                        </RightBox>
+                    </div>
                 </ContainerBox>
             </FrameContainer >
         </>
     )
 }
+
+StudyCalender.propTypes = {
+    currentIndex: PropTypes.number.isRequired,
+    onIndexChange: PropTypes.func.isRequired,
+};

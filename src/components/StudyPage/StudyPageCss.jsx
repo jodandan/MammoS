@@ -21,6 +21,7 @@ export const SideMenuBar = styled.div`
     flex-direction: column;
     //border: 1px solid red;
     gap: 50px;
+    z-index: 99;
 `;
 
 export const Img = styled.img`
@@ -29,6 +30,7 @@ export const Img = styled.img`
     margin: auto;
     display: block;
     padding-top: 5px;
+    cursor: pointer;
 `;
 
 export const Container = styled.div`
@@ -89,4 +91,15 @@ export const SecondLine = styled.div`
     gap: 20px;
     height: 30%;
 `;
+
+export const Pagingbox = styled.div`
+    position: absolute;
+    top: 50%;
+    left: 3%;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+`;
+
 

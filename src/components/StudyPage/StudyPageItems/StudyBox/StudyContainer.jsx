@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import Edit from '../../../assets/Edit.png';
 import styled from 'styled-components';
 import axios from 'axios';
@@ -19,9 +20,11 @@ import {
   ListTitle,
   PeopleList,
   CheckBoxLabel,
+
 } from './StudyContainerCss';
 
-export default function StudyContainer() {
+
+export default function StudyContainer({ currentIndex }) {
   const [studyData, setStudyData] = useState(null);
 
   useEffect(() => {
@@ -34,7 +37,7 @@ export default function StudyContainer() {
           },
         });
 
-        setStudyData(response.data.responseData.content[0]);
+        setStudyData(response.data.responseData);
       } catch (error) {
         console.error('Error fetching study information:', error);
       }
@@ -46,11 +49,11 @@ export default function StudyContainer() {
     <TotalBox>
       <BoxTitle>최근스터디</BoxTitle>
       <Container>
-        {studyData && studyData.home && (
+      {studyData && studyData[currentIndex]?.home && (
           <FirstLine>
-            <LeftSide>{studyData.home.projectTabResponseDto.projectTitle}</LeftSide>
-            <DataBox>{studyData.home.projectTabResponseDto.startDate} ~ {studyData.home.projectTabResponseDto.endDate}</DataBox>
-            <LocationBox>{studyData.home.projectTabResponseDto.place}</LocationBox>
+            <LeftSide>{studyData[currentIndex]?.home?.projectTabResponseDto?.projectTitle || '없음'}</LeftSide>
+            <DataBox>{studyData[currentIndex]?.home?.projectTabResponseDto?.startDate} ~ {studyData[currentIndex]?.home?.projectTabResponseDto?.endDate}</DataBox>
+            <LocationBox>{studyData[currentIndex]?.home?.projectTabResponseDto?.place || '없음'}</LocationBox>
           </FirstLine>
         )}
         <SecondLine>
@@ -61,23 +64,26 @@ export default function StudyContainer() {
                 <img src={Edit} alt='수정' style={{ width: '12px', height: '12px;' }} />
               </EditBox>
             </div>
-            {studyData && studyData.home && (
+            {studyData && studyData[currentIndex]?.home && (
               <InputBox>
-                {studyData.home.projectTabResponseDto.studySummary}
+                {studyData[currentIndex].home.projectTabResponseDto.studySummary || '없음'}
               </InputBox>
             )}
           </NoticeBox>
           <PeopleListBox>
             <ListTitle>참여 인원</ListTitle>
-            {studyData && studyData.home && (
+            {studyData && studyData[currentIndex]?.home && (
               <PeopleList>
-                {studyData.home.projectTabResponseDto.projectInMembers.map((member) => (
-                  <CheckBoxLabel key={member.id}>
-                    <input type="checkbox" />
-                    <TextBox>{member.name} /</TextBox>
-                    <TextBox2>&nbsp;{member.id}</TextBox2>
-                  </CheckBoxLabel>
-                ))}
+                {studyData[currentIndex].home.projectTabResponseDto.projectInMembers
+                  ? studyData[currentIndex].home.projectTabResponseDto.projectInMembers.map((member) => (
+                    <CheckBoxLabel key={member.id}>
+                      <input type="checkbox" />
+                      <TextBox>{member.name || '없음'} /</TextBox>
+                      <TextBox2>&nbsp;{member.id || '없음'}</TextBox2>
+                    </CheckBoxLabel>
+                  ))
+                  : '없음'
+                }
               </PeopleList>
             )}
           </PeopleListBox>
@@ -100,3 +106,7 @@ export const TextBox2 = styled(TextBox)`
   padding-bottom: 3px;
 `;
 
+
+StudyContainer.propTypes = {
+  currentIndex: PropTypes.number.isRequired,
+};

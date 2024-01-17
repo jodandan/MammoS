@@ -29,6 +29,7 @@ export const Img = styled.img`
     margin: auto;
     display: block;
     padding-top: 5px;
+    cursor: pointer;
 `;
 
 export const Container = styled.div`
@@ -100,7 +101,7 @@ export const FirstLine = styled.div`
 `;
 
 export const LeftSide = styled.div`
-    width: 100%;
+    width: 75%;
     color: #000;
     font-family: Pretendard Variable;
     font-size: 20px;
@@ -165,11 +166,21 @@ export const InputBox = styled.div`
 `;
 
 export const LeftBox = styled.div`
-    width: 70%;
+    width: 55%;
     height: 60%;
     display: flex;
     flex-direction: column;
     border: 1px solid black;
+`;
+
+export const RightBox = styled.div`
+    width: 40%;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid blue;
+    margin: 0 auto;
+    padding-top: 30px;
 `;
 
 

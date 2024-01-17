@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
@@ -8,14 +8,26 @@ import StudyCalenderPage from './pages/StudyCalenderPage';
 
 
 function App() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const handleIndexChange = (index) => {
+    setCurrentIndex(index);
+  };
   return (
     <div>
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/home" element={<HomePage />} />
-        <Route path="/studyHome" element={<StudyHomePage />} />
-        <Route path="/studyCalender" element={<StudyCalenderPage />} />
+        <Route path="/studyHome" element={<StudyHomePage onIndexChange={handleIndexChange} />} />
+        <Route path="/studyCalender"
+          element={
+            <StudyCalenderPage
+              currentIndex={currentIndex} // 전달
+              onIndexChange={handleIndexChange} // 이벤트 핸들러 전달
+            />
+          }
+        />
       </Routes>
     </div>
   );
