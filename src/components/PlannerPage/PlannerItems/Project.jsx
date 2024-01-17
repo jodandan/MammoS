@@ -1,4 +1,8 @@
 import styled from 'styled-components';
+import { Icon } from '@iconify/react';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import Calendar, { ChartHandler, InitializeChart } from './Calendar/Calendar';
 
 const ProjectContainer = styled.div`
   background-color: white;
@@ -45,8 +49,12 @@ const UserProject = styled.div`
   border-radius: 5px;
   margin-bottom: 0.4vw;
   height: ${({ ischecked }) => (ischecked === 'true' ? '1.6vw' : '2.5vw')};
-  background-color: ${({ ischecked, isrunning }) =>
-    ischecked === 'true' ? '#454545' : '#90C20D'};
+  background-color: ${({ ischecked, isvisible }) =>
+    ischecked === 'true'
+      ? '#454545'
+      : isvisible === 'true'
+        ? '#90C20D'
+        : '#C6EF5E'};
   box-shadow: 0px 3px 3px 0px rgb(0, 0, 0, 0.25);
   display: flex;
   align-items: center;
@@ -120,21 +128,6 @@ const Duration = styled.p`
   }
 `;
 
-const TrashBtn = styled.img`
-  height: 18px;
-  width: 18px;
-  border: 1px solid black;
-  items-align: right;
-  margin-left: 0.8vw;
-`;
-
-const CalendarBtn = styled.img`
-  background-color: transparent;
-  height: 18px;
-  width: 18px;
-  border: 1px solid black;
-`;
-
 const ButtonBox = styled.div`
   display: flex;
   flex-direction: row-reverse;
@@ -161,6 +154,30 @@ const formatDate = (dateString) => {
 };
 
 export default function Project(project) {
+  async function buttonClickHandler(input, idx) {
+    if (input === 'calendar') {
+      try {
+        // 토큰 가져오기
+        const token = localStorage.getItem('token');
+        // 토큰 설정
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        // 캘린더 On/Off
+        const response = await axios.patch(
+          'http://3.38.7.193:8080/api/v1/planner/projects/display/' + idx
+        );
+
+        project.fetchPage();
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
+
+  useEffect(() => {
+    InitializeChart(project.calendarProjects);
+    ChartHandler(project.project.project);
+  });
+
   function makeProjects() {
     const projects = project.project.project;
     const result = [];
@@ -170,7 +187,6 @@ export default function Project(project) {
       const completeProjects = Object.values(projects).filter(
         (project) => project.projectIsComplete === true
       );
-
       // 1. 완수한 프로젝트
       completeProjects.map((project) => {
         const startDate = formatDate(project.projectStartTime);
@@ -188,8 +204,17 @@ export default function Project(project) {
             <Duration>~</Duration>
             <Duration className="end">{endDate}</Duration>
             <ButtonBox>
-              <CalendarBtn />
-              <TrashBtn />
+              <Icon
+                style={{ height: '20px', width: '20px' }}
+                icon="mdi:trashcan-outline"
+              />
+              <Icon
+                style={{ height: '20px', width: '20px' }}
+                icon="lucide:calendar"
+                onClick={() =>
+                  buttonClickHandler('calendar', project.projectIndex)
+                }
+              />
             </ButtonBox>
           </UserProject>
         );
@@ -205,7 +230,10 @@ export default function Project(project) {
         const endDate = formatDate(project.projectEndTime);
 
         result.push(
-          <UserProject key={project.projectIndex}>
+          <UserProject
+            key={project.projectIndex}
+            isvisible={project.projectIsVisible.toString()}
+          >
             <ProjectBtn type="" />
             <ProjectContentBox>
               <ProjectContent className="content">
@@ -216,8 +244,41 @@ export default function Project(project) {
             <Duration>~</Duration>
             <Duration className="end">{endDate}</Duration>
             <ButtonBox>
-              <CalendarBtn />
-              <TrashBtn />
+              <Icon
+                style={{
+                  height: '20px',
+                  width: '20px',
+                }}
+                icon="mdi:trashcan-outline"
+              />
+              {!project.projectIsVisible && (
+                <Icon
+                  style={{
+                    height: '20px',
+                    width: '20px',
+                    marginLeft: '0.9vw',
+                    cursor: 'pointer',
+                  }}
+                  icon="tabler:calendar-up"
+                  onClick={() =>
+                    buttonClickHandler('calendar', project.projectIndex)
+                  }
+                />
+              )}
+              {project.projectIsVisible && (
+                <Icon
+                  style={{
+                    height: '20px',
+                    width: '20px',
+                    marginLeft: '0.9vw',
+                    cursor: 'pointer',
+                  }}
+                  icon="tabler:calendar-off"
+                  onClick={() =>
+                    buttonClickHandler('calendar', project.projectIndex)
+                  }
+                />
+              )}
             </ButtonBox>
           </UserProject>
         );

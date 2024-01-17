@@ -85,7 +85,7 @@ export default function Signup() {
         const univId = getKeyByValue(univMap, selectedValue);
         // 해당 대학의 단과대학 목록 조회
         const response = await axios.get(
-          'http://localhost:8080/api/v1/signup/college/' + univId
+          'http://3.38.7.193:8080/api/v1/signup/college/' + univId
         );
 
         const { responseData } = response.data;
@@ -98,7 +98,7 @@ export default function Signup() {
 
         // 해당 대학의 단과대학에 속한 전공들 조회
         const response = await axios.get(
-          'http://localhost:8080/api/v1/signup/major/' +
+          'http://3.38.7.193:8080/api/v1/signup/major/' +
             getKeyByValue(collegeMap, event.target.value)
         );
 
@@ -118,7 +118,7 @@ export default function Signup() {
     try {
       if (email) {
         const response = await axios.post(
-          'http://localhost:8080/api/v1/signup/email',
+          'http://3.38.7.193:8080/api/v1/signup/email',
           {
             email: email,
           }
@@ -148,7 +148,7 @@ export default function Signup() {
     try {
       if (auth) {
         const response = await axios.post(
-          'http://localhost:8080/api/v1/signup/email/certified',
+          'http://3.38.7.193:8080/api/v1/signup/email/certified',
           {
             email: email,
             code: auth,
@@ -185,7 +185,7 @@ export default function Signup() {
       if (checkedItems.length === 4) {
         if (isAuth) {
           const response = await axios.post(
-            'http://localhost:8080/api/v1/signup',
+            'http://3.38.7.193:8080/api/v1/signup',
             {
               isCertified: isAuth,
               id: id,
@@ -231,7 +231,7 @@ export default function Signup() {
     async function fetchUniversities() {
       try {
         const response = await axios.get(
-          'http://localhost:8080/api/v1/signup/university'
+          'http://3.38.7.193:8080/api/v1/signup/university'
         );
         const { responseData } = response.data;
         // console.log(responseData);

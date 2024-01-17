@@ -35,7 +35,7 @@ export default function TodoSection(todo) {
     const checkHandler = async () => {
       setIsChecked(!isChecked);
 
-      await axios.patch(`http://localhost:8080/api/v1/home/${plan.planIdx}`);
+      await axios.patch(`http://3.38.7.193:8080/api/v1/home/${plan.planIdx}`);
     };
 
     return (

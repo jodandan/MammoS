@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Icon } from '@iconify/react';
 
 const PlanContainer = styled.div`
   background-color: transparent;
@@ -139,19 +140,6 @@ const PlanContent = styled.p`
   }
 `;
 
-const StartBtn = styled.img`
-  background-color: transparent;
-  height: 18px;
-  width: 18px;
-  border: 1px solid black;
-`;
-
-const TrashBtn = styled.img`
-  height: 18px;
-  width: 18px;
-  border: 1px solid black;
-`;
-
 const ButtonBox = styled.div`
   display: flex;
   flex-direction: row-reverse;
@@ -183,6 +171,22 @@ export default function Plan(plan) {
     '0'
   );
 
+  async function ButtonClickHandler(input, idx) {
+    if (input === 'start') {
+      // 토큰 가져오기
+      const token = localStorage.getItem('token');
+      // 토큰 설정
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      // 타이머 On/Off
+      // const response = await axios.patch(
+      //   'http://3.38.7.193:8080/api/v1/planner/projects/display/' + idx
+      // );
+      // 페이지 패치
+      plan.fetchPage();
+    } else {
+    }
+  }
+
   function makePlans() {
     const result = [];
 
@@ -209,7 +213,10 @@ export default function Plan(plan) {
               <PlanContent className="content">{plan.planName}</PlanContent>
             </PlanContentBox>
             <ButtonBox>
-              <TrashBtn />
+              <Icon
+                style={{ height: '20px', width: '20px' }}
+                icon="mdi:trashcan-outline"
+              />
             </ButtonBox>
             <PlanContent className="timespent">time spent </PlanContent>
             <PlanContent className="time">
@@ -244,10 +251,16 @@ export default function Plan(plan) {
               <PlanContent className="content">{plan.planName}</PlanContent>
             </PlanContentBox>
             <ButtonBox>
-              <StartBtn />
-              <TrashBtn />
+              <Icon
+                style={{ height: '20px', width: '20px' }}
+                icon="mdi:trashcan-outline"
+              />
+              <Icon
+                style={{ height: '20px', width: '20px' }}
+                icon="material-symbols:pause"
+              />
             </ButtonBox>
-            <PlanContent className="timespent">time spent </PlanContent>
+            <PlanContent className="timespent">in progress </PlanContent>
             <PlanContent className="time">
               {studyHour}:{studyMin}
             </PlanContent>
@@ -278,8 +291,11 @@ export default function Plan(plan) {
               <PlanContent className="content">{plan.planName}</PlanContent>
             </PlanContentBox>
             <ButtonBox>
-              <StartBtn />
-              <TrashBtn />
+              <Icon
+                style={{ height: '20px', width: '20px' }}
+                icon="mdi:trashcan-outline"
+              />
+              <Icon style={{ height: '20px', width: '20px' }} icon="mdi:play" />
             </ButtonBox>
             {plan.planStudyTime !== 0 && (
               <PlanContent className="timespent">time spent </PlanContent>

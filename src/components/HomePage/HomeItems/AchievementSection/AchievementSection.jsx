@@ -37,8 +37,6 @@ export default function AchivementSection({
 }) {
   const navigate = useNavigate();
 
-  console.log(tierIcon);
-
   function clickHander() {
     navigate('/challenge');
   }
@@ -70,8 +68,6 @@ export default function AchivementSection({
           }
         }
       });
-
-      console.log(thisDayStreak);
 
       const reverseStreakList = Object.values(streakList).reverse();
 

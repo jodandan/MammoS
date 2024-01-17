@@ -114,6 +114,9 @@ export const Title = styled.div`
 `;
 
 export const PrevMonthBtn = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   height: 2vw;
   width: 2vw;
@@ -124,6 +127,9 @@ export const PrevMonthBtn = styled.button`
 `;
 
 export const NextMonthBtn = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   height: 2vw;
   width: 2vw;
@@ -157,7 +163,7 @@ export const Today = styled.div`
 export const TodayFont = styled.p`
   position: absolute;
   font-size: 10px;
-  margin-left: 1.5vw;
+  margin-left: 1.4vw;
   margin-top: 0.2vw;
   color: black;
 `;
