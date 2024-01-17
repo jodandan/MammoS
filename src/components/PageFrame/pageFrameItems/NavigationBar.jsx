@@ -20,7 +20,7 @@ export default function NavigationBar() {
         <NavigationMenu onClick={() => navigate('/planner')}>
           플래너
         </NavigationMenu>
-        <NavigationMenu onClick={() => navigate('/study')}>
+        <NavigationMenu onClick={() => navigate('/studyHome')}>
           스터디
         </NavigationMenu>
         <NavigationMenu onClick={() => navigate('/social')}>
