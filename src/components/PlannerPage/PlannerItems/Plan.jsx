@@ -1,10 +1,13 @@
 import styled from 'styled-components';
 import { Icon } from '@iconify/react';
 import axios from 'axios';
+<<<<<<< HEAD
 import { useEffect, useState } from 'react';
 import Modal from './Modal/Modal';
 import ReactDatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+=======
+>>>>>>> feat/HomePage
 
 const PlanContainer = styled.div`
   background-color: transparent;
@@ -259,6 +262,7 @@ export default function Plan(plan) {
       }
       // 페이지 리로드
       plan.fetchPage();
+<<<<<<< HEAD
     } catch (error) {
       alert(error);
     }
@@ -282,6 +286,8 @@ export default function Plan(plan) {
       plan.fetchPage();
     } catch (error) {
       alert(error);
+=======
+>>>>>>> feat/HomePage
     }
   }
 

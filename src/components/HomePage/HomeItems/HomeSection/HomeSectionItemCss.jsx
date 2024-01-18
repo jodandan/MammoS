@@ -16,13 +16,14 @@ export const PfpImg = styled.img.attrs({ alt: '프사' })`
   margin-left: 0vw;
   width: 5vw;
   height: 5vw;
+  border: 1px solid black;
 `;
 
 export const LogoutBtn = styled.button`
+  font-family: 'PretendardBold';
   position: relative;
   background-color: transparent;
   border: none;
-
   color: gray;
   margin-left: 25%;
   margin-top: 0.5vw;
@@ -35,22 +36,27 @@ export const LogoutBtn = styled.button`
 
 export const MyInfo = styled.div`
   position: absolute;
-  margin-top: 2vw;
+  margin-top: 2.2vw;
   margin-left: 6.5vw;
   height: 3vw;
   width: 6.5vw;
 `;
 
 export const MyInfoFont1 = styled.p`
+  font-family: 'PretendardBold';
   font-weight: bold;
   font-size: 19px;
   margin-top: 1px;
-  margin-bottom: -3px;
+
+  &.id {
+    margin-bottom: 15px;
+  }
 `;
 
 export const MyInfoFont2 = styled.p`
+  font-family: 'PretendardBold';
   font-size: 15px;
-  margin-bottom: -15px;
+  margin-top: 5px;
 `;
 
 export const Badges = styled.div`

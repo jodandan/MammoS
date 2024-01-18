@@ -19,6 +19,7 @@ export const CalendarContainer = styled.div`
 `;
 
 export const Day = styled.div`
+  font-family: 'PretendardBold';
   display: flex;
   font-weight: bold;
   width: 3.5vw;
@@ -42,7 +43,7 @@ export const Circle = styled.div`
   background-color: #c6ef5e;
   border-radius: 50%;
   position: absolute;
-  margin-top: -4px;
+  margin-top: -8px;
   margin-left: 9px;
   justify-content: center;
   align-items: center;
@@ -53,12 +54,15 @@ export const Circle = styled.div`
 `;
 
 export const Month = styled.h2`
+  font-family: 'PretendardBold';
+  font-size: 25px;
   text-align: right;
   padding-right: 2vw;
   margin-bottom: 1vw;
 `;
 
 export const DayFont = styled.p`
+  font-family: 'PretendardSemiBold';
   width: 25%;
   text-align: center;
   position: absolute;

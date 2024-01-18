@@ -32,16 +32,22 @@ export default function FriendSection(friends) {
       (friend) => friend.id !== friends.friends[0].id
     );
 
-    filteredFriends.map((friend) =>
+    filteredFriends.map((friend) => {
+      const hours = Math.floor(friend.todayStudyTime / 60);
+      const minutes = friend.todayStudyTime % 60;
+
+      const formatTime = (value) => (value < 10 ? `0${value}` : value);
+      const formattedTime = `${formatTime(hours)}:${formatTime(minutes)}`;
+
       result.push(
         <Friend key={friend.id}>
           <Circle />
-          <FriendFont>{friend.name}</FriendFont>
+          <FriendFont className="name">{friend.name}</FriendFont>
           <FriendFont>{friend.id}</FriendFont>
-          <FriendFont className="time">{friend.todayStudyTime}</FriendFont>
+          <FriendFont className="time">{formattedTime}</FriendFont>
         </Friend>
-      )
-    );
+      );
+    });
 
     return result;
   }

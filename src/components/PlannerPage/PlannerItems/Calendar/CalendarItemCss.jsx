@@ -21,6 +21,7 @@ export const CalendarContainer = styled.div`
 `;
 
 export const Day = styled.div`
+  font-family: 'PretendardBold';
   cursor: ${({ isoutsidemonth }) => (isoutsidemonth ? 'default' : 'pointer')};
   display: flex;
   font-weight: bold;
@@ -33,12 +34,12 @@ export const Day = styled.div`
   color: inherit;
   opacity: ${({ isoutsidemonth }) => (isoutsidemonth ? 0.3 : 1)};
   position: relative;
+  border-radius: 10px;
+
   &.frame {
     height: 2vw;
     color: ${({ day }) => (day === 'SUN' ? 'red' : 'inherit')};
   }
-
-  border-radius: 10px;
 `;
 
 export const Circle = styled.div`
@@ -47,7 +48,11 @@ export const Circle = styled.div`
   background-color: #c6ef5e;
   border-radius: 50%;
   position: absolute;
+<<<<<<< HEAD
   margin-top: -7px;
+=======
+  margin-top: -8px;
+>>>>>>> feat/HomePage
   margin-left: 9px;
   justify-content: center;
   align-items: center;
@@ -58,11 +63,13 @@ export const Circle = styled.div`
 `;
 
 export const Month = styled.h2`
+  font-family: 'PretendardSemiBold';
   text-align: center;
-  margin-bottom: -25px;
+  font-size: 20px;
 `;
 
 export const DayFont = styled.p`
+  font-family: 'PretendardSemiBold';
   width: 25%;
   text-align: center;
   position: absolute;
@@ -101,6 +108,9 @@ export const Top = styled.div`
 `;
 
 export const Year = styled.p`
+  margin-bottom: -5px;
+  margin-top: 5px;
+  font-family: 'PretendardSemiBold';
   font-size: 20px;
   font-weight: bold;
   text-align: center;
@@ -153,7 +163,7 @@ export const Today = styled.div`
   margin: 0px;
   width: 3.7vw; /* Day의 너비와 동일하게 설정 */
   margin-left: -0.6vw;
-  margin-top: -0.5vw;
+  margin-top: -0.7vw;
   height: 5.2vw;
   border: 3px solid #90c20d;
   border-radius: 10px;
@@ -161,9 +171,10 @@ export const Today = styled.div`
 `;
 
 export const TodayFont = styled.p`
+  font-family: 'PretendardSemiBold';
   position: absolute;
   font-size: 10px;
   margin-left: 1.4vw;
-  margin-top: 0.2vw;
+  margin-top: 0.1vw;
   color: black;
 `;
