@@ -7,7 +7,6 @@ import PlannerPage from './pages/PlannerPage';
 import StudyHomePage from './pages/StudyPage';
 import StudyCalenderPage from './pages/StudyCalenderPage';
 
-
 function App() {
   return (
     <div>
@@ -18,7 +17,6 @@ function App() {
         <Route path="/planner" element={<PlannerPage />} />
         <Route path="/studyHome" element={<StudyHomePage />} />
         <Route path="/studyCalender" element={<StudyCalenderPage />} />
-
       </Routes>
     </div>
   );

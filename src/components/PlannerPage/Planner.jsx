@@ -143,7 +143,19 @@ export default function Planner() {
           selectedDay={planner.day}
         />
         <Right>
-          <Plan plan={planner.plans} totalStudyTime={planner.todayStudyTime} />
+          <Plan
+            plan={planner.plans}
+            totalStudyTime={planner.todayStudyTime}
+            fetchPage={() =>
+              fetchPage(
+                new Date(
+                  calendar.year,
+                  calendar.monthValue - 1,
+                  planner.day + 1
+                )
+              )
+            }
+          />
           <Project
             project={project}
             fetchPage={() =>

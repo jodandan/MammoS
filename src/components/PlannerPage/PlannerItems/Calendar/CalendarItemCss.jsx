@@ -47,7 +47,7 @@ export const Circle = styled.div`
   background-color: #c6ef5e;
   border-radius: 50%;
   position: absolute;
-  margin-top: -4px;
+  margin-top: -7px;
   margin-left: 9px;
   justify-content: center;
   align-items: center;
