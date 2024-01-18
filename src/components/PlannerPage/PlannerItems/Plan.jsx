@@ -1,13 +1,10 @@
 import styled from 'styled-components';
 import { Icon } from '@iconify/react';
 import axios from 'axios';
-<<<<<<< HEAD
 import { useEffect, useState } from 'react';
 import Modal from './Modal/Modal';
 import ReactDatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-=======
->>>>>>> feat/HomePage
 
 const PlanContainer = styled.div`
   background-color: transparent;
@@ -53,6 +50,7 @@ const StudyTime = styled.div`
 `;
 
 const StudyTimeFont = styled.p`
+  font-family: 'PretendardBold';
   margin-top: 5px;
   font-size: 15px;
   font-weight: bold;
@@ -101,7 +99,7 @@ const PlanBtn = styled.input`
   border: 2px solid;
   background-color: transparent;
   border-radius: 3px;
-  margin-left: 10px;
+  margin-left: 15px;
   width: 10px;
   height: 10px;
 `;
@@ -111,8 +109,8 @@ const PlanContentBox = styled.div`
 `;
 
 const PlanContent = styled.p`
+  font-family: 'PretendardSemiBold';
   margin-left: 0.5vw;
-  margin-top: 15px;
 
   &.content {
     overflow: auto;
@@ -157,6 +155,7 @@ const ButtonBox = styled.div`
 `;
 
 const AddBtn = styled.div`
+  font-family: 'PretendardSemiBold';
   cursor: pointer;
   display: flex;
   width: 80px;
@@ -170,6 +169,7 @@ const AddBtn = styled.div`
 `;
 
 const UserInput = styled.input`
+  font-family: 'PretendardSemiBold';
   border: none;
   border-bottom: 1px solid black;
   margin-left: 30px;
@@ -180,6 +180,7 @@ const UserInput = styled.input`
 `;
 
 const ModalContent = styled.p`
+  font-family: 'PretendardSemiBold';
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 15px;
@@ -187,8 +188,9 @@ const ModalContent = styled.p`
 `;
 
 const StyledDatePicker = styled(ReactDatePicker)`
+  font-family: 'PretendardSemiBold';
   width: 150px;
-  margin-left: 55px;
+  margin-left: 50px;
   font-size: 15px;
   border: none;
   border-bottom: 1px solid black;
@@ -262,7 +264,6 @@ export default function Plan(plan) {
       }
       // 페이지 리로드
       plan.fetchPage();
-<<<<<<< HEAD
     } catch (error) {
       alert(error);
     }
@@ -286,8 +287,6 @@ export default function Plan(plan) {
       plan.fetchPage();
     } catch (error) {
       alert(error);
-=======
->>>>>>> feat/HomePage
     }
   }
 

@@ -40,6 +40,7 @@ const ModalContainer = styled.div`
 `;
 
 const Button = styled.button`
+  font-family: 'PretendardSemiBold';
   outline: none;
   cursor: pointer;
   border: 3px solid #92c414;
@@ -66,6 +67,7 @@ const Section = styled.section`
 `;
 
 const Header = styled.header`
+  font-family: 'PretendardSemiBold';
   position: relative;
   padding: 16px 64px 16px 16px;
   font-size: 20px;

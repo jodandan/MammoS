@@ -48,11 +48,7 @@ export const Circle = styled.div`
   background-color: #c6ef5e;
   border-radius: 50%;
   position: absolute;
-<<<<<<< HEAD
   margin-top: -7px;
-=======
-  margin-top: -8px;
->>>>>>> feat/HomePage
   margin-left: 9px;
   justify-content: center;
   align-items: center;

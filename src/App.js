@@ -6,11 +6,8 @@ import HomePage from './pages/HomePage';
 import PlannerPage from './pages/PlannerPage';
 import StudyHomePage from './pages/StudyPage';
 import StudyCalenderPage from './pages/StudyCalenderPage';
-<<<<<<< HEAD
-=======
 import SocialPage from './pages/SocialPage';
 import './App.css';
->>>>>>> feat/HomePage
 
 function App() {
   return (
@@ -22,10 +19,7 @@ function App() {
         <Route path="/planner" element={<PlannerPage />} />
         <Route path="/studyHome" element={<StudyHomePage />} />
         <Route path="/studyCalender" element={<StudyCalenderPage />} />
-<<<<<<< HEAD
-=======
         <Route path="/social" element={<SocialPage />} />
->>>>>>> feat/HomePage
       </Routes>
     </div>
   );
