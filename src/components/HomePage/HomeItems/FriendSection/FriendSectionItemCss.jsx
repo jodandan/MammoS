@@ -61,17 +61,22 @@ export const Friend = styled.div`
 export const Circle = styled.div`
   height: 3vw;
   width: 3vw;
-  border: 3px solid black;
+  border: 1px solid black;
   border-radius: 50%;
 `;
 
 export const FriendFont = styled.p`
-  margin-top: 0px;
+  font-family: 'PretendardSemiBold';
+  margin-top: 5px;
   margin-bottom: 0px;
   font-size: 13px;
 
-  &.time {
+  &.name {
     margin-top: 10px;
+  }
+
+  &.time {
+    margin-top: 15px;
     font-size: 15px;
     font-weight: bold;
   }

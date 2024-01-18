@@ -4,3 +4,10 @@
   font-style: normal;
   src: url('./components/fonts/Pretendard-ExtraBold.ttf');
 }
+
+@font-face {
+  font-family: PretendardSemiBold;
+  font-weight: normal;
+  font-style: normal;
+  src: url('./components/fonts/Pretendard-SemiBold.ttf');
+}
