@@ -74,7 +74,7 @@ export default function TodoSection(todo) {
         result.push(
           <Todo key={i}>
             <TodoBtn type="checkbox" />
-            <TodoContent></TodoContent>
+            <TodoContent />
           </Todo>
         );
       }

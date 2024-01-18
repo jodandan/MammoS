@@ -12,8 +12,11 @@ export const NavBar = styled.div`
 `;
 
 export const Title = styled.h1`
+  display: flex;
+  align-items: center;
+  font-family: 'PretendardBold';
+  font-size: 30px;
   padding-right: 2vw;
-  line-height: 50%;
 `;
 
 export const Logos = styled.img`
@@ -23,14 +26,16 @@ export const Logos = styled.img`
 
 export const NavigationMenus = styled.ul`
   display: flex;
+  align-items: center;
   white-space: nowrap;
   line-height: 100%;
 `;
 
 export const NavigationMenu = styled.li`
-  padding-left: 5vw;
+  font-family: 'PretendardBold';
+  padding-left: 5.4vw;
   list-style: none;
-  font-size: 17px;
+  font-size: 20px;
   font-weight: bold;
 `;
 

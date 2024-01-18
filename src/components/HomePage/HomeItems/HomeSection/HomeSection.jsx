@@ -49,7 +49,7 @@ export default function HomeSection({
         <LogoutBtn onClick={logoutHandler}>로그아웃</LogoutBtn>
         <MyInfo>
           <MyInfoFont1>{name}</MyInfoFont1>
-          <MyInfoFont1>{id}</MyInfoFont1>
+          <MyInfoFont1 className="id">{id}</MyInfoFont1>
           <MyInfoFont2>{universityName}</MyInfoFont2>
           <MyInfoFont2>{majorName}</MyInfoFont2>
         </MyInfo>
