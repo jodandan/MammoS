@@ -59,34 +59,6 @@ export default function Planner() {
   });
   const [project, setProject] = useState([]);
 
-  function projectVisibility(index) {
-    if (calendar) {
-      // 기존 배열 복사
-      const updatedProjects = [...calendar.projects];
-      // projectIndex 값이 일치하는 프로젝트 찾기
-      const foundProjectIndex = updatedProjects.findIndex(
-        (proj) => proj.projectIndex === index
-      );
-
-      console.log(foundProjectIndex);
-
-      if (foundProjectIndex !== -1) {
-        // projectIsVisible 값 변경
-        updatedProjects[foundProjectIndex] = {
-          ...updatedProjects[foundProjectIndex],
-          projectIsVisible:
-            !updatedProjects[foundProjectIndex].projectIsVisible,
-        };
-
-        // 변경된 project.project 상태 업데이트
-        setCalendar({ ...calendar, projects: updatedProjects });
-        console.log(calendar);
-      } else {
-        console.log(`Project with index ${index} not found.`);
-      }
-    }
-  }
-
   async function fetchPage(date, isMonthBtn) {
     try {
       // 토큰 가져오기
@@ -105,7 +77,6 @@ export default function Planner() {
       }
 
       const now = date.toISOString().substring(0, 10);
-      console.log(now);
 
       const response = await axios.get(
         'http://3.38.7.193:8080/api/v1/planner/' + now
@@ -116,8 +87,6 @@ export default function Planner() {
         setPlanner(response.data.responseData.planner);
         setProject(response.data.responseData.project);
 
-        console.log(response);
-      } else {
         console.log(response);
       }
     } catch (error) {
@@ -143,7 +112,19 @@ export default function Planner() {
           selectedDay={planner.day}
         />
         <Right>
-          <Plan plan={planner.plans} totalStudyTime={planner.todayStudyTime} />
+          <Plan
+            plan={planner.plans}
+            totalStudyTime={planner.todayStudyTime}
+            fetchPage={() =>
+              fetchPage(
+                new Date(
+                  calendar.year,
+                  calendar.monthValue - 1,
+                  planner.day + 1
+                )
+              )
+            }
+          />
           <Project
             project={project}
             fetchPage={() =>

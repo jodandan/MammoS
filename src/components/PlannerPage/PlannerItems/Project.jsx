@@ -82,8 +82,8 @@ const ProjectContentBox = styled.div`
 `;
 
 const ProjectContent = styled.p`
+  font-family: 'PretendardSemiBold';
   margin-left: 0.5vw;
-  margin-top: 15px;
 
   &.content {
     width: 90%;
@@ -115,6 +115,7 @@ const ProjectContent = styled.p`
 `;
 
 const Duration = styled.p`
+  font-family: 'PretendardSemiBold';
   font-size: 10px;
 
   &.start {
@@ -133,10 +134,10 @@ const ButtonBox = styled.div`
   flex-direction: row-reverse;
   justify-content: space-between;
   width: 60px;
-  margin-right: 3%;
 `;
 
 const AddBtn = styled.div`
+  font-family: 'PretendardSemiBold';
   display: flex;
   width: 80px;
   height: 20px;
@@ -208,13 +209,34 @@ export default function Project(project) {
                 style={{ height: '20px', width: '20px' }}
                 icon="mdi:trashcan-outline"
               />
-              <Icon
-                style={{ height: '20px', width: '20px' }}
-                icon="lucide:calendar"
-                onClick={() =>
-                  buttonClickHandler('calendar', project.projectIndex)
-                }
-              />
+              {!project.projectIsVisible && (
+                <Icon
+                  style={{
+                    height: '20px',
+                    width: '20px',
+                    marginLeft: '0.9vw',
+                    cursor: 'pointer',
+                  }}
+                  icon="tabler:calendar-up"
+                  onClick={() =>
+                    buttonClickHandler('calendar', project.projectIndex)
+                  }
+                />
+              )}
+              {project.projectIsVisible && (
+                <Icon
+                  style={{
+                    height: '20px',
+                    width: '20px',
+                    marginLeft: '0.9vw',
+                    cursor: 'pointer',
+                  }}
+                  icon="tabler:calendar-off"
+                  onClick={() =>
+                    buttonClickHandler('calendar', project.projectIndex)
+                  }
+                />
+              )}
             </ButtonBox>
           </UserProject>
         );

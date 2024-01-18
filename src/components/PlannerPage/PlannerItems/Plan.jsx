@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import { Icon } from '@iconify/react';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
+import Modal from './Modal/Modal';
+import ReactDatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const PlanContainer = styled.div`
   background-color: transparent;
@@ -46,6 +50,7 @@ const StudyTime = styled.div`
 `;
 
 const StudyTimeFont = styled.p`
+  font-family: 'PretendardBold';
   margin-top: 5px;
   font-size: 15px;
   font-weight: bold;
@@ -94,7 +99,7 @@ const PlanBtn = styled.input`
   border: 2px solid;
   background-color: transparent;
   border-radius: 3px;
-  margin-left: 10px;
+  margin-left: 15px;
   width: 10px;
   height: 10px;
 `;
@@ -104,8 +109,8 @@ const PlanContentBox = styled.div`
 `;
 
 const PlanContent = styled.p`
+  font-family: 'PretendardSemiBold';
   margin-left: 0.5vw;
-  margin-top: 15px;
 
   &.content {
     overflow: auto;
@@ -150,6 +155,8 @@ const ButtonBox = styled.div`
 `;
 
 const AddBtn = styled.div`
+  font-family: 'PretendardSemiBold';
+  cursor: pointer;
   display: flex;
   width: 80px;
   height: 20px;
@@ -159,6 +166,36 @@ const AddBtn = styled.div`
   background-color: #b3e13e;
   border-radius: 30px;
   box-shadow: 1px 2px 3px 0px rgb(0, 0, 0, 0.25);
+`;
+
+const UserInput = styled.input`
+  font-family: 'PretendardSemiBold';
+  border: none;
+  border-bottom: 1px solid black;
+  margin-left: 30px;
+  font-size: 15px;
+  width: 150px;
+  padding-bottom: 5px;
+  text-align: center;
+`;
+
+const ModalContent = styled.p`
+  font-family: 'PretendardSemiBold';
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  margin-top: 15px;
+`;
+
+const StyledDatePicker = styled(ReactDatePicker)`
+  font-family: 'PretendardSemiBold';
+  width: 150px;
+  margin-left: 50px;
+  font-size: 15px;
+  border: none;
+  border-bottom: 1px solid black;
+  text-align: center;
+  padding-bottom: 5px;
 `;
 
 export default function Plan(plan) {
@@ -171,19 +208,85 @@ export default function Plan(plan) {
     2,
     '0'
   );
+  const [modalOpen, setModalOpen] = useState(false);
 
-  async function ButtonClickHandler(input, idx) {
-    if (input === 'start') {
+  function openModal() {
+    setModalOpen(true);
+  }
+  function closeModal() {
+    setModalOpen(false);
+  }
+
+  const [date, setDate] = useState(new Date());
+  const [planName, setPlanName] = useState('');
+
+  function InputChangeHandler(value) {
+    setPlanName(value);
+  }
+
+  async function SubmitHandler() {
+    try {
+      if (planName !== '') {
+        const token = localStorage.getItem('token');
+        // 토큰 설정
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        // 계획 저장
+        const response = await axios.post(
+          'http://3.38.7.193:8080/api/v1/planner/plans',
+          {
+            planName: planName,
+            date: date,
+          }
+        );
+        console.log(response);
+        plan.fetchPage();
+      }
+      closeModal();
+      // 정보 저장
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function ButtonClickHandler(idx) {
+    try {
       // 토큰 가져오기
       const token = localStorage.getItem('token');
       // 토큰 설정
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       // 타이머 On/Off
-      // const response = await axios.patch(
-      //   'http://3.38.7.193:8080/api/v1/planner/projects/display/' + idx
-      // );
-      // 페이지 패치
+      const response = await axios.patch(
+        'http://3.38.7.193:8080/api/v1/planner/plans/time/' + idx
+      );
+      // 오류시 알림창
+      if (response.data.httpResponseStatus !== 'SUCCESS') {
+        alert(response.data.message);
+      }
+      // 페이지 리로드
       plan.fetchPage();
+    } catch (error) {
+      alert(error);
+    }
+  }
+
+  async function DeleteHandler(idx) {
+    try {
+      // 토큰 가져오기
+      const token = localStorage.getItem('token');
+      // 토큰 설정
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      // 계획 삭제
+      const response = await axios.delete(
+        'http://3.38.7.193:8080/api/v1/planner/plans/' + idx
+      );
+      // 오류시 알림창
+      if (response.data.httpResponseStatus !== 'SUCCESS') {
+        alert(response.data.message);
+      }
+      // 페이지 리로드
+      plan.fetchPage();
+    } catch (error) {
+      alert(error);
     }
   }
 
@@ -214,8 +317,9 @@ export default function Plan(plan) {
             </PlanContentBox>
             <ButtonBox>
               <Icon
-                style={{ height: '20px', width: '20px' }}
+                style={{ height: '20px', width: '20px', cursor: 'pointer' }}
                 icon="mdi:trashcan-outline"
+                onClick={() => DeleteHandler(plan.planIndex)}
               />
             </ButtonBox>
             <PlanContent className="timespent">time spent </PlanContent>
@@ -252,12 +356,14 @@ export default function Plan(plan) {
             </PlanContentBox>
             <ButtonBox>
               <Icon
-                style={{ height: '20px', width: '20px' }}
+                style={{ height: '20px', width: '20px', cursor: 'pointer' }}
                 icon="mdi:trashcan-outline"
+                onClick={() => DeleteHandler(plan.planIndex)}
               />
               <Icon
-                style={{ height: '20px', width: '20px' }}
+                style={{ height: '20px', width: '20px', cursor: 'pointer' }}
                 icon="material-symbols:pause"
+                onClick={() => ButtonClickHandler(plan.planIndex)}
               />
             </ButtonBox>
             <PlanContent className="timespent">in progress </PlanContent>
@@ -292,10 +398,15 @@ export default function Plan(plan) {
             </PlanContentBox>
             <ButtonBox>
               <Icon
-                style={{ height: '20px', width: '20px' }}
+                style={{ height: '20px', width: '20px', cursor: 'pointer' }}
                 icon="mdi:trashcan-outline"
+                onClick={() => DeleteHandler(plan.planIndex)}
               />
-              <Icon style={{ height: '20px', width: '20px' }} icon="mdi:play" />
+              <Icon
+                style={{ height: '20px', width: '20px', cursor: 'pointer' }}
+                icon="mdi:play"
+                onClick={() => ButtonClickHandler(plan.planIndex)}
+              />
             </ButtonBox>
             {plan.planStudyTime !== 0 && (
               <PlanContent className="timespent">time spent </PlanContent>
@@ -315,14 +426,42 @@ export default function Plan(plan) {
       // 4. 계획 만들기
     }
     result.push(
-      <UserPlan key="add" className="add">
-        <PlanContent className="add">할일을 작성해주세요</PlanContent>
-        <AddBtn>일정추가</AddBtn>
-      </UserPlan>
+      <div>
+        <UserPlan key="add" className="add">
+          <PlanContent className="add">할일을 작성해주세요</PlanContent>
+          <AddBtn onClick={openModal}>일정추가</AddBtn>
+        </UserPlan>
+        <Modal
+          open={modalOpen}
+          close={closeModal}
+          header="일정 생성"
+          SubmitHandler={SubmitHandler}
+        >
+          <ModalContent>
+            계획명
+            <UserInput
+              onChange={(event) => InputChangeHandler(event.target.value)}
+            />
+          </ModalContent>
+          <ModalContent>
+            일정
+            <StyledDatePicker
+              selected={date}
+              onChange={(newDate) => setDate(newDate)}
+              dateFormat="yyyy-mm-dd"
+            />
+          </ModalContent>
+        </Modal>
+      </div>
     );
 
     return result;
   }
+
+  useEffect(() => {
+    console.log(date);
+    console.log(planName);
+  });
 
   return (
     <PlanContainer>
