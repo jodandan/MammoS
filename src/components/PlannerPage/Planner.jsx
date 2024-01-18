@@ -1,0 +1,164 @@
+import styled from 'styled-components';
+import PageFrame from '../PageFrame/PageFrame';
+import Plan from './PlannerItems/Plan';
+import Project from './PlannerItems/Project';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import Calendar from './PlannerItems/Calendar/Calendar';
+
+const Right = styled.div`
+  width: 27vw;
+  justify-content: center;
+  height: 35vw;
+  margin-left: 2vw;
+  margin-right: 2vw;
+`;
+
+const PageContainer = styled.div`
+  margin-top: 2vw;
+  display: flex;
+  justify-content: center;
+`;
+
+export default function Planner() {
+  const [calendar, setCalendar] = useState({
+    idx: 0,
+    year: 0,
+    monthValue: 0,
+    month: '',
+    projects: [
+      {
+        projectEndTime: '',
+        projectIndex: 0,
+        projectIsAttend: false,
+        projectIsComplete: false,
+        projectIsStudy: false,
+        projectIsVisible: false,
+        projectMemo: '',
+        projectName: '',
+        projectNumber: 0,
+        projectPlace: '',
+        projectStartTime: '',
+      },
+    ],
+  });
+  const [planner, setPlanner] = useState({
+    day: 0,
+    month: 0,
+    plannerIdx: 0,
+    plans: [
+      {
+        planIndex: 0,
+        planIsComplete: false,
+        planName: '',
+        planStudyTime: 0,
+        studytimeStartTime: new Date(),
+      },
+    ],
+    todayStudyTime: 0,
+  });
+  const [project, setProject] = useState([]);
+
+  function projectVisibility(index) {
+    if (calendar) {
+      // 기존 배열 복사
+      const updatedProjects = [...calendar.projects];
+      // projectIndex 값이 일치하는 프로젝트 찾기
+      const foundProjectIndex = updatedProjects.findIndex(
+        (proj) => proj.projectIndex === index
+      );
+
+      console.log(foundProjectIndex);
+
+      if (foundProjectIndex !== -1) {
+        // projectIsVisible 값 변경
+        updatedProjects[foundProjectIndex] = {
+          ...updatedProjects[foundProjectIndex],
+          projectIsVisible:
+            !updatedProjects[foundProjectIndex].projectIsVisible,
+        };
+
+        // 변경된 project.project 상태 업데이트
+        setCalendar({ ...calendar, projects: updatedProjects });
+        console.log(calendar);
+      } else {
+        console.log(`Project with index ${index} not found.`);
+      }
+    }
+  }
+
+  async function fetchPage(date, isMonthBtn) {
+    try {
+      // 토큰 가져오기
+      const token = localStorage.getItem('token');
+      // 토큰 설정
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      // 정보 받아오기
+
+      if (isMonthBtn) {
+        if (
+          new Date(date).getFullYear() === new Date().getFullYear() &&
+          new Date(date).getMonth() === new Date().getMonth()
+        ) {
+          date = new Date();
+        }
+      }
+
+      const now = date.toISOString().substring(0, 10);
+      console.log(now);
+
+      const response = await axios.get(
+        'http://3.38.7.193:8080/api/v1/planner/' + now
+      );
+      // 정보 저장
+      if (response.data.httpResponseStatus === 'SUCCESS') {
+        setCalendar(response.data.responseData.calendar);
+        setPlanner(response.data.responseData.planner);
+        setProject(response.data.responseData.project);
+
+        console.log(response);
+      } else {
+        console.log(response);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchPage(new Date());
+  }, []);
+
+  return (
+    <PageFrame>
+      <PageContainer>
+        <Calendar
+          key={calendar.idx}
+          month={calendar.month}
+          monthValue={calendar.monthValue}
+          planDays={calendar.planDays}
+          year={calendar.year}
+          projects={calendar.projects}
+          fetchPage={fetchPage}
+          selectedDay={planner.day}
+        />
+        <Right>
+          <Plan plan={planner.plans} totalStudyTime={planner.todayStudyTime} />
+          <Project
+            project={project}
+            fetchPage={() =>
+              fetchPage(
+                new Date(
+                  calendar.year,
+                  calendar.monthValue - 1,
+                  planner.day + 1
+                )
+              )
+            }
+            calendarProjects={calendar.projects}
+          />
+        </Right>
+      </PageContainer>
+    </PageFrame>
+  );
+}
