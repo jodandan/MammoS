@@ -70,9 +70,14 @@ export const Badges = styled.div`
 
 export const Badge = styled.img`
   width: 3.5vw;
+  height: 3.5vw;
+  margin-left: 0.3vw;
+  margin-right: 0.3vw;
 
-  &.center {
-    margin-left: 0.75vw;
-    margin-right: 0.75vw;
+  &.none {
+    border: 1px solid transparent;
+    border-radius: 20px;
+    background-color: transparent;
+    box-shadow: inset 0.5px 0.5px 3px 2px rgba(160, 160, 160, 0.5);
   }
 `;

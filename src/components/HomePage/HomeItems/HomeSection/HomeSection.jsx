@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import BlankBadge from '../../../assets/BlankBadge.png';
 
 import {
   HomeBox,
@@ -41,6 +42,22 @@ export default function HomeSection({
     }
   }
 
+  function makeBadges() {
+    const result = [];
+
+    let badgeCnt = 0;
+    badgeIcon.map((badge) => {
+      result.push(<Badge key={badge} src={badge} />);
+      badgeCnt++;
+    });
+
+    for (let i = badgeCnt; i < 3; i++) {
+      result.push(<Badge className="none" />);
+    }
+
+    return result;
+  }
+
   return (
     <div>
       <Title onClick={() => clickHander()}>HOME</Title>
@@ -53,11 +70,7 @@ export default function HomeSection({
           <MyInfoFont2>{universityName}</MyInfoFont2>
           <MyInfoFont2>{majorName}</MyInfoFont2>
         </MyInfo>
-        <Badges>
-          {badgeIcon.map((badge) => (
-            <Badge key={badge} src={badge} />
-          ))}
-        </Badges>
+        <Badges>{makeBadges()}</Badges>
       </HomeBox>
     </div>
   );
