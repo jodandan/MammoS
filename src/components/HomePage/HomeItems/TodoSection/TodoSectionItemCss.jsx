@@ -22,6 +22,7 @@ export const TodoLine = styled.div`
 
 export const Todo = styled.div`
   display: flex;
+  align-items: center;
   width: 42%;
   margin-left: 4%;
   margin-right: 4%;

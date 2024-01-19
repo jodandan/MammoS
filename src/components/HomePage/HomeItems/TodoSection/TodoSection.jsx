@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import CustomCheckBox from '../CustomCheckBox/CustomCheckBox';
 
 import {
   TodoBox,
@@ -40,12 +41,12 @@ export default function TodoSection(todo) {
 
     return (
       <Todo>
-        <TodoBtn
-          type="checkbox"
+        <CustomCheckBox
           name={plan.planIdx}
           onChange={checkHandler}
           checked={isChecked}
         />
+
         <TodoContent>{plan.planName}</TodoContent>
       </Todo>
     );
@@ -73,7 +74,7 @@ export default function TodoSection(todo) {
       } else {
         result.push(
           <Todo key={i}>
-            <TodoBtn type="checkbox" />
+            <CustomCheckBox name={todo.plan.planIdx} />
             <TodoContent />
           </Todo>
         );
