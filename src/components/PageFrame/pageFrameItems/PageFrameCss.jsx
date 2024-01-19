@@ -32,6 +32,7 @@ export const NavigationMenus = styled.ul`
 `;
 
 export const NavigationMenu = styled.li`
+  cursor: pointer;
   font-family: 'PretendardBold';
   padding-left: 5.4vw;
   list-style: none;
