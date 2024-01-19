@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { ChartHandler, InitializeChart } from '../Calendar/Calendar';
 import Modal from '../Modal/Modal';
 import { ko } from 'date-fns/esm/locale';
+import CustomCheckBox from '../CustomCheckBox/CustomCheckBox';
 
 import {
   ProjectContainer,
@@ -43,22 +44,44 @@ export default function Project(project) {
     setModalOpen(false);
   }
 
-  async function buttonClickHandler(input, idx) {
-    if (input === 'calendar') {
-      try {
-        // 토큰 가져오기
-        const token = localStorage.getItem('token');
-        // 토큰 설정
-        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-        // 캘린더 On/Off
-        const response = await axios.patch(
-          'http://3.38.7.193:8080/api/v1/planner/projects/display/' + idx
-        );
+  async function CheckBoxChangeHandler(idx) {
+    try {
+      const token = localStorage.getItem('token');
+      // 토큰 설정
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      // 계획 저장
+      const response = await axios.patch(
+        'http://3.38.7.193:8080/api/v1/planner/projects/complete/' + idx
+      );
 
-        project.fetchPage();
-      } catch (error) {
-        console.log(error);
+      if (response.data.httpResponseStatus !== 'SUCCESS') {
+        alert(response.data.message);
       }
+
+      project.fetchPage();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function buttonClickHandler(idx) {
+    try {
+      // 토큰 가져오기
+      const token = localStorage.getItem('token');
+      // 토큰 설정
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      // 캘린더 On/Off
+      const response = await axios.patch(
+        'http://3.38.7.193:8080/api/v1/planner/projects/display/' + idx
+      );
+
+      if (response.data.httpResponseStatus !== 'SUCCESS') {
+        alert(response.data.message);
+      }
+
+      project.fetchPage();
+    } catch (error) {
+      console.log(error);
     }
   }
 
@@ -103,7 +126,8 @@ export default function Project(project) {
             place: null,
           }
         );
-        console.log(response);
+
+        setProjectName('');
         project.fetchPage();
       }
       closeModal();
@@ -134,7 +158,10 @@ export default function Project(project) {
 
         result.push(
           <UserProject key={project.projectIndex} ischecked="true">
-            <ProjectBtn type="" />
+            <CustomCheckBox
+              checked={project.projectIsComplete}
+              onChange={() => CheckBoxChangeHandler(project.projectIndex)}
+            />
             <ProjectContentBox>
               <ProjectContent className="content">
                 {project.projectName}
@@ -145,8 +172,13 @@ export default function Project(project) {
             <Duration className="end">{endDate}</Duration>
             <ButtonBox>
               <Icon
-                style={{ height: '20px', width: '20px', cursor: 'pointer' }}
                 icon="mdi:trashcan-outline"
+                style={{
+                  height: '20px',
+                  width: '20px',
+                  cursor: 'pointer',
+                  color: '#fff',
+                }}
                 onClick={() => DeleteHandler(project.projectIndex)}
               />
               {!project.projectIsVisible && (
@@ -155,12 +187,11 @@ export default function Project(project) {
                     height: '20px',
                     width: '20px',
                     marginLeft: '0.9vw',
+                    color: '#fff',
                     cursor: 'pointer',
                   }}
                   icon="tabler:calendar-up"
-                  onClick={() =>
-                    buttonClickHandler('calendar', project.projectIndex)
-                  }
+                  onClick={() => buttonClickHandler(project.projectIndex)}
                 />
               )}
               {project.projectIsVisible && (
@@ -172,9 +203,7 @@ export default function Project(project) {
                     cursor: 'pointer',
                   }}
                   icon="tabler:calendar-off"
-                  onClick={() =>
-                    buttonClickHandler('calendar', project.projectIndex)
-                  }
+                  onClick={() => buttonClickHandler(project.projectIndex)}
                 />
               )}
             </ButtonBox>
@@ -196,7 +225,10 @@ export default function Project(project) {
             key={project.projectIndex}
             isvisible={project.projectIsVisible.toString()}
           >
-            <ProjectBtn type="" />
+            <CustomCheckBox
+              checked={project.projectIsComplete}
+              onChange={() => CheckBoxChangeHandler(project.projectIndex)}
+            />
             <ProjectContentBox>
               <ProjectContent className="content">
                 {project.projectName}
@@ -224,9 +256,7 @@ export default function Project(project) {
                     cursor: 'pointer',
                   }}
                   icon="tabler:calendar-up"
-                  onClick={() =>
-                    buttonClickHandler('calendar', project.projectIndex)
-                  }
+                  onClick={() => buttonClickHandler(project.projectIndex)}
                 />
               )}
               {project.projectIsVisible && (
@@ -238,9 +268,7 @@ export default function Project(project) {
                     cursor: 'pointer',
                   }}
                   icon="tabler:calendar-off"
-                  onClick={() =>
-                    buttonClickHandler('calendar', project.projectIndex)
-                  }
+                  onClick={() => buttonClickHandler(project.projectIndex)}
                 />
               )}
             </ButtonBox>
