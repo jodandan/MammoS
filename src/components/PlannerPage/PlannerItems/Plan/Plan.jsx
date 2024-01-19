@@ -1,8 +1,9 @@
 import { Icon } from '@iconify/react';
-import axios from 'axios';
+import axios, { isCancel } from 'axios';
 import { useEffect, useState } from 'react';
 import Modal from '../Modal/Modal';
 import { ko } from 'date-fns/esm/locale';
+import CustomCheckBox from '../CustomCheckBox/CustomCheckBox';
 
 import {
   PlanContainer,
@@ -46,6 +47,26 @@ export default function Plan(plan) {
     setPlanName(value);
   }
 
+  async function CheckBoxChangeHandler(idx) {
+    try {
+      const token = localStorage.getItem('token');
+      // 토큰 설정
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      // 계획 저장
+      const response = await axios.patch(
+        'http://3.38.7.193:8080/api/v1/planner/plans/complete/' + idx
+      );
+
+      if (response.data.httpResponseStatus !== 'SUCCESS') {
+        alert(response.data.message);
+      }
+
+      plan.fetchPage();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async function SubmitHandler() {
     try {
       if (planName !== '') {
@@ -60,7 +81,11 @@ export default function Plan(plan) {
             date: date,
           }
         );
-        console.log(response);
+
+        if (response.data.httpResponseStatus !== 'SUCCESS')
+          alert(response.data.message);
+
+        setPlanName('');
         plan.fetchPage();
       }
       closeModal();
@@ -137,13 +162,21 @@ export default function Plan(plan) {
 
         result.push(
           <UserPlan key={plan.planIndex} ischecked="true">
-            <PlanBtn type="" />
+            <CustomCheckBox
+              checked={plan.planIsComplete}
+              onChange={() => CheckBoxChangeHandler(plan.planIndex)}
+            />
             <PlanContentBox>
               <PlanContent className="content">{plan.planName}</PlanContent>
             </PlanContentBox>
             <ButtonBox>
               <Icon
-                style={{ height: '20px', width: '20px', cursor: 'pointer' }}
+                style={{
+                  height: '20px',
+                  width: '20px',
+                  cursor: 'pointer',
+                  color: '#fff',
+                }}
                 icon="mdi:trashcan-outline"
                 onClick={() => DeleteHandler(plan.planIndex)}
               />
@@ -179,7 +212,10 @@ export default function Plan(plan) {
 
         result.push(
           <UserPlan key={plan.planIndex} isrunning="true">
-            <PlanBtn type="" />
+            <CustomCheckBox
+              checked={plan.planIsComplete}
+              onChange={() => CheckBoxChangeHandler(plan.planIndex)}
+            />
             <PlanContentBox>
               <PlanContent className="content">{plan.planName}</PlanContent>
             </PlanContentBox>
@@ -221,7 +257,11 @@ export default function Plan(plan) {
 
         result.push(
           <UserPlan key={plan.planIndex}>
-            <PlanBtn type="" />
+            <CustomCheckBox
+              checked={plan.planIsComplete}
+              onChange={() => CheckBoxChangeHandler(plan.planIndex)}
+            />
+
             <PlanContentBox>
               <PlanContent className="content">{plan.planName}</PlanContent>
             </PlanContentBox>

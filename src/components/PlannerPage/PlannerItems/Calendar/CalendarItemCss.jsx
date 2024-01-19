@@ -5,7 +5,7 @@ export const CalendarBox = styled.div`
   flex-direction: column;
   width: 30vw;
   align-items: center;
-  height: 35vw;
+  padding-bottom: 10px;
   margin-left: 2vw;
   margin-right: 2vw;
   border-radius: 40px;
@@ -77,7 +77,7 @@ export const DayFont = styled.p`
 export const ChartBox = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 50%;
+  margin-top: 35%;
   height: 65%;
   width: 100%;
   align-items: baseline;
