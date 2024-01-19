@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/mmos-front.iml" filepath="$PROJECT_DIR$/.idea/mmos-front.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Front-end.iml" filepath="$PROJECT_DIR$/.idea/modules/Front-end.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/src.iml" filepath="$PROJECT_DIR$/.idea/modules/src.iml" />
     </modules>
   </component>
 </project>

@@ -21,6 +21,7 @@ export const PageContainer = styled.div`
 `;
 
 export const UserInput = styled.input`
+  font-family: 'PretendardBold';
   border: 3px solid black;
   padding: 2vh;
   padding-left: 1.2%;
@@ -43,10 +44,15 @@ export const UserInput = styled.input`
 `;
 
 export const Title = styled.h1`
+  font-family: 'PretendardBold';
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 1vw;
   padding: 2vh;
 `;
 
 export const SelectUniv = styled.select`
+  font-family: 'PretendardBold';
   width: 40%;
   border: 3px solid black;
   padding: 2vh;
@@ -57,6 +63,7 @@ export const SelectUniv = styled.select`
 `;
 
 export const SelectCollege = styled.select`
+  font-family: 'PretendardBold';
   width: 20.1%;
   border: 3px solid black;
   padding: 2vh;
@@ -67,6 +74,7 @@ export const SelectCollege = styled.select`
 `;
 
 export const SelectMajor = styled.select`
+  font-family: 'PretendardBold';
   width: 20.1%;
   border: 3px solid black;
   padding: 2vh;
@@ -92,10 +100,11 @@ export const StyledFieldset = styled.fieldset`
 `;
 
 export const StyledLabel = styled.label`
+  font-family: 'PretendardBold';
   display: flex;
   align-items: center;
   user-select: none;
-  margin-top: -15px;
+  margin: 0.5vw;
 `;
 
 export const StyledInput = styled.input`
@@ -116,11 +125,12 @@ export const EmailInput = styled.div`
 `;
 
 export const EmailButton = styled.button`
+  font-family: 'PretendardBold';
   position: absolute;
   border: none;
   padding: 1.96vh;
-  margin-top: 2px;
-  margin-left: 30vw;
+  margin-top: 4px;
+  margin-left: 33vw;
   font-size: 18px;
   font-weight: bold;
   color: #90c20d;
@@ -129,6 +139,7 @@ export const EmailButton = styled.button`
 `;
 
 export const SubmitBtn = styled.button`
+font-family: 'PretendardBold';
   display: flex;
   height: 49px;
   width: 214px;
@@ -154,4 +165,12 @@ export const Top = styled.div`
   margin-left: 15%;
   width: 70%;
   display: flex;
+
+  & > h2 {
+    font-family: 'PretendardBold';
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 1vw;
+    margin-left: -1vw;
+  }
 `;

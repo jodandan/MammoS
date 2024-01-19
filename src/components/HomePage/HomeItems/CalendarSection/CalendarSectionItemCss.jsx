@@ -19,6 +19,7 @@ export const CalendarContainer = styled.div`
 `;
 
 export const Day = styled.div`
+  font-family: 'PretendardBold';
   display: flex;
   font-weight: bold;
   width: 3.5vw;
@@ -28,7 +29,7 @@ export const Day = styled.div`
   z-index: 1;
   background-color: transparent;
   color: inherit;
-  opacity: ${({ isOutsideMonth }) => (isOutsideMonth ? 0.3 : 1)};
+  opacity: ${({ isoutsidemonth }) => (isoutsidemonth ? 0.3 : 1)};
   position: relative;
   &.frame {
     height: 2vw;
@@ -42,23 +43,26 @@ export const Circle = styled.div`
   background-color: #c6ef5e;
   border-radius: 50%;
   position: absolute;
-  margin-top: -4px;
+  margin-top: -8px;
   margin-left: 9px;
   justify-content: center;
   align-items: center;
   opacity: 0.5;
   z-index: 2;
   transform: translateX(-50%);
-  display: ${({ isSelected }) => (isSelected ? 'flex' : 'none')};
+  display: ${({ isselected }) => (isselected === 'true' ? 'flex' : 'none')};
 `;
 
 export const Month = styled.h2`
+  font-family: 'PretendardBold';
+  font-size: 25px;
   text-align: right;
   padding-right: 2vw;
   margin-bottom: 1vw;
 `;
 
 export const DayFont = styled.p`
+  font-family: 'PretendardSemiBold';
   width: 25%;
   text-align: center;
   position: absolute;
@@ -84,5 +88,5 @@ export const Chart = styled.div`
   margin-bottom: 2px;
   padding-left: 8%;
   background-color: ${(props) =>
-    props.isSelected ? '#90C20D' : 'transparent'};
+    props.isselected === 'true' ? '#90C20D' : 'transparent'};
 `;

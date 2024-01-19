@@ -22,6 +22,7 @@ export const TodoLine = styled.div`
 
 export const Todo = styled.div`
   display: flex;
+  align-items: center;
   width: 42%;
   margin-left: 4%;
   margin-right: 4%;
@@ -33,8 +34,11 @@ export const TodoBtn = styled.input`
 `;
 
 export const TodoContent = styled.p`
+  display: flex;
+  font-family: 'PretendardBold';
   margin-top: 2px;
   text-align: left;
+  align-items: center;
   width: 80%;
   height: 100%;
   margin-left: 0.5vw;
