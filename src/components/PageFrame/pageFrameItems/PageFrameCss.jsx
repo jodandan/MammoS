@@ -28,6 +28,7 @@ export const NavigationMenus = styled.ul`
 `;
 
 export const NavigationMenu = styled.li`
+  cursor: pointer;
   padding-left: 5vw;
   list-style: none;
   font-size: 17px;
