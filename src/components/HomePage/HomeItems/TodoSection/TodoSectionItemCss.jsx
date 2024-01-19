@@ -35,7 +35,7 @@ export const TodoBtn = styled.input`
 
 export const TodoContent = styled.p`
   display: flex;
-  font-family: 'PretendardBold';
+  font-family: 'PretendardSemiBold';
   margin-top: 2px;
   text-align: left;
   align-items: center;
