@@ -4,13 +4,7 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import CustomCheckBox from '../CustomCheckBox/CustomCheckBox';
 
-import {
-  TodoBox,
-  TodoLine,
-  Todo,
-  TodoBtn,
-  TodoContent,
-} from './TodoSectionItemCss';
+import { TodoBox, TodoLine, Todo, TodoContent } from './TodoSectionItemCss';
 import { Title } from '../HomeItemCss';
 
 export default function TodoSection(todo) {
