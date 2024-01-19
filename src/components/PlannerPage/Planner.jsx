@@ -1,24 +1,11 @@
 import styled from 'styled-components';
 import PageFrame from '../PageFrame/PageFrame';
-import Plan from './PlannerItems/Plan';
-import Project from './PlannerItems/Project';
+import Plan from './PlannerItems/Plan/Plan';
+import Project from './PlannerItems/Project/Project';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Calendar from './PlannerItems/Calendar/Calendar';
-
-const Right = styled.div`
-  width: 27vw;
-  justify-content: center;
-  height: 35vw;
-  margin-left: 2vw;
-  margin-right: 2vw;
-`;
-
-const PageContainer = styled.div`
-  margin-top: 2vw;
-  display: flex;
-  justify-content: center;
-`;
+import { Right, PageContainer } from './PlannerItems/PlannerCss';
 
 export default function Planner() {
   const [calendar, setCalendar] = useState({
