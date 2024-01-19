@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import BlankBadge from '../../../assets/BlankBadge.png';
 
 import {
   HomeBox,

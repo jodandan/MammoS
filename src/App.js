@@ -7,6 +7,7 @@ import PlannerPage from './pages/PlannerPage';
 import StudyHomePage from './pages/StudyPage';
 import StudyCalenderPage from './pages/StudyCalenderPage';
 import SocialPage from './pages/SocialPage';
+import MyPage from './pages/MyPage';
 import './App.css';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path="/studyHome" element={<StudyHomePage />} />
         <Route path="/studyCalender" element={<StudyCalenderPage />} />
         <Route path="/social" element={<SocialPage />} />
+        <Route path="/info" element={<MyPage />} />
       </Routes>
     </div>
   );

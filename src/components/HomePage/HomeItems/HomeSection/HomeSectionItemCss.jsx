@@ -5,7 +5,8 @@ export const HomeBox = styled.div`
   width: 15vw;
   height: 15vw;
   margin-right: 3vw;
-  border: 3px solid #b9d967;
+  border: 1px solid rgba(160, 160, 160, 0.5);
+  box-shadow: 0px 2px 10px 2px rgba(160, 160, 160, 0.5);
   border-radius: 30px 30px 30px 30px;
   justify-content: center;
   background-color: #ecf1e0;
