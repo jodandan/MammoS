@@ -282,14 +282,17 @@ export default function Plan(plan) {
       // 오류시 알림창
       if (response.data.httpResponseStatus !== 'SUCCESS') {
         alert(response.data.message);
-      } else {
-        // 페이지 리로드
-        plan.fetchPage();
       }
+      // 페이지 리로드
+      plan.fetchPage();
     } catch (error) {
       alert(error);
     }
   }
+
+  useEffect(() => {
+    makePlans();
+  });
 
   function makePlans() {
     const result = [];
@@ -301,11 +304,11 @@ export default function Plan(plan) {
       );
 
       completePlans.map((plan) => {
-        const studyHour = String(Math.floor(plan.planStudyTime / 60)).padStart(
+        let studyHour = String(Math.floor(plan.planStudyTime / 60)).padStart(
           2,
           '0'
         );
-        const studyMin = String(Math.floor(plan.planStudyTime % 60)).padStart(
+        let studyMin = String(Math.floor(plan.planStudyTime % 60)).padStart(
           2,
           '0'
         );
@@ -342,12 +345,15 @@ export default function Plan(plan) {
             60000
         );
 
-        const studyHour = String(
+        let studyHour = String(
           Math.floor((plan.planStudyTime + current) / 60)
         ).padStart(2, '0');
-        const studyMin = String(
+        let studyMin = String(
           Math.floor((plan.planStudyTime + current) % 60)
         ).padStart(2, '0');
+
+        if (studyHour < 0) studyHour = String(0).padStart(2, '0');
+        if (studyMin < 0) studyMin = String(0).padStart(2, '0');
 
         result.push(
           <UserPlan key={plan.planIndex} isrunning="true">
@@ -427,7 +433,7 @@ export default function Plan(plan) {
       // 4. 계획 만들기
     }
     result.push(
-      <>
+      <div>
         <UserPlan key="add" className="add">
           <PlanContent className="add">할일을 작성해주세요</PlanContent>
           <AddBtn onClick={openModal}>일정추가</AddBtn>
@@ -449,11 +455,11 @@ export default function Plan(plan) {
             <StyledDatePicker
               selected={date}
               onChange={(newDate) => setDate(newDate)}
-              dateFormat="yyyy-mm-dd"
+              dateFormat="yyyy-MM-dd"
             />
           </ModalContent>
         </Modal>
-      </>
+      </div>
     );
 
     return result;

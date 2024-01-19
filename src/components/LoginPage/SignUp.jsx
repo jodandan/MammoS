@@ -381,6 +381,7 @@ export default function Signup() {
             style={{
               marginLeft: '-30%',
               color: 'green',
+              marginTop: '10px',
               marginBottom: '-10px',
             }}
           >

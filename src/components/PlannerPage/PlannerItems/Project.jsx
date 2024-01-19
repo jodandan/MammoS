@@ -444,7 +444,7 @@ export default function Project(project) {
               startDate={startDate}
               endDate={endDate}
               onChange={(newDates) => setChangeDate(newDates)}
-              dateFormat="yyyy-mm-dd"
+              dateFormat="yyyy-MM-dd"
             />
           </ModalContent>
         </Modal>
