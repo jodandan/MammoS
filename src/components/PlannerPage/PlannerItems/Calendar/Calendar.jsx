@@ -21,45 +21,50 @@ import {
   TodayFont,
 } from './CalendarItemCss';
 
-export function InitializeChart(projects) {
-  projects.forEach((project) => {
-    let projectStartDate = new Date(project.projectStartTime).getDate();
-    let projectEndDate = new Date(project.projectEndTime).getDate();
+export function InitializeChart(projects, year, month) {
+  const LastDay = new Date(year, month, 0).getDate();
 
-    for (let i = projectStartDate; i <= projectEndDate; i++) {
+  projects.forEach((project) => {
+    for (let i = 1; i <= LastDay; i++) {
       for (let line = 1; line <= 5; line++) {
         const chartSameLine = document.querySelectorAll(
           '#day' + i + ' > div#line' + line
         );
-
-        chartSameLine[0].style.backgroundColor = 'transparent';
-        chartSameLine[0].setAttribute('isplanned', 'false');
+        if (
+          Number(chartSameLine[0].getAttribute('projectIndex')) ===
+          project.projectIndex
+        ) {
+          chartSameLine[0].style.backgroundColor = 'transparent';
+          chartSameLine[0].setAttribute('isplanned', 'false');
+          chartSameLine[0].style.cssText = '';
+        }
       }
     }
   });
 }
 
-export function ChartHandler(projects) {
+export function ChartHandler(projects, year, month) {
   if (projects) {
     projects.forEach((project) => {
       if (project.projectIsVisible) {
         let chartLevel = 1;
-
         let projectStartDate = new Date(project.projectStartTime).getDate();
         let projectEndDate = new Date(project.projectEndTime).getDate();
 
         // 만약 한달을 넘기는 프로젝트라면 시작과 끝을 1일과 말일로 설정
+        console.log(month);
+        console.log(new Date(project.projectStartTime).getMonth());
         if (
-          new Date(project.projectStartTime).getFullYear() <
-            new Date().getFullYear() ||
-          new Date(project.projectStartTime).getMonth() < new Date().getMonth()
+          new Date(project.projectStartTime).getFullYear() < year ||
+          (new Date(project.projectStartTime).getFullYear() === year &&
+            new Date(project.projectStartTime).getMonth() < month - 1)
         ) {
           projectStartDate = 1;
         }
         if (
-          new Date(project.projectEndTime).getFullYear() >
-            new Date().getFullYear() ||
-          new Date(project.projectEndTime).getMonth() > new Date().getMonth()
+          new Date(project.projectEndTime).getFullYear() > year ||
+          (new Date(project.projectEndTime).getFullYear() === year &&
+            new Date(project.projectEndTime).getMonth() > month - 1)
         ) {
           const currentDate = new Date();
 
@@ -68,6 +73,8 @@ export function ChartHandler(projects) {
             currentDate.getMonth() + 1,
             0
           ).getDate();
+
+          console.log(projectEndDate);
         }
 
         // 맨 아래서부터 차트 몇번째 칸에 칠할지 탐색 (빈칸 탐색)
@@ -106,6 +113,7 @@ export function ChartHandler(projects) {
           for (let j = 0; j < chartSameLine.length; j++) {
             const chart = chartSameLine[j];
             chart.setAttribute('isplanned', 'true');
+            chart.setAttribute('projectIndex', project.projectIndex);
             chart.style.backgroundColor = '#B6DC79';
           }
 
@@ -158,8 +166,8 @@ export const Calendar = ({
   let dayCnt = 0;
 
   useEffect(() => {
-    InitializeChart(projects);
-    ChartHandler(projects);
+    InitializeChart(projects, year, monthValue);
+    ChartHandler(projects, year, monthValue);
   }, []);
 
   function ClickDayHandler(clickedDay) {
@@ -170,7 +178,7 @@ export const Calendar = ({
 
   const renderDays = () => {
     const days = [];
-    const currentDate = new Date();
+    const currentDate = new Date(year, monthValue - 1, 1);
     const firstDayOfMonth = new Date(
       currentDate.getFullYear(),
       currentDate.getMonth(),
@@ -279,17 +287,17 @@ export const Calendar = ({
       // 현재 달이 1월이면 작년 12월로 설정
       if (monthValue === 1) {
         targetMonth = new Date(year - 1, 11, 2);
-        console.log(true);
       } else {
-        console.log(monthValue);
         targetMonth = new Date(year, monthValue - 2, 2);
-        console.log(false);
       }
     } else {
       // 다음 달의 첫 날
-      targetMonth = new Date(year, monthValue, 2);
+      if (monthValue === 12) {
+        targetMonth = new Date(year + 1, 0, 2);
+      } else {
+        targetMonth = new Date(year, monthValue, 2);
+      }
     }
-    console.log(targetMonth);
 
     fetchPage(targetMonth, true);
   }

@@ -98,7 +98,6 @@ const Footer = styled.footer`
 `;
 
 export default function Modal(props) {
-  console.log(props);
   const { open, close, header } = props;
 
   return (

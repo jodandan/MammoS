@@ -3,6 +3,9 @@ import { Icon } from '@iconify/react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Calendar, { ChartHandler, InitializeChart } from './Calendar/Calendar';
+import Modal from './Modal/Modal';
+import ReactDatePicker from 'react-datepicker';
+import { ko } from 'date-fns/esm/locale';
 
 const ProjectContainer = styled.div`
   background-color: white;
@@ -40,7 +43,7 @@ const ProjectBtn = styled.input`
   border: 2px solid;
   background-color: transparent;
   border-radius: 3px;
-  margin-left: 10px;
+  margin-left: 15px;
   width: 10px;
   height: 10px;
 `;
@@ -137,6 +140,7 @@ const ButtonBox = styled.div`
 `;
 
 const AddBtn = styled.div`
+  cursor: pointer;
   font-family: 'PretendardSemiBold';
   display: flex;
   width: 80px;
@@ -149,12 +153,58 @@ const AddBtn = styled.div`
   box-shadow: 1px 2px 3px 0px rgb(0, 0, 0, 0.25);
 `;
 
+const UserInput = styled.input`
+  font-family: 'PretendardSemiBold';
+  border: none;
+  border-bottom: 1px solid black;
+  margin-left: 30px;
+  font-size: 15px;
+  width: 150px;
+  padding-bottom: 5px;
+  text-align: center;
+`;
+
+const ModalContent = styled.p`
+  font-family: 'PretendardSemiBold';
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  margin-top: 15px;
+`;
+
+const StyledDatePicker = styled(ReactDatePicker)`
+  font-family: 'PretendardSemiBold';
+  width: 230px;
+  margin-left: 20px;
+  font-size: 15px;
+  border: none;
+  border-bottom: 1px solid black;
+  text-align: center;
+  padding-bottom: 5px;
+`;
+
 const formatDate = (dateString) => {
   const [year, month, day] = dateString.split('-');
   return `${month}/${day}`;
 };
 
 export default function Project(project) {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+  const [projectName, setProjectName] = useState('');
+
+  function InputChangeHandler(value) {
+    setProjectName(value);
+  }
+
+  function openModal() {
+    setModalOpen(true);
+  }
+  function closeModal() {
+    setModalOpen(false);
+  }
+
   async function buttonClickHandler(input, idx) {
     if (input === 'calendar') {
       try {
@@ -174,9 +224,60 @@ export default function Project(project) {
     }
   }
 
+  async function DeleteHandler(idx) {
+    try {
+      // 토큰 가져오기
+      const token = localStorage.getItem('token');
+      // 토큰 설정
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      // 계획 삭제
+      const response = await axios.delete(
+        'http://3.38.7.193:8080/api/v1/planner/projects/' + idx
+      );
+      // 오류시 알림창
+      if (response.data.httpResponseStatus !== 'SUCCESS') {
+        alert(response.data.message);
+      } else {
+        // 페이지 리로드
+        project.fetchPage();
+      }
+    } catch (error) {
+      alert(error);
+    }
+  }
+
+  async function SubmitHandler() {
+    try {
+      if (projectName !== '') {
+        const token = localStorage.getItem('token');
+        // 토큰 설정
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        // 계획 저장
+        const response = await axios.post(
+          'http://3.38.7.193:8080/api/v1/planner/projects',
+          {
+            startTime: startDate,
+            endTime: endDate,
+            name: projectName,
+            isStudy: false,
+            studyIdx: null,
+            memo: null,
+            place: null,
+          }
+        );
+        console.log(response);
+        project.fetchPage();
+      }
+      closeModal();
+      // 정보 저장
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
-    InitializeChart(project.calendarProjects);
-    ChartHandler(project.project.project);
+    InitializeChart(project.calendarProjects, project.year, project.monthValue);
+    ChartHandler(project.calendarProjects, project.year, project.monthValue);
   });
 
   function makeProjects() {
@@ -206,8 +307,9 @@ export default function Project(project) {
             <Duration className="end">{endDate}</Duration>
             <ButtonBox>
               <Icon
-                style={{ height: '20px', width: '20px' }}
+                style={{ height: '20px', width: '20px', cursor: 'pointer' }}
                 icon="mdi:trashcan-outline"
+                onClick={() => DeleteHandler(project.projectIndex)}
               />
               {!project.projectIsVisible && (
                 <Icon
@@ -270,8 +372,10 @@ export default function Project(project) {
                 style={{
                   height: '20px',
                   width: '20px',
+                  cursor: 'pointer',
                 }}
                 icon="mdi:trashcan-outline"
+                onClick={() => DeleteHandler(project.projectIndex)}
               />
               {!project.projectIsVisible && (
                 <Icon
@@ -307,11 +411,44 @@ export default function Project(project) {
       });
     }
 
+    function setChangeDate(dates) {
+      const [start, end] = dates;
+      setStartDate(start);
+      setEndDate(end);
+    }
+
     result.push(
-      <UserProject key="add" className="add">
-        <ProjectContent className="add">할일을 작성해주세요</ProjectContent>
-        <AddBtn>일정추가</AddBtn>
-      </UserProject>
+      <>
+        <UserProject key="add" className="add">
+          <ProjectContent className="add">할일을 작성해주세요</ProjectContent>
+          <AddBtn onClick={openModal}>일정추가</AddBtn>
+        </UserProject>
+        <Modal
+          open={modalOpen}
+          close={closeModal}
+          header="일정 생성"
+          SubmitHandler={SubmitHandler}
+        >
+          <ModalContent>
+            계획명
+            <UserInput
+              onChange={(event) => InputChangeHandler(event.target.value)}
+            />
+          </ModalContent>
+          <ModalContent>
+            일정
+            <StyledDatePicker
+              selectsRange={true}
+              locale={ko}
+              selected={startDate}
+              startDate={startDate}
+              endDate={endDate}
+              onChange={(newDates) => setChangeDate(newDates)}
+              dateFormat="yyyy-mm-dd"
+            />
+          </ModalContent>
+        </Modal>
+      </>
     );
 
     return result;

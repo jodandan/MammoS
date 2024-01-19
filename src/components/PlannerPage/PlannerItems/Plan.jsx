@@ -282,9 +282,10 @@ export default function Plan(plan) {
       // 오류시 알림창
       if (response.data.httpResponseStatus !== 'SUCCESS') {
         alert(response.data.message);
+      } else {
+        // 페이지 리로드
+        plan.fetchPage();
       }
-      // 페이지 리로드
-      plan.fetchPage();
     } catch (error) {
       alert(error);
     }
@@ -426,7 +427,7 @@ export default function Plan(plan) {
       // 4. 계획 만들기
     }
     result.push(
-      <div>
+      <>
         <UserPlan key="add" className="add">
           <PlanContent className="add">할일을 작성해주세요</PlanContent>
           <AddBtn onClick={openModal}>일정추가</AddBtn>
@@ -452,16 +453,11 @@ export default function Plan(plan) {
             />
           </ModalContent>
         </Modal>
-      </div>
+      </>
     );
 
     return result;
   }
-
-  useEffect(() => {
-    console.log(date);
-    console.log(planName);
-  });
 
   return (
     <PlanContainer>

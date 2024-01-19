@@ -137,6 +137,8 @@ export default function Planner() {
               )
             }
             calendarProjects={calendar.projects}
+            year={calendar.year}
+            monthValue={calendar.monthValue}
           />
         </Right>
       </PageContainer>
