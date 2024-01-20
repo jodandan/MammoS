@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
 import FriendResponseModal from './FriendResponseModal';
-import AddFriendModal from './AddFriendModal';
+import PropTypes from 'prop-types';
 
 const FriendResponseBox = styled.div`
   display: flex;
@@ -34,18 +34,22 @@ const ResponseButton = styled.button`
   text-decoration: underline;
 `;
 
-const FriendResponseButton = () => {
+const FriendResponseButton = ({friendRequestNum}) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const handleRequestButtonClick = () => {
         setIsModalOpen(true); // 모달 열기
     };
     return(
         <FriendResponseBox>
-            <CountBadge>1</CountBadge>
+            {friendRequestNum !== 0 && <CountBadge>{friendRequestNum}</CountBadge>}
             <ResponseButton onClick={handleRequestButtonClick}>친구요청</ResponseButton>
-            {isModalOpen && <AddFriendModal onClose={() => setIsModalOpen(false)} />}
+            {isModalOpen && <FriendResponseModal onClose={() => setIsModalOpen(false)} />}
         </FriendResponseBox>
     );
 }
+
+FriendResponseButton.propTypes = {
+    friendRequestNum: PropTypes.number.isRequired,
+};
 
 export default FriendResponseButton;

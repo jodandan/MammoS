@@ -70,32 +70,44 @@ const SearchButton = styled.button`
   }
 `;
 
+//3.38.7.193:8080
+const AddFriendModal = ({onClose, onAddFriend}) => {
+    const [friendId, setFriendId] = useState('');
 
-const AddFriendModal = ({ isOpen, onClose, onAddFriend}) => {
-    const [friendId, setFriendId] = useState(''); // 사용자가 입력한 친구 ID를 저장하기 위한 상태
-    const [isLoading, setIsLoading] = useState(false);
-    const handleSearch = async () => {
-        if (!friendId) return; // ID가 비어있으면 요청을 보내지 않음
-        setIsLoading(true);
+    const handleSubmit = async () => {
+        if (!friendId) {
+            alert('친구 ID를 입력해주세요.');
+            return;
+        }
+
         try {
-            const response = await axios.post('http://localhost:8080/api/v1/request/:friendId', { id: friendId });
-            if (response.data.success) {
-                onAddFriend(response.data.friend); // FriendSection에 친구 추가
+            const token = localStorage.getItem('token');
+            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+            // 친구 요청 보내기
+            const response = await axios.post('http://3.38.7.193:8080/api/v1/friends/request', {
+                friendId: friendId
+            });
+
+            // 응답 처리
+            if (response.data.httpResponseStatus === 'SUCCESS') {
+                alert('친구 요청이 성공적으로 전송되었습니다.');
+                onAddFriend({
+                    friendIndex: response.data.responseData.friendIndex,
+                });
                 onClose(); // 모달 닫기
             } else {
                 alert(response.data.message);
             }
         } catch (error) {
-            console.error('Error searching friend:', error);
-             alert('친구 검색 중 오류가 발생했습니다.');
-        } finally {
-            setIsLoading(false);
+            console.error('친구 요청 중 오류 발생:', error);
+            alert('친구 요청 중 오류가 발생했습니다.');
         }
     };
 
     return (
         <ModalFrame onClick={onClose}>
-            <ModalBox onClick={(e)=> e.stopPropagation()}>
+            <ModalBox onClick={(e) => e.stopPropagation()}>
                 <SearchFont>친구추가</SearchFont>
                 <SearchContainer>
                     <SearchInput
@@ -104,7 +116,7 @@ const AddFriendModal = ({ isOpen, onClose, onAddFriend}) => {
                         onChange={(e) => setFriendId(e.target.value)}
                         placeholder="친구 ID를 입력하세요"
                     />
-                    <SearchButton src= {SearchButtonImg} onClick={handleSearch} disabled={isLoading}/>
+                    <SearchButton src={SearchButtonImg} onClick={handleSubmit} />
                 </SearchContainer>
             </ModalBox>
         </ModalFrame>
@@ -112,9 +124,9 @@ const AddFriendModal = ({ isOpen, onClose, onAddFriend}) => {
 };
 
 AddFriendModal.propTypes = {
-    isOpen: PropTypes.bool.isRequired,
     onClose: PropTypes.func.isRequired,
     onAddFriend: PropTypes.func.isRequired,
 };
 
 export default AddFriendModal;
+

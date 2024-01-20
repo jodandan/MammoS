@@ -28,6 +28,8 @@ export default function Social() {
         weeklyStudyTime: 0
     });
 
+    const [friendRequestNum, setFriendRequestNum] = useState(0);
+
     const [friend, setFriend] = useState({
         id: '',
         majorName: '',
@@ -38,8 +40,8 @@ export default function Social() {
         weeklyStudyTime: 0,
         dailyStudyTime: 0,
         isFixed: '',
-        friendRequestNum: 0
     });
+
 
     useEffect(() => {
         async function fetchPage() {
@@ -49,10 +51,11 @@ export default function Social() {
                 // 토큰 설정
                 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
                 // 정보 받아오기
-                const response = await axios.get('http://localhost:8080/api/v1/social');
+                const response = await axios.get('http://3.38.7.193:8080/api/v1/social');
                 // 정보 저장
                 if (response.data.httpResponseStatus === 'SUCCESS') {
                     setRanking(response.data.responseData.ranking);
+                    setFriendRequestNum(response.data.responseData.friendRequestNum);
                     setFriend(response.data.responseData.friend);
                     console.log(response);
                 } else {
@@ -62,7 +65,6 @@ export default function Social() {
                 console.log(error);
             }
         }
-
         fetchPage();
     }, []);
 
@@ -78,7 +80,7 @@ export default function Social() {
             </Top>
             <Bottom>
                 <FriendResponseButton
-                    friendRequestNum={friend.friendRequestNum}
+                    friendRequestNum={friendRequestNum}
                 />
                 <FriendSection
                     pfp={friend.pfp}

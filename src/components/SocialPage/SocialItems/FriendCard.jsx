@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import FixButtonImg from '../../assets/FixButton.png'
 import DeleteButtonImg from '../../assets/DeleteButton.png'
-import FriendSection from './FriendSection';
+import nonFixButtonImg from '../../assets/NonFixButton.png';
 
 const FriendBox = styled.div`
   display: flex;
@@ -122,10 +122,16 @@ const FriendFont = styled.p`
     margin-top: -9px;
   }
   
-  &.state {
+  &.online {
     font-weight: bold;
     font-size: 10px;
     color: limegreen;
+  }
+  
+  &.offline {
+    font-weight: bold;
+    font-size: 10px;
+    color: gray;
   }
   
   &.day {
@@ -150,13 +156,15 @@ const FriendCard = ({
     universityName,
     majorName,
     pfp,
-    weekTime,
-    todayTime,
-    planner
+    weeklyStudyTime,
+    dailyStudyTime,
+    isOnline,
+    isFixed,
+    onFix // 고정 상태 변경 함수
 }) => {
 
-    function pinClickHandler(){
-        console.log('고정핀')
+    function FixButtonClickHandler() {
+        onFix(id); // 고정 상태 변경
     }
 
     function deleteClickHandler(){
@@ -176,25 +184,31 @@ const FriendCard = ({
                 <FriendFont>{id}</FriendFont>
                 <FriendFont>{universityName}</FriendFont>
                 <FriendFont className="major">{majorName}</FriendFont>
-                <FriendFont className="state">온라인</FriendFont>
+                {isOnline ?
+                    <FriendFont className="online">온라인</FriendFont> :
+                    <FriendFont className="offline">오프라인</FriendFont>
+                }
             </FriendInfoBox>
             <FriendTimeBox>
                 <TimeRow>
                     <FriendFont className="day">Today</FriendFont>
-                    <FriendFont className="time">{todayTime}</FriendFont>
+                    <FriendFont className="time">{dailyStudyTime}</FriendFont>
                 </TimeRow>
                 <TimeRow>
                     <FriendFont className="day">Week</FriendFont>
-                    <FriendFont className="time">{weekTime}</FriendFont>
+                    <FriendFont className="time">{weeklyStudyTime}</FriendFont>
                 </TimeRow>
             </FriendTimeBox>
             <FriendSettingBox>
                 <ButtonRow>
-                    <FixButton onClick={pinClickHandler} src={FixButtonImg}></FixButton>
+                    <FixButton
+                        onClick={FixButtonClickHandler}
+                        src={isFixed ? nonFixButtonImg : FixButtonImg}
+                    />
                     <DeleteButton onClick={deleteClickHandler} src={DeleteButtonImg}></DeleteButton>
                 </ButtonRow>
                 <ButtonRow>
-                    <FriendPlanner onClick={plannerClickHandler}>{planner}플래너</FriendPlanner>
+                    <FriendPlanner onClick={plannerClickHandler}>플래너</FriendPlanner>
                 </ButtonRow>
             </FriendSettingBox>
         </FriendBox>
@@ -204,11 +218,14 @@ const FriendCard = ({
 FriendCard.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    weekTime: PropTypes.string.isRequired,
-    todayTime: PropTypes.string.isRequired,
+    weeklyStudyTime: PropTypes.number.isRequired,
+    dailyStudyTime: PropTypes.number.isRequired,
     planner: PropTypes.string.isRequired,
     pfp: PropTypes.string.isRequired,
     universityName: PropTypes.string.isRequired,
     majorName: PropTypes.string.isRequired,
+    isOnline: PropTypes.bool.isRequired,
+    isFixed: PropTypes.bool.isRequired,
+    onFix: PropTypes.func.isRequired,
 };
 export default FriendCard;
