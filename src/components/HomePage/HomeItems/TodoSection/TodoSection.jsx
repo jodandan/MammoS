@@ -2,14 +2,9 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import CustomCheckBox from '../CustomCheckBox/CustomCheckBox';
 
-import {
-  TodoBox,
-  TodoLine,
-  Todo,
-  TodoBtn,
-  TodoContent,
-} from './TodoSectionItemCss';
+import { TodoBox, TodoLine, Todo, TodoContent } from './TodoSectionItemCss';
 import { Title } from '../HomeItemCss';
 
 export default function TodoSection(todo) {
@@ -35,17 +30,17 @@ export default function TodoSection(todo) {
     const checkHandler = async () => {
       setIsChecked(!isChecked);
 
-      await axios.patch(`http://localhost:8080/api/v1/home/${plan.planIdx}`);
+      await axios.patch(`http://3.38.7.193:8080/api/v1/home/${plan.planIdx}`);
     };
 
     return (
       <Todo>
-        <TodoBtn
-          type="checkbox"
+        <CustomCheckBox
           name={plan.planIdx}
           onChange={checkHandler}
           checked={isChecked}
         />
+
         <TodoContent>{plan.planName}</TodoContent>
       </Todo>
     );
@@ -73,8 +68,8 @@ export default function TodoSection(todo) {
       } else {
         result.push(
           <Todo key={i}>
-            <TodoBtn type="checkbox" />
-            <TodoContent></TodoContent>
+            <CustomCheckBox name={todo.plan.planIdx} />
+            <TodoContent />
           </Todo>
         );
       }

@@ -381,6 +381,7 @@ export default function Signup() {
             style={{
               marginLeft: '-30%',
               color: 'green',
+              marginTop: '10px',
               marginBottom: '-10px',
             }}
           >
@@ -403,7 +404,7 @@ export default function Signup() {
             ))}
 
             <StyledLabel
-              style={{ marginTop: '5px' }}
+              style={{ marginTop: '1vw' }}
               htmlFor="위 약관에 모두 동의합니다."
               key="위 약관에 모두 동의합니다."
             >
