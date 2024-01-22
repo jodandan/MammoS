@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import styled from 'styled-components';
 import { Container, Title, NoticeList, NoticeItem } from './NoticeContainerCss.jsx'
-export default function NoticeContainer() {
+export default function NoticeContainer({ currentIndex }) {
   const [studyData, setStudyData] = useState(null);
 
   useEffect(() => {
@@ -50,3 +51,8 @@ export const Text = styled.div`
   line-height: normal;
   letter-spacing: -0.32px;
 `;
+
+
+NoticeContainer.propTypes = {
+  currentIndex: PropTypes.number.isRequired,
+};

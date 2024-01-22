@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import './reset.css';
 
 export const FrameContainer = styled.div`
     display: flex;
@@ -183,4 +182,12 @@ export const RightBox = styled.div`
     padding-top: 30px;
 `;
 
+export const TitleBox = styled.div`
+    width: 100%;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid blue;
+    padding-top: 20px;
+`;
 
