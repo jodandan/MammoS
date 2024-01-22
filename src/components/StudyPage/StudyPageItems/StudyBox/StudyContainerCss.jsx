@@ -160,5 +160,12 @@ export const CheckBoxLabel = styled.label`
   }
 `;
 
-
+export const Pagingbox = styled.div`
+    position: absolute;
+    top: 80%;
+    left: 3%;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+`;
 
