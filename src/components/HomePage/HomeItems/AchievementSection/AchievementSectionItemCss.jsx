@@ -6,7 +6,8 @@ export const AchivementBox = styled.div`
   align-items: center;
   width: 43vw;
   height: 15vw;
-  border: 3px solid #b9d967;
+  border: 1px solid rgba(160, 160, 160, 0.5);
+  box-shadow: 0px 2px 10px 2px rgba(160, 160, 160, 0.5);
   border-radius: 30px 30px 30px 30px;
   background-color: #ecf1e0;
 `;
@@ -26,12 +27,14 @@ export const TierInfoBox = styled.div`
 `;
 
 export const TierTitle = styled.h3`
+  font-family: 'PretendardBold';
   font-size: 24px;
-  margin-top: 0.5vw;
+  margin-top: 1vw;
   margin-bottom: 0vw;
 `;
 
 export const Comment = styled.p`
+  font-family: 'PretendardBold';
   font-size: 11px;
   color: black;
   &.tier {
@@ -41,14 +44,19 @@ export const Comment = styled.p`
     text-align: right;
   }
   &.gauge {
+    margin-top: 0.2vw;
     margin-bottom: 0.5vw;
   }
   &.info {
-    font-size: 13px;
+    margin-top: 0.4vw;
+    font-size: 15px;
   }
   &.userInput {
+    margin-top: 0.4vw;
+    margin-bottom: 0.2vw;
+    height: 40px;
     width: 40%;
-    font-size: 13px;
+    font-size: 15px;
     text-align: right;
   }
 `;
@@ -102,7 +110,8 @@ export const MyInfoBox = styled.div`
 export const StreakSection = styled.div`
   width: 26vw;
   height: 7vw;
-  margin: 0.5vw;
+  margin-left: 0.5vw;
+  margin-bottom: 0.5vw;
   background: white;
   border: 1px solid;
   border-color: transparent;
@@ -129,41 +138,43 @@ export const TopStreakBox = styled.div`
     margin-right: 0.5vw;
     margin-top: 1vw;
   }
-  & .number {
+`;
+
+export const TopStreak = styled.p`
+  font-family: 'PretendardBold';
+  font-size: 15px;
+  &.number {
+    margin-top: 0px;
     text-align: right;
     margin-right: 0.5vw;
-    margin-top: -1vw;
     font-size: 23px;
     font-weight: bold;
   }
 `;
 
-export const TopStreak = styled.p`
-  font-size: 15px;
-`;
-
 export const CurrentStreakBox = styled.div`
   height: 2.5vw;
   width: 7vw;
-  margin-top: 2vw;
+  margin-top: 2.5vw;
 
   & .title {
     margin-right: 0.5vw;
     margin-top: 1vw;
     text-align: right;
   }
-
-  & .number {
-    text-align: right;
-    margin-right: 0.5vw;
-    margin-top: -1vw;
-    font-size: 23px;
-    font-weight: bold;
-  }
 `;
 
 export const CurrentStreak = styled.p`
+  font-family: 'PretendardBold';
   font-size: 15px;
+
+  &.number {
+    margin-top: 0px;
+    text-align: right;
+    margin-right: 0.5vw;
+    font-size: 23px;
+    font-weight: bold;
+  }
 `;
 
 export const StreakBox = styled.div`

@@ -44,7 +44,6 @@ export default function Login() {
         localStorage.setItem('token', responseData);
         // expiredTime localStorage에 저장
         let date = new Date();
-        console.log(date);
         date.setHours(date.getHours() + 1);
         localStorage.setItem('expiredTime', date);
         // 홈페이지로 이동

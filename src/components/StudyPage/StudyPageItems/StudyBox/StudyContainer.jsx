@@ -61,7 +61,7 @@ export default function StudyContainer({ currentIndex }) {
             <div style={{ display: 'flex', flexDirection: 'columns', padding: '0.5rem 0.5rem 0.1rem 0.5rem' }}>
               <Title>Study Summary</Title>
               <EditBox>
-                <img src={Edit} alt='수정' style={{ width: '12px', height: '12px;' }} />
+                <img src={Edit} alt='수정' style={{ width: '12px', height: '12px' }} />
               </EditBox>
             </div>
             {studyData && studyData[currentIndex]?.home && (

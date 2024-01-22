@@ -191,3 +191,28 @@ export const TitleBox = styled.div`
     padding-top: 20px;
 `;
 
+export const MemberListBox = styled.div`
+    width: 100%;
+    height: 20%;
+    border: 1px solid red;
+    padding-top: 30px;
+    overflow-y: auto; 
+    &::-webkit-scrollbar {
+    border-left: 9px solid white;
+    border-right: 9px solid white;
+    background-color: #b9d967;
+    width: 20px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-left: 5px solid white;
+    border-right: 5px solid white;
+    background-color: #b9d967;
+    border-radius: 7px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+`;
+
+
+

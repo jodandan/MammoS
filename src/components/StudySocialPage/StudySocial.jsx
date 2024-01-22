@@ -15,13 +15,12 @@ import {
     Container,
     CheckContainer,
     TitleBox,
-
+    MemberListBox,
 } from './StudySocialCss.jsx';
+import MemberList from './MemberList/MemberList.jsx';
 import home from '../assets/Home.png';
 import Calender from '../assets/Calender.png';
-import User from '../assets/User.png';
 import List from '../assets/List.png';
-import Edit from '../assets/Edit.png';
 import { ReactComponent as ClickUser } from '../assets/ClickUser.svg'
 export default function StudySocial({ currentIndex }) {
     const [studyData, setStudyData] = useState(null);
@@ -81,6 +80,9 @@ export default function StudySocial({ currentIndex }) {
                         <CollegeText>대학교 / 전공</CollegeText>
                         <PositionText>직책</PositionText>
                     </TitleBox>
+                    <MemberListBox>
+                        <MemberList currentIndex={currentIndex} />
+                    </MemberListBox>
                 </ContainerBox>
             </FrameContainer >
         </>
