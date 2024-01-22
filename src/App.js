@@ -5,7 +5,7 @@ import SignupPage from './pages/SignupPage';
 import HomePage from './pages/HomePage';
 import StudyHomePage from './pages/StudyPage';
 import StudyCalenderPage from './pages/StudyCalenderPage';
-
+import StudySocialPage from './pages/StudySocialPage';
 
 function App() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -25,6 +25,13 @@ function App() {
             <StudyCalenderPage
               currentIndex={currentIndex} // 전달
               onIndexChange={handleIndexChange} // 이벤트 핸들러 전달
+            />
+          }
+        />
+        <Route path="/studySocial"
+          element={
+            <StudySocialPage
+              currentIndex={currentIndex}
             />
           }
         />

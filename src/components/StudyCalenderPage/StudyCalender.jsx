@@ -71,7 +71,7 @@ export default function StudyCalender({ currentIndex, onIndexChange }) {
                         <Img onClick={() => navigate('/studyCalender')} src={ClickCalender} alt='캘린더' />
                     </CheckContainer>
                     <Container>
-                        <Img src={User} alt='유저' />
+                        <Img onClick={() => navigate('/studySocial')} src={User} alt='유저' />
                     </Container>
                     <Container>
                         <Img src={List} alt='리스트' />
