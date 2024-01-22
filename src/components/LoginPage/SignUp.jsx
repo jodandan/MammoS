@@ -20,6 +20,7 @@ import {
   SubmitBtn,
   Top,
 } from './loginItems/SignupItemCss';
+import { allResolved, async } from 'q';
 
 // 유저가 선택한 대학과 이메일의 일치 여부 Validation 추가
 export default function Signup() {
@@ -184,21 +185,44 @@ export default function Signup() {
     ) {
       if (checkedItems.length === 4) {
         if (isAuth) {
-          const response = await axios.post(
-            'http://3.38.7.193:8080/api/v1/signup',
-            {
-              isCertified: isAuth,
-              id: id,
-              pwd: password,
-              email: email,
-              majorIdx: getKeyByValue(majorMap, selectedMajor),
-              name: name,
+          try {
+            if (id.length < 5) {
+              alert('아이디 5자 이상 입력해주세요');
+              return;
             }
-          );
 
-          alert(response.data.message);
+            if (name.length < 2) {
+              alert('이름을 확인해주세요');
+              return;
+            }
 
-          navigate('/');
+            const response = await axios.post(
+              'http://3.38.7.193:8080/api/v1/signup',
+              {
+                isCertified: isAuth,
+                id: id,
+                pwd: password,
+                email: email,
+                majorIdx: getKeyByValue(majorMap, selectedMajor),
+                name: name,
+              }
+            );
+            alert(response.data.message);
+
+            if (response.data.message === 'SUCCESS') {
+              navigate('/');
+            }
+          } catch (error) {
+            // 초기화
+            await axios.post(
+              'http://3.38.7.193:8080/api/v1/signup/email/reset',
+              {
+                email: email,
+              }
+            );
+            alert(error);
+            console.log(error);
+          }
         } else {
           alert('이메일 인증을 완료해주세요.');
           console.log('이메일 인증을 완료해주세요.');
@@ -258,7 +282,7 @@ export default function Signup() {
           name="id"
           value={id}
           required
-          placeholder="아이디"
+          placeholder="아이디 (5~15자 사이로 입력해주세요)"
           maxLength="15"
           onChange={(event) => inputChangeHandler('id', event.target.value)}
         />
@@ -267,7 +291,7 @@ export default function Signup() {
           name="password"
           value={password}
           required
-          placeholder="비밀번호"
+          placeholder="비밀번호 (20자 내로 입력해주세요)"
           maxLength="20"
           onChange={(event) =>
             inputChangeHandler('password', event.target.value)
@@ -315,6 +339,7 @@ export default function Signup() {
           name="name"
           value={name}
           required
+          maxLength="4"
           placeholder="이름"
           onChange={(event) => inputChangeHandler('name', event.target.value)}
         />
