@@ -14,7 +14,7 @@ export const Container = styled.div`
 
 export const Title = styled.div`
     color: #000;
-    font-family: Pretendard Variable;
+    font-family: 'PretendardBold';
     font-size: 20px;
     font-style: normal;
     font-weight: 600;

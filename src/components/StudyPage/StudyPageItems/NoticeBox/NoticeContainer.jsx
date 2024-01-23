@@ -44,7 +44,7 @@ export default function NoticeContainer({ currentIndex }) {
 
 export const Text = styled.div`
   color: #000;
-  font-family: Pretendard Variable;
+  font-family: 'PretendardBold';
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
