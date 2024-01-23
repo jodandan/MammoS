@@ -115,6 +115,8 @@ export default function Signup() {
     }
   }
 
+  useEffect(() => console.log(isSent));
+
   async function authRequestHandler() {
     try {
       if (email) {
@@ -131,6 +133,7 @@ export default function Signup() {
           // 인증 요청 성공
           alert('인증 번호를 전송했습니다.');
           setIsSent(true);
+          console.log(isSent);
         } else {
           // 인증 요청 실패
           console.log(responseData.message);
@@ -245,27 +248,37 @@ export default function Signup() {
   }
 
   async function clearAuth() {
-    await axios.post('http://3.38.7.193:8080/api/v1/signup/email/reset', {
-      email: email,
-    });
+    try {
+      console.log('email: ' + email);
+
+      const response = await axios.post(
+        'http://3.38.7.193:8080/api/v1/signup/email/reset/' + email
+      );
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  useEffect(() => {
-    const handleBeforeUnload = (event) => {
-      const message =
-        '페이지를 떠나시겠습니까? 작성 중인 내용이 저장되지 않을 수 있습니다.';
-      event.returnValue = message; // Standard for most browsers
+  const handleBeforeUnload = async (event) => {
+    const message =
+      '페이지를 떠나시겠습니까? 작성 중인 내용이 저장되지 않을 수 있습니다.';
+    event.returnValue = message;
 
-      console.log(isSent);
-      if (isSent) {
-        // 초기화
-        alert(true);
-        clearAuth();
+    try {
+      // email 값이 비어 있지 않을 때만 clearAuth 실행
+      if (isSent && email) {
+        await axios.post(
+          'http://3.38.7.193:8080/api/v1/signup/email/reset/' + email
+        );
       }
+    } catch (error) {
+      console.log(error);
+    }
 
-      return message; // For some older browsers
-    };
+    return message;
+  };
 
+  useEffect(() => {
     // 이벤트 리스너 등록
     window.addEventListener('beforeunload', handleBeforeUnload);
 
@@ -273,7 +286,7 @@ export default function Signup() {
     return () => {
       window.removeEventListener('beforeunload', handleBeforeUnload);
     };
-  }, []); // useEffect가 처음 한 번만 실행되도록 빈 배열 전달
+  }, [email, isSent]); // email이 변경될 때마다 useEffect 실행
 
   useEffect(() => {
     async function fetchUniversities() {
