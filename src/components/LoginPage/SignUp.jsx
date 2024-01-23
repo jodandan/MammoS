@@ -213,13 +213,6 @@ export default function Signup() {
               navigate('/');
             }
           } catch (error) {
-            // 초기화
-            await axios.post(
-              'http://3.38.7.193:8080/api/v1/signup/email/reset',
-              {
-                email: email,
-              }
-            );
             alert(error);
             console.log(error);
           }
@@ -250,6 +243,37 @@ export default function Signup() {
       setAuth(value);
     }
   }
+
+  async function clearAuth() {
+    await axios.post('http://3.38.7.193:8080/api/v1/signup/email/reset', {
+      email: email,
+    });
+  }
+
+  useEffect(() => {
+    const handleBeforeUnload = (event) => {
+      const message =
+        '페이지를 떠나시겠습니까? 작성 중인 내용이 저장되지 않을 수 있습니다.';
+      event.returnValue = message; // Standard for most browsers
+
+      console.log(isSent);
+      if (isSent) {
+        // 초기화
+        alert(true);
+        clearAuth();
+      }
+
+      return message; // For some older browsers
+    };
+
+    // 이벤트 리스너 등록
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    // 컴포넌트 언마운트 시 이벤트 리스너 제거
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []); // useEffect가 처음 한 번만 실행되도록 빈 배열 전달
 
   useEffect(() => {
     async function fetchUniversities() {
@@ -445,7 +469,16 @@ export default function Signup() {
 
         <div style={{ display: 'flex' }}>
           <SubmitBtn onClick={signupHandler}>가입 완료</SubmitBtn>
-          <SubmitBtn onClick={() => navigate('/')}>뒤로 가기</SubmitBtn>
+          <SubmitBtn
+            onClick={() => {
+              if (isSent) {
+                clearAuth();
+              }
+              navigate('/');
+            }}
+          >
+            뒤로 가기
+          </SubmitBtn>
         </div>
       </PageContainer>
     </>
