@@ -53,7 +53,7 @@ export default function StudyContainer({ currentIndex }) {
         {studyData && studyData[currentIndex]?.home && (
           <FirstLine>
             <LeftSide>
-              {(studyData[currentIndex].home.projectTabResponseDto &&
+              {(studyData[currentIndex] &&
                 studyData[currentIndex]?.home?.projectTabResponseDto
                   ?.projectTitle) ||
                 '없음'}
@@ -63,7 +63,7 @@ export default function StudyContainer({ currentIndex }) {
               ~ {studyData[currentIndex]?.home?.projectTabResponseDto?.endDate}
             </DataBox>
             <LocationBox>
-              {(studyData[currentIndex].home.projectTabResponseDto &&
+              {(studyData[currentIndex] &&
                 studyData[currentIndex]?.home?.projectTabResponseDto?.place) ||
                 '없음'}
             </LocationBox>
@@ -89,7 +89,7 @@ export default function StudyContainer({ currentIndex }) {
             </div>
             {studyData && studyData[currentIndex]?.home && (
               <InputBox>
-                {(studyData[currentIndex].home.projectTabResponseDto &&
+                {(studyData[currentIndex] &&
                   studyData[currentIndex].home.projectTabResponseDto
                     .studySummary) ||
                   '없음'}
@@ -100,7 +100,7 @@ export default function StudyContainer({ currentIndex }) {
             <ListTitle>참여 인원</ListTitle>
             {studyData && studyData[currentIndex]?.home && (
               <PeopleList>
-                {studyData[currentIndex].home.projectTabResponseDto &&
+                {studyData[currentIndex] &&
                 studyData[currentIndex].home.projectTabResponseDto
                   .projectInMembers
                   ? studyData[
