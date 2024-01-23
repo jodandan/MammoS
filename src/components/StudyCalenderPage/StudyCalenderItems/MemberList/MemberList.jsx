@@ -51,7 +51,7 @@ export default function MemberList({ projectIndex, currentIndex }) {
 }
 export const TextBox = styled.div`
   color: #000;
-  font-family: Pretendard Variable;
+  font-family: 'PretendardBold';
   font-size: 16px;
   font-style: normal;
   font-weight: 800;
@@ -65,7 +65,7 @@ export const TextBox2 = styled(TextBox)`
 
 export const TextBox3 = styled(TextBox)`
     color: #959595;
-    font-family: "Pretendard Variable";
+    font-family: 'PretendardBold';
     font-size: 10px;
     font-style: normal;
     font-weight: 300;
@@ -76,7 +76,7 @@ export const TextBox3 = styled(TextBox)`
 
 export const TextBox4 = styled(TextBox)`
     color: #959595;
-    font-family: "Pretendard Variable";
+    font-family: 'PretendardBold';
     font-size: 10px;
     font-style: normal;
     font-weight: 300;

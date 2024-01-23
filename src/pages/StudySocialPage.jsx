@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types';
 import StudySocial from '../components/StudySocialPage/StudySocial';
-export default function StudySocialPage({ currentIndex }) {
+export default function StudySocialPage({  onIndexChange,currentIndex }) {
   return (
-    <StudySocial currentIndex={currentIndex} />
+    <StudySocial onIndexChange={onIndexChange} currentIndex={currentIndex} />
   )
 }
 

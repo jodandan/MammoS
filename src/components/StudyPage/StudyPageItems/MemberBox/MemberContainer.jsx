@@ -47,7 +47,7 @@ export default function MemberContainer({ currentIndex }) {
 export const Name = styled.div`
   width: 10px;
   color: #000;
-  font-family: Pretendard Variable;
+  font-family: 'PretendardBold';
   font-size: 16px;
   font-style: normal;
   font-weight: 800;
@@ -57,7 +57,7 @@ export const Name = styled.div`
 
 export const UniversityName = styled.div`
   color: #595959;
-  font-family: Pretendard Variable;
+  font-family: 'PretendardBold';
   font-size: 10px;
   font-style: normal;
   font-weight: 300;

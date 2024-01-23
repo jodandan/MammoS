@@ -33,6 +33,7 @@ export default function NoticeList({ currentIndex, onProjectSelect }) {
                             <Text>{project.projectTitle || '없음'}</Text>
                             <TextBox>
                                 {`${project.startDate} ~ ${project.endDate}`}
+                                <br />
                                 {project.place || '없음'}
                             </TextBox>
                         </NoticeItem>
@@ -44,8 +45,8 @@ export default function NoticeList({ currentIndex, onProjectSelect }) {
 }
 export const Text = styled.div`
   color: #000;
-  font-family: Pretendard Variable;
-  font-size: 16px;
+  font-family: 'PretendardBold';
+  font-size: 18px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;

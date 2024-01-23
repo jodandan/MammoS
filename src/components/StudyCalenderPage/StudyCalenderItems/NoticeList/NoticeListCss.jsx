@@ -7,6 +7,7 @@ export const Container = styled.div`
     background-color: transparent;
     stroke-width: 4px;
     border-radius: 20px;
+    white-space: pre-wrap;
     //border: 1px solid red;
 `
 export const NoticeListBox = styled.div`
@@ -47,12 +48,12 @@ export const NoticeItem = styled.div`
 export const TextBox = styled.div`
     display: flex;
     flex-direction: column;
-    width: 40%;
+    width: 50%;
     height: 10%;
     //border: 1px solid red;
     text-align: right;
     color: #000;
-    font-family: "Pretendard Variable";
+    font-family: 'PretendardBold';
     font-size: 10px;
     font-style: normal;
     font-weight: 300;

@@ -24,7 +24,14 @@ function App() {
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/planner" element={<PlannerPage />} />
-        <Route path="/studyHome" element={<StudyHomePage onIndexChange={handleIndexChange} />} />
+        <Route path="/studyHome"
+          element={
+            <StudyHomePage
+              currentIndex={currentIndex}
+              onIndexChange={handleIndexChange}
+            />
+          }
+        />
         <Route path="/studyCalender"
           element={
             <StudyCalenderPage
@@ -37,6 +44,7 @@ function App() {
           element={
             <StudySocialPage
               currentIndex={currentIndex}
+              onIndexChange={handleIndexChange}
             />
           }
         />

@@ -20,6 +20,7 @@ import {
   SubmitBtn,
   Top,
 } from './loginItems/SignupItemCss';
+import { allResolved, async } from 'q';
 
 // 유저가 선택한 대학과 이메일의 일치 여부 Validation 추가
 export default function Signup() {
@@ -114,6 +115,8 @@ export default function Signup() {
     }
   }
 
+  useEffect(() => console.log(isSent));
+
   async function authRequestHandler() {
     try {
       if (email) {
@@ -130,6 +133,7 @@ export default function Signup() {
           // 인증 요청 성공
           alert('인증 번호를 전송했습니다.');
           setIsSent(true);
+          console.log(isSent);
         } else {
           // 인증 요청 실패
           console.log(responseData.message);
@@ -184,21 +188,37 @@ export default function Signup() {
     ) {
       if (checkedItems.length === 4) {
         if (isAuth) {
-          const response = await axios.post(
-            'http://3.38.7.193:8080/api/v1/signup',
-            {
-              isCertified: isAuth,
-              id: id,
-              pwd: password,
-              email: email,
-              majorIdx: getKeyByValue(majorMap, selectedMajor),
-              name: name,
+          try {
+            if (id.length < 5) {
+              alert('아이디 5자 이상 입력해주세요');
+              return;
             }
-          );
 
-          alert(response.data.message);
+            if (name.length < 2) {
+              alert('이름을 확인해주세요');
+              return;
+            }
 
-          navigate('/');
+            const response = await axios.post(
+              'http://3.38.7.193:8080/api/v1/signup',
+              {
+                isCertified: isAuth,
+                id: id,
+                pwd: password,
+                email: email,
+                majorIdx: getKeyByValue(majorMap, selectedMajor),
+                name: name,
+              }
+            );
+            alert(response.data.message);
+
+            if (response.data.message === 'SUCCESS') {
+              navigate('/');
+            }
+          } catch (error) {
+            alert(error);
+            console.log(error);
+          }
         } else {
           alert('이메일 인증을 완료해주세요.');
           console.log('이메일 인증을 완료해주세요.');
@@ -226,6 +246,47 @@ export default function Signup() {
       setAuth(value);
     }
   }
+
+  async function clearAuth() {
+    try {
+      console.log('email: ' + email);
+
+      const response = await axios.post(
+        'http://3.38.7.193:8080/api/v1/signup/email/reset/' + email
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const handleBeforeUnload = async (event) => {
+    const message =
+      '페이지를 떠나시겠습니까? 작성 중인 내용이 저장되지 않을 수 있습니다.';
+    event.returnValue = message;
+
+    try {
+      // email 값이 비어 있지 않을 때만 clearAuth 실행
+      if (isSent && email) {
+        await axios.post(
+          'http://3.38.7.193:8080/api/v1/signup/email/reset/' + email
+        );
+      }
+    } catch (error) {
+      console.log(error);
+    }
+
+    return message;
+  };
+
+  useEffect(() => {
+    // 이벤트 리스너 등록
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    // 컴포넌트 언마운트 시 이벤트 리스너 제거
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, [email, isSent]); // email이 변경될 때마다 useEffect 실행
 
   useEffect(() => {
     async function fetchUniversities() {
@@ -258,7 +319,7 @@ export default function Signup() {
           name="id"
           value={id}
           required
-          placeholder="아이디"
+          placeholder="아이디 (5~15자 사이로 입력해주세요)"
           maxLength="15"
           onChange={(event) => inputChangeHandler('id', event.target.value)}
         />
@@ -267,7 +328,7 @@ export default function Signup() {
           name="password"
           value={password}
           required
-          placeholder="비밀번호"
+          placeholder="비밀번호 (20자 내로 입력해주세요)"
           maxLength="20"
           onChange={(event) =>
             inputChangeHandler('password', event.target.value)
@@ -315,6 +376,7 @@ export default function Signup() {
           name="name"
           value={name}
           required
+          maxLength="4"
           placeholder="이름"
           onChange={(event) => inputChangeHandler('name', event.target.value)}
         />
@@ -421,7 +483,16 @@ export default function Signup() {
 
         <div style={{ display: 'flex' }}>
           <SubmitBtn onClick={signupHandler}>가입 완료</SubmitBtn>
-          <SubmitBtn onClick={() => navigate('/')}>뒤로 가기</SubmitBtn>
+          <SubmitBtn
+            onClick={() => {
+              if (isSent) {
+                clearAuth();
+              }
+              navigate('/');
+            }}
+          >
+            뒤로 가기
+          </SubmitBtn>
         </div>
       </PageContainer>
     </>
