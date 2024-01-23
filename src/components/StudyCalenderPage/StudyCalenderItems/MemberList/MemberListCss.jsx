@@ -9,7 +9,7 @@ export const PeopleListBox = styled.div`
 export const ListTitle = styled.div`
     width: 40%;
     color: #000;
-    font-family: Pretendard Variable;
+    font-family: 'PretendardBold';
     font-size: 16px;
     font-style: normal;
     font-weight: 600;
@@ -50,7 +50,7 @@ export const CheckBoxLabel = styled.label`
 
   span {
     color: #000;
-    font-family: Pretendard Variable;
+    font-family: 'PretendardBold';
     font-size: 16px;
     font-style: normal;
     font-weight: 500;

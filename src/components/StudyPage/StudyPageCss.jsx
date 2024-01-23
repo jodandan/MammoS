@@ -54,12 +54,14 @@ export const ContainerBox = styled.div`
     display: flex;
     flex-direction: column;
     padding-top: 5vh;
+    font-family: 'PretendardBold';
 `;
 
 export const TextBox = styled.div`
     margin: 0 auto;
     width: 100%;
     height: 20%;
+    font-family: 'PretendardBold';
 `;
 
 
@@ -72,7 +74,7 @@ export const StudyTitle = styled.div`
     letter-spacing: -0.96px;
     width: 50%;
     padding-bottom: 2vh;
-
+    font-family: 'PretendardBold';
 `;
 
 export const SubText = styled.div`
@@ -83,6 +85,7 @@ export const SubText = styled.div`
     line-height: normal;
     letter-spacing: -0.32px;
     width: 75%;
+    font-family: 'PretendardBold';
 `;
 
 export const SecondLine = styled.div`

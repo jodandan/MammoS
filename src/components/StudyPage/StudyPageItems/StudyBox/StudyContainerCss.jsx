@@ -17,7 +17,7 @@ export const Container = styled.div`
 
 export const BoxTitle = styled.div`
     color: #000;
-    font-family: Inter;
+    font-family: 'PretendardBold';
     font-size: 34px;
     font-style: normal;
     font-weight: 700;
@@ -36,7 +36,7 @@ export const FirstLine = styled.div`
 export const LeftSide = styled.div`
     width: 95%;
     color: #000;
-    font-family: Pretendard Variable;
+    font-family: 'PretendardBold';
     font-size: 20px;
     font-style: normal;
     font-weight: 600;
@@ -46,7 +46,7 @@ export const LeftSide = styled.div`
 export const DataBox = styled.div`
     width: 80%;
     color: #000;
-    font-family: Pretendard Variable;
+    font-family: 'PretendardBold';
     font-size: 20px;
     font-style: normal;
     font-weight: 600;
@@ -56,7 +56,7 @@ export const DataBox = styled.div`
 export const LocationBox = styled.div`
     width: 100%;
     color: #000;
-    font-family: Pretendard Variable;
+    font-family: 'PretendardBold';
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
@@ -84,7 +84,7 @@ export const NoticeBox = styled.div`
 export const Title = styled.div`
     width: 100%;
     color: #000;
-    font-family: Pretendard Variable;
+    font-family: 'PretendardBold';
     font-size: 16px;
     font-style: normal;
     font-weight: 600;
@@ -100,6 +100,7 @@ export const InputBox = styled.div`
     width: 376px;
     height: 110px;
     background-color: transparent;
+    font-family: 'PretendardBold';
     //border: 1px solid blue;
     margin: 0.5rem;
 `;
@@ -113,7 +114,7 @@ export const PeopleListBox = styled.div`
 export const ListTitle = styled.div`
     width: 40%;
     color: #000;
-    font-family: Pretendard Variable;
+    font-family: 'PretendardBold';
     font-size: 16px;
     font-style: normal;
     font-weight: 600;
@@ -151,7 +152,7 @@ export const CheckBoxLabel = styled.label`
 
   span {
     color: #000;
-    font-family: Pretendard Variable;
+    font-family: 'PretendardBold';
     font-size: 16px;
     font-style: normal;
     font-weight: 500;

@@ -96,7 +96,7 @@ StudySocial.propTypes = {
 
 export const Text = styled.div`
     color: #000;
-    font-family: "Pretendard Variable";
+    font-family: 'PretendardBold';
     font-size: 20px;
     font-style: normal;
     font-weight: 600;
@@ -108,7 +108,7 @@ export const Text = styled.div`
 
 export const NameText = styled.div`
     color: #000;
-    font-family: "Pretendard Variable";
+    font-family: 'PretendardBold';
     font-size: 20px;
     font-style: normal;
     font-weight: 600;

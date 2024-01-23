@@ -95,7 +95,7 @@ export default function StudyContainer({ currentIndex }) {
 
 export const TextBox = styled.div`
   color: #000;
-  font-family: Pretendard Variable;
+  font-family: 'PretendardBold';
   font-size: 16px;
   font-style: normal;
   font-weight: 800;
@@ -103,7 +103,6 @@ export const TextBox = styled.div`
 `;
 
 export const TextBox2 = styled(TextBox)`
-  padding-bottom: 3px;
 `;
 
 

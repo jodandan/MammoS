@@ -15,11 +15,12 @@ export const Box = styled.div`
     flex-direction: row;
     padding-top: 5px;
     padding-bottom: 5px;
+    font-family: 'PretendardBold';
 `;
 
 export const NameAndId = styled.div`
     color: #000;
-    font-family: Inter;
+    font-family: 'PretendardBold';
     font-size: 16px;
     font-style: normal;
     font-weight: 600;
