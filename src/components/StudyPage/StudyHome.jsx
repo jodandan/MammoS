@@ -58,6 +58,7 @@ export default function StudyHome({ onIndexChange }) {
             },
           }
         );
+        console.log(response.data);
         setStudyData(response.data.responseData);
       } catch (error) {
         console.error('Error fetching study information:', error);
@@ -105,9 +106,13 @@ export default function StudyHome({ onIndexChange }) {
           {studyData && (
             <TextBox>
               <StudyTitle>
-                {studyData[currentIndex].home.title || '없음'}
+                {studyData[currentIndex] &&
+                  (studyData[currentIndex].home.title || '없음')}
               </StudyTitle>
-              <SubText>{studyData[currentIndex].summary || '없음'}</SubText>
+              <SubText>
+                {studyData[currentIndex] &&
+                  (studyData[currentIndex].summary || '없음')}
+              </SubText>
             </TextBox>
           )}
           <StudyContainer currentIndex={currentIndex} />
