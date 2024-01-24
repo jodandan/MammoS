@@ -5,79 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9cd23309-90b5-4c7e-824f-c32b258ab5f9" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/HomePage/HomeItems/CustomCheckBox/CustomCheckBox.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/HomePage/HomeItems/CustomCheckBox/CustomCheckBoxCss.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/MyPage/MyInfo.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/MyPage/MyInfoItems/Modal/Modal.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/MyPage/MyInfoItems/Modal/ModalCss.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/MyPage/MyInfoItems/MyInfoCss.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/PlannerPage/PlannerItems/CustomCheckBox/CustomCheckBox.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/PlannerPage/PlannerItems/CustomCheckBox/CustomCheckBoxCss.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/PlannerPage/PlannerItems/Modal/Modal.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/PlannerPage/PlannerItems/Modal/ModalCss.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/PlannerPage/PlannerItems/Plan/Plan.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/PlannerPage/PlannerItems/Plan/PlanCss.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/PlannerPage/PlannerItems/PlannerCss.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/PlannerPage/PlannerItems/Project/Project.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/PlannerPage/PlannerItems/Project/ProjectCss.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/StudyCalenderPage/StudyCalenderItems/MemberList/MemberList.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/StudyCalenderPage/StudyCalenderItems/MemberList/MemberListCss.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/StudyCalenderPage/StudyCalenderItems/NoticeList/NoticeList.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/StudyCalenderPage/StudyCalenderItems/NoticeList/NoticeListCss.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/StudySocialPage/MemberList/MemberList.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/StudySocialPage/MemberList/MemberListCss.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/StudySocialPage/StudySocial.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/StudySocialPage/StudySocialCss.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/assets/ClickUser.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/assets/LeftArrow.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/assets/RightArrow.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/fonts/Pretendard-ExtraBold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/fonts/Pretendard-SemiBold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/MyPage.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/StudySocialPage.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/HomePage/HomeItems/AchievementSection/AchievementSectionItemCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HomePage/HomeItems/AchievementSection/AchievementSectionItemCss.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/HomePage/HomeItems/CalendarSection/Calendar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HomePage/HomeItems/CalendarSection/Calendar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/HomePage/HomeItems/CalendarSection/CalendarSectionItemCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HomePage/HomeItems/CalendarSection/CalendarSectionItemCss.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/HomePage/HomeItems/FriendSection/FriendSection.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HomePage/HomeItems/FriendSection/FriendSection.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/HomePage/HomeItems/FriendSection/FriendSectionItemCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HomePage/HomeItems/FriendSection/FriendSectionItemCss.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/HomePage/HomeItems/HomeItemCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HomePage/HomeItems/HomeItemCss.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/HomePage/HomeItems/HomeSection/HomeSection.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HomePage/HomeItems/HomeSection/HomeSection.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/HomePage/HomeItems/HomeSection/HomeSectionItemCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HomePage/HomeItems/HomeSection/HomeSectionItemCss.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/HomePage/HomeItems/TodoSection/TodoSection.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HomePage/HomeItems/TodoSection/TodoSection.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/HomePage/HomeItems/TodoSection/TodoSectionItemCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HomePage/HomeItems/TodoSection/TodoSectionItemCss.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LoginPage/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LoginPage/Login.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LoginPage/SignUp.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LoginPage/SignUp.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LoginPage/loginItems/SignupItemCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LoginPage/loginItems/SignupItemCss.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LoginPage/loginItems/loginItemCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LoginPage/loginItems/loginItemCss.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PageFrame/pageFrameItems/PageFrameCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PageFrame/pageFrameItems/PageFrameCss.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PlannerPage/Planner.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PlannerPage/Planner.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PlannerPage/PlannerItems/Calendar/Calendar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PlannerPage/PlannerItems/Calendar/Calendar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PlannerPage/PlannerItems/Calendar/CalendarItemCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PlannerPage/PlannerItems/Calendar/CalendarItemCss.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PlannerPage/PlannerItems/Calendar/CalendarSection.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PlannerPage/PlannerItems/Plan.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PlannerPage/PlannerItems/Project.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SocialPage/Social.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SocialPage/Social.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/AddFriendModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/AddFriendModal.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/FriendCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/FriendCard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/FriendSection.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/FriendSection.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StudyCalenderPage/StudyCalender.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyCalenderPage/StudyCalender.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StudyCalenderPage/StudyCalenderCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyCalenderPage/StudyCalenderCss.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StudyPage/StudyHome.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyPage/StudyHome.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StudyPage/StudyPageCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyPage/StudyPageCss.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StudyPage/StudyPageItems/CompletionBox/CompletionContainer.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StudyPage/StudyPageItems/MemberBox/MemberContainer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyPage/StudyPageItems/MemberBox/MemberContainer.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StudyPage/StudyPageItems/MemberBox/MemberContainerCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyPage/StudyPageItems/MemberBox/MemberContainerCss.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StudyPage/StudyPageItems/NoticeBox/NoticeContainer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyPage/StudyPageItems/NoticeBox/NoticeContainer.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StudyPage/StudyPageItems/NoticeBox/NoticeContainerCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyPage/StudyPageItems/NoticeBox/NoticeContainerCss.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StudyPage/StudyPageItems/StudyBox/StudyContainer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyPage/StudyPageItems/StudyBox/StudyContainer.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StudyPage/StudyPageItems/StudyBox/StudyContainerCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyPage/StudyPageItems/StudyBox/StudyContainerCss.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/StudyCalenderPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/StudyCalenderPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/StudyPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/StudyPage.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,7 +64,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "android.gradle.sync.needed": "true",
-    "git-widget-placeholder": "feat/SocialPage 병합 중",
+    "git-widget-placeholder": "feat/ChallengePage",
     "last_opened_file_path": "C:/Users/kimch/가천대/프로젝트/Front-end/src",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
