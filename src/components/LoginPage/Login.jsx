@@ -58,6 +58,7 @@ export default function Login() {
         setPassword('');
       }
     } catch (error) {
+      window.location.replace('/');
       console.error('로그인 오류: ', error);
     }
   }

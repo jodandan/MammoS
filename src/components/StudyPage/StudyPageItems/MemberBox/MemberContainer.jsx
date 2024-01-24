@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import { Container, Title, MemberList, MemberItem } from './MemberContainerCss.jsx';
 import styled from 'styled-components';
-export default function MemberContainer() {
+export default function MemberContainer({ currentIndex }) {
   const [studyData, setStudyData] = useState(null);
 
   useEffect(() => {
@@ -14,26 +15,27 @@ export default function MemberContainer() {
             Authorization: `Bearer ${token}`,
           },
         });
-        setStudyData(response.data.responseData.content[0]);
-        console.log(studyData.home.members);
+        setStudyData(response.data.responseData);
+        //console.log('현재 인덱스:', currentIndex);
       } catch (error) {
         console.error('Error fetching study information:', error);
       }
     };
 
     fetchData();
-  }, []);
+  }, [currentIndex]);
   return (
     <Container>
       <Title>Members</Title>
-      {studyData && studyData.home && (
+      {studyData && studyData[currentIndex]?.home && (
         <MemberList>
-          {studyData.home.members.map((member) => (
+          {studyData[currentIndex].home.projectTabResponseDto?.projectInMembers?.map((member) => (
             <MemberItem key={member.id}>
-              <Name>{member.name}</Name>/<div>{member.id}</div>
+              <Name>{member.name}</Name>
+              <div>/&nbsp;{member.id}</div>
               <UniversityName>{member.universityName}</UniversityName>
               <MajorName>{member.majorName}</MajorName>
-              <Status>{member.status}</Status>
+              <Status>{member.status || '없음'}</Status>
             </MemberItem>
           ))}
         </MemberList>
@@ -45,7 +47,7 @@ export default function MemberContainer() {
 export const Name = styled.div`
   width: 10px;
   color: #000;
-  font-family: Pretendard Variable;
+  font-family: 'PretendardBold';
   font-size: 16px;
   font-style: normal;
   font-weight: 800;
@@ -55,7 +57,7 @@ export const Name = styled.div`
 
 export const UniversityName = styled.div`
   color: #595959;
-  font-family: Pretendard Variable;
+  font-family: 'PretendardBold';
   font-size: 10px;
   font-style: normal;
   font-weight: 300;
@@ -74,3 +76,6 @@ export const Status = styled(UniversityName)`
 
 `;
 
+MemberContainer.propTypes = {
+  currentIndex: PropTypes.number.isRequired,
+};

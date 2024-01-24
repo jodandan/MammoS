@@ -64,8 +64,13 @@ const ButtonRow = styled.div`
 const TimeRow = styled.div`
   display: flex;
   justify-content: center;
-  padding-left: 2vw;
-  padding-top: 0.7vw;
+  padding-left: 35px;
+  padding-top: 25px;
+  
+  &.weekRow {
+    padding-top: 0px;
+  }
+  
 `;
 
 const FixButton = styled.img`
@@ -111,27 +116,45 @@ const FriendPlanner = styled.button`
 
 
 const FriendFont = styled.p`
-  font-weight: bold;
-  font-size: 12px;
-  margin-top: 0px;
+
+  &.name {
+    font-weight: bold;
+    font-size: 12px;
+    padding-top: 9px;
+  }
+
+  &.id {
+    font-weight: bold;
+    font-size: 12px;
+    padding-top: 4px;
+  }
+
+  &.universityName {
+    font-weight: bold;
+    font-size: 12px;
+    color: dimgray;
+    padding-top: 6px;
+  }
 
   &.major {
     font-weight: bold;
     font-size: 12px;
     color: dimgray;
-    margin-top: -9px;
+    padding-top: 6px;
   }
   
   &.online {
     font-weight: bold;
     font-size: 10px;
     color: limegreen;
+    padding-top: 6px;
   }
   
   &.offline {
     font-weight: bold;
     font-size: 10px;
     color: gray;
+    padding-top: 6px;
   }
   
   &.day {
@@ -142,9 +165,9 @@ const FriendFont = styled.p`
   }
   
   &.time {
-    font-size: 25px;
+    font-size: 28px;
     font-weight: bold;
-    padding-top: 0px;
+    padding-top: 3px;
     padding-left: 12px;
   }
 `;
@@ -160,13 +183,23 @@ const FriendCard = ({
     dailyStudyTime,
     isOnline,
     isFixed,
-    onFix // 고정 상태 변경 함수
 }) => {
 
-    function FixButtonClickHandler() {
-        onFix(id); // 고정 상태 변경
-    }
+    const formatTime = (minutes) => {
+        const totalTimeHour = String(Math.floor(minutes / 60)).padStart(
+            2,
+            '0'
+        );
+        const totalTimeMin = String(Math.floor(minutes % 60)).padStart(
+            2,
+            '0'
+        );
+        return `${totalTimeHour}:${totalTimeMin}`;
+    };
 
+    function FixButtonHandler(){
+        console.log('삭제 팝업')
+    }
     function deleteClickHandler(){
         console.log('삭제 팝업')
     }
@@ -180,9 +213,9 @@ const FriendCard = ({
                 <PfpImg src={pfp} />
             </ProfileBox>
             <FriendInfoBox>
-                <FriendFont>{name}</FriendFont>
-                <FriendFont>{id}</FriendFont>
-                <FriendFont>{universityName}</FriendFont>
+                <FriendFont className="name">{name}</FriendFont>
+                <FriendFont className="id">{id}</FriendFont>
+                <FriendFont className="universityName">{universityName}</FriendFont>
                 <FriendFont className="major">{majorName}</FriendFont>
                 {isOnline ?
                     <FriendFont className="online">온라인</FriendFont> :
@@ -192,17 +225,17 @@ const FriendCard = ({
             <FriendTimeBox>
                 <TimeRow>
                     <FriendFont className="day">Today</FriendFont>
-                    <FriendFont className="time">{dailyStudyTime}</FriendFont>
+                    <FriendFont className="time">{formatTime(dailyStudyTime)}</FriendFont>
                 </TimeRow>
-                <TimeRow>
+                <TimeRow className="weekRow">
                     <FriendFont className="day">Week</FriendFont>
-                    <FriendFont className="time">{weeklyStudyTime}</FriendFont>
+                    <FriendFont className="time">{formatTime(weeklyStudyTime)}</FriendFont>
                 </TimeRow>
             </FriendTimeBox>
             <FriendSettingBox>
                 <ButtonRow>
                     <FixButton
-                        onClick={FixButtonClickHandler}
+                        onClick={FixButtonHandler}
                         src={isFixed ? nonFixButtonImg : FixButtonImg}
                     />
                     <DeleteButton onClick={deleteClickHandler} src={DeleteButtonImg}></DeleteButton>
@@ -226,6 +259,5 @@ FriendCard.propTypes = {
     majorName: PropTypes.string.isRequired,
     isOnline: PropTypes.bool.isRequired,
     isFixed: PropTypes.bool.isRequired,
-    onFix: PropTypes.func.isRequired,
 };
 export default FriendCard;

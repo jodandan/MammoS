@@ -30,18 +30,7 @@ export default function Social() {
 
     const [friendRequestNum, setFriendRequestNum] = useState(0);
 
-    const [friend, setFriend] = useState({
-        id: '',
-        majorName: '',
-        name: '',
-        pfp: '',
-        universityName: '',
-        isOnline: '',
-        weeklyStudyTime: 0,
-        dailyStudyTime: 0,
-        isFixed: '',
-    });
-
+    const [friends, setFriends] = useState([]);
 
     useEffect(() => {
         async function fetchPage() {
@@ -56,7 +45,7 @@ export default function Social() {
                 if (response.data.httpResponseStatus === 'SUCCESS') {
                     setRanking(response.data.responseData.ranking);
                     setFriendRequestNum(response.data.responseData.friendRequestNum);
-                    setFriend(response.data.responseData.friend);
+                    setFriends(response.data.responseData.friend);
                     console.log(response);
                 } else {
                     console.log(response);
@@ -67,6 +56,8 @@ export default function Social() {
         }
         fetchPage();
     }, []);
+
+
 
     return (
         <PageFrame>
@@ -82,17 +73,7 @@ export default function Social() {
                 <FriendResponseButton
                     friendRequestNum={friendRequestNum}
                 />
-                <FriendSection
-                    pfp={friend.pfp}
-                    id={friend.id}
-                    name={friend.name}
-                    majorName={friend.majorName}
-                    universityName={friend.universityName}
-                    isOnline={friend.isOnline}
-                    weeklyStudyTime={friend.weeklyStudyTime}
-                    dailyStudyTime={friend.dailyStudyTime}
-                    isFixed={friend.isFixed}
-                />
+                <FriendSection friends={friends}/>
             </Bottom>
         </PageFrame>
     );

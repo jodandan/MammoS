@@ -33,7 +33,7 @@ const SearchContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px
+  margin-top: 20px
 `;
 
 const SearchFont = styled.p`
@@ -43,6 +43,8 @@ const SearchFont = styled.p`
   align-items: center;
   justify-content: left;
   margin-left: 4vw;
+  margin-top: 2vw;
+  
 `;
 
 const SearchInput = styled.input`
@@ -73,6 +75,7 @@ const SearchButton = styled.button`
 //3.38.7.193:8080
 const AddFriendModal = ({onClose, onAddFriend}) => {
     const [friendId, setFriendId] = useState('');
+    const [userIdx, setUserIdx] = useState('');
 
     const handleSubmit = async () => {
         if (!friendId) {
@@ -85,7 +88,8 @@ const AddFriendModal = ({onClose, onAddFriend}) => {
             axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
             // 친구 요청 보내기
-            const response = await axios.post('http://3.38.7.193:8080/api/v1/friends/request', {
+            const response = await axios.post('http://3.38.7.193:8080/api/v1/social/request', {
+                userIdx: userIdx,
                 friendId: friendId
             });
 
@@ -93,6 +97,7 @@ const AddFriendModal = ({onClose, onAddFriend}) => {
             if (response.data.httpResponseStatus === 'SUCCESS') {
                 alert('친구 요청이 성공적으로 전송되었습니다.');
                 onAddFriend({
+                    userIndex: response.data.responseData.userIndex,
                     friendIndex: response.data.responseData.friendIndex,
                 });
                 onClose(); // 모달 닫기

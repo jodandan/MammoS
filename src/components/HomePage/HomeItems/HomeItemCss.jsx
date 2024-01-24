@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 
 export const Title = styled.h3`
+  font-family: 'PretendardBold';
   cursor: pointer;
-  font-size: 20px;
-  margin-bottom: 1.5vh;
+  font-size: 23px;
+  margin-bottom: 1vh;
+  margin-top: 3vh;
 `;
 
 export const Top = styled.div`

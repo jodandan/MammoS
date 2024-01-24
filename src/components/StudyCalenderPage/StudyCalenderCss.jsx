@@ -29,6 +29,7 @@ export const Img = styled.img`
     margin: auto;
     display: block;
     padding-top: 5px;
+    cursor: pointer;
 `;
 
 export const Container = styled.div`
@@ -59,6 +60,7 @@ export const TextBox = styled.div`
     margin: 0 auto;
     width: 100%;
     height: 20%;
+    font-family: 'PretendardBold';
 `;
 
 
@@ -71,7 +73,7 @@ export const StudyTitle = styled.div`
     letter-spacing: -0.96px;
     width: 50%;
     padding-bottom: 2vh;
-
+    font-family: 'PretendardBold';
 `;
 
 export const SubText = styled.div`
@@ -82,6 +84,7 @@ export const SubText = styled.div`
     line-height: normal;
     letter-spacing: -0.32px;
     width: 75%;
+    font-family: 'PretendardBold';
 `;
 
 export const SecondLine = styled.div`
@@ -100,9 +103,9 @@ export const FirstLine = styled.div`
 `;
 
 export const LeftSide = styled.div`
-    width: 100%;
+    width: 60%;
     color: #000;
-    font-family: Pretendard Variable;
+    font-family: 'PretendardBold';
     font-size: 20px;
     font-style: normal;
     font-weight: 600;
@@ -112,7 +115,7 @@ export const LeftSide = styled.div`
 export const DataBox = styled.div`
     width: 100%;
     color: #000;
-    font-family: Pretendard Variable;
+    font-family: 'PretendardBold';
     font-size: 20px;
     font-style: normal;
     font-weight: 600;
@@ -123,7 +126,7 @@ export const DataBox = styled.div`
 export const LocationBox = styled.div`
     width: 30%;
     color: #000;
-    font-family: Pretendard Variable;
+    font-family: 'PretendardBold';
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
@@ -144,7 +147,7 @@ export const NoticeBox = styled.div`
 export const Title = styled.div`
     width: 100%;
     color: #000;
-    font-family: Pretendard Variable;
+    font-family: 'PretendardBold';
     font-size: 16px;
     font-style: normal;
     font-weight: 600;
@@ -165,11 +168,21 @@ export const InputBox = styled.div`
 `;
 
 export const LeftBox = styled.div`
-    width: 70%;
+    width: 55%;
     height: 60%;
     display: flex;
     flex-direction: column;
     border: 1px solid black;
+`;
+
+export const RightBox = styled.div`
+    width: 40%;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid blue;
+    margin: 0 auto;
+    padding-top: 30px;
 `;
 
 

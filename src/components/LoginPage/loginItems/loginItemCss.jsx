@@ -18,7 +18,9 @@ export const PageContainer = styled.div`
 `;
 
 export const Title = styled.h2`
+  font-family: 'PretendardBold';
   text-align: center;
+  font-size: 30px;
   padding-top: 3vh;
   padding-bottom: 7vh;
 `;
@@ -29,6 +31,7 @@ export const LoginForm = styled.form`
 `;
 
 export const SubmitBtn = styled.button`
+  font-family: 'PretendardBold';
   height: 40px;
   width: 110px;
   border: solid;
@@ -44,11 +47,13 @@ export const SubmitBtn = styled.button`
 `;
 
 export const AccountManagement = styled.div`
+  font-family: 'PretendardBold';
   text-align: center;
   padding: 2vh;
 `;
 
 export const UserInput = styled.input`
+  font-family: 'PretendardBold';
   border: none;
   border-bottom: 1px solid black;
   padding: 1vh;

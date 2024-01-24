@@ -41,6 +41,22 @@ export default function HomeSection({
     }
   }
 
+  function makeBadges() {
+    const result = [];
+
+    let badgeCnt = 0;
+    badgeIcon.map((badge) => {
+      result.push(<Badge key={badge} src={badge} />);
+      badgeCnt++;
+    });
+
+    for (let i = badgeCnt; i < 3; i++) {
+      result.push(<Badge className="none" />);
+    }
+
+    return result;
+  }
+
   return (
     <div>
       <Title onClick={() => clickHander()}>HOME</Title>
@@ -49,15 +65,11 @@ export default function HomeSection({
         <LogoutBtn onClick={logoutHandler}>로그아웃</LogoutBtn>
         <MyInfo>
           <MyInfoFont1>{name}</MyInfoFont1>
-          <MyInfoFont1>{id}</MyInfoFont1>
+          <MyInfoFont1 className="id">{id}</MyInfoFont1>
           <MyInfoFont2>{universityName}</MyInfoFont2>
           <MyInfoFont2>{majorName}</MyInfoFont2>
         </MyInfo>
-        <Badges>
-          {badgeIcon.map((badge) => (
-            <Badge key={badge} src={badge} />
-          ))}
-        </Badges>
+        <Badges>{makeBadges()}</Badges>
       </HomeBox>
     </div>
   );
