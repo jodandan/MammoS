@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import PropTypes from 'prop-types';
@@ -104,24 +104,60 @@ const RequestFriendCard = styled.div`
 
 const AddFriendModal = ({
     onClose,
+    onAddFriend,
     friendRequestNum,
     id,
     name,
     universityName,
     majorName
 }) => {
-    const [friendId, setFriendId] = useState('');
+    const [userIdx, setUserIdx] = useState('');
+    const [friendIdx, setFriendId] = useState('');
+    const [friendIsFixed, setFriendIsFixed] = useState(true);
+    const [friendStatus, setFriendStatus] = useState(1);
 
+    const handleSubmit = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+            // 친구 요청 받기
+            const response = await axios.patch('http://3.38.7.193:8080/api/v1/social/request', {
+                userIdx: userIdx,
+                friendIdx: friendIdx
+            });
+
+            // 응답 처리
+            if (response.data.httpResponseStatus === 'SUCCESS') {
+                alert('친구 요청이 성공적으로 수락되었습니다.');
+                onAddFriend({
+                    friendIndex: response.data.responseData.friendIndex,
+                    frinedIsFixed: response.data.responseData.friendIsFixed,
+                    friendStatus: response.data.responseData.friendStatus
+                });
+                onClose(); // 모달 닫기
+            } else {
+                alert(response.data.message);
+            }
+        } catch (error) {
+            console.error('친구 요청 수락 중 오류 발생:', error);
+            alert('친구 요청 수락 중 오류가 발생했습니다.');
+        }
+    };
+
+    useEffect(() => {
+        console.log(friendRequestNum);
+    }, []);
     return (
         <ModalFrame onClick={onClose}>
             <ModalBox onClick={(e)=> e.stopPropagation()}>
                 <TitleContainer>
                     <ResponseFont className="title">받은 친구 요청</ResponseFont>
-                    {friendRequestNum !== 0 && <CountBadge>{friendRequestNum}2</CountBadge>}
+                    {friendRequestNum !== 0 && <CountBadge>{friendRequestNum}</CountBadge>}
                 </TitleContainer>
                 <ResponseContainer>
                     <RequestFriendCard>
-                        <ResponseFont className="font1">{id}chungyomi |</ResponseFont>
+                        <ResponseFont className="font1">{id}chungyomi</ResponseFont>
                         <ResponseFont className="font1">{name}김충영</ResponseFont>
                         <ResponseFont className="font2">{universityName}가천대학교</ResponseFont>
                         <ResponseFont className="font2">{majorName}소프트웨어학과</ResponseFont>
@@ -138,6 +174,7 @@ const AddFriendModal = ({
 
 AddFriendModal.propTypes = {
     onClose: PropTypes.func.isRequired,
+    onAddFriend: PropTypes.func.isRequired,
     friendRequestNum: PropTypes.number.isRequired,
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,

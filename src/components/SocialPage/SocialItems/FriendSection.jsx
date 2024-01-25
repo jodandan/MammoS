@@ -10,7 +10,7 @@ const FriendSectionBox = styled.div`
   justify-content: space-between;
   flex-wrap: wrap;
   align-items: center;
-  width: 71vw;
+  width: 67vw;
 `;
 
 

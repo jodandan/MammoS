@@ -8,8 +8,8 @@ import nonFixButtonImg from '../../assets/NonFixButton.png';
 const FriendBox = styled.div`
   display: flex;
   justify-content: center;
-  width: 34vw;
-  height: 8.5vw;
+  width: 32vw;
+  height: 9vw;
   margin-top: 1.5vw;
   border: 3px solid transparent;
   background-image: linear-gradient(#fff, #fff), linear-gradient(to bottom, #A6E087, #96A3D4, #AEC0FF);
@@ -119,40 +119,40 @@ const FriendFont = styled.p`
 
   &.name {
     font-weight: bold;
-    font-size: 12px;
+    font-size: 14px;
     padding-top: 9px;
   }
 
   &.id {
     font-weight: bold;
-    font-size: 12px;
+    font-size: 14px;
     padding-top: 4px;
   }
 
   &.universityName {
     font-weight: bold;
-    font-size: 12px;
+    font-size: 14px;
     color: dimgray;
-    padding-top: 6px;
+    padding-top: 12px;
   }
 
   &.major {
     font-weight: bold;
-    font-size: 12px;
+    font-size: 14px;
     color: dimgray;
     padding-top: 6px;
   }
   
   &.online {
     font-weight: bold;
-    font-size: 10px;
+    font-size: 12px;
     color: limegreen;
     padding-top: 6px;
   }
   
   &.offline {
     font-weight: bold;
-    font-size: 10px;
+    font-size: 12px;
     color: gray;
     padding-top: 6px;
   }

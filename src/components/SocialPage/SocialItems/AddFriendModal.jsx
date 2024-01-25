@@ -75,40 +75,30 @@ const SearchButton = styled.button`
 //3.38.7.193:8080
 const AddFriendModal = ({onClose, onAddFriend}) => {
     const [friendId, setFriendId] = useState('');
-    const [userIdx, setUserIdx] = useState('');
+    const [friendInfo, setFriendInfo] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [SearchHandler, setSearchHandler] = useState(false);
 
-    const handleSubmit = async () => {
-        if (!friendId) {
-            alert('친구 ID를 입력해주세요.');
-            return;
-        }
-
+    async function SearchFriendHandler() {
         try {
             const token = localStorage.getItem('token');
             axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
-            // 친구 요청 보내기
-            const response = await axios.post('http://3.38.7.193:8080/api/v1/social/request', {
-                userIdx: userIdx,
-                friendId: friendId
-            });
+            // 친구 정보 검색 요청
+            const response = await axios.get(`http://3.38.7.193:8080/api/v1/social/${friendId}`);
+            console.log(response);
 
-            // 응답 처리
             if (response.data.httpResponseStatus === 'SUCCESS') {
-                alert('친구 요청이 성공적으로 전송되었습니다.');
-                onAddFriend({
-                    userIndex: response.data.responseData.userIndex,
-                    friendIndex: response.data.responseData.friendIndex,
-                });
-                onClose(); // 모달 닫기
+                setFriendInfo(response.data.friendInfo);
+                setIsModalOpen(true);
             } else {
                 alert(response.data.message);
             }
         } catch (error) {
-            console.error('친구 요청 중 오류 발생:', error);
-            alert('친구 요청 중 오류가 발생했습니다.');
+            console.error('친구 정보 검색 중 오류 발생:', error);
+            alert('친구 ID를 입력해주세요');
         }
-    };
+    }
 
     return (
         <ModalFrame onClick={onClose}>
@@ -121,7 +111,7 @@ const AddFriendModal = ({onClose, onAddFriend}) => {
                         onChange={(e) => setFriendId(e.target.value)}
                         placeholder="친구 ID를 입력하세요"
                     />
-                    <SearchButton src={SearchButtonImg} onClick={handleSubmit} />
+                    <SearchButton src={SearchButtonImg} onClick={SearchFriendHandler} />
                 </SearchContainer>
             </ModalBox>
         </ModalFrame>
