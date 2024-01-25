@@ -119,7 +119,21 @@ export default function Signup() {
 
   async function authRequestHandler() {
     try {
-      if (email) {
+      // 이메일 입력 값이 없을 시
+      if (!email) {
+        alert('이메일을 입력해주세요.');
+        return;
+      }
+
+      // 이메일 인증
+      const checkDuplicateEmail = await axios.post(
+        'http://3.38.7.193:8080/api/v1/signup/email',
+        {
+          email: email,
+        }
+      );
+      console.log(checkDuplicateEmail);
+      if (checkDuplicateEmail.data.responseData === false) {
         const response = await axios.post(
           'http://3.38.7.193:8080/api/v1/signup/email',
           {
@@ -140,8 +154,7 @@ export default function Signup() {
           alert(responseData.message);
         }
       } else {
-        console.log('이메일을 입력해주세요.');
-        alert('이메일을 입력해주세요.');
+        alert(checkDuplicateEmail.data.message);
       }
     } catch (error) {
       console.log(error);
