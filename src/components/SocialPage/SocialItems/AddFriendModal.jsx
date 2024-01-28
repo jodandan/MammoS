@@ -155,6 +155,8 @@ const AddFriendModal = ({ onClose }) => {
     }
   }
 
+
+
   return (
     <ModalFrame onClick={onClose}>
       <ModalBox onClick={(e) => e.stopPropagation()}>
