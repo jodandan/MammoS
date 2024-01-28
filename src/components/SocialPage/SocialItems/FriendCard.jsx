@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import FixButtonImg from '../../assets/FixButton.png';
@@ -119,7 +119,6 @@ const FriendFont = styled.p`
     font-weight: bold;
     font-size: 14px;
     padding-top: 9px;
-    
   }
 
   &.id {
@@ -235,7 +234,7 @@ const FriendCard = ({
         <ButtonRow>
           <FixButton
             onClick={FixButtonHandler}
-            src={isFixed ?  NonFixButtonImg : FixButtonImg}
+            src={isFixed ? NonFixButtonImg : FixButtonImg}
           />
           <DeleteButton
             onClick={deleteClickHandler}
@@ -244,7 +243,12 @@ const FriendCard = ({
         </ButtonRow>
         <ButtonRow>
           <FriendPlanner onClick={plannerClickHandler}>플래너</FriendPlanner>
-          {isModalOpen && <PlannerModal onClose={() => setIsModalOpen(false)} />}
+          {isModalOpen && (
+            <PlannerModal
+              onClose={() => setIsModalOpen(false)}
+              friendIndex={friendIndex}
+            />
+          )}
         </ButtonRow>
       </FriendSettingBox>
     </FriendBox>
@@ -253,7 +257,7 @@ const FriendCard = ({
 
 FriendCard.propTypes = {
   id: PropTypes.string.isRequired,
-  friendIndex:PropTypes.number.isRequired,
+  friendIndex: PropTypes.number.isRequired,
   tier: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   weeklyStudyTime: PropTypes.number.isRequired,

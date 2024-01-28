@@ -69,60 +69,61 @@ const Info = styled.p`
   }
 `;
 
-
 const PlannerModal = ({ onClose, friendIndex }) => {
-    const [plannerData, setPlannerData] = useState('');
+  const [plannerData, setPlannerData] = useState('');
+  console.log(friendIndex);
 
-    async function fetchFriendPlanner() {
-        try {
-            const token = localStorage.getItem('token');
-            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+  async function fetchFriendPlanner() {
+    try {
+      const token = localStorage.getItem('token');
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
-            const response = await axios.get(`http://3.38.7.193:8080/api/v1/social/friendInfo/${friendIndex}`);
-            if (response.data.httpResponseStatus === 'SUCCESS') {
-                setPlannerData(response.data.responseData);
-            } else {
-                alert('플래너 정보를 불러오는 데 실패했습니다.');
-            }
-        } catch (error) {
-            console.error('플래너 정보 요청 중 오류 발생:', error);
-            alert('플래너 정보를 불러오는 데 실패했습니다.');
-        }
+      const response = await axios.get(
+        `http://3.38.7.193:8080/api/v1/social/friendInfo/${friendIndex}`
+      );
+      console.log(response);
+      if (response.data.httpResponseStatus === 'SUCCESS') {
+        setPlannerData(response.data.responseData);
+      } else {
+        alert('플래너 정보를 불러오는 데 실패했습니다.');
+      }
+    } catch (error) {
+      console.error('플래너 정보 요청 중 오류 발생:', error);
+      alert('플래너 정보를 불러오는 데 실패했습니다.');
     }
+  }
 
-    useEffect(() => {
-        if (friendIndex) {
-            fetchFriendPlanner();
-        }
-    }, [friendIndex]);
+  useEffect(() => {
+    if (friendIndex) {
+      fetchFriendPlanner();
+    }
+  }, [friendIndex]);
 
-    return (
-        <ModalFrame onClick={onClose}>
-            <ModalBox onClick={(e) => e.stopPropagation()}>
-                <InfoContainer>
-                    <InfoBox>
-                        <Info className="bold">{plannerData.name} | {plannerData.id}</Info>
-                        <Info></Info>
-                        <Info></Info>
-
-                    </InfoBox>
-                    <BadgeBox>
-                    </BadgeBox>
-                </InfoContainer>
-                <PlannerContainer>
-                    <PlannerBox>
-                    </PlannerBox>
-                    <StreakBox>
-                    </StreakBox>
-                </PlannerContainer>
-            </ModalBox>
-        </ModalFrame>
-    );
+  return (
+    <ModalFrame onClick={onClose}>
+      <ModalBox onClick={(e) => e.stopPropagation()}>
+        <InfoContainer>
+          <InfoBox>
+            <Info className="bold">
+              {plannerData.name} | {plannerData.id}
+            </Info>
+            <Info></Info>
+            <Info></Info>
+          </InfoBox>
+          <BadgeBox></BadgeBox>
+        </InfoContainer>
+        <PlannerContainer>
+          <PlannerBox></PlannerBox>
+          <StreakBox></StreakBox>
+        </PlannerContainer>
+      </ModalBox>
+    </ModalFrame>
+  );
 };
 
 PlannerModal.propTypes = {
-    onClose: PropTypes.func.isRequired,
-    friendIndex: PropTypes.number.isRequired
+  onClose: PropTypes.func.isRequired,
+  friendIndex: PropTypes.number.isRequired,
 };
 
 export default PlannerModal;

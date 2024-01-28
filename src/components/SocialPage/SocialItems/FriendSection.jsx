@@ -18,7 +18,7 @@ export default function FriendSection({ friends }) {
       {friends.map((friend) => (
         <FriendCard
           key={friend.friendIndex}
-          idx={friend.friendIndex}
+          friendIndex={friend.friendIndex}
           id={friend.id}
           name={friend.name}
           universityName={friend.universityName}
