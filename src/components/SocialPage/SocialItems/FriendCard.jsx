@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import FixButtonImg from '../../assets/FixButton.png';
 import DeleteButtonImg from '../../assets/DeleteButton.png';
-import nonFixButtonImg from '../../assets/NonFixButton.png';
+import NonFixButtonImg from '../../assets/NonFixButton.png';
+import PlannerModal from './PlannerModal';
 
 const FriendBox = styled.div`
   display: flex;
@@ -105,18 +106,20 @@ const FriendPlanner = styled.button`
   width: 4vw;
   height: 2vw;
   font-size: 0.8vw;
+  font-family: 'PretendardSemiBold';
   padding-bottom: 20px;
-  text-decoration: underline;
   &:hover {
     opacity: 0.6; // 마우스 오버시 버튼 투명도 변경
   }
 `;
 
 const FriendFont = styled.p`
+  font-family: 'PretendardSemiBold';
   &.name {
     font-weight: bold;
     font-size: 14px;
     padding-top: 9px;
+    
   }
 
   &.id {
@@ -171,6 +174,8 @@ const FriendFont = styled.p`
 const FriendCard = ({
   id,
   name,
+  friendIndex,
+  tier,
   universityName,
   majorName,
   pfp,
@@ -179,6 +184,12 @@ const FriendCard = ({
   isOnline,
   isFixed,
 }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const plannerClickHandler = () => {
+    setIsModalOpen(true); // 모달 열기
+  };
+
   const formatTime = (minutes) => {
     const totalTimeHour = String(Math.floor(minutes / 60)).padStart(2, '0');
     const totalTimeMin = String(Math.floor(minutes % 60)).padStart(2, '0');
@@ -190,9 +201,6 @@ const FriendCard = ({
   }
   function deleteClickHandler() {
     console.log('삭제 팝업');
-  }
-  function plannerClickHandler() {
-    console.log('플래너 화면');
   }
 
   return (
@@ -227,7 +235,7 @@ const FriendCard = ({
         <ButtonRow>
           <FixButton
             onClick={FixButtonHandler}
-            src={isFixed ? nonFixButtonImg : FixButtonImg}
+            src={isFixed ?  NonFixButtonImg : FixButtonImg}
           />
           <DeleteButton
             onClick={deleteClickHandler}
@@ -236,6 +244,7 @@ const FriendCard = ({
         </ButtonRow>
         <ButtonRow>
           <FriendPlanner onClick={plannerClickHandler}>플래너</FriendPlanner>
+          {isModalOpen && <PlannerModal onClose={() => setIsModalOpen(false)} />}
         </ButtonRow>
       </FriendSettingBox>
     </FriendBox>
@@ -243,8 +252,9 @@ const FriendCard = ({
 };
 
 FriendCard.propTypes = {
-  idx: PropTypes.number.isRequired,
   id: PropTypes.string.isRequired,
+  friendIndex:PropTypes.number.isRequired,
+  tier: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   weeklyStudyTime: PropTypes.number.isRequired,
   dailyStudyTime: PropTypes.number.isRequired,

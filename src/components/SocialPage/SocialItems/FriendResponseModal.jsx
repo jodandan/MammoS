@@ -33,8 +33,8 @@ const ModalBox = styled.div`
 
 const TitleContainer = styled.div`
   display: flex;
-  justify-content: start;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   padding-bottom: 25px;
   padding-top: 25px;
 `;
@@ -76,9 +76,8 @@ const Info = styled.p`
 
 const InfoBox = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  margin-left: 20px;
 `;
 
 const TabButton = styled.button`
@@ -100,7 +99,7 @@ const TabButton = styled.button`
   }
 `;
 
-const IconBorder = styled.div`
+const IconBox = styled.div`
   
   &.accept { 
     display: flex;
@@ -126,10 +125,8 @@ const IconBorder = styled.div`
     height: 15px;
     width: 15px;
     cursor: pointer;
-    margin-left: 10px;
+    margin-left: 15px;
   }
-  
-
 `;
 
 
@@ -252,7 +249,7 @@ const AddFriendModal = ({onClose}) => {
                                 <Info className="light">
                                     {request.universityName} {request.majorName}
                                 </Info>
-                                <IconBorder className="accept" onClick={() => AcceptRequestHandler(request.friendIndex)}>
+                                <IconBox className="accept" onClick={() => AcceptRequestHandler(request.friendIndex)}>
                                     <Icon
                                         style={{
                                             height: '15px',
@@ -262,8 +259,8 @@ const AddFriendModal = ({onClose}) => {
                                         }}
                                         icon="fluent-mdl2:accept-medium"
                                     />
-                                </IconBorder>
-                                <IconBorder className="reject">
+                                </IconBox>
+                                <IconBox className="reject">
                                     <Icon
                                         style={{
                                             height: '15px',
@@ -273,7 +270,7 @@ const AddFriendModal = ({onClose}) => {
                                         }}
                                         icon="bx:x"
                                     />
-                                </IconBorder>
+                                </IconBox>
                             </InfoBox>
                         </RequestFriendCard>
                     ))}
@@ -285,7 +282,7 @@ const AddFriendModal = ({onClose}) => {
                                 <Info className="light">
                                     {request.universityName} {request.majorName}
                                 </Info>
-                                <IconBorder className="reject">
+                                <IconBox className="reject">
                                     <Icon
                                         style={{
                                             height: '15px',
@@ -295,7 +292,7 @@ const AddFriendModal = ({onClose}) => {
                                         }}
                                         icon="bx:x"
                                     />
-                                </IconBorder>
+                                </IconBox>
                             </InfoBox>
                         </RequestFriendCard>
                     ))}

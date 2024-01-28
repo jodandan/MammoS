@@ -5,13 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e35a1992-5f70-4659-8dda-700344d0f0b7" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/87e32e60-9115-45cb-b9fd-5dbce6501b1c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/87e32e60-9115-45cb-b9fd-5dbce6501b1c.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/AddFriendModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/AddFriendModal.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/FriendResponseButton.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/FriendResponseButton.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/FriendCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/FriendCard.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/FriendResponseModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/FriendResponseModal.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/assets/NonFixButton.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/assets/NonFixButton.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/FriendSection.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/FriendSection.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +54,7 @@
       <updated>1706253570581</updated>
       <workItem from="1706253575887" duration="8514000" />
       <workItem from="1706360866390" duration="1714000" />
-      <workItem from="1706420215317" duration="8624000" />
+      <workItem from="1706420215317" duration="14176000" />
     </task>
     <servers />
   </component>

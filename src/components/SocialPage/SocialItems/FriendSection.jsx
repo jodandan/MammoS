@@ -39,6 +39,8 @@ FriendSection.propTypes = {
   friends: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
+      friendIndex: PropTypes.number.isRequired,
+      tier: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       universityName: PropTypes.string.isRequired,
       majorName: PropTypes.string.isRequired,
