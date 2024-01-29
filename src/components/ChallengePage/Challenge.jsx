@@ -7,162 +7,27 @@ import SelectedBadge from '../assets/SelectedBadge.png';
 import DefaultBadge from '../assets/Badge.png';
 import Modal from './ChallengeItems/Modal/Modal';
 
-const Top = styled.div`
-  margin-top: 3vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 15vw;
-`;
-
-const Tier = styled.img`
-  height: 11.5vw;
-  width: 10vw;
-`;
-
-const TierInfoBox = styled.div`
-  margin-left: 3vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  width: 20vw;
-`;
-
-const TierInfo = styled.p`
-  font-size: 18px;
-  font-family: 'PretendardSemiBold';
-
-  &.title {
-    font-family: 'PretendardBold';
-    margin-top: 10px;
-    margin-bottom: 30px;
-    font-size: 50px;
-  }
-`;
-
-const GaugeBox = styled.div`
-  margin-top: 15px;
-  background: white;
-  width: 60%;
-  height: 0.5vw;
-  border-radius: 20px 20px 20px 20px;
-`;
-
-const Gauge = styled.div`
-  background: #b9d967;
-  height: 100%;
-  width: ${({ percent }) => `${percent}%`};
-  border-radius: 20px 20px 20px 20px;
-`;
-
-const BadgeBox = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-
-  height: 15vw;
-  width: 17vw;
-`;
-
-const Badge = styled.img`
-  height: 8vw;
-  width: 7vw;
-  margin-left: 5px;
-  margin-right: 5px;
-  &.top {
-    margin-left: 4vw;
-    margin-right: 4vw;
-    margin-top: 0px;
-    margin-bottom: -2vw;
-  }
-
-  &.section {
-    margin-left: 2vw;
-    margin-right: 2vw;
-    margin-bottom: 1vw;
-  }
-
-  &.select {
-    cursor: pointer;
-  }
-
-  &.modal {
-    margin-right: 1vw;
-    height: 7vw;
-    width: 6vw;
-  }
-`;
-
-const Bottom = styled.div`
-  margin-top: 4vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-const BadgeLine = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const Button = styled.button`
-  cursor: pointer;
-  font-family: 'PretendardBold';
-  height: 2.5vw;
-  width: 8vw;
-  border: solid;
-  border-radius: 10px 10px 10px 10px;
-  border-color: #a7cf41;
-  box-shadow: 1px 2px 2px 0px gray;
-  background-color: transparent;
-  background-color: inherit;
-  font-size: 20px;
-  margin-top: 4vh;
-  margin-bottom: 4vh;
-`;
-
-const BadgeInfoBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-const BadgeTitle = styled.p`
-  cursor: pointer;
-  font-family: 'PretendardSemiBold';
-  margin-bottom: 2vw;
-
-  &:hover {
-    color: #8aae30;
-  }
-`;
-
-const ModalContent = styled.p`
-  font-family: 'PretendardSemiBold';
-  font-size: 20px;
-  font-weight: bold;
-
-  &.title {
-    font-size: 30px;
-    margin-bottom: 10px;
-  }
-
-  &.level {
-    font-size: 17px;
-    margin-bottom: 20px;
-  }
-`;
-
-const ModalContentBox = styled.div``;
+import {
+  Top,
+  Tier,
+  TierInfoBox,
+  TierInfo,
+  GaugeBox,
+  Gauge,
+  BadgeBox,
+  Badge,
+  Bottom,
+  BadgeLine,
+  Button,
+  BadgeInfoBox,
+  BadgeTitle,
+  ModalContent,
+} from './ChallengeItems/ChallengeItemsCss';
 
 export default function Challenge() {
   const [tierName, setTierName] = useState('');
   const [tierInfo, setTierInfo] = useState('');
+  const [tierProgress, setTierProgress] = useState('');
   const [allBadges, setAllBadges] = useState([]);
   const [representBadges, setRepresentBadges] = useState([]);
   const [selectedBadges, setSelectedBadges] = useState([]);
@@ -177,7 +42,6 @@ export default function Challenge() {
   function openModal(badge) {
     setModalOpen(true);
     setModalBadge(badge);
-    console.log(modalBadge);
   }
   function closeModal() {
     setModalOpen(false);
@@ -197,6 +61,9 @@ export default function Challenge() {
       if (response.data.httpResponseStatus === 'SUCCESS') {
         setTierName(response.data.responseData.userInfoSection.tier.badgeName);
         setTierInfo(response.data.responseData.userInfoSection.tier.badgeInfo);
+        setTierProgress(
+          response.data.responseData.userInfoSection.tierProgress
+        );
         setRepresentBadges(response.data.responseData.userInfoSection.badges);
         setSelectedBadges(response.data.responseData.userInfoSection.badges);
         setAllBadges(response.data.responseData.badges);
@@ -241,8 +108,8 @@ export default function Challenge() {
                 {allBadges[index].myBadges.badgeName}
               </BadgeTitle>
               <Modal open={modalOpen} close={closeModal} header="도전과제">
-                <Badge className="modal" src={SelectedBadge} />
-                <ModalContentBox>
+                <Badge className="modal" src={DefaultBadge} />
+                <divs>
                   <ModalContent className="level">
                     획득 난이도: {modalBadge.myBadges.badgeLevel}
                   </ModalContent>
@@ -252,7 +119,7 @@ export default function Challenge() {
                   <ModalContent className="info">
                     {modalBadge.myBadges.badgeInfo}
                   </ModalContent>
-                </ModalContentBox>
+                </divs>
               </Modal>
             </BadgeInfoBox>
           );
@@ -268,18 +135,6 @@ export default function Challenge() {
               <BadgeTitle onClick={() => openModal(allBadges[index])}>
                 {allBadges[index].myBadges.badgeName}
               </BadgeTitle>
-              <Modal open={modalOpen} close={closeModal} header="도전과제">
-                <Badge src={DefaultBadge} />
-                <ModalContent>
-                  획득 난이도: {modalBadge.myBadges.badgeLevel}
-                </ModalContent>
-                <ModalContent className="title">
-                  {modalBadge.myBadges.badgeName}
-                </ModalContent>
-                <ModalContent className="info">
-                  {modalBadge.myBadges.badgeInfo}
-                </ModalContent>
-              </Modal>
             </BadgeInfoBox>
           );
         }
@@ -366,7 +221,7 @@ export default function Challenge() {
           <TierInfo className="title">{tierName}</TierInfo>
           <TierInfo className="gauge">현재 티어 진행도</TierInfo>
           <GaugeBox>
-            <Gauge percent={50} />
+            <Gauge percent={tierProgress} />
           </GaugeBox>
         </TierInfoBox>
         <BadgeBox>
