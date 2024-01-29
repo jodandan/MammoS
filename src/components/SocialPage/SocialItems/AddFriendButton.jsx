@@ -8,8 +8,8 @@ const AddFriendButtonBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 34vw;
-  height: 8.5vw;
+  width: 32vw;
+  height: 9vw;
   margin-top: 1.5vw;
   border: 3px solid transparent;
   background-image: linear-gradient(#fff, #fff), linear-gradient(to bottom, #A6E087, #96A3D4, #AEC0FF);

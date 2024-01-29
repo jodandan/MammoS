@@ -3,13 +3,13 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import FixButtonImg from '../../assets/FixButton.png'
 import DeleteButtonImg from '../../assets/DeleteButton.png'
-import FriendSection from './FriendSection';
+import nonFixButtonImg from '../../assets/NonFixButton.png';
 
 const FriendBox = styled.div`
   display: flex;
   justify-content: center;
-  width: 34vw;
-  height: 8.5vw;
+  width: 32vw;
+  height: 9vw;
   margin-top: 1.5vw;
   border: 3px solid transparent;
   background-image: linear-gradient(#fff, #fff), linear-gradient(to bottom, #A6E087, #96A3D4, #AEC0FF);
@@ -64,8 +64,13 @@ const ButtonRow = styled.div`
 const TimeRow = styled.div`
   display: flex;
   justify-content: center;
-  padding-left: 2vw;
-  padding-top: 0.7vw;
+  padding-left: 35px;
+  padding-top: 25px;
+  
+  &.weekRow {
+    padding-top: 0px;
+  }
+  
 `;
 
 const FixButton = styled.img`
@@ -111,21 +116,45 @@ const FriendPlanner = styled.button`
 
 
 const FriendFont = styled.p`
-  font-weight: bold;
-  font-size: 12px;
-  margin-top: 0px;
+
+  &.name {
+    font-weight: bold;
+    font-size: 14px;
+    padding-top: 9px;
+  }
+
+  &.id {
+    font-weight: bold;
+    font-size: 14px;
+    padding-top: 4px;
+  }
+
+  &.universityName {
+    font-weight: bold;
+    font-size: 14px;
+    color: dimgray;
+    padding-top: 12px;
+  }
 
   &.major {
     font-weight: bold;
-    font-size: 12px;
+    font-size: 14px;
     color: dimgray;
-    margin-top: -9px;
+    padding-top: 6px;
   }
   
-  &.state {
+  &.online {
     font-weight: bold;
-    font-size: 10px;
+    font-size: 12px;
     color: limegreen;
+    padding-top: 6px;
+  }
+  
+  &.offline {
+    font-weight: bold;
+    font-size: 12px;
+    color: gray;
+    padding-top: 6px;
   }
   
   &.day {
@@ -136,9 +165,9 @@ const FriendFont = styled.p`
   }
   
   &.time {
-    font-size: 25px;
+    font-size: 28px;
     font-weight: bold;
-    padding-top: 0px;
+    padding-top: 3px;
     padding-left: 12px;
   }
 `;
@@ -150,15 +179,27 @@ const FriendCard = ({
     universityName,
     majorName,
     pfp,
-    weekTime,
-    todayTime,
-    planner
+    weeklyStudyTime,
+    dailyStudyTime,
+    isOnline,
+    isFixed,
 }) => {
 
-    function pinClickHandler(){
-        console.log('고정핀')
-    }
+    const formatTime = (minutes) => {
+        const totalTimeHour = String(Math.floor(minutes / 60)).padStart(
+            2,
+            '0'
+        );
+        const totalTimeMin = String(Math.floor(minutes % 60)).padStart(
+            2,
+            '0'
+        );
+        return `${totalTimeHour}:${totalTimeMin}`;
+    };
 
+    function FixButtonHandler(){
+        console.log('삭제 팝업')
+    }
     function deleteClickHandler(){
         console.log('삭제 팝업')
     }
@@ -172,29 +213,35 @@ const FriendCard = ({
                 <PfpImg src={pfp} />
             </ProfileBox>
             <FriendInfoBox>
-                <FriendFont>{name}</FriendFont>
-                <FriendFont>{id}</FriendFont>
-                <FriendFont>{universityName}</FriendFont>
+                <FriendFont className="name">{name}</FriendFont>
+                <FriendFont className="id">{id}</FriendFont>
+                <FriendFont className="universityName">{universityName}</FriendFont>
                 <FriendFont className="major">{majorName}</FriendFont>
-                <FriendFont className="state">온라인</FriendFont>
+                {isOnline ?
+                    <FriendFont className="online">온라인</FriendFont> :
+                    <FriendFont className="offline">오프라인</FriendFont>
+                }
             </FriendInfoBox>
             <FriendTimeBox>
                 <TimeRow>
                     <FriendFont className="day">Today</FriendFont>
-                    <FriendFont className="time">{todayTime}</FriendFont>
+                    <FriendFont className="time">{formatTime(dailyStudyTime)}</FriendFont>
                 </TimeRow>
-                <TimeRow>
+                <TimeRow className="weekRow">
                     <FriendFont className="day">Week</FriendFont>
-                    <FriendFont className="time">{weekTime}</FriendFont>
+                    <FriendFont className="time">{formatTime(weeklyStudyTime)}</FriendFont>
                 </TimeRow>
             </FriendTimeBox>
             <FriendSettingBox>
                 <ButtonRow>
-                    <FixButton onClick={pinClickHandler} src={FixButtonImg}></FixButton>
+                    <FixButton
+                        onClick={FixButtonHandler}
+                        src={isFixed ? nonFixButtonImg : FixButtonImg}
+                    />
                     <DeleteButton onClick={deleteClickHandler} src={DeleteButtonImg}></DeleteButton>
                 </ButtonRow>
                 <ButtonRow>
-                    <FriendPlanner onClick={plannerClickHandler}>{planner}플래너</FriendPlanner>
+                    <FriendPlanner onClick={plannerClickHandler}>플래너</FriendPlanner>
                 </ButtonRow>
             </FriendSettingBox>
         </FriendBox>
@@ -204,11 +251,13 @@ const FriendCard = ({
 FriendCard.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    weekTime: PropTypes.string.isRequired,
-    todayTime: PropTypes.string.isRequired,
+    weeklyStudyTime: PropTypes.number.isRequired,
+    dailyStudyTime: PropTypes.number.isRequired,
     planner: PropTypes.string.isRequired,
     pfp: PropTypes.string.isRequired,
     universityName: PropTypes.string.isRequired,
     majorName: PropTypes.string.isRequired,
+    isOnline: PropTypes.bool.isRequired,
+    isFixed: PropTypes.bool.isRequired,
 };
 export default FriendCard;
