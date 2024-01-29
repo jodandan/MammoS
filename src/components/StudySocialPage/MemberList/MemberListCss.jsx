@@ -1,14 +1,15 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-    width: 100%; 
+    width: 80%; 
     display: flex;
     flex-direction: column;
     gap: 10px;
+    padding-left: 100px;
 `;
 
 export const Box = styled.div`
-    width: 100%; 
+    width: 90%; 
     border-top: 1px solid #BFBFBF;
     border-bottom: 1px solid #BFBFBF;
     display: flex;
@@ -16,6 +17,8 @@ export const Box = styled.div`
     padding-top: 5px;
     padding-bottom: 5px;
     font-family: 'PretendardBold';
+    text-align: left;
+    left: 50px;
 `;
 
 export const NameAndId = styled.div`
@@ -26,13 +29,13 @@ export const NameAndId = styled.div`
     font-weight: 600;
     line-height: normal;
     letter-spacing: -0.32px;
-    width: 70%;
+    width: 81%;
 `;
 
 export const College = styled(NameAndId)`
-    width: 70%;
+    width: 81%;
 `;
 
 export const Position = styled(NameAndId)`
-    width: 25%;
+    width: 29%;
 `;

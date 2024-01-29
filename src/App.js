@@ -10,6 +10,7 @@ import StudySocialPage from './pages/StudySocialPage';
 import SocialPage from './pages/SocialPage';
 import MyPage from './pages/MyPage';
 import './App.css';
+import ChallengePage from './pages/ChallengePage';
 
 function App() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -48,6 +49,7 @@ function App() {
             />
           }
         />
+        <Route path="/Challenge" element={<ChallengePage/>} />
         <Route path="/info" element={<MyPage />} />
         <Route path="/social" element={<SocialPage />} />
       </Routes>

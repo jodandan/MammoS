@@ -18,19 +18,24 @@ import {
   DataBox,
   LocationBox,
   NoticeBox,
-  Title,
+  LeftBox,
   EditBox,
   InputBox,
-  LeftBox,
+  NoticeContainer,
   RightBox,
+  DataandPlaceBox,
+  MemberBox,
+  Title,
+  Edit,
 } from './StudyCalenderCss.jsx';
 import home from '../assets/Home.png';
 import ClickCalender from '../assets/ClickCalender.png';
 import User from '../assets/User.png';
 import List from '../assets/List.png';
-import Edit from '../assets/Edit.png';
+import edit from '../assets/Edit.png';
 import NoticeList from './StudyCalenderItems/NoticeList/NoticeList.jsx';
 import MemberList from './StudyCalenderItems/MemberList/MemberList.jsx';
+import { ReactComponent as Notice } from '../assets/Notice.svg';
 
 export default function StudyCalender({ currentIndex, onIndexChange }) {
   const [studyData, setStudyData] = useState(null);
@@ -85,89 +90,97 @@ export default function StudyCalender({ currentIndex, onIndexChange }) {
             />
           </Container>
           <Container>
-            <Img src={List} alt="리스트" />
+            <Notice />
           </Container>
         </SideMenuBar>
         <ContainerBox>
-          {studyData && (
+          {studyData && studyData[currentIndex] && (
             <TextBox>
               <StudyTitle>
                 {(studyData[currentIndex] &&
                   studyData[currentIndex].home.title) ||
                   '없음'}
+                <Edit>
+                  <img
+                    src={edit}
+                    alt="수정"
+                    style={{ width: '12px', height: '12px' }}
+                  />
+                </Edit>
               </StudyTitle>
               <SubText>
                 {studyData[currentIndex] &&
-                studyData[currentIndex].home.summary !== null
+                  studyData[currentIndex].home.summary !== null
                   ? studyData.home.summary
                   : '없음'}
               </SubText>
             </TextBox>
           )}
+          <Title>스터디 일정</Title>
           <div
             style={{ display: 'flex', flexDirection: 'row', height: '100%' }}
           >
             <LeftBox>
-              {studyData && (
-                <FirstLine>
-                  <LeftSide>
-                    {(studyData[currentIndex] &&
-                      studyData[currentIndex].project[projectIndex]
-                        .projectTitle) ||
-                      '없음'}
-                  </LeftSide>
-                  <DataBox>
-                    {(studyData[currentIndex] &&
-                      studyData[currentIndex].project[projectIndex]
-                        .startDate) ||
-                      '미정'}{' '}
-                    ~{' '}
-                    {(studyData[currentIndex] &&
-                      studyData[currentIndex].project[projectIndex].endDate) ||
-                      '미정'}
-                  </DataBox>
-                  <LocationBox>
-                    {(studyData[currentIndex] &&
-                      studyData[currentIndex].project[projectIndex].place) ||
-                      '없음'}
-                  </LocationBox>
-                </FirstLine>
-              )}
-
-              <NoticeBox>
-                <div
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'columns',
-                    padding: '0.5rem 0.5rem 0.1rem 0.5rem',
-                  }}
-                >
-                  <Title>Study Summary</Title>
-                  <EditBox>
-                    <img
-                      src={Edit}
-                      alt="수정"
-                      style={{ width: '12px', height: '12px' }}
-                    />
-                  </EditBox>
-                </div>
-                {studyData && (
-                  <InputBox>
-                    {studyData[currentIndex] &&
-                      studyData[currentIndex].project[projectIndex]
-                        .studySummary}
-                  </InputBox>
+              <NoticeContainer>
+                {studyData && studyData[currentIndex] && (
+                  <FirstLine>
+                    <LeftSide>
+                      {(studyData[currentIndex] &&
+                        studyData[currentIndex].project[projectIndex]
+                          .projectTitle) ||
+                        '없음'}
+                    </LeftSide>
+                    <EditBox>
+                      <img
+                        src={edit}
+                        alt="수정"
+                        style={{ width: '12px', height: '12px' }}
+                      />
+                    </EditBox>
+                  </FirstLine>
                 )}
-              </NoticeBox>
+                <NoticeBox>
+                  {studyData && studyData[currentIndex] && (
+                    <InputBox>
+                      {studyData[currentIndex] &&
+                        studyData[currentIndex].project[projectIndex]
+                          .studySummary}
+                    </InputBox>
+                  )}
+                </NoticeBox>
+                <DataandPlaceBox>
+                  {studyData && studyData[currentIndex] && (
+                    <>
+                      <DataBox>
+                        {(studyData[currentIndex] &&
+                          studyData[currentIndex].project[projectIndex]
+                            .startDate) ||
+                          '미정'}{' '}
+                        ~{' '}
+                        {(studyData[currentIndex] &&
+                          studyData[currentIndex].project[projectIndex].endDate) ||
+                          '미정'}
+                      </DataBox>
+                      <LocationBox>
+                        {(studyData[currentIndex] &&
+                          studyData[currentIndex].project[projectIndex].place) ||
+                          '없음'}
+                      </LocationBox>
+                    </>
+                  )}
+                </DataandPlaceBox>
+              </NoticeContainer>
+              <MemberBox>
+                <MemberList
+                  projectIndex={projectIndex}
+                  currentIndex={currentIndex}
+                />
+              </MemberBox>
             </LeftBox>
             <RightBox>
               <NoticeList
                 currentIndex={currentIndex}
                 onProjectSelect={handleProjectSelect}
-              />
-              <MemberList
-                projectIndex={projectIndex}
-                currentIndex={currentIndex}
               />
             </RightBox>
           </div>

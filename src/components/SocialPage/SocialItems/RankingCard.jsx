@@ -19,10 +19,6 @@ const RankCard = styled.div`
   margin-top: 7vw;
   position: relative;
   
-  // 1등 카드에만 적용되는 스타일
-  ${({ rank }) => rank === '1' && css`
-    transform: scale(1.5); 
-  `}
 `;
 
 const RankBadge = styled.div`

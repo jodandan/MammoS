@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import SearchButtonImg from '../../assets/SearchButton.png'
+import FriendResponseButton from './FriendResponseButton';
 
 const ModalFrame = styled.div`
   position: fixed;
@@ -19,83 +19,167 @@ const ModalFrame = styled.div`
 
 const ModalBox = styled.div`
   background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 20px;
   border-radius: 40px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); // 상자에 그림자 추가
+  box-shadow: 0 5px 30px rgba(0, 0, 0.5, 0.5); // 상자에 그림자 추가
   z-index: 1001; // ModalFrame 위에 위치
   width: 55vw; 
   height: 30vw;
   overflow-y: auto; // 내용이 많을 경우 스크롤 가능
 `;
 
-
-const SearchContainer = styled.div`
+const TitleContainer = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px
+  padding-bottom: 25px;
+  padding-top: 25px;
 `;
 
-const SearchFont = styled.p`
+const ResponseContainer = styled.div`
   display: flex;
-  font-size: 23px;
-  font-weight: bold;
+  flex-wrap: wrap;
+  width: 48vw;
   align-items: center;
-  justify-content: left;
-  margin-left: 4vw;
+  justify-content: space-between;
 `;
 
-const SearchInput = styled.input`
-  flex-grow: 0.8; // 컨테이너 내에서 가능한 많은 공간을 차지
-  padding: 10px;
-  border: 1px solid #ccc; 
-  border-radius: 5px; 
-  margin-right: 10px; 
-  margin-top: 15px;
-`;
-
-const SearchButton = styled.button`
-  border: none;
-  background-color: transparent; 
-  cursor: pointer;
-  background-image: url(${SearchButtonImg}); 
-  background-repeat: no-repeat;
-  background-position: center; 
-  background-size: contain; 
-  width: 25px; 
-  height: 25px; 
-
-  &:hover {
-    opacity: 0.6; // 마우스 오버시 버튼 투명도 변경
+const ResponseFont = styled.p`
+  &.title {
+    font-size: 23px;
+    font-weight: bold;
+    margin-left: 4vw;
+  }
+  
+  &.font1 {
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    
+  }
+  &.font2 {
+    font-size: 10px;
+    text-align: center;
   }
 `;
 
 
-const AddFriendModal = ({ isOpen, onClose}) => {
-    const [friendId, setFriendId] = useState('');
+const ResponseButton = styled.button`
+  &.accept {
+    padding: 10px;
+
+  }
+  &.reject {
+    padding: 10px;
+  }
+`;
 
 
+const CountBadge = styled.div`
+  background-color: red;
+  color: white;
+  text-align: center;
+  border-radius: 50%;
+  width: 1.8vw;
+  height: 1.8vw;
+  margin-left: 15px; 
+  font-size: 20px;
+`;
+
+const RequestFriendCard = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 22vw;
+  height: 2.3vw;
+  margin-top: 1.5vw;
+  border: 2px solid #D9D9D9;
+  border-radius: 5px;
+  background-origin: border-box;
+  background-clip: content-box,border-box;
+  background-color: white;
+`;
+
+
+
+const AddFriendModal = ({
+    onClose,
+    onAddFriend,
+    friendRequestNum,
+    id,
+    name,
+    universityName,
+    majorName
+}) => {
+    const [userIdx, setUserIdx] = useState('');
+    const [friendIdx, setFriendId] = useState('');
+    const [friendIsFixed, setFriendIsFixed] = useState(true);
+    const [friendStatus, setFriendStatus] = useState(1);
+
+    const handleSubmit = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+            // 친구 요청 받기
+            const response = await axios.patch('http://3.38.7.193:8080/api/v1/social/request', {
+                userIdx: userIdx,
+                friendIdx: friendIdx
+            });
+
+            // 응답 처리
+            if (response.data.httpResponseStatus === 'SUCCESS') {
+                alert('친구 요청이 성공적으로 수락되었습니다.');
+                onAddFriend({
+                    friendIndex: response.data.responseData.friendIndex,
+                    frinedIsFixed: response.data.responseData.friendIsFixed,
+                    friendStatus: response.data.responseData.friendStatus
+                });
+                onClose(); // 모달 닫기
+            } else {
+                alert(response.data.message);
+            }
+        } catch (error) {
+            console.error('친구 요청 수락 중 오류 발생:', error);
+            alert('친구 요청 수락 중 오류가 발생했습니다.');
+        }
+    };
+
+    useEffect(() => {
+        console.log(friendRequestNum);
+    }, []);
     return (
         <ModalFrame onClick={onClose}>
             <ModalBox onClick={(e)=> e.stopPropagation()}>
-                <SearchFont>친구추가</SearchFont>
-                <SearchContainer>
-                    <SearchInput
-                        type="text"
-                        value={friendId}
-                        onChange={(e) => setFriendId(e.target.value)}
-                        placeholder="친구 ID를 입력하세요"
-                    />
-                    <SearchButton src= {SearchButtonImg} />
-                </SearchContainer>
+                <TitleContainer>
+                    <ResponseFont className="title">받은 친구 요청</ResponseFont>
+                    {friendRequestNum !== 0 && <CountBadge>{friendRequestNum}</CountBadge>}
+                </TitleContainer>
+                <ResponseContainer>
+                    <RequestFriendCard>
+                        <ResponseFont className="font1">{id}chungyomi</ResponseFont>
+                        <ResponseFont className="font1">{name}김충영</ResponseFont>
+                        <ResponseFont className="font2">{universityName}가천대학교</ResponseFont>
+                        <ResponseFont className="font2">{majorName}소프트웨어학과</ResponseFont>
+                        <ResponseButton className="accept"></ResponseButton>
+                        <ResponseButton className="reject"></ResponseButton>
+                    </RequestFriendCard>
+                    <RequestFriendCard></RequestFriendCard>
+                    <RequestFriendCard></RequestFriendCard>
+                </ResponseContainer>
             </ModalBox>
         </ModalFrame>
     );
 };
 
 AddFriendModal.propTypes = {
-    isOpen: PropTypes.bool.isRequired,
     onClose: PropTypes.func.isRequired,
+    onAddFriend: PropTypes.func.isRequired,
+    friendRequestNum: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    universityName: PropTypes.string.isRequired,
+    majorName: PropTypes.string.isRequired,
 };
 
 export default AddFriendModal;

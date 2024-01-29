@@ -4,10 +4,10 @@ export const Container = styled.div`
     width: 35%;
     height: 60%;
     flex-shrink: 0;
-    background-color: transparent;
     stroke-width: 4px;
     border-radius: 20px;
-    border: 4px solid #A7CF41;
+    background: #FFF;
+    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
     display: flex;
     flex-direction: column;
 `;
@@ -30,6 +30,7 @@ export const MemberList = styled.div`
     height: 70%;
     max-height: 300px;
     overflow-y: auto; 
+    overflow-x: hidden; 
     
     &::-webkit-scrollbar {
     border-left: 9px solid white;
@@ -55,7 +56,8 @@ export const MemberItem = styled.div`
   width: 94.5%;
   align-items: center;
   justify-content: flex-end;
-
+  border-bottom: 1px solid #9C9C9C;
+  margin-left: 5px;
   div {
     flex: 1;
   }
