@@ -28,8 +28,8 @@ const ModalBox = styled.div`
   border-radius: 30px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); // 상자에 그림자 추가
   z-index: 1001; // ModalFrame 위에 위치
-  width: 50vw;
-  height: 30vw;
+  width: 55vw;
+  height: 33vw;
 `;
 
 const InfoContainer = styled.div`
@@ -46,22 +46,51 @@ const PlannerContainer = styled.div`
   margin-bottom: -3vw;
 `;
 
+// const ProjectBox = styled.div`
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   flex-direction: column;
+//   width: 25vw;
+//   height: 12vw;
+//   margin-left: 4.5vw;
+// `;
+
 const ProjectBox = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  width: 25vw;
-  height: 12vw;
-  margin-left: 4.5vw;
+  width: 32vw;
+  height: 10vw;
+  overflow: auto;
+  margin-left: 6vw;
+
+  &::-webkit-scrollbar {
+    border-left: 9px solid;
+    border-right: 9px solid;
+    border-color: #ffffff;
+    border-image-slice: 1;
+    background-color: #b9d967;
+    width: 20px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-left: 7px solid;
+    border-right: 7px solid;
+    border-color: #ffffff;
+    border-image-slice: 1;
+    background-color: #b9d967;
+    border-radius: 8px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
 `;
+
 
 const InfoBox = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: center;
   flex-direction: column;
-  margin-right: 13vw;
+  margin-right: 16vw;
+  margin-top: 2vw;
 `;
 
 const BadgeBox = styled.div`
@@ -69,11 +98,13 @@ const BadgeBox = styled.div`
   align-items: center;
   justify-content: center;
   margin-left: 2vw;
+  margin-top: 2vw;
 `;
 
 const StreakBox = styled.div`
   display: flex;
   align-items: center;
+  flex-direction: column;
   justify-content: center;
   width: 23vw;
   height: 5vw;
@@ -82,13 +113,16 @@ const StreakBox = styled.div`
 const Project = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
-  background-color: #C6EF5E;
-  border: white 5px solid;
-  border-radius: 10px;
+  justify-content: space-between;
+  background-color: #90C20D;
+  border-radius: 5px;
+  margin: 0.3vw;
+  margin-bottom: 0.3vw;
   width: 30vw;
   height: 3vw;
+  box-shadow: 1px 5px 10px 1px rgba(1, 1, 1, 0.6);
 `;
+
 
 const Info = styled.p`
   font-family: 'PretendardSemiBold';
@@ -115,13 +149,18 @@ const BadgeCard = styled.div`
 
 const PlanContainer = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   background-color: #C6EF5E;
-  border: white 5px solid;
+  box-shadow: 1px 5px 10px 1px rgba(1, 1, 1, 0.6);
   border-radius: 10px;
   width: 30vw;
   height: 3vw;
+  margin: 0.3vw;
+  margin-bottom: 0.2vw;
+  /* 완료된 계획에 대한 스타일 */
+  background-color: ${props => props.isComplete ? '#454545' : '#C6EF5E'};
+  color: ${props => props.isComplete ? '#FFFFFF' : 'black'}; 
 `
 
 
@@ -130,6 +169,8 @@ const PlannerAndProject = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 5vw;
+  margin-right: 3vw;
 `
 
 const PlanBox = styled.div`
@@ -141,7 +182,7 @@ const PlanBox = styled.div`
   &::-webkit-scrollbar {
     border-left: 9px solid;
     border-right: 9px solid;
-    border-image: linear-gradient(#e8f3ce, #ffffff);
+    border-color: #ffffff;
     border-image-slice: 1;
     background-color: #b9d967;
     width: 20px;
@@ -149,32 +190,13 @@ const PlanBox = styled.div`
   &::-webkit-scrollbar-thumb {
     border-left: 7px solid;
     border-right: 7px solid;
-    border-image: linear-gradient(#e8f3ce, #ffffff);
+    border-color: #ffffff;
     border-image-slice: 1;
     background-color: #b9d967;
-    border-radius: 20px;
+    border-radius: 8px;
   }
   &::-webkit-scrollbar-track {
     background-color: transparent;
-  }
-`;
-
-const StudyTime = styled.div`
-  display: flex;
-  align-items: baseline;
-  justify-content: flex-end;
-`;
-
- const StudyTimeFont = styled.p`
-  font-family: 'PretendardBold';
-  margin-top: 5px;
-  font-size: 15px;
-  font-weight: bold;
-  padding-right: 8px;
-
-  &.time {
-    font-size: 20px;
-    padding-right: 20px;
   }
 `;
 
@@ -182,54 +204,54 @@ const StudyTime = styled.div`
 
 const Font = styled.p`
   font-family: 'PretendardSemiBold';
-  &.content {
-    overflow: auto;
-    white-space: nowrap;
-    -ms-overflow-style: none;
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  }
-
-
+  
   &.planName {
     font-weight: bold;
-    text-align: left;
-    margin-right: 20vw;
     font-size: 18px;
+    margin-left: 1vw;
   }
 
   &.isComplete {
     font-weight: bold;
     text-align: right;
     font-size: 18px;
+    margin-right: 1vw;
   }
 
   &.time {
     font-weight: bold;
     text-align: right;
     font-size: 18px;
+    margin-left: 18vw;
   }
 
-  &.notStarted {
-    font-weight: bold;
-    color: gray;
-    padding-left: 28px;
+  &.projectTime {
+    font-family: 'PretendardSemiBold';
+    font-size: 18px;
+    padding-right: 0.5vw;
   }
 
-  &.project {
+
+  &.topStreak {
     font-family: 'PretendardSemiBold';
     font-size: 30px;
-    margin-top: 250px;
-    margin-left: -50px;
+    color: #ED7070;
+    margin-top: 11vw;
+    margin-left: -5vw;
   }
+  &.currentStreak {
+    font-family: 'PretendardSemiBold';
+    font-size: 30px;
+    margin-top: 2vw;
+    margin-left: -5vw;
+  }
+  
 `;
 
 
 
 const PlannerModal = ({ onClose, friendIndex }) => {
   const [plannerData, setPlannerData] = useState('');
-  console.log(friendIndex);
 
   async function fetchFriendPlanner() {
     try {
@@ -255,7 +277,13 @@ const PlannerModal = ({ onClose, friendIndex }) => {
     if (friendIndex) {
       fetchFriendPlanner();
     }
-  }, [friendIndex]);
+  }, []);
+
+  const formatTime = (minutes) => {
+    const totalTimeHour = String(Math.floor(minutes / 60)).padStart(2, '0');
+    const totalTimeMin = String(minutes % 60).padStart(2, '0');
+    return `${totalTimeHour}:${totalTimeMin}`;
+  };
 
   return (
     <ModalFrame onClick={onClose}>
@@ -283,20 +311,31 @@ const PlannerModal = ({ onClose, friendIndex }) => {
             <PlanBox>
               {plannerData.planner && plannerData.planner.plannerPlans &&
                   plannerData.planner.plannerPlans.map((plan) => (
-                      <PlanContainer key={plan.planIndex}>
-                        <Font className="planName">{plan.planName}</Font>
-                        <Font className="time">{plan.planStudyTime && plan.planIsComplete ? '' : plan.planStudyTime}</Font>
-                        <Font className="isComplete">{plan.planIsComplete ? 'DONE' : ''}</Font>
+                      <PlanContainer key={plan.planIndex} isComplete={plan.planIsComplete}>
+                        <Font className="planName" isComplete={plan.planIsComplete}>{plan.planName}</Font>
+                        <Font className="time" isComplete={plan.planIsComplete}>
+                          {plan.planIsComplete ? '' : (plan.planStudyTime === 0 ? 'Not Started' : formatTime(plan.planStudyTime))}
+                        </Font>
+                        <Font className="isComplete" isComplete={plan.planIsComplete}>
+                          {plan.planIsComplete ? 'DONE' : ''}
+                        </Font>
                       </PlanContainer>
                   ))
               }
             </PlanBox>
             <ProjectBox>
-              <Project>프로젝트</Project>
+                {plannerData.projects && plannerData.projects.map((project) => (
+                    <Project key={project.projectIndex}>
+                      <Font className="planName">{project.projectName}</Font>
+                      <Font className="projectTime">{project.projectStartTime} ~ {project.projectEndTime}</Font>
+                    </Project>
+                ))
+                }
             </ProjectBox>
           </PlannerAndProject>
           <StreakBox>
-            <Font className="project">현재 {plannerData.topStreaks} DAY STREAK!</Font>
+            <Font className="topStreak">TOP {plannerData.topStreaks} DAY STREAK!</Font>
+            <Font className="currentStreak">현재 {plannerData.currentStreak} DAY STREAK!</Font>
           </StreakBox>
         </PlannerContainer>
       </ModalBox>

@@ -32,28 +32,29 @@ export default function Social() {
 
     const [friends, setFriends] = useState([]);
 
-    useEffect(() => {
-        async function fetchPage() {
-            try {
-                // 토큰 가져오기
-                const token = localStorage.getItem('token');
-                // 토큰 설정
-                axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-                // 정보 받아오기
-                const response = await axios.get('http://3.38.7.193:8080/api/v1/social');
-                // 정보 저장
-                if (response.data.httpResponseStatus === 'SUCCESS') {
-                    setRanking(response.data.responseData.ranking);
-                    setFriendRequestNum(response.data.responseData.friendRequestNum);
-                    setFriends(response.data.responseData.friend);
-                    console.log(response);
-                } else {
-                    console.log(response);
-                }
-            } catch (error) {
-                console.log(error);
+    async function fetchPage() {
+        try {
+            // 토큰 가져오기
+            const token = localStorage.getItem('token');
+            // 토큰 설정
+            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+            // 정보 받아오기
+            const response = await axios.get('http://3.38.7.193:8080/api/v1/social');
+            // 정보 저장
+            if (response.data.httpResponseStatus === 'SUCCESS') {
+                setRanking(response.data.responseData.ranking);
+                setFriendRequestNum(response.data.responseData.friendRequestNum);
+                setFriends(response.data.responseData.friend);
+                console.log(response);
+            } else {
+                console.log(response);
             }
+        } catch (error) {
+            console.log(error);
         }
+    }
+
+    useEffect(() => {
         fetchPage();
     }, []);
 
@@ -72,6 +73,7 @@ export default function Social() {
             <Bottom>
                 <FriendResponseButton
                     friendRequestNum={friendRequestNum}
+                    fetchPage={fetchPage}
                 />
                 <FriendSection friends={friends}/>
             </Bottom>

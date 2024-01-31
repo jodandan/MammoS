@@ -131,7 +131,7 @@ const IconBox = styled.div`
 
 
 
-const AddFriendModal = ({onClose}) => {
+const FriendResponseModal = ({onClose, fetchPage}) => {
     const [receivedRequests, setReceivedRequests] = useState([]);
     const [sentRequests, setSentRequests] = useState([]);
     const [currentTab, setCurrentTab] = useState('received'); // 'received' 또는 'sent'
@@ -190,30 +190,55 @@ const AddFriendModal = ({onClose}) => {
         }
     }
 
-    async function AcceptRequestHandler(friendIdx) {
+    async function AcceptRequestHandler(friendIndex) {
         try {
             const token = localStorage.getItem('token');
             axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
             // 친구 추가 요청
             const response = await axios.patch(
-                `http://3.38.7.193:8080/api/v1/social/request/${friendIdx}`
+                `http://3.38.7.193:8080/api/v1/social/request/${friendIndex}`
             );
             console.log('Received Requests:', response.data);
 
             if (response.data.httpResponseStatus === 'SUCCESS') {
                 alert('친구 요청 수락 성공');
-
-                // 수락된 요청 제거
-                setReceivedRequests(currentRequests =>
-                    currentRequests.filter(request => request.friendIdx !== friendIdx)
-                );
-
+                fetchReceivedRequests();
+                fetchPage();
             } else {
                 alert(response.data.message);
             }
         } catch (error) {
             console.error('친구 요청 수락 중 오류 발생:', error);
+            alert('서버 송신 오류');
+        }
+    }
+
+    async function RejectRequestHandler(input, friendIndex) {
+        try {
+            const token = localStorage.getItem('token');
+            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+            // 친구 추가 요청
+            const response = await axios.delete(
+                `http://3.38.7.193:8080/api/v1/social/request/${friendIndex}`
+            );
+            console.log('Received Requests:', response.data);
+
+            if (response.data.httpResponseStatus === 'SUCCESS') {
+                alert('친구 거절 성공');
+                if(input === 'sent'){
+                    fetchSentRequests();
+                }
+                else{
+                    fetchReceivedRequests();
+                }
+
+            } else {
+                alert(response.data.message);
+            }
+        } catch (error) {
+            console.error('친구 거절 중 오류 발생:', error);
             alert('서버 송신 오류');
         }
     }
@@ -260,7 +285,7 @@ const AddFriendModal = ({onClose}) => {
                                         icon="fluent-mdl2:accept-medium"
                                     />
                                 </IconBox>
-                                <IconBox className="reject">
+                                <IconBox className="reject" onClick={() => RejectRequestHandler('recieve',request.friendIndex)}>
                                     <Icon
                                         style={{
                                             height: '15px',
@@ -282,7 +307,7 @@ const AddFriendModal = ({onClose}) => {
                                 <Info className="light">
                                     {request.universityName} {request.majorName}
                                 </Info>
-                                <IconBox className="reject">
+                                <IconBox className="reject" onClick={() => RejectRequestHandler('sent',request.friendIndex)}>
                                     <Icon
                                         style={{
                                             height: '15px',
@@ -302,8 +327,9 @@ const AddFriendModal = ({onClose}) => {
     );
 };
 
-AddFriendModal.propTypes = {
-    onClose: PropTypes.func.isRequired
+FriendResponseModal.propTypes = {
+    onClose: PropTypes.func.isRequired,
+    fetchPage: PropTypes.func.isRequired
 };
 
-export default AddFriendModal;
+export default FriendResponseModal;

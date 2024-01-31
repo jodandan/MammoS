@@ -42,7 +42,7 @@ const ResponseButton = styled.button`
   padding-right: 10px;
 `;
 
-const FriendResponseButton = ({friendRequestNum}) => {
+const FriendResponseButton = ({friendRequestNum, fetchPage}) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const handleRequestButtonClick = () => {
         setIsModalOpen(true); // 모달 열기
@@ -51,13 +51,14 @@ const FriendResponseButton = ({friendRequestNum}) => {
         <FriendResponseBox>
             {friendRequestNum !== 0 && <CountBadge>{friendRequestNum}</CountBadge>}
             <ResponseButton onClick={handleRequestButtonClick}>친구요청</ResponseButton>
-            {isModalOpen && <FriendResponseModal onClose={() => setIsModalOpen(false)} />}
+            {isModalOpen && <FriendResponseModal onClose={() => setIsModalOpen(false)} fetchPage={fetchPage} />}
         </FriendResponseBox>
     );
 }
 
 FriendResponseButton.propTypes = {
     friendRequestNum: PropTypes.number.isRequired,
+    fetchPage: PropTypes.func.isRequired
 };
 
 export default FriendResponseButton;
