@@ -75,7 +75,7 @@ export default function Social() {
                     friendRequestNum={friendRequestNum}
                     fetchPage={fetchPage}
                 />
-                <FriendSection friends={friends}/>
+                <FriendSection friends={friends} fetchPage={fetchPage}/>
             </Bottom>
         </PageFrame>
     );

@@ -12,7 +12,7 @@ const FriendSectionBox = styled.div`
   width: 67vw;
 `;
 
-export default function FriendSection({ friends }) {
+export default function FriendSection({ friends , fetchPage}) {
   return (
     <FriendSectionBox>
       {friends.map((friend) => (
@@ -28,6 +28,7 @@ export default function FriendSection({ friends }) {
           dailyStudyTime={friend.dailyStudyTime}
           isOnline={friend.isOnline}
           isFixed={friend.isFixed}
+          fetchPage={fetchPage}
         />
       ))}
       <AddFriendButton />
@@ -51,4 +52,5 @@ FriendSection.propTypes = {
       isFixed: PropTypes.bool.isRequired,
     })
   ).isRequired,
+    fetchPage: PropTypes.func.isRequired
 };

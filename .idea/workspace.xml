@@ -7,9 +7,8 @@
     <list default="true" id="e35a1992-5f70-4659-8dda-700344d0f0b7" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/SocialPage/Social.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SocialPage/Social.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/FriendResponseButton.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/FriendResponseButton.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/FriendResponseModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/FriendResponseModal.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/PlannerModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/PlannerModal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/FriendCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/FriendCard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/FriendSection.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/FriendSection.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +56,7 @@
       <workItem from="1706360866390" duration="1714000" />
       <workItem from="1706420215317" duration="14176000" />
       <workItem from="1706494415629" duration="10032000" />
-      <workItem from="1706593472557" duration="14501000" />
+      <workItem from="1706593472557" duration="20047000" />
     </task>
     <servers />
   </component>

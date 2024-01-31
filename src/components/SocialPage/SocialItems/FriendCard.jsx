@@ -5,6 +5,7 @@ import FixButtonImg from '../../assets/FixButton.png';
 import DeleteButtonImg from '../../assets/DeleteButton.png';
 import NonFixButtonImg from '../../assets/NonFixButton.png';
 import PlannerModal from './PlannerModal';
+import DeleteFriendModal from './DeleteFriendModal';
 
 const FriendBox = styled.div`
   display: flex;
@@ -182,11 +183,13 @@ const FriendCard = ({
   dailyStudyTime,
   isOnline,
   isFixed,
+  fetchPage
 }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isPlannerModalOpen, setIsPlannerModalOpen] = useState(false);
 
   const plannerClickHandler = () => {
-    setIsModalOpen(true); // 모달 열기
+    setIsPlannerModalOpen(true); // 모달 열기
   };
 
   const formatTime = (minutes) => {
@@ -199,7 +202,7 @@ const FriendCard = ({
     console.log('삭제 팝업');
   }
   function deleteClickHandler() {
-    console.log('삭제 팝업');
+    setIsDeleteModalOpen(true); // 모달 열기
   }
 
   return (
@@ -240,12 +243,20 @@ const FriendCard = ({
             onClick={deleteClickHandler}
             src={DeleteButtonImg}
           ></DeleteButton>
+          {isDeleteModalOpen && (
+              <DeleteFriendModal
+                  onClose={() => setIsDeleteModalOpen(false)}
+                  friendIndex={friendIndex}
+                  fetchPage={fetchPage}
+                  name={name}
+              />
+          )}
         </ButtonRow>
         <ButtonRow>
           <FriendPlanner onClick={plannerClickHandler}>플래너</FriendPlanner>
-          {isModalOpen && (
+          {isPlannerModalOpen && (
             <PlannerModal
-              onClose={() => setIsModalOpen(false)}
+              onClose={() => setIsPlannerModalOpen(false)}
               friendIndex={friendIndex}
             />
           )}
@@ -268,5 +279,6 @@ FriendCard.propTypes = {
   majorName: PropTypes.string.isRequired,
   isOnline: PropTypes.bool.isRequired,
   isFixed: PropTypes.bool.isRequired,
+  fetchPage: PropTypes.func.isRequired
 };
 export default FriendCard;
