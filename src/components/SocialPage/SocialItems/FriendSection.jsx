@@ -12,13 +12,14 @@ const FriendSectionBox = styled.div`
   width: 67vw;
 `;
 
-export default function FriendSection({ friends , fetchPage}) {
+export default function FriendSection({ friends, fetchPage, userIndex }) {
   return (
     <FriendSectionBox>
       {friends.map((friend) => (
         <FriendCard
           key={friend.friendIndex}
           friendIndex={friend.friendIndex}
+          friendUserIndex={friend.friendUserIndex}
           id={friend.id}
           name={friend.name}
           universityName={friend.universityName}
@@ -29,6 +30,7 @@ export default function FriendSection({ friends , fetchPage}) {
           isOnline={friend.isOnline}
           isFixed={friend.isFixed}
           fetchPage={fetchPage}
+          userIndex={userIndex}
         />
       ))}
       <AddFriendButton />
@@ -52,5 +54,6 @@ FriendSection.propTypes = {
       isFixed: PropTypes.bool.isRequired,
     })
   ).isRequired,
-    fetchPage: PropTypes.func.isRequired
+  fetchPage: PropTypes.func.isRequired,
+  userIndex: PropTypes.number.isRequired,
 };

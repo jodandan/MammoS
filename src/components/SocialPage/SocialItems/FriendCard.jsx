@@ -183,7 +183,9 @@ const FriendCard = ({
   dailyStudyTime,
   isOnline,
   isFixed,
-  fetchPage
+  fetchPage,
+  userIndex,
+  friendUserIndex,
 }) => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isPlannerModalOpen, setIsPlannerModalOpen] = useState(false);
@@ -239,17 +241,19 @@ const FriendCard = ({
             onClick={FixButtonHandler}
             src={isFixed ? NonFixButtonImg : FixButtonImg}
           />
-          <DeleteButton
-            onClick={deleteClickHandler}
-            src={DeleteButtonImg}
-          ></DeleteButton>
+          {userIndex !== friendUserIndex && (
+            <DeleteButton
+              onClick={deleteClickHandler}
+              src={DeleteButtonImg}
+            ></DeleteButton>
+          )}
           {isDeleteModalOpen && (
-              <DeleteFriendModal
-                  onClose={() => setIsDeleteModalOpen(false)}
-                  friendIndex={friendIndex}
-                  fetchPage={fetchPage}
-                  name={name}
-              />
+            <DeleteFriendModal
+              onClose={() => setIsDeleteModalOpen(false)}
+              friendIndex={friendIndex}
+              fetchPage={fetchPage}
+              name={name}
+            />
           )}
         </ButtonRow>
         <ButtonRow>
@@ -279,6 +283,8 @@ FriendCard.propTypes = {
   majorName: PropTypes.string.isRequired,
   isOnline: PropTypes.bool.isRequired,
   isFixed: PropTypes.bool.isRequired,
-  fetchPage: PropTypes.func.isRequired
+  fetchPage: PropTypes.func.isRequired,
+  userIndex: PropTypes.number.isRequired,
+  friendUserIndex: PropTypes.number.isRequired,
 };
 export default FriendCard;

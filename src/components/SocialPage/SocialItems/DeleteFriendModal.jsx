@@ -40,7 +40,7 @@ const DeleteContainer = styled.div`
 `;
 
 const Title = styled.p`
-  font-weight: bold; 
+  font-weight: bold;
   font-size: 20px;
   margin-bottom: 3vw;
   font-family: 'PretendardSemiBold';
@@ -50,7 +50,6 @@ const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  
 `;
 
 const AcceptButton = styled.button`
@@ -63,7 +62,7 @@ const AcceptButton = styled.button`
   background-color: #ffffff;
   font-size: 17px;
   &:hover {
-    background-color: #ED7070;
+    background-color: #ed7070;
     border: white 1px solid;
     color: white;
   }
@@ -78,56 +77,57 @@ const RejectButton = styled.button`
   background-color: #ffffff;
   font-size: 17px;
   &:hover {
-    background-color: #ED7070;
+    background-color: #ed7070;
     border: white 1px solid;
     color: white;
   }
 `;
 
-const DeleteFriendModal = ({ onClose, friendIndex ,fetchPage, name}) => {
+const DeleteFriendModal = ({ onClose, friendIndex, fetchPage, name }) => {
+  async function DeleteFriendHandler() {
+    try {
+      const token = localStorage.getItem('token');
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
-    async function DeleteFriendHandler(friendIndex) {
-        try {
-            const token = localStorage.getItem('token');
-            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      const response = await axios.delete(
+        `http://3.38.7.193:8080/api/v1/social/request/${friendIndex}`
+      );
 
-            const response = await axios.delete(
-                `http://3.38.7.193:8080/api/v1/social/request/${friendIndex}`
-            );
-
-            if (response.data.httpResponseStatus === 'SUCCESS') {
-                console.log(response);
-                alert('친구 삭제 성공');
-                onClose();
-                fetchPage();
-            } else {
-                alert(response.data.message);
-            }
-        } catch (error) {
-            console.error('친구 삭제 중 오류 발생:', error);
-        }
+      if (response.data.httpResponseStatus === 'SUCCESS') {
+        console.log(response);
+        alert('친구 삭제 성공');
+        onClose();
+        fetchPage();
+      } else {
+        alert(response.data.message);
+      }
+    } catch (error) {
+      console.error('친구 삭제 중 오류 발생:', error);
     }
+  }
 
-    return (
-        <ModalFrame onClick={onClose}>
-            <ModalBox onClick={(e) => e.stopPropagation()}>
-                <DeleteContainer>
-                    <Title>[{name}]님을 친구목록에서 제외할까요?</Title>
-                    <ButtonContainer>
-                        <AcceptButton onClick={() => DeleteFriendHandler(friendIndex)}>예</AcceptButton>
-                        <RejectButton onClick={onClose}>아니오</RejectButton>
-                    </ButtonContainer>
-                </DeleteContainer>
-            </ModalBox>
-        </ModalFrame>
-    );
+  return (
+    <ModalFrame onClick={onClose}>
+      <ModalBox onClick={(e) => e.stopPropagation()}>
+        <DeleteContainer>
+          <Title>[{name}]님을 친구목록에서 제외할까요?</Title>
+          <ButtonContainer>
+            <AcceptButton onClick={DeleteFriendHandler}>예</AcceptButton>
+            <RejectButton onClick={onClose}>아니오</RejectButton>
+          </ButtonContainer>
+        </DeleteContainer>
+      </ModalBox>
+    </ModalFrame>
+  );
 };
 
 DeleteFriendModal.propTypes = {
-    onClose: PropTypes.func.isRequired,
-    friendIndex: PropTypes.number.isRequired,
-    fetchPage: PropTypes.func.isRequired,
-    name: PropTypes.string.isRequired
+  onClose: PropTypes.func.isRequired,
+  friendIndex: PropTypes.number.isRequired,
+  fetchPage: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  userIndex: PropTypes.number.isRequired,
+  friendUserIndex: PropTypes.number.isRequired,
 };
 
 export default DeleteFriendModal;
