@@ -38,7 +38,10 @@ export default function StudyHome({ onIndexChange }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [editedStudyName, setEditedStudyName] = useState('');
   const [editedStudyMemo, setEditedStudyMemo] = useState('');
-  const isLeader = studyData && studyData[currentIndex]?.home?.projectTabResponseDto?.projectInMembers[0]?.status === 'Leader';
+  // const isLeader =
+  //   studyData &&
+  //   studyData[currentIndex]?.home?.projectTabResponseDto?.projectInMembers[0]
+  //     ?.status === 'Leader';
 
   const handleEditModalSave = (newStudyName, newStudyMemo) => {
     setEditedStudyName(newStudyName);
@@ -60,12 +63,12 @@ export default function StudyHome({ onIndexChange }) {
   };
 
   const setModalOpen = () => {
-    if (isLeader) {
-      setModalIsOpen(true);
-    } else {
-      alert('리더만 수정할 수 있습니다.');
-    }
-  }
+    // if (isLeader) {
+    //   setModalIsOpen(true);
+    // } else {
+    //   alert('리더만 수정할 수 있습니다.');
+    // }
+  };
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -136,7 +139,7 @@ export default function StudyHome({ onIndexChange }) {
                     onClick={setModalOpen}
                     style={{ width: '12px', height: '12px', cursor: 'pointer' }}
                   />
-                  {modalIsOpen &&
+                  {modalIsOpen && (
                     <Modal
                       isOpen={true}
                       onRequestClose={() => setModalIsOpen(false)}
@@ -146,10 +149,9 @@ export default function StudyHome({ onIndexChange }) {
                         modalIsOpen={modalIsOpen}
                         setModalIsOpen={setModalIsOpen}
                         currentIndex={currentIndex}
-
                       />
                     </Modal>
-                  }
+                  )}
                 </EditBox>
               </StudyTitle>
               <SubText>
@@ -198,6 +200,5 @@ const customModalStyles = {
     backgroundColor: 'white',
     justifyContent: 'center',
     overflow: 'hidden',
-
   },
 };

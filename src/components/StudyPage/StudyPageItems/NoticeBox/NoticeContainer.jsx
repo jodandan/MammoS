@@ -2,7 +2,12 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import styled from 'styled-components';
-import { Container, Title, NoticeList, NoticeItem } from './NoticeContainerCss.jsx'
+import {
+  Container,
+  Title,
+  NoticeList,
+  NoticeItem,
+} from './NoticeContainerCss.jsx';
 export default function NoticeContainer({ currentIndex }) {
   const [studyData, setStudyData] = useState(null);
 
@@ -10,13 +15,16 @@ export default function NoticeContainer({ currentIndex }) {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://3.38.7.193:8080/api/v1/study', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await axios.get(
+          'http://3.38.7.193:8080/api/v1/study',
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
-        setStudyData(response.data.responseData.content[0]);
+        setStudyData(response.data.responseData);
       } catch (error) {
         console.error('Error fetching study information:', error);
       }
@@ -27,19 +35,17 @@ export default function NoticeContainer({ currentIndex }) {
   return (
     <Container>
       <Title>Notice</Title>
-      {studyData && studyData.post && (
+      {studyData && studyData[currentIndex].home.notices && (
         <NoticeList>
-          {studyData.post.promotions.map((promotion) => (
-            <NoticeItem key={promotion.idx}>
-              <Text>
-                {promotion.title}
-              </Text>
+          {studyData[currentIndex].home.notices.map((notice) => (
+            <NoticeItem key={notice.idx}>
+              <Text>{notice.title}</Text>
             </NoticeItem>
           ))}
         </NoticeList>
       )}
     </Container>
-  )
+  );
 }
 
 export const Text = styled.div`
@@ -51,7 +57,6 @@ export const Text = styled.div`
   line-height: normal;
   letter-spacing: -0.32px;
 `;
-
 
 NoticeContainer.propTypes = {
   currentIndex: PropTypes.number.isRequired,
