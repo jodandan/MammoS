@@ -64,7 +64,7 @@ export default function StudyHome({ onIndexChange }) {
 
   const setModalOpen = () => {
     // if (isLeader) {
-    //   setModalIsOpen(true);
+    setModalIsOpen(true);
     // } else {
     //   alert('리더만 수정할 수 있습니다.');
     // }

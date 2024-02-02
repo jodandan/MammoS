@@ -46,7 +46,6 @@ export default function StudyInfoPopup({ setModalIsOpen, currentIndex }) {
     setNewMemo(e.target.value);
   };
 
-
   useEffect(() => {
     Modal.setAppElement('#root');
   }, []);
@@ -74,20 +73,22 @@ export default function StudyInfoPopup({ setModalIsOpen, currentIndex }) {
   const handleApiCall = async () => {
     try {
       const token = localStorage.getItem('token');
+
       const response = await axios.patch(
-        `http://3.38.7.193:8080/api/v1/study?userStudyIdx=${studyData[currentIndex].userStudyIndex}`,
+        `http://3.38.7.193:8080/api/v1/study/${studyData[currentIndex].userStudyIndex}`,
         {
-          newName,
-          newMemo,
+          newName: newName,
+          newMemo: newMemo,
           isComplete: isPublic,
         },
         {
           headers: {
-            Authorization: {token},
+            Authorization: `Bearer ${token}`,
           },
         }
       );
       alert('변경이 완료되었습니다.');
+      modalClose();
     } catch (error) {
       console.error('변경 실패:', error);
     }
@@ -103,16 +104,18 @@ export default function StudyInfoPopup({ setModalIsOpen, currentIndex }) {
         <NameContainer>
           <Text>스터디이름</Text>
           <NameInput
-            placeholder='변경하실 이름을 입력해주세요'
+            placeholder="변경하실 이름을 입력해주세요"
             value={newName}
-            onChange={handleNameChange} />
+            onChange={handleNameChange}
+          />
         </NameContainer>
         <MemoContainer>
           <MemoText>스터디메모</MemoText>
           <MemoInput
-            placeholder='변경하실 메모를 입력해주세요'
+            placeholder="변경하실 메모를 입력해주세요"
             value={newMemo}
-            onChange={handleMemoChange} />
+            onChange={handleMemoChange}
+          />
         </MemoContainer>
         <LastContainer>
           <Text>스터디 완수 여부</Text>
@@ -124,7 +127,7 @@ export default function StudyInfoPopup({ setModalIsOpen, currentIndex }) {
             {!isPublic && <OnOff className="off"></OnOff>}
             <Switch isOn={isPublic} />
           </SwitchFrame>
-          {secondmodalIsOpen &&
+          {secondmodalIsOpen && (
             <Modal
               isOpen={true}
               onRequestClose={() => setSecondModalIsOpen(false)}
@@ -137,7 +140,7 @@ export default function StudyInfoPopup({ setModalIsOpen, currentIndex }) {
                 setIsPublic={setIsPublic}
               />
             </Modal>
-          }
+          )}
         </LastContainer>
       </ContainerBox>
       <ButtonBox>
@@ -145,7 +148,7 @@ export default function StudyInfoPopup({ setModalIsOpen, currentIndex }) {
         <CancelButton onClick={modalClose}>취소</CancelButton>
       </ButtonBox>
     </Box>
-  )
+  );
 }
 
 StudyInfoPopup.propTypes = {
@@ -191,6 +194,5 @@ const customModalStyles = {
     backgroundColor: 'white',
     justifyContent: 'center',
     overflow: 'hidden',
-
   },
 };
