@@ -1,9 +1,12 @@
 import styled from 'styled-components';
 
 export const PeopleListBox = styled.div`
-    width: 80%;
-    //border: 1px solid red;
-    padding-left: 20px;
+    width: 95%;
+    border-radius: 15px;
+    border: 2px solid rgba(167, 207, 65, 0.30);
+    background: #FFF;
+    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    height: 50%;
 `;
 
 export const ListTitle = styled.div`
@@ -15,6 +18,7 @@ export const ListTitle = styled.div`
     font-weight: 600;
     line-height: normal;
     letter-spacing: -0.32px;
+    padding: 10px;
     
 `;
 
@@ -22,6 +26,7 @@ export const PeopleList = styled.div`
     width: 100%;
     height: 80%;
     padding-top: 10px;
+    padding-left: 5px;
 
     //border: 1px solid black;
 `;

@@ -7,7 +7,8 @@ export const Container = styled.div`
     background-color: transparent;
     stroke-width: 4px;
     border-radius: 20px;
-    border: 4px solid #A7CF41;
+    background: #FFF;
+    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
     display: flex;
     flex-direction: column;
 `;

@@ -16,6 +16,7 @@ export default function MemberContainer({ currentIndex }) {
           },
         });
         setStudyData(response.data.responseData);
+        console.log(studyData[currentIndex].home.projectTabResponseDto.projectInMembers.status)
         //console.log('현재 인덱스:', currentIndex);
       } catch (error) {
         console.error('Error fetching study information:', error);

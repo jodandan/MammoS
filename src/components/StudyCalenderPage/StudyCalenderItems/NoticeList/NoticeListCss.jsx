@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-    width: 85%;
+    width: 95%;
     height: 60%;
     flex-shrink: 0;
-    background-color: transparent;
-    stroke-width: 4px;
-    border-radius: 20px;
+    border-radius: 15px;
+    border: 2px solid rgba(167, 207, 65, 0.30);
+    background: #FFF;
+    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
     white-space: pre-wrap;
     //border: 1px solid red;
 `
@@ -43,6 +44,7 @@ export const NoticeItem = styled.div`
     border-radius: 10px;
     justify-content: space-between;
     cursor: pointer;
+    margin-right: 20px;
 `;
 
 export const TextBox = styled.div`

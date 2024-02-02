@@ -16,12 +16,16 @@ import {
   CheckContainer,
   TitleBox,
   MemberListBox,
+  EditBox,
 } from './StudySocialCss.jsx';
 import MemberList from './MemberList/MemberList.jsx';
 import home from '../assets/Home.png';
 import Calender from '../assets/Calender.png';
 import List from '../assets/List.png';
+import Edit from '../assets/Edit.png';
 import { ReactComponent as ClickUser } from '../assets/ClickUser.svg';
+import { ReactComponent as Notice } from '../assets/Notice.svg';
+
 export default function StudySocial({ currentIndex }) {
   const [studyData, setStudyData] = useState(null);
   const navigate = useNavigate();
@@ -71,7 +75,7 @@ export default function StudySocial({ currentIndex }) {
             <ClickUser onClick={() => navigate('/studySocial')} />
           </CheckContainer>
           <Container>
-            <Img src={List} alt="리스트" />
+            <Notice />
           </Container>
         </SideMenuBar>
         <ContainerBox>
@@ -81,10 +85,17 @@ export default function StudySocial({ currentIndex }) {
                 {(studyData[currentIndex] &&
                   studyData[currentIndex].home.title) ||
                   '없음'}
+                <EditBox>
+                  <img
+                    src={Edit}
+                    alt="수정"
+                    style={{ width: '12px', height: '12px' }}
+                  />
+                </EditBox>
               </StudyTitle>
               <SubText>
                 {studyData[currentIndex] &&
-                studyData[currentIndex].home.summary !== null
+                  studyData[currentIndex].home.summary !== null
                   ? studyData.home.summary
                   : '없음'}
               </SubText>
@@ -119,7 +130,6 @@ export const Text = styled.div`
   line-height: normal;
   letter-spacing: -0.4px;
   width: 100%;
-  border: 1px solid black;
 `;
 
 export const NameText = styled.div`
@@ -130,12 +140,11 @@ export const NameText = styled.div`
   font-weight: 600;
   line-height: normal;
   letter-spacing: -0.4px;
-  width: 70%;
-  border: 1px solid black;
+  width: 40%;
 `;
 
 export const CollegeText = styled(NameText)`
-  width: 70%;
+  width: 40%;
 `;
 
 export const PositionText = styled(NameText)`

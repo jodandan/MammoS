@@ -46,6 +46,7 @@ export default function MemberList({ projectIndex, currentIndex }) {
                   <TextBox2>{member.id || '없음'}</TextBox2>
                   <TextBox3>{member.universityName}</TextBox3>
                   <TextBox4>{member.majorName}</TextBox4>
+                  <TextBox5>{member.status || '없음'}</TextBox5>
                 </CheckBoxLabel>
               )
             )}
@@ -76,7 +77,8 @@ export const TextBox3 = styled(TextBox)`
   font-weight: 300;
   line-height: normal;
   letter-spacing: -0.2px;
-  width: 55px;
+  width: 40%;
+  text-align: right;
 `;
 
 export const TextBox4 = styled(TextBox)`
@@ -87,8 +89,25 @@ export const TextBox4 = styled(TextBox)`
   font-weight: 300;
   line-height: normal;
   letter-spacing: -0.2px;
-  width: 50px;
+  width: 15%;
+  text-align: left;
+  padding-left: 5px;
 `;
+
+export const TextBox5 = styled(TextBox)`
+  color: #959595;
+  font-family: 'PretendardBold';
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  letter-spacing: -0.2px;
+  width: 30px;
+  text-align: right;
+`;
+
+
+
 MemberList.propTypes = {
   currentIndex: PropTypes.number.isRequired,
   projectIndex: PropTypes.number.isRequired,

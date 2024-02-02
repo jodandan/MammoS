@@ -153,10 +153,6 @@ export const Title = styled.div`
     letter-spacing: -0.32px;
 `;
 
-export const EditBox = styled.div`
-    width: 5%;
-`;
-
 export const InputBox = styled.div`
     width: 376px;
     height: 50px;
@@ -170,7 +166,6 @@ export const LeftBox = styled.div`
     height: 60%;
     display: flex;
     flex-direction: column;
-    border: 1px solid black;
 `;
 
 export const RightBox = styled.div`
@@ -178,24 +173,22 @@ export const RightBox = styled.div`
     height: 60%;
     display: flex;
     flex-direction: column;
-    border: 1px solid blue;
     margin: 0 auto;
     padding-top: 30px;
 `;
 
 export const TitleBox = styled.div`
-    width: 100%;
+    width: 80%;
     height: 30px;
     display: flex;
     flex-direction: row;
-    border: 1px solid blue;
-    padding-top: 20px;
+    padding-top: 20px;  
+    padding-left: 100px;
 `;
 
 export const MemberListBox = styled.div`
     width: 100%;
     height: 20%;
-    border: 1px solid red;
     padding-top: 30px;
     overflow-y: auto; 
     &::-webkit-scrollbar {
@@ -213,6 +206,14 @@ export const MemberListBox = styled.div`
   &::-webkit-scrollbar-track {
     background-color: transparent;
   }
+`;
+
+export const EditBox = styled.div`
+    width: 5%;
+    height: 1%;
+    position: absolute;
+    top: 5%;
+    left: 38%;
 `;
 
 
