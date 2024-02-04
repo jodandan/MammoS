@@ -11,6 +11,7 @@ import SocialPage from './pages/SocialPage';
 import MyPage from './pages/MyPage';
 import './App.css';
 import ChallengePage from './pages/ChallengePage';
+import PostPage from './pages/PostPage';
 
 function App() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -25,7 +26,8 @@ function App() {
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/planner" element={<PlannerPage />} />
-        <Route path="/studyHome"
+        <Route
+          path="/studyHome"
           element={
             <StudyHomePage
               currentIndex={currentIndex}
@@ -33,7 +35,8 @@ function App() {
             />
           }
         />
-        <Route path="/studyCalender"
+        <Route
+          path="/studyCalender"
           element={
             <StudyCalenderPage
               currentIndex={currentIndex} // 전달
@@ -41,7 +44,8 @@ function App() {
             />
           }
         />
-        <Route path="/studySocial"
+        <Route
+          path="/studySocial"
           element={
             <StudySocialPage
               currentIndex={currentIndex}
@@ -49,9 +53,10 @@ function App() {
             />
           }
         />
-        <Route path="/Challenge" element={<ChallengePage/>} />
+        <Route path="/Challenge" element={<ChallengePage />} />
         <Route path="/info" element={<MyPage />} />
         <Route path="/social" element={<SocialPage />} />
+        <Route path="/post" element={<PostPage />} />
       </Routes>
     </div>
   );
