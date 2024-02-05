@@ -110,7 +110,7 @@ export default function StudyCalender({ currentIndex, onIndexChange }) {
               </StudyTitle>
               <SubText>
                 {studyData[currentIndex] &&
-                  studyData[currentIndex].home.summary !== null
+                studyData[currentIndex].home.summary !== null
                   ? studyData.home.summary
                   : '없음'}
               </SubText>
@@ -125,7 +125,7 @@ export default function StudyCalender({ currentIndex, onIndexChange }) {
                 {studyData && studyData[currentIndex] && (
                   <FirstLine>
                     <LeftSide>
-                      {(studyData[currentIndex] &&
+                      {(studyData[currentIndex].project[projectIndex] &&
                         studyData[currentIndex].project[projectIndex]
                           .projectTitle) ||
                         '없음'}
@@ -142,7 +142,7 @@ export default function StudyCalender({ currentIndex, onIndexChange }) {
                 <NoticeBox>
                   {studyData && studyData[currentIndex] && (
                     <InputBox>
-                      {studyData[currentIndex] &&
+                      {studyData[currentIndex].project[projectIndex] &&
                         studyData[currentIndex].project[projectIndex]
                           .studySummary}
                     </InputBox>
@@ -152,18 +152,20 @@ export default function StudyCalender({ currentIndex, onIndexChange }) {
                   {studyData && studyData[currentIndex] && (
                     <>
                       <DataBox>
-                        {(studyData[currentIndex] &&
+                        {(studyData[currentIndex].project[projectIndex] &&
                           studyData[currentIndex].project[projectIndex]
                             .startDate) ||
                           '미정'}{' '}
                         ~{' '}
-                        {(studyData[currentIndex] &&
-                          studyData[currentIndex].project[projectIndex].endDate) ||
+                        {(studyData[currentIndex].project[projectIndex] &&
+                          studyData[currentIndex].project[projectIndex]
+                            .endDate) ||
                           '미정'}
                       </DataBox>
                       <LocationBox>
-                        {(studyData[currentIndex] &&
-                          studyData[currentIndex].project[projectIndex].place) ||
+                        {(studyData[currentIndex].project[projectIndex] &&
+                          studyData[currentIndex].project[projectIndex]
+                            .place) ||
                           '없음'}
                       </LocationBox>
                     </>

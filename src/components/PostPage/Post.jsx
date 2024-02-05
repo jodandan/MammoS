@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 import PageFrame from '../PageFrame/PageFrame';
+import PropTypes from 'prop-types';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const PageContainer = styled.div`
   display: flex;
@@ -63,6 +67,11 @@ const ImgBox = styled.div`
   display: flex;
   margin-top: 2vw;
   height: 15vw;
+
+  &.center {
+    justify-content: center;
+  }
+
   white-space: nowrap; // 가로 스크롤의 핵심
   overflow-x: auto; // 가로 스크롤의 핵심
 
@@ -85,11 +94,19 @@ const ImgBox = styled.div`
 `;
 
 const Content = styled.div`
+  font-family: 'PretendardSemiBold';
   margin-top: 2vw;
   border: 1px solid rgba(0, 0, 0, 0.2);
   box-shadow: 0px 3px 5px 0px rgba(160, 160, 160, 0.5);
   height: 18vw;
   padding: 1vw;
+
+  overflow: auto; // 가로 스크롤의 핵심
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  출처: https://wooaoe.tistory.com/49 [개발개발 울었다:티스토리]
 `;
 
 const Img = styled.img`
@@ -120,29 +137,98 @@ const Button = styled.button`
   background-color: white;
 `;
 
+function makeImages(images) {
+  let result = [];
+
+  images.forEach((image) => {
+    result.push(<Img src={image} />);
+  });
+
+  return result;
+}
+
 export default function Post() {
+  const navigate = useNavigate();
+  const { postIdx, userStudyIdx } = useParams();
+
+  const [post, setPost] = useState({
+    postIsNotice: true,
+    postWriterName: '',
+    postContents: '',
+    postTitle: '',
+    postImage: '',
+    postCreatedAt: '',
+    postUpdatedAt: '',
+  });
+
+  const [images, setImages] = useState([]);
+
+  const [isLeader, setIsLeader] = useState(false);
+
+  function getDate() {
+    let dateString;
+    if (post.postUpdatedAt) {
+      dateString = post.postUpdatedAt;
+    } else {
+      dateString = post.postCreatedAt;
+    }
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+
+  useEffect(() => {
+    const fetchPage = async () => {
+      try {
+        // 토큰 가져오기
+        const token = localStorage.getItem('token');
+        // 토큰 설정
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        // 정보 받아오기
+        const response = await axios.get(
+          'http://3.38.7.193:8080/api/v1/post/' + postIdx
+        );
+        // 정보 저장
+        if (response.data.httpResponseStatus === 'SUCCESS') {
+          setPost(response.data.responseData.post);
+          setImages(response.data.responseData.images);
+          setIsLeader(response.data.responseData.leader);
+          console.log(response.data.responseData);
+        } else {
+          console.log(response);
+        }
+      } catch (error) {
+        console.error('Error fetching study information:', error);
+      }
+    };
+
+    fetchPage();
+  }, []);
+
   return (
     <PageFrame>
       <PageContainer>
         <PostContainer>
           <Top>
-            <PageTitle>공지사항</PageTitle>
-            <PostInfo>김경규&emsp;2024-02-04</PostInfo>
+            {post.postIsNotice && <PageTitle>공지사항</PageTitle>}
+            {!post.postIsNotice && <PageTitle>홍보 게시판</PageTitle>}
+            <PostInfo>
+              {post.postWriterName}&emsp;{getDate()}
+            </PostInfo>
           </Top>
           <Bottom>
-            <Title>맘모스입니다.</Title>
+            <Title>{post.postTitle}</Title>
             <TitleLine />
-            <ImgBox>
-              <Img />
-              <Img />
-              <Img />
-            </ImgBox>
-            <Content>
-              맘모스입니다.맘모스입니다.맘모스입니다.맘모스입니다.맘모스입니다.맘모스입니다.맘모스입니다.맘모스입니다.맘모스입니다.맘모스입니다.맘모스입니다.맘모스입니다.맘모스입니다.맘모스입니다.맘모스입니다.맘모스입니다.
-            </Content>
+            {images.length !== 0 && images.length < 3 && (
+              <ImgBox className="center">{makeImages(images)}</ImgBox>
+            )}
+            {images.length >= 3 && <ImgBox>{makeImages(images)}</ImgBox>}
+            <Content>{post.postContents}</Content>
             <ButtonBox>
-              <Button>돌아가기</Button>
-              <Button>수정</Button>
+              {isLeader && <Button>수정</Button>}
+              <Button onClick={() => navigate(-1)}>돌아가기</Button>
             </ButtonBox>
           </Bottom>
         </PostContainer>
@@ -150,3 +236,7 @@ export default function Post() {
     </PageFrame>
   );
 }
+
+Post.propTypes = {
+  postIdx: PropTypes.number.isRequired,
+};

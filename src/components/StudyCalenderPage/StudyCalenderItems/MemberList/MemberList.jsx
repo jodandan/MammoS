@@ -23,7 +23,7 @@ export default function MemberList({ projectIndex, currentIndex }) {
             },
           }
         );
-
+        console.log(response);
         setStudyData(response.data.responseData);
       } catch (error) {
         console.error('Error fetching study information:', error);
@@ -37,7 +37,7 @@ export default function MemberList({ projectIndex, currentIndex }) {
       <ListTitle>참여 인원</ListTitle>
       {studyData && (
         <PeopleList>
-          {studyData[currentIndex] &&
+          {studyData[currentIndex].project[projectIndex] &&
             studyData[currentIndex].project[projectIndex].projectInMembers.map(
               (member) => (
                 <CheckBoxLabel key={member.id}>
@@ -105,8 +105,6 @@ export const TextBox5 = styled(TextBox)`
   width: 30px;
   text-align: right;
 `;
-
-
 
 MemberList.propTypes = {
   currentIndex: PropTypes.number.isRequired,
