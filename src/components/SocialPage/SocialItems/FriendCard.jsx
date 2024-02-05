@@ -6,6 +6,7 @@ import DeleteButtonImg from '../../assets/DeleteButton.png';
 import NonFixButtonImg from '../../assets/NonFixButton.png';
 import PlannerModal from './PlannerModal';
 import DeleteFriendModal from './DeleteFriendModal';
+import axios from 'axios';
 
 const FriendBox = styled.div`
   display: flex;
@@ -200,9 +201,28 @@ const FriendCard = ({
     return `${totalTimeHour}:${totalTimeMin}`;
   };
 
-  function FixButtonHandler() {
-    console.log('삭제 팝업');
+  async function UpdateIsFixedHandler(friendIndex) {
+    try {
+      const token = localStorage.getItem('token');
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+      // 친구 추가 요청
+      const response = await axios.patch(
+          `http://3.38.7.193:8080/api/v1/social/fix/${friendIndex}`
+      );
+      console.log('Received Requests:', response.data);
+
+      if (response.data.httpResponseStatus === 'SUCCESS') {
+        fetchPage();
+      } else {
+        alert(response.data.message);
+      }
+    } catch (error) {
+      console.error('친구 고정 중 오류 발생:', error);
+      alert('서버 송신 오류');
+    }
   }
+
   function deleteClickHandler() {
     setIsDeleteModalOpen(true); // 모달 열기
   }
@@ -238,7 +258,7 @@ const FriendCard = ({
       <FriendSettingBox>
         <ButtonRow>
           <FixButton
-            onClick={FixButtonHandler}
+            onClick={() => UpdateIsFixedHandler(friendIndex)}
             src={isFixed ? NonFixButtonImg : FixButtonImg}
           />
           {userIndex !== friendUserIndex && (

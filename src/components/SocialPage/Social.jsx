@@ -20,12 +20,7 @@ const Bottom = styled.div`
 `;
 
 export default function Social() {
-  const [ranking, setRanking] = useState({
-    pfp: '',
-    name: '',
-    id: '',
-    weeklyStudyTime: 0,
-  });
+  const [ranking, setRanking] = useState('');
 
   const [friendRequestNum, setFriendRequestNum] = useState(0);
 
@@ -64,10 +59,7 @@ export default function Social() {
     <PageFrame>
       <Top>
         <RankingSection
-          pfp={ranking.pfp}
-          id={ranking.id}
-          name={ranking.name}
-          weeklyStudyTime={ranking.weeklyStudyTime}
+            ranking={ranking}
         />
       </Top>
       <Bottom>

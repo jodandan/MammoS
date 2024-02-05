@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import {css} from '@emotion/react';
-
+import PropTypes from 'prop-types';
 const RankingCardBox = styled.div`
     align-items: center;
 `;
@@ -57,21 +57,33 @@ const FontRow = styled.div`
 `;
 
 
-const RankingCard = () => {
+const RankingCard = ({
+    pfp,
+    id,
+    name,
+    weeklyStudyTime
+}) => {
     return (
         <RankingCardBox>
             <RankCard>
                 <RankBadge>1</RankBadge>
             </RankCard>
             <FontRow className="user_info">
-                <RankingCardFont>김충영</RankingCardFont>
-                <RankingCardFont>chungyomi</RankingCardFont>
+                <RankingCardFont>{name}</RankingCardFont>
+                <RankingCardFont>{id}</RankingCardFont>
             </FontRow>
             <FontRow>
-                <RankingCardFont>WeekTime | 10:25</RankingCardFont>
+                <RankingCardFont>WeekTime | {weeklyStudyTime}</RankingCardFont>
             </FontRow>
         </RankingCardBox>
     );
+};
+
+RankingCard.propTypes = {
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    weeklyStudyTime: PropTypes.number.isRequired,
+    pfp: PropTypes.string.isRequired
 };
 
 export default RankingCard;
