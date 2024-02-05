@@ -56,7 +56,7 @@ function App() {
         <Route path="/Challenge" element={<ChallengePage />} />
         <Route path="/info" element={<MyPage />} />
         <Route path="/social" element={<SocialPage />} />
-        <Route path="/post" element={<PostPage />} />
+        <Route path="/post/:postIdx/:userStudyIdx" element={<PostPage />} />
       </Routes>
     </div>
   );

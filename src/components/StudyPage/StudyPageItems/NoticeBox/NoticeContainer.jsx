@@ -8,8 +8,11 @@ import {
   NoticeList,
   NoticeItem,
 } from './NoticeContainerCss.jsx';
+import Post from '../../../PostPage/Post.jsx';
+import { useNavigate } from 'react-router-dom';
 export default function NoticeContainer({ currentIndex }) {
   const [studyData, setStudyData] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,7 +26,6 @@ export default function NoticeContainer({ currentIndex }) {
             },
           }
         );
-
         setStudyData(response.data.responseData);
       } catch (error) {
         console.error('Error fetching study information:', error);
@@ -32,13 +34,26 @@ export default function NoticeContainer({ currentIndex }) {
 
     fetchData();
   }, []);
+
+  function postNavigateHandler(postIdx, userStudyIdx) {
+    navigate(`/post/${postIdx}/${userStudyIdx}`);
+  }
+
   return (
     <Container>
       <Title>Notice</Title>
       {studyData && studyData[currentIndex].home.notices && (
         <NoticeList>
           {studyData[currentIndex].home.notices.map((notice) => (
-            <NoticeItem key={notice.idx}>
+            <NoticeItem
+              key={notice.idx}
+              onClick={() =>
+                postNavigateHandler(
+                  notice.idx,
+                  studyData[currentIndex].userStudyIndex
+                )
+              }
+            >
               <Text>{notice.title}</Text>
             </NoticeItem>
           ))}
