@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import FriendResponseButton from './FriendResponseButton';
+import {Icon} from '@iconify/react';
 
 const ModalFrame = styled.div`
   position: fixed;
@@ -33,6 +33,8 @@ const ModalBox = styled.div`
 
 const TitleContainer = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
   padding-bottom: 25px;
   padding-top: 25px;
 `;
@@ -45,47 +47,6 @@ const ResponseContainer = styled.div`
   justify-content: space-between;
 `;
 
-const ResponseFont = styled.p`
-  &.title {
-    font-size: 23px;
-    font-weight: bold;
-    margin-left: 4vw;
-  }
-  
-  &.font1 {
-    font-size: 15px;
-    font-weight: bold;
-    text-align: center;
-    
-  }
-  &.font2 {
-    font-size: 10px;
-    text-align: center;
-  }
-`;
-
-
-const ResponseButton = styled.button`
-  &.accept {
-    padding: 10px;
-
-  }
-  &.reject {
-    padding: 10px;
-  }
-`;
-
-
-const CountBadge = styled.div`
-  background-color: red;
-  color: white;
-  text-align: center;
-  border-radius: 50%;
-  width: 1.8vw;
-  height: 1.8vw;
-  margin-left: 15px; 
-  font-size: 20px;
-`;
 
 const RequestFriendCard = styled.div`
   display: flex;
@@ -100,86 +61,275 @@ const RequestFriendCard = styled.div`
   background-color: white;
 `;
 
+const Info = styled.p`
+  font-family: 'PretendardSemiBold';
+  &.bold {
+    font-size: 17px;
+  }
+
+  &.light {
+    margin-left: 10px;
+    font-size: 13px;
+    color: #909090;
+  }
+`;
+
+const InfoBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const TabButton = styled.button`
+  display: flex;
+  font-family: 'PretendardSemiBold';
+  background: none; 
+  border: none; 
+  outline: none;
+  margin: 10px;
+  cursor: pointer; 
+  font-size: 25px; 
+  color: #B3B3B3;
+  &:hover {
+    color: #000000; 
+  }
+  // 현재 활성화된 탭 스타일
+  &.active {
+    color: #000000; // 활성 탭의 글자색 변경
+  }
+`;
+
+const IconBox = styled.div`
+  
+  &.accept { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1px;
+    border: 2px solid #A7CF41;
+    border-radius: 5px;
+    height: 15px;
+    width: 15px;
+    cursor: pointer;
+    margin-left: 10px;
+    
+  }
+
+  &.reject {  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1px;
+    border: 2px solid #FF1C1C;
+    border-radius: 5px;
+    height: 15px;
+    width: 15px;
+    cursor: pointer;
+    margin-left: 15px;
+  }
+`;
 
 
-const AddFriendModal = ({
-    onClose,
-    onAddFriend,
-    friendRequestNum,
-    id,
-    name,
-    universityName,
-    majorName
-}) => {
-    const [userIdx, setUserIdx] = useState('');
-    const [friendIdx, setFriendId] = useState('');
-    const [friendIsFixed, setFriendIsFixed] = useState(true);
-    const [friendStatus, setFriendStatus] = useState(1);
 
-    const handleSubmit = async () => {
+const FriendResponseModal = ({onClose, fetchPage}) => {
+    const [receivedRequests, setReceivedRequests] = useState([]);
+    const [sentRequests, setSentRequests] = useState([]);
+    const [currentTab, setCurrentTab] = useState('received'); // 'received' 또는 'sent'
+
+
+    // 탭 전환 함수
+    async function TabChangeHandler(tabName) {
+        setCurrentTab(tabName);
+        if (tabName === 'received') {
+            await fetchReceivedRequests();
+        } else if (tabName === 'sent') {
+            await fetchSentRequests();
+        }
+    }
+
+
+    async function fetchReceivedRequests() {
         try {
             const token = localStorage.getItem('token');
             axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
-            // 친구 요청 받기
-            const response = await axios.patch('http://3.38.7.193:8080/api/v1/social/request', {
-                userIdx: userIdx,
-                friendIdx: friendIdx
-            });
+            const response = await axios.get(
+                'http://3.38.7.193:8080/api/v1/social/receive'
+            );
+            console.log('Received Requests:', response.data);
 
-            // 응답 처리
             if (response.data.httpResponseStatus === 'SUCCESS') {
-                alert('친구 요청이 성공적으로 수락되었습니다.');
-                onAddFriend({
-                    friendIndex: response.data.responseData.friendIndex,
-                    frinedIsFixed: response.data.responseData.friendIsFixed,
-                    friendStatus: response.data.responseData.friendStatus
-                });
-                onClose(); // 모달 닫기
+                setReceivedRequests(response.data.responseData);
+            } else {
+                alert(response.data.message);
+            }
+        } catch (error) {
+            console.error('보낸 친구 요청 정보 받아오기 오류 발생:', error);
+            alert('에러');
+        }
+    }
+
+    async function fetchSentRequests() {
+        try {
+            const token = localStorage.getItem('token');
+            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+            const response = await axios.get(
+                'http://3.38.7.193:8080/api/v1/social/send'
+            );
+            console.log('Received Requests:', response.data);
+
+            if (response.data.httpResponseStatus === 'SUCCESS') {
+                setSentRequests(response.data.responseData);
+            } else {
+                alert(response.data.message);
+            }
+        } catch (error) {
+            console.error('보낸 친구 요청 정보 받아오기 오류 발생:', error);
+            alert('에러');
+        }
+    }
+
+    async function AcceptRequestHandler(friendIndex) {
+        try {
+            const token = localStorage.getItem('token');
+            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+            // 친구 추가 요청
+            const response = await axios.patch(
+                `http://3.38.7.193:8080/api/v1/social/request/${friendIndex}`
+            );
+            console.log('Received Requests:', response.data);
+
+            if (response.data.httpResponseStatus === 'SUCCESS') {
+                alert('친구 요청 수락 성공');
+                fetchReceivedRequests();
+                fetchPage();
             } else {
                 alert(response.data.message);
             }
         } catch (error) {
             console.error('친구 요청 수락 중 오류 발생:', error);
-            alert('친구 요청 수락 중 오류가 발생했습니다.');
+            alert('서버 송신 오류');
         }
-    };
+    }
+
+    async function RejectRequestHandler(input, friendIndex) {
+        try {
+            const token = localStorage.getItem('token');
+            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+            // 친구 추가 요청
+            const response = await axios.delete(
+                `http://3.38.7.193:8080/api/v1/social/request/${friendIndex}`
+            );
+            console.log('Received Requests:', response.data);
+
+            if (response.data.httpResponseStatus === 'SUCCESS') {
+                alert('친구 거절 성공');
+                if(input === 'sent'){
+                    fetchSentRequests();
+                }
+                else{
+                    fetchReceivedRequests();
+                }
+
+            } else {
+                alert(response.data.message);
+            }
+        } catch (error) {
+            console.error('친구 거절 중 오류 발생:', error);
+            alert('서버 송신 오류');
+        }
+    }
 
     useEffect(() => {
-        console.log(friendRequestNum);
+        fetchReceivedRequests();
+        fetchSentRequests();
     }, []);
+
+
     return (
         <ModalFrame onClick={onClose}>
             <ModalBox onClick={(e)=> e.stopPropagation()}>
                 <TitleContainer>
-                    <ResponseFont className="title">받은 친구 요청</ResponseFont>
-                    {friendRequestNum !== 0 && <CountBadge>{friendRequestNum}</CountBadge>}
+                    <TabButton
+                        onClick={() => TabChangeHandler('received')}
+                        className={currentTab === 'received' ? 'active' : ''}
+                    >
+                        받은 친구 요청
+                    </TabButton>
+                    <TabButton
+                        onClick={() => TabChangeHandler('sent')}
+                        className={currentTab === 'sent' ? 'active' : ''}
+                    >
+                        보낸 친구 요청
+                    </TabButton>
                 </TitleContainer>
                 <ResponseContainer>
-                    <RequestFriendCard>
-                        <ResponseFont className="font1">{id}chungyomi</ResponseFont>
-                        <ResponseFont className="font1">{name}김충영</ResponseFont>
-                        <ResponseFont className="font2">{universityName}가천대학교</ResponseFont>
-                        <ResponseFont className="font2">{majorName}소프트웨어학과</ResponseFont>
-                        <ResponseButton className="accept"></ResponseButton>
-                        <ResponseButton className="reject"></ResponseButton>
-                    </RequestFriendCard>
-                    <RequestFriendCard></RequestFriendCard>
-                    <RequestFriendCard></RequestFriendCard>
+                    {currentTab === 'received' && receivedRequests.map((request) => (
+                        <RequestFriendCard key={request.friendIndex}>
+                            <InfoBox>
+                                <Info className="bold">{request.id} | {request.name}</Info>
+                                <Info className="light">
+                                    {request.universityName} {request.majorName}
+                                </Info>
+                                <IconBox className="accept" onClick={() => AcceptRequestHandler(request.friendIndex)}>
+                                    <Icon
+                                        style={{
+                                            height: '15px',
+                                            width: '15px',
+                                            color: '#B9D967',
+                                            cursor: 'pointer',
+                                        }}
+                                        icon="fluent-mdl2:accept-medium"
+                                    />
+                                </IconBox>
+                                <IconBox className="reject" onClick={() => RejectRequestHandler('recieve',request.friendIndex)}>
+                                    <Icon
+                                        style={{
+                                            height: '15px',
+                                            width: '15px',
+                                            color: '#FF1C1C',
+                                            cursor: 'pointer',
+                                        }}
+                                        icon="bx:x"
+                                    />
+                                </IconBox>
+                            </InfoBox>
+                        </RequestFriendCard>
+                    ))}
+                    {currentTab === 'sent' && sentRequests.map((request) => (
+                        // 보낸 친구 요청 렌더링 로직
+                        <RequestFriendCard key={request.friendIndex}>
+                            <InfoBox>
+                                <Info className="bold">{request.id} | {request.name}</Info>
+                                <Info className="light">
+                                    {request.universityName} {request.majorName}
+                                </Info>
+                                <IconBox className="reject" onClick={() => RejectRequestHandler('sent',request.friendIndex)}>
+                                    <Icon
+                                        style={{
+                                            height: '15px',
+                                            width: '15px',
+                                            color: '#FF1C1C',
+                                            cursor: 'pointer',
+                                        }}
+                                        icon="bx:x"
+                                    />
+                                </IconBox>
+                            </InfoBox>
+                        </RequestFriendCard>
+                    ))}
                 </ResponseContainer>
             </ModalBox>
         </ModalFrame>
     );
 };
 
-AddFriendModal.propTypes = {
+FriendResponseModal.propTypes = {
     onClose: PropTypes.func.isRequired,
-    onAddFriend: PropTypes.func.isRequired,
-    friendRequestNum: PropTypes.number.isRequired,
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    universityName: PropTypes.string.isRequired,
-    majorName: PropTypes.string.isRequired,
+    fetchPage: PropTypes.func.isRequired
 };
 
-export default AddFriendModal;
+export default FriendResponseModal;

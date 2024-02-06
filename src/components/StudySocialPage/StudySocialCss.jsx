@@ -10,6 +10,16 @@ export const FrameContainer = styled.div`
     justify-content: center;
 `;
 
+export const Box = styled.div`
+    width: 99.5%;
+    height: 40%;
+    border-radius: 15px;
+    border: 2px solid rgba(167, 207, 65, 0.30);
+    background: #FFF;
+    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+`;
+
+
 export const SideMenuBar = styled.div`
     position: absolute;
     top: 50%;
@@ -69,9 +79,12 @@ export const StudyTitle = styled.div`
     font-weight: 700;
     line-height: normal;
     letter-spacing: -0.96px;
-    width: 50%;
+    width: 40vw;
     padding-bottom: 2vh;
     font-family: 'PretendardBold';
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 `;
 
 export const SubText = styled.div`
@@ -209,12 +222,46 @@ export const MemberListBox = styled.div`
 `;
 
 export const EditBox = styled.div`
-    width: 5%;
-    height: 1%;
-    position: absolute;
-    top: 5%;
-    left: 38%;
+    padding-right: 55%;
 `;
 
+export const StudyBox = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: 50%;
+    padding-top: 30px;
+`;
 
+export const SearchBox = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+
+`;
+
+export const SearchList = styled.div`
+    width: 90%;
+    height: 30%;
+    border-radius: 15px;
+    border: 2px solid rgba(167, 207, 65, 0.30);
+    background: #FFF;
+    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+`;
+
+export const JoinBox = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+`;
+
+export const JoinList = styled.div`
+    width: 99%;
+    height: 50%;
+    border-radius: 15px;
+    border: 2px solid rgba(167, 207, 65, 0.30);
+    background: #FFF;
+    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+`;
 

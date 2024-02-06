@@ -70,6 +70,7 @@ export default function StudyInfoPopup({ setModalIsOpen, currentIndex }) {
     fetchData();
   }, [currentIndex]);
 
+  //변경 버튼 로직
   const handleApiCall = async () => {
     try {
       const token = localStorage.getItem('token');
@@ -89,6 +90,7 @@ export default function StudyInfoPopup({ setModalIsOpen, currentIndex }) {
       );
       alert('변경이 완료되었습니다.');
       modalClose();
+      window.location.reload(); // 페이지 새로고침
     } catch (error) {
       console.error('변경 실패:', error);
     }

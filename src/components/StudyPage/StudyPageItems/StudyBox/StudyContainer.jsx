@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import Modal from 'react-modal';
 import Edit from '../../../assets/Edit.png';
 import styled from 'styled-components';
 import axios from 'axios';
@@ -20,10 +21,27 @@ import {
   ListTitle,
   PeopleList,
   CheckBoxLabel,
+  InviteList,
+  FirstBox,
+  CountBox,
 } from './StudyContainerCss';
+
+import StudyRequestList from '../PopupBox/StudyRequestList';
+import StudySummaryEditPopup from '../PopupBox/StudySummaryEditPopup.jsx';
+Modal.setAppElement('#root'); //에러 발생해서 넣은 로직
 
 export default function StudyContainer({ currentIndex }) {
   const [studyData, setStudyData] = useState(null);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [EditModalOpen, setEditModalIsOpen] = useState(false);
+
+  const setModalOpen = () => {
+    setModalIsOpen(true);
+  };
+
+  const setEditModalOpen = () => {
+    setEditModalIsOpen(true);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -48,7 +66,33 @@ export default function StudyContainer({ currentIndex }) {
   }, []);
   return (
     <TotalBox>
-      <BoxTitle>최근스터디</BoxTitle>
+      <FirstBox>
+        <BoxTitle>최근스터디</BoxTitle>
+        <div style={{ display: 'flex', flexDirection: 'row' }}>
+          <CountBox>1</CountBox>
+          <InviteList
+            onClick={setModalOpen}
+            style={{
+              cursor: 'pointer',
+            }}
+          >
+            요청목록
+          </InviteList>
+          {modalIsOpen && (
+            <Modal
+              isOpen={true}
+              onRequestClose={() => setModalIsOpen(false)}
+              style={customModalStyles}
+            >
+              <StudyRequestList
+                modalIsOpen={modalIsOpen}
+                setModalIsOpen={setModalIsOpen}
+                currentIndex={currentIndex}
+              />
+            </Modal>
+          )}
+        </div>
+      </FirstBox>
       <Container>
         {studyData && studyData[currentIndex]?.home && (
           <FirstLine>
@@ -83,9 +127,23 @@ export default function StudyContainer({ currentIndex }) {
                 <img
                   src={Edit}
                   alt="수정"
-                  style={{ width: '12px', height: '12px' }}
+                  onClick={setEditModalOpen}
+                  style={{ width: '12px', height: '12px', cursor: 'pointer' }}
                 />
               </EditBox>
+              {EditModalOpen && (
+                <Modal
+                  isOpen={true}
+                  onRequestClose={() => setEditModalIsOpen(false)}
+                  style={customEditModalStyles}
+                >
+                  <StudySummaryEditPopup
+                    modalIsOpen={EditModalOpen}
+                    setEditModalIsOpen={setEditModalIsOpen}
+                    currentIndex={currentIndex}
+                  />
+                </Modal>
+              )}
             </div>
             {studyData && studyData[currentIndex]?.home && (
               <InputBox>
@@ -101,19 +159,19 @@ export default function StudyContainer({ currentIndex }) {
             {studyData && studyData[currentIndex]?.home && (
               <PeopleList>
                 {studyData[currentIndex] &&
-                studyData[currentIndex].home.projectTabResponseDto
-                  .projectInMembers
+                  studyData[currentIndex].home.projectTabResponseDto
+                    .projectInMembers
                   ? studyData[
-                      currentIndex
-                    ].home.projectTabResponseDto.projectInMembers.map(
-                      (member) => (
-                        <CheckBoxLabel key={member.id}>
-                          <input type="checkbox" />
-                          <TextBox>{member.name || '없음'} /</TextBox>
-                          <TextBox2>&nbsp;{member.id || '없음'}</TextBox2>
-                        </CheckBoxLabel>
-                      )
+                    currentIndex
+                  ].home.projectTabResponseDto.projectInMembers.map(
+                    (member) => (
+                      <CheckBoxLabel key={member.id}>
+                        <input type="checkbox" />
+                        <TextBox>{member.name || '없음'} /</TextBox>
+                        <TextBox2>&nbsp;{member.id || '없음'}</TextBox2>
+                      </CheckBoxLabel>
                     )
+                  )
                   : '없음'}
               </PeopleList>
             )}
@@ -134,6 +192,58 @@ export const TextBox = styled.div`
 `;
 
 export const TextBox2 = styled(TextBox)``;
+
+const customModalStyles = {
+  overlay: {
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
+    width: '100%',
+    height: '100vh',
+    zIndex: '10',
+    position: 'fixed',
+    top: '0',
+    left: '0',
+  },
+  content: {
+    width: '60%',
+    height: '65%',
+    zIndex: '150',
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    borderRadius: '10px',
+    boxShadow: '2px 2px 2px rgba(0, 0, 0, 0.25)',
+    backgroundColor: 'white',
+    justifyContent: 'center',
+    overflow: 'hidden',
+  },
+};
+
+const customEditModalStyles = {
+  overlay: {
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
+    width: '100%',
+    height: '100vh',
+    zIndex: '10',
+    position: 'fixed',
+    top: '0',
+    left: '0',
+  },
+  content: {
+    width: '60%',
+    height: '65%',
+    zIndex: '150',
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    borderRadius: '10px',
+    boxShadow: '2px 2px 2px rgba(0, 0, 0, 0.25)',
+    backgroundColor: 'white',
+    justifyContent: 'center',
+    overflow: 'hidden',
+  },
+};
 
 StudyContainer.propTypes = {
   currentIndex: PropTypes.number.isRequired,

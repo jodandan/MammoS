@@ -171,3 +171,32 @@ export const Pagingbox = styled.div`
     justify-content: space-between;
 `;
 
+export const FirstBox = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 98%;
+
+
+`;
+
+export const InviteList = styled.div`
+    width: 100%;
+    text-decoration: underline;
+`;
+
+export const CountBox = styled.div`
+    border-radius: 100%;
+    border: 1px solid black;
+    background-color: red;
+    width: 26px;
+    height: 18px;
+    text-align: center;
+    color: white;
+`;
+
+
+
+
+
+
