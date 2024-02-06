@@ -11,8 +11,7 @@ const RankingSectionBox = styled.div`
 `;
 
 const RankingSection = ({
-    ranking,
-    friendIndex
+  ranking
 }) => {
 
     // 1. 랭킹을 주간 공부 시간에 따라 정렬하고 원래 순위를 기억
@@ -21,16 +20,26 @@ const RankingSection = ({
         .map((item, index) => ({ ...item, originalRank: index + 1 }));
 
 
-    // 2. 1등을 배열의 가운데로 이동
-    const reorderedRanking = sortedRanking.length > 1
-        ? [sortedRanking[1], sortedRanking[0], sortedRanking[2]]
-        : sortedRanking;
+    let reorderedRanking = [];
+    if (sortedRanking.length >= 3) {
+        // 1등을 가운데, 2등을 왼쪽, 3등을 오른쪽에 배치
+        reorderedRanking = [sortedRanking[1], sortedRanking[0], sortedRanking[2]];
+    } else if (sortedRanking.length === 2) {
+        // 1등을 왼쪽, 2등을 왼쪽에 배치
+        reorderedRanking = [sortedRanking[1], sortedRanking[0], {}];
+    } else if (sortedRanking.length === 1) {
+        // 1등만 표시
+        reorderedRanking = [sortedRanking[0], {}, {}];
+    } else {
+        // 랭킹 정보가 없을 경우
+        reorderedRanking = [{}, {}, {}];
+    }
 
     return (
         <RankingSectionBox>
             {reorderedRanking.map((rank) => (
                 <RankingCard
-                    key={friendIndex}
+                    key={rank.id}
                     rank={rank.originalRank} // 랭킹 번호 전달
                     id={rank.id}
                     name={rank.name}
@@ -51,6 +60,5 @@ RankingSection.propTypes = {
             weeklyStudyTime: PropTypes.number.isRequired,
         })
     ).isRequired,
-    friendIndex: PropTypes.number.isRequired
 };
 export default RankingSection;

@@ -82,7 +82,11 @@ const RankingCard = ({
         return `${totalTimeHour}:${totalTimeMin}`;
     };
 
-    const formattedWeeklyStudyTime = formatTime(weeklyStudyTime); // 주간 공부 시간 포매팅
+    // 주간 공부 시간이 유효한 경우에만 포매팅
+    const formattedWeeklyStudyTime = Number.isFinite(weeklyStudyTime)
+        ? formatTime(weeklyStudyTime)
+        : '';
+
 
     return (
         <RankingCardBox>
@@ -94,9 +98,11 @@ const RankingCard = ({
                     <RankingCardFont>{name}</RankingCardFont>
                     <RankingCardFont>{id}</RankingCardFont>
                 </FontRow>
-                <FontRow>
-                    <RankingCardFont>WeekTime | {formattedWeeklyStudyTime}</RankingCardFont>
-                </FontRow>
+                {Number.isFinite(weeklyStudyTime) && (
+                    <FontRow>
+                        <RankingCardFont>WeekTime | {formattedWeeklyStudyTime}</RankingCardFont>
+                    </FontRow>
+                )}
             </FontBox>
         </RankingCardBox>
     );
