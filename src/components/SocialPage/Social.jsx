@@ -28,6 +28,9 @@ export default function Social() {
 
   const [userIndex, setUserIndex] = useState('');
 
+  const [friendIndex, setFriendIndex] = useState('');
+
+
   async function fetchPage() {
     try {
       // 토큰 가져오기
@@ -42,6 +45,7 @@ export default function Social() {
         setFriendRequestNum(response.data.responseData.friendRequestNum);
         setFriends(response.data.responseData.friend);
         setUserIndex(response.data.responseData.userIdx);
+        setFriendIndex(response.data.responseData.friendIdx);
         console.log(response);
       } else {
         console.log(response);
@@ -60,6 +64,7 @@ export default function Social() {
       <Top>
         <RankingSection
             ranking={ranking}
+            friendIndex={friendIndex}
         />
       </Top>
       <Bottom>
