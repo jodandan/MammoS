@@ -141,7 +141,6 @@ const AddFriendModal = ({ onClose }) => {
       const response = await axios.post(
         `http://3.38.7.193:8080/api/v1/social/request/${friendId}`
       );
-
       if (response.data.httpResponseStatus === 'SUCCESS') {
         // 친구 추가 이후 작업
         alert('친구 추가 성공');
@@ -154,6 +153,8 @@ const AddFriendModal = ({ onClose }) => {
       alert('서버 송신 오류');
     }
   }
+
+
 
   return (
     <ModalFrame onClick={onClose}>
@@ -197,8 +198,7 @@ const AddFriendModal = ({ onClose }) => {
 };
 
 AddFriendModal.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  onAddFriend: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired
 };
 
 export default AddFriendModal;
