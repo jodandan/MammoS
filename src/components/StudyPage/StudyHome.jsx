@@ -122,7 +122,7 @@ export default function StudyHome({ onIndexChange }) {
             />
           </Container>
           <Container>
-            <Notice />
+            <Notice onClick={() => navigate('/studyNotice')} />
           </Container>
         </SideMenuBar>
         <ContainerBox>
@@ -156,7 +156,7 @@ export default function StudyHome({ onIndexChange }) {
               </StudyTitle>
               <SubText>
                 {studyData[currentIndex] &&
-                  (studyData[currentIndex].summary || '없음')}
+                  (studyData[currentIndex].home.summary || '없음')}
               </SubText>
             </TextBox>
           )}
