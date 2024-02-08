@@ -111,7 +111,7 @@ export default function StudyCalender({ currentIndex, onIndexChange }) {
               <SubText>
                 {studyData[currentIndex] &&
                 studyData[currentIndex].home.summary !== null
-                  ? studyData.home.summary
+                  ? studyData[currentIndex].home.summary
                   : '없음'}
               </SubText>
             </TextBox>
