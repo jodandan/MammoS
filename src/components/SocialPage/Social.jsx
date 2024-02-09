@@ -28,7 +28,6 @@ export default function Social() {
 
   const [userIndex, setUserIndex] = useState('');
 
-
   async function fetchPage() {
     try {
       // 토큰 가져오기
@@ -59,9 +58,7 @@ export default function Social() {
   return (
     <PageFrame>
       <Top>
-        <RankingSection
-            ranking={ranking}
-        />
+        <RankingSection ranking={ranking} />
       </Top>
       <Bottom>
         <FriendResponseButton
