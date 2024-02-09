@@ -7,6 +7,8 @@ import PlannerPage from './pages/PlannerPage';
 import StudyHomePage from './pages/StudyPage';
 import StudyCalenderPage from './pages/StudyCalenderPage';
 import StudySocialPage from './pages/StudySocialPage';
+import StudyNoticePage from './pages/StudyNoticePage';
+import StudyPromotionPage from './pages/StudyPromotionPage';
 import SocialPage from './pages/SocialPage';
 import MyPage from './pages/MyPage';
 import './App.css';
@@ -48,6 +50,24 @@ function App() {
           path="/studySocial"
           element={
             <StudySocialPage
+              currentIndex={currentIndex}
+              onIndexChange={handleIndexChange}
+            />
+          }
+        />
+        <Route
+          path="/studyNotice"
+          element={
+            <StudyNoticePage
+              currentIndex={currentIndex}
+              onIndexChange={handleIndexChange}
+            />
+          }
+        />
+        <Route
+          path="/studyPromotion"
+          element={
+            <StudyPromotionPage
               currentIndex={currentIndex}
               onIndexChange={handleIndexChange}
             />

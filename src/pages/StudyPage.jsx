@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types'; // Import PropTypes
+import React from 'react';
+import PropTypes from 'prop-types';
 import StudyHome from '../components/StudyPage/StudyHome';
 
 export default function StudyHomePage({ onIndexChange, currentIndex }) {

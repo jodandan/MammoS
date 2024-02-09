@@ -28,7 +28,7 @@ export default function StudyRequestList() {
         }
     };
 
-    async function fetchReceivedRequests() { //친구 기준이라 수정해야함
+    async function fetchReceivedRequests() {
         try {
             const token = localStorage.getItem('token');
             axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
@@ -49,7 +49,7 @@ export default function StudyRequestList() {
         }
     };
 
-    async function fetchSentRequests() { //친구 기준이라 수정해야함
+    async function fetchSentRequests() {
         try {
             const token = localStorage.getItem('token');
             axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
