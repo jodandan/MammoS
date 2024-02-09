@@ -27,7 +27,7 @@ import {
 import MemberList from './MemberList/MemberList.jsx';
 import home from '../assets/Home.png';
 import Calender from '../assets/Calender.png';
-import List from '../assets/List.png';
+import Promotion from '../assets/Promotion.png';
 import Edit from '../assets/Edit.png';
 import { ReactComponent as ClickUser } from '../assets/ClickUser.svg';
 import { ReactComponent as Notice } from '../assets/Notice.svg';
@@ -83,6 +83,13 @@ export default function StudySocial({ currentIndex }) {
           </CheckContainer>
           <Container>
             <Notice onClick={() => navigate('/studyNotice')} />
+          </Container>
+          <Container>
+            <Img
+              onClick={() => navigate('/studyPromotion')}
+              src={Promotion}
+              alt="홍보"
+            />
           </Container>
         </SideMenuBar>
         <ContainerBox>

@@ -8,8 +8,7 @@ import Calender from '../assets/Calender.png';
 import User from '../assets/User.png';
 import Edit from '../assets/Edit.png';
 import ClickNotice from '../assets/ClickNotice.png'
-import { ReactComponent as ClickUser } from '../assets/ClickUser.svg';
-import { ReactComponent as Notice } from '../assets/Notice.svg';
+import Promotion from '../assets/Promotion.png';
 import {
     FrameContainer,
     SideMenuBar,
@@ -104,6 +103,13 @@ export default function StudyNotice({ currentIndex }) {
                             alt="소셜"
                         />
                     </CheckContainer>
+                    <Container>
+                        <Img
+                            onClick={() => navigate('/studyPromotion')}
+                            src={Promotion}
+                            alt="홍보"
+                        />
+                    </Container>
                 </SideMenuBar>
                 <ContainerBox>
                     {studyData && (

@@ -31,7 +31,7 @@ import {
 import home from '../assets/Home.png';
 import ClickCalender from '../assets/ClickCalender.png';
 import User from '../assets/User.png';
-import List from '../assets/List.png';
+import Promotion from '../assets/Promotion.png';
 import edit from '../assets/Edit.png';
 import NoticeList from './StudyCalenderItems/NoticeList/NoticeList.jsx';
 import MemberList from './StudyCalenderItems/MemberList/MemberList.jsx';
@@ -92,6 +92,13 @@ export default function StudyCalender({ currentIndex, onIndexChange }) {
           <Container>
             <Notice onClick={() => navigate('/studyNotice')} />
           </Container>
+          <Container>
+            <Img
+              onClick={() => navigate('/studyPromotion')}
+              src={Promotion}
+              alt="홍보"
+            />
+          </Container>
         </SideMenuBar>
         <ContainerBox>
           {studyData && studyData[currentIndex] && (
@@ -110,7 +117,7 @@ export default function StudyCalender({ currentIndex, onIndexChange }) {
               </StudyTitle>
               <SubText>
                 {studyData[currentIndex] &&
-                studyData[currentIndex].home.summary !== null
+                  studyData[currentIndex].home.summary !== null
                   ? studyData[currentIndex].home.summary
                   : '없음'}
               </SubText>
