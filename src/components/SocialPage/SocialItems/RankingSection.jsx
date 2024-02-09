@@ -14,7 +14,7 @@ const RankingSection = ({
   ranking
 }) => {
 
-    // 1. 랭킹을 주간 공부 시간에 따라 정렬하고 원래 순위를 기억
+    // 랭킹을 주간 공부 시간에 따라 정렬하고 원래 순위를 기억
     const sortedRanking = [...ranking]
         .sort((a, b) => b.weeklyStudyTime - a.weeklyStudyTime)
         .map((item, index) => ({ ...item, originalRank: index + 1 }));
@@ -29,7 +29,7 @@ const RankingSection = ({
         reorderedRanking = [sortedRanking[1], sortedRanking[0], {}];
     } else if (sortedRanking.length === 1) {
         // 1등만 표시
-        reorderedRanking = [sortedRanking[0], {}, {}];
+        reorderedRanking = [{}, sortedRanking[0], {}];
     } else {
         // 랭킹 정보가 없을 경우
         reorderedRanking = [{}, {}, {}];

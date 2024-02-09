@@ -89,7 +89,7 @@ const InfoBox = styled.div`
   align-items: flex-start;
   justify-content: center;
   flex-direction: column;
-  margin-right: 16vw;
+  margin-right: 19vw;
   margin-top: 2vw;
 `;
 

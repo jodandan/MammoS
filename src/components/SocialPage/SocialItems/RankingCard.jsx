@@ -55,15 +55,12 @@ const RankingCardFont = styled.p`
 const FontBox= styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: ${({ isTopRank }) => isTopRank ? '3vw' : '0.5vw'}; // 1등일 때 크기를 1.5배로 증가
+  margin-top: ${({ isTopRank }) => isTopRank ? '5vw' : '2vw'}; // 1등일 때 크기를 1.5배로 증가
 `
 
 const FontRow = styled.div`
   display: flex;
   justify-content: center;
-  &.user_info {
-    margin-top: 25px;
-  }
 `;
 
 
@@ -94,7 +91,7 @@ const RankingCard = ({
                 <RankBadge>{rank}</RankBadge>
             </RankCard>
             <FontBox isTopRank={isTopRank}>
-                <FontRow className="user_info">
+                <FontRow>
                     <RankingCardFont>{name}</RankingCardFont>
                     <RankingCardFont>{id}</RankingCardFont>
                 </FontRow>

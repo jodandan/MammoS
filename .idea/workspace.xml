@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e35a1992-5f70-4659-8dda-700344d0f0b7" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/RankingSection.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/RankingSection.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +56,9 @@
       <workItem from="1706494415629" duration="10032000" />
       <workItem from="1706593472557" duration="22130000" />
       <workItem from="1707107298047" duration="952000" />
+      <workItem from="1707140310964" duration="9053000" />
+      <workItem from="1707373355031" duration="848000" />
+      <workItem from="1707393852996" duration="2070000" />
     </task>
     <servers />
   </component>
