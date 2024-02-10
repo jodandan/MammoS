@@ -237,6 +237,6 @@ export default function SavingPost() {
   );
 }
 
-Post.propTypes = {
+SavingPost.propTypes = {
   postIdx: PropTypes.number.isRequired,
 };
