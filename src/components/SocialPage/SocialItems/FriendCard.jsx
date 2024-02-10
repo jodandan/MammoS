@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import FixButtonImg from '../../assets/FixButton.png'
-import DeleteButtonImg from '../../assets/DeleteButton.png'
-import nonFixButtonImg from '../../assets/NonFixButton.png';
+import FixButtonImg from '../../assets/FixButton.png';
+import DeleteButtonImg from '../../assets/DeleteButton.png';
+import NonFixButtonImg from '../../assets/NonFixButton.png';
+import PlannerModal from './PlannerModal';
+import DeleteFriendModal from './DeleteFriendModal';
+import axios from 'axios';
 
 const FriendBox = styled.div`
   display: flex;
@@ -12,10 +15,11 @@ const FriendBox = styled.div`
   height: 9vw;
   margin-top: 1.5vw;
   border: 3px solid transparent;
-  background-image: linear-gradient(#fff, #fff), linear-gradient(to bottom, #A6E087, #96A3D4, #AEC0FF);
+  background-image: linear-gradient(#fff, #fff),
+    linear-gradient(to bottom, #a6e087, #96a3d4, #aec0ff);
   border-radius: 10px;
   background-origin: border-box;
-  background-clip: content-box,border-box;
+  background-clip: content-box, border-box;
   background-color: white;
 `;
 
@@ -26,11 +30,10 @@ const ProfileBox = styled.div`
   width: 7vw;
 `;
 
-
 const PfpImg = styled.img`
   width: 5vw;
   height: 5vw;
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   border-radius: 50%;
 `;
 
@@ -66,11 +69,10 @@ const TimeRow = styled.div`
   justify-content: center;
   padding-left: 35px;
   padding-top: 25px;
-  
+
   &.weekRow {
     padding-top: 0px;
   }
-  
 `;
 
 const FixButton = styled.img`
@@ -78,7 +80,7 @@ const FixButton = styled.img`
   cursor: pointer;
   width: 20px;
   height: 20px;
-  padding-top:12px;
+  padding-top: 12px;
   padding-right: 10px;
 
   &:hover {
@@ -86,13 +88,12 @@ const FixButton = styled.img`
   }
 `;
 
-
 const DeleteButton = styled.img`
   background-color: transparent;
   cursor: pointer;
   width: 20px;
   height: 20px;
-  padding-top:12px;
+  padding-top: 12px;
   padding-right: 10px;
 
   &:hover {
@@ -107,16 +108,15 @@ const FriendPlanner = styled.button`
   width: 4vw;
   height: 2vw;
   font-size: 0.8vw;
+  font-family: 'PretendardSemiBold';
   padding-bottom: 20px;
-  text-decoration: underline;
   &:hover {
     opacity: 0.6; // 마우스 오버시 버튼 투명도 변경
   }
 `;
 
-
 const FriendFont = styled.p`
-
+  font-family: 'PretendardSemiBold';
   &.name {
     font-weight: bold;
     font-size: 14px;
@@ -142,28 +142,28 @@ const FriendFont = styled.p`
     color: dimgray;
     padding-top: 6px;
   }
-  
+
   &.online {
     font-weight: bold;
     font-size: 12px;
     color: limegreen;
     padding-top: 6px;
   }
-  
+
   &.offline {
     font-weight: bold;
     font-size: 12px;
     color: gray;
     padding-top: 6px;
   }
-  
+
   &.day {
     font-weight: bold;
     font-size: 12px;
     padding-top: 13px;
     color: gray;
   }
-  
+
   &.time {
     font-size: 28px;
     font-weight: bold;
@@ -172,92 +172,139 @@ const FriendFont = styled.p`
   }
 `;
 
-
 const FriendCard = ({
-    id,
-    name,
-    universityName,
-    majorName,
-    pfp,
-    weeklyStudyTime,
-    dailyStudyTime,
-    isOnline,
-    isFixed,
+  id,
+  name,
+  friendIndex,
+  tier,
+  universityName,
+  majorName,
+  pfp,
+  weeklyStudyTime,
+  dailyStudyTime,
+  isOnline,
+  isFixed,
+  fetchPage,
+  userIndex,
+  friendUserIndex,
 }) => {
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isPlannerModalOpen, setIsPlannerModalOpen] = useState(false);
 
-    const formatTime = (minutes) => {
-        const totalTimeHour = String(Math.floor(minutes / 60)).padStart(
-            2,
-            '0'
-        );
-        const totalTimeMin = String(Math.floor(minutes % 60)).padStart(
-            2,
-            '0'
-        );
-        return `${totalTimeHour}:${totalTimeMin}`;
-    };
+  const plannerClickHandler = () => {
+    setIsPlannerModalOpen(true); // 모달 열기
+  };
 
-    function FixButtonHandler(){
-        console.log('삭제 팝업')
-    }
-    function deleteClickHandler(){
-        console.log('삭제 팝업')
-    }
-    function plannerClickHandler() {
-        console.log('플래너 화면');
-    }
+  const formatTime = (minutes) => {
+    const totalTimeHour = String(Math.floor(minutes / 60)).padStart(2, '0');
+    const totalTimeMin = String(Math.floor(minutes % 60)).padStart(2, '0');
+    return `${totalTimeHour}:${totalTimeMin}`;
+  };
 
-    return (
-        <FriendBox>
-            <ProfileBox>
-                <PfpImg src={pfp} />
-            </ProfileBox>
-            <FriendInfoBox>
-                <FriendFont className="name">{name}</FriendFont>
-                <FriendFont className="id">{id}</FriendFont>
-                <FriendFont className="universityName">{universityName}</FriendFont>
-                <FriendFont className="major">{majorName}</FriendFont>
-                {isOnline ?
-                    <FriendFont className="online">온라인</FriendFont> :
-                    <FriendFont className="offline">오프라인</FriendFont>
-                }
-            </FriendInfoBox>
-            <FriendTimeBox>
-                <TimeRow>
-                    <FriendFont className="day">Today</FriendFont>
-                    <FriendFont className="time">{formatTime(dailyStudyTime)}</FriendFont>
-                </TimeRow>
-                <TimeRow className="weekRow">
-                    <FriendFont className="day">Week</FriendFont>
-                    <FriendFont className="time">{formatTime(weeklyStudyTime)}</FriendFont>
-                </TimeRow>
-            </FriendTimeBox>
-            <FriendSettingBox>
-                <ButtonRow>
-                    <FixButton
-                        onClick={FixButtonHandler}
-                        src={isFixed ? nonFixButtonImg : FixButtonImg}
-                    />
-                    <DeleteButton onClick={deleteClickHandler} src={DeleteButtonImg}></DeleteButton>
-                </ButtonRow>
-                <ButtonRow>
-                    <FriendPlanner onClick={plannerClickHandler}>플래너</FriendPlanner>
-                </ButtonRow>
-            </FriendSettingBox>
-        </FriendBox>
-    );
+  async function UpdateIsFixedHandler(friendIndex) {
+    try {
+      const token = localStorage.getItem('token');
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+      // 친구 추가 요청
+      const response = await axios.patch(
+          `http://3.38.7.193:8080/api/v1/social/fix/${friendIndex}`
+      );
+      console.log('Received Requests:', response.data);
+
+      if (response.data.httpResponseStatus === 'SUCCESS') {
+        fetchPage();
+      } else {
+        alert(response.data.message);
+      }
+    } catch (error) {
+      console.error('친구 고정 중 오류 발생:', error);
+      alert('서버 송신 오류');
+    }
+  }
+
+  function deleteClickHandler() {
+    setIsDeleteModalOpen(true); // 모달 열기
+  }
+
+  return (
+    <FriendBox>
+      <ProfileBox>
+        <PfpImg src={pfp} />
+      </ProfileBox>
+      <FriendInfoBox>
+        <FriendFont className="name">{name}</FriendFont>
+        <FriendFont className="id">{id}</FriendFont>
+        <FriendFont className="universityName">{universityName}</FriendFont>
+        <FriendFont className="major">{majorName}</FriendFont>
+        {isOnline ? (
+          <FriendFont className="online">온라인</FriendFont>
+        ) : (
+          <FriendFont className="offline">오프라인</FriendFont>
+        )}
+      </FriendInfoBox>
+      <FriendTimeBox>
+        <TimeRow>
+          <FriendFont className="day">Today</FriendFont>
+          <FriendFont className="time">{formatTime(dailyStudyTime)}</FriendFont>
+        </TimeRow>
+        <TimeRow className="weekRow">
+          <FriendFont className="day">Week</FriendFont>
+          <FriendFont className="time">
+            {formatTime(weeklyStudyTime)}
+          </FriendFont>
+        </TimeRow>
+      </FriendTimeBox>
+      <FriendSettingBox>
+        <ButtonRow>
+          <FixButton
+            onClick={() => UpdateIsFixedHandler(friendIndex)}
+            src={isFixed ? NonFixButtonImg : FixButtonImg}
+          />
+          {userIndex !== friendUserIndex && (
+            <DeleteButton
+              onClick={deleteClickHandler}
+              src={DeleteButtonImg}
+            ></DeleteButton>
+          )}
+          {isDeleteModalOpen && (
+            <DeleteFriendModal
+              onClose={() => setIsDeleteModalOpen(false)}
+              friendIndex={friendIndex}
+              fetchPage={fetchPage}
+              name={name}
+            />
+          )}
+        </ButtonRow>
+        <ButtonRow>
+          <FriendPlanner onClick={plannerClickHandler}>플래너</FriendPlanner>
+          {isPlannerModalOpen && (
+            <PlannerModal
+              onClose={() => setIsPlannerModalOpen(false)}
+              friendIndex={friendIndex}
+            />
+          )}
+        </ButtonRow>
+      </FriendSettingBox>
+    </FriendBox>
+  );
 };
 
 FriendCard.propTypes = {
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    weeklyStudyTime: PropTypes.number.isRequired,
-    dailyStudyTime: PropTypes.number.isRequired,
-    planner: PropTypes.string.isRequired,
-    pfp: PropTypes.string.isRequired,
-    universityName: PropTypes.string.isRequired,
-    majorName: PropTypes.string.isRequired,
-    isOnline: PropTypes.bool.isRequired,
-    isFixed: PropTypes.bool.isRequired,
+  id: PropTypes.string.isRequired,
+  friendIndex: PropTypes.number.isRequired,
+  tier: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  weeklyStudyTime: PropTypes.number.isRequired,
+  dailyStudyTime: PropTypes.number.isRequired,
+  planner: PropTypes.string.isRequired,
+  pfp: PropTypes.string.isRequired,
+  universityName: PropTypes.string.isRequired,
+  majorName: PropTypes.string.isRequired,
+  isOnline: PropTypes.bool.isRequired,
+  isFixed: PropTypes.bool.isRequired,
+  fetchPage: PropTypes.func.isRequired,
+  userIndex: PropTypes.number.isRequired,
+  friendUserIndex: PropTypes.number.isRequired,
 };
 export default FriendCard;

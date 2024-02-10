@@ -71,9 +71,12 @@ export const StudyTitle = styled.div`
     font-weight: 700;
     line-height: normal;
     letter-spacing: -0.96px;
-    width: 50%;
+    width: 40vw;
     padding-bottom: 2vh;
     font-family: 'PretendardBold';
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 `;
 
 export const SubText = styled.div`
@@ -215,11 +218,7 @@ export const Title = styled.div`
 `;
 
 export const Edit = styled.div`
-    width: 5%;
-    height: 1%;
-    position: absolute;
-    top: 5%;
-    left: 38%;
+    padding-right: 55%;
 `;
 
 

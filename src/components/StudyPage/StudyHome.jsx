@@ -29,6 +29,7 @@ import { ReactComponent as LeftArrow } from '../assets/LeftArrow.svg';
 import { ReactComponent as RightArrow } from '../assets/RightArrow.svg';
 import { ReactComponent as Notice } from '../assets/Notice.svg';
 import Edit from '../assets/Edit.png';
+import Promotion from '../assets/Promotion.png';
 import StudyInfoPopup from './StudyPageItems/PopupBox/StudyInfoPopup.jsx';
 
 export default function StudyHome({ onIndexChange }) {
@@ -122,7 +123,14 @@ export default function StudyHome({ onIndexChange }) {
             />
           </Container>
           <Container>
-            <Notice />
+            <Notice onClick={() => navigate('/studyNotice')} />
+          </Container>
+          <Container>
+            <Img
+              onClick={() => navigate('/studyPromotion')}
+              src={Promotion}
+              alt="홍보"
+            />
           </Container>
         </SideMenuBar>
         <ContainerBox>
@@ -156,7 +164,7 @@ export default function StudyHome({ onIndexChange }) {
               </StudyTitle>
               <SubText>
                 {studyData[currentIndex] &&
-                  (studyData[currentIndex].summary || '없음')}
+                  (studyData[currentIndex].home.summary || '없음')}
               </SubText>
             </TextBox>
           )}

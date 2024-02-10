@@ -17,15 +17,22 @@ import {
   TitleBox,
   MemberListBox,
   EditBox,
+  Box,
+  StudyBox,
+  SearchBox,
+  SearchList,
+  JoinBox,
+  JoinList,
 } from './StudySocialCss.jsx';
 import MemberList from './MemberList/MemberList.jsx';
 import home from '../assets/Home.png';
 import Calender from '../assets/Calender.png';
-import List from '../assets/List.png';
+import Promotion from '../assets/Promotion.png';
 import Edit from '../assets/Edit.png';
 import { ReactComponent as ClickUser } from '../assets/ClickUser.svg';
 import { ReactComponent as Notice } from '../assets/Notice.svg';
-
+import Search from './SearchList/Search.jsx';
+import Join from './JoinList/Join.jsx';
 export default function StudySocial({ currentIndex }) {
   const [studyData, setStudyData] = useState(null);
   const navigate = useNavigate();
@@ -75,7 +82,14 @@ export default function StudySocial({ currentIndex }) {
             <ClickUser onClick={() => navigate('/studySocial')} />
           </CheckContainer>
           <Container>
-            <Notice />
+            <Notice onClick={() => navigate('/studyNotice')} />
+          </Container>
+          <Container>
+            <Img
+              onClick={() => navigate('/studyPromotion')}
+              src={Promotion}
+              alt="홍보"
+            />
           </Container>
         </SideMenuBar>
         <ContainerBox>
@@ -96,20 +110,36 @@ export default function StudySocial({ currentIndex }) {
               <SubText>
                 {studyData[currentIndex] &&
                   studyData[currentIndex].home.summary !== null
-                  ? studyData.home.summary
+                  ? studyData[currentIndex].home.summary
                   : '없음'}
               </SubText>
             </TextBox>
           )}
-          <Text>스터디원</Text>
-          <TitleBox>
-            <NameText>이름 / 아이디</NameText>
-            <CollegeText>대학교 / 전공</CollegeText>
-            <PositionText>직책</PositionText>
-          </TitleBox>
-          <MemberListBox>
-            <MemberList currentIndex={currentIndex} />
-          </MemberListBox>
+          <Text>스터디 인원</Text>
+          <Box>
+            <TitleBox>
+              <NameText>이름 / 아이디</NameText>
+              <CollegeText>대학교 / 전공</CollegeText>
+              <PositionText>직책</PositionText>
+            </TitleBox>
+            <MemberListBox>
+              <MemberList currentIndex={currentIndex} />
+            </MemberListBox>
+          </Box>
+          <StudyBox>
+            <SearchBox>
+              <BoxText>스터디 초대</BoxText>
+              <SearchList>
+                <Search />
+              </SearchList>
+            </SearchBox>
+            <JoinBox>
+              <BoxText>스터디 가입신청</BoxText>
+              <JoinList>
+                <Join />
+              </JoinList>
+            </JoinBox>
+          </StudyBox>
         </ContainerBox>
       </FrameContainer>
     </>
@@ -150,3 +180,9 @@ export const CollegeText = styled(NameText)`
 export const PositionText = styled(NameText)`
   width: 25%;
 `;
+
+export const BoxText = styled(Text)`
+  padding-bottom: 10px;
+`;
+
+

@@ -72,8 +72,8 @@ export const StudyTitle = styled.div`
     font-weight: 700;
     line-height: normal;
     letter-spacing: -0.96px;
-    width: 30%;
     padding-bottom: 2vh;
+    width: 40vw;
     font-family: 'PretendardBold';
     display: flex;
     flex-direction: row;
@@ -109,9 +109,5 @@ export const Pagingbox = styled.div`
 `;
 
 export const EditBox = styled.div`
-    width: 5%;
-    height: 1%;
-    position: absolute;
-    top: 5%;
-    left: 38%;
+    padding-right: 55%;
 `;
