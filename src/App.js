@@ -14,6 +14,7 @@ import MyPage from './pages/MyPage';
 import './App.css';
 import ChallengePage from './pages/ChallengePage';
 import PostPage from './pages/PostPage';
+import SavingPostPage from './pages/SavingPostPage';
 
 function App() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -77,6 +78,10 @@ function App() {
         <Route path="/info" element={<MyPage />} />
         <Route path="/social" element={<SocialPage />} />
         <Route path="/post/:postIdx/:userStudyIdx" element={<PostPage />} />
+        <Route
+          path="/post/saving/:postIdx/:userStudyIdx"
+          element={<SavingPostPage />}
+        />
       </Routes>
     </div>
   );
