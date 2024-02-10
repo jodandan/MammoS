@@ -70,7 +70,7 @@ export default function StudyNotice({ currentIndex }) {
     // 현재 페이지에 표시할 공지사항 목록 계산
     const indexOfLastNotice = currentPage * noticesPerPage;
     const indexOfFirstNotice = indexOfLastNotice - noticesPerPage;
-    const currentNotices = studyData && studyData[currentIndex].notices.slice(indexOfFirstNotice, indexOfLastNotice);
+    const currentNotices = studyData && studyData[currentIndex]?.notices && studyData[currentIndex].notices.slice(indexOfFirstNotice, indexOfLastNotice);
 
 
     return (
@@ -141,12 +141,12 @@ export default function StudyNotice({ currentIndex }) {
                         </FirstLine>
                         <SecondLine>
                             {/* 전체 공지사항 수 */}
-                            {studyData && (
+                            {studyData && studyData[currentIndex] && studyData[currentIndex].notices && (
                                 <Text>전체 {studyData[currentIndex].notices.length}건</Text>
                             )}
                         </SecondLine>
                         {/* 현재 페이지의 공지사항 목록 */}
-                        {studyData && (
+                        {studyData && studyData[currentIndex] && studyData[currentIndex].notices && (
                             <ListBox>
                                 {studyData[currentIndex].notices.length > 0 ? (
                                     studyData[currentIndex].notices.map((notice, index) => {

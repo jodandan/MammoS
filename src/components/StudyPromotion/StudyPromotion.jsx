@@ -77,13 +77,23 @@ export default function StudyPromotion({ currentIndex }) {
         fetchData();
     }, [currentIndex]);
 
-    const handlePageChange = (pageNumber) => {
-        setCurrentPage(pageNumber);
+    // 다음 페이지 버튼 클릭 핸들러
+    const handleNextPage = () => {
+        if (indexOfLastItem < studyData[currentIndex].promotions.length) {
+            setCurrentPage(currentPage + 1);
+        }
+    };
+
+    // 이전 페이지 버튼 클릭 핸들러
+    const handlePreviousPage = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+        }
     };
 
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = studyData && studyData[currentIndex].promotions.slice(indexOfFirstItem, indexOfLastItem);
+    const currentItems = studyData && studyData[currentIndex]?.promotions && studyData[currentIndex].promotions.slice(indexOfFirstItem, indexOfLastItem);
 
 
     return (
@@ -143,24 +153,25 @@ export default function StudyPromotion({ currentIndex }) {
                             </SubText>
                         </TextBox>
                     )}
-                    {studyData && (
-                        <PromotionBox>
-                            <FirstLine>
-                                <Text>홍보게시판</Text>
-                                <MiddleText>내가 쓴 글</MiddleText>
-                                <Text>글쓰기</Text>
-                            </FirstLine>
-                            <SecondLine>
-                                <Searchbox
-                                    placeholder="함께할 스터디를 검색하세요!"
-                                    onChange={onChange}
-                                    value={search}
-                                />
-                            </SecondLine>
-                            <Text>최신순 스터디 모집글</Text>
+
+                    <PromotionBox>
+                        <FirstLine>
+                            <Text>홍보게시판</Text>
+                            <MiddleText>내가 쓴 글</MiddleText>
+                            <Text>글쓰기</Text>
+                        </FirstLine>
+                        <SecondLine>
+                            <Searchbox
+                                placeholder="함께할 스터디를 검색하세요!"
+                                onChange={onChange}
+                                value={search}
+                            />
+                        </SecondLine>
+                        <Text>최신순 스터디 모집글</Text>
+                        {studyData && studyData[currentIndex] && (
                             <ThirdLine>
-                                {studyData[currentIndex].promotions.length > 0 ? (
-                                    studyData[currentIndex].promotions.map((promotions) => {
+                                {currentItems && currentItems.length > 0 ? (
+                                    currentItems.map((promotions) => {
                                         // 날짜 시간 문자열을 Date 객체로 변환
                                         const updatedAt = new Date(promotions.updatedAt ? promotions.updatedAt : promotions.createdAt);
                                         // 연도, 월, 일을 추출
@@ -184,18 +195,18 @@ export default function StudyPromotion({ currentIndex }) {
                                     <p>공지사항이 없습니다</p>
                                 )}
                             </ThirdLine>
-                        </PromotionBox>
-                    )}
+                        )}
+                    </PromotionBox>
                     {/* 페이지네이션 */}
-                    {studyData && (
+                    {studyData && studyData[currentIndex] && (
                         <PaginationContainer>
-                            <PageButton onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
+                            <PageButton onClick={handlePreviousPage} disabled={currentPage === 1}>
                                 이전
                             </PageButton>
                             {studyData && (
                                 <PageNumber>{currentPage}</PageNumber>
                             )}
-                            <PageButton onClick={() => handlePageChange(currentPage + 1)} disabled={indexOfLastItem >= studyData[currentIndex].promotions.length}>
+                            <PageButton onClick={handleNextPage} disabled={indexOfLastItem >= studyData[currentIndex].promotions.length}>
                                 다음
                             </PageButton>
                         </PaginationContainer>

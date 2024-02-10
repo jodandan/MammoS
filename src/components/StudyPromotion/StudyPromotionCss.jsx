@@ -159,6 +159,7 @@ export const ThirdLine = styled.div`
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
     padding-left: 5px;
+    overflow: hidden;
 `;
 
 
@@ -166,6 +167,7 @@ export const PaginationContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-top: 20px;
 `;
 
 export const PaginationButton = styled.button`
@@ -203,7 +205,7 @@ export const PageButton = styled.button`
 
 export const ItemContainer = styled.div`
   width: 90%;
-  height: 30%;
+  height: 80%;
   background-color: #A7CF41;
   margin: 10px;
   border-radius: 15px;
