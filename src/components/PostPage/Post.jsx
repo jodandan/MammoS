@@ -95,6 +95,7 @@ const ImgBox = styled.div`
 
 const Content = styled.div`
   font-family: 'PretendardSemiBold';
+    font-size: 18px;
   margin-top: 2vw;
   border: 1px solid rgba(0, 0, 0, 0.2);
   box-shadow: 0px 3px 5px 0px rgba(160, 160, 160, 0.5);
@@ -207,6 +208,10 @@ export default function Post() {
     fetchPage();
   }, []);
 
+  function postNavigateHandler(postIdx, userStudyIdx) {
+    navigate(`/post/saving/${postIdx}/${userStudyIdx}`);
+  }
+
   return (
     <PageFrame>
       <PageContainer>
@@ -227,7 +232,13 @@ export default function Post() {
             {images.length >= 3 && <ImgBox>{makeImages(images)}</ImgBox>}
             <Content>{post.postContents}</Content>
             <ButtonBox>
-              {isLeader && <Button>수정</Button>}
+              {isLeader && (
+                <Button
+                  onClick={() => postNavigateHandler(postIdx, userStudyIdx)}
+                >
+                  수정
+                </Button>
+              )}
               <Button onClick={() => navigate(-1)}>돌아가기</Button>
             </ButtonBox>
           </Bottom>
