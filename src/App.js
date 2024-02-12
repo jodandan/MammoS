@@ -79,7 +79,11 @@ function App() {
         <Route path="/social" element={<SocialPage />} />
         <Route path="/post/:postIdx/:userStudyIdx" element={<PostPage />} />
         <Route
-          path="/post/saving/:postIdx/:userStudyIdx"
+          path="/post/saving/:purpose/:postIdx/:userStudyIdx"
+          element={<SavingPostPage />}
+        />
+        <Route
+          path="/post/saving/:purpose/:userStudyIdx"
           element={<SavingPostPage />}
         />
       </Routes>
