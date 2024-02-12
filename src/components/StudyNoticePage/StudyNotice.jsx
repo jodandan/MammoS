@@ -77,8 +77,19 @@ export default function StudyNotice({ currentIndex }) {
       indexOfLastNotice
     );
 
-  function postNavigateHandler(postIdx, userStudyIdx) {
-    navigate(`/post/${postIdx}/${userStudyIdx}`);
+  useEffect(() => console.log(studyData));
+
+  function postNavigateHandler(userStudyIdx, postIdx) {
+    if (postIdx) {
+      navigate(`/post/${postIdx}/${userStudyIdx}`);
+    } else {
+      if (studyData[currentIndex].myStatus !== 1) {
+        alert('권한이 없습니다.');
+        return;
+      }
+
+      navigate(`/post/saving/notice/${userStudyIdx}`);
+    }
   }
 
   return (
@@ -145,7 +156,13 @@ export default function StudyNotice({ currentIndex }) {
           <NoticeBox>
             <FirstLine>
               <Text>공지사항</Text>
-              <Text>글쓰기</Text>
+              <Text
+                onClick={() =>
+                  postNavigateHandler(studyData[currentIndex].userStudyIndex)
+                }
+              >
+                글쓰기
+              </Text>
             </FirstLine>
             <SecondLine>
               {/* 전체 공지사항 수 */}
@@ -175,8 +192,8 @@ export default function StudyNotice({ currentIndex }) {
                         key={notice.idx}
                         onClick={() =>
                           postNavigateHandler(
-                            notice.idx,
-                            studyData[currentIndex].userStudyIndex
+                            studyData[currentIndex].userStudyIndex,
+                            notice.idx
                           )
                         }
                       >

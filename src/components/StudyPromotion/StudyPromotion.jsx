@@ -87,8 +87,19 @@ export default function StudyPromotion({ currentIndex }) {
     studyData &&
     studyData[currentIndex].promotions.slice(indexOfFirstItem, indexOfLastItem);
 
-  function postNavigateHandler(postIdx, userStudyIdx) {
-    navigate(`/post/${postIdx}/${userStudyIdx}`);
+  function postNavigateHandler(userStudyIdx, postIdx) {
+    if (postIdx) {
+      navigate(`/post/${postIdx}/${userStudyIdx}`);
+    } else {
+      if (studyData[currentIndex].myStatus !== 1) {
+        alert('권한이 없습니다.');
+        return;
+      }
+
+      navigate(`/post/saving/promotion/${userStudyIdx}`, {
+        purpose: 'promotion',
+      });
+    }
   }
 
   return (
@@ -153,7 +164,13 @@ export default function StudyPromotion({ currentIndex }) {
               <FirstLine>
                 <Text>홍보게시판</Text>
                 <MiddleText>내가 쓴 글</MiddleText>
-                <Text>글쓰기</Text>
+                <Text
+                  onClick={() =>
+                    postNavigateHandler(studyData[currentIndex].userStudyIndex)
+                  }
+                >
+                  글쓰기
+                </Text>
               </FirstLine>
               <SecondLine>
                 <Searchbox
@@ -185,8 +202,8 @@ export default function StudyPromotion({ currentIndex }) {
                         key={promotions.idx}
                         onClick={() =>
                           postNavigateHandler(
-                            promotions.idx,
-                            studyData[currentIndex].userStudyIndex
+                            studyData[currentIndex].userStudyIndex,
+                            promotions.idx
                           )
                         }
                       >
