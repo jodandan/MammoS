@@ -138,7 +138,7 @@ export default function StudyHome({ onIndexChange }) {
             <TextBox>
               <StudyTitle>
                 {studyData[currentIndex] &&
-                  (studyData[currentIndex].home.title || '없음')}
+                  (studyData[currentIndex].home.title) || '없음'}
                 <EditBox>
                   <img
                     src={Edit}
@@ -164,7 +164,7 @@ export default function StudyHome({ onIndexChange }) {
               </StudyTitle>
               <SubText>
                 {studyData[currentIndex] &&
-                  (studyData[currentIndex].home.summary || '없음')}
+                  (studyData[currentIndex].home.summary) || '없음'}
               </SubText>
             </TextBox>
           )}

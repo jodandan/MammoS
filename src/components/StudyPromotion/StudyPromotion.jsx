@@ -81,10 +81,25 @@ export default function StudyPromotion({ currentIndex }) {
     setCurrentPage(pageNumber);
   };
 
+  // 다음 페이지 버튼 클릭 핸들러
+  const handleNextPage = () => {
+    if (indexOfLastItem < studyData[currentIndex].promotions.length) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  // 이전 페이지 버튼 클릭 핸들러
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems =
     studyData &&
+    studyData[currentIndex]?.promotions &&
     studyData[currentIndex].promotions.slice(indexOfFirstItem, indexOfLastItem);
 
   function postNavigateHandler(userStudyIdx, postIdx) {
@@ -180,60 +195,54 @@ export default function StudyPromotion({ currentIndex }) {
                 />
               </SecondLine>
               <Text>최신순 스터디 모집글</Text>
-              <ThirdLine>
-                {studyData[currentIndex].promotions.length > 0 ? (
-                  studyData[currentIndex].promotions.map((promotions) => {
-                    // 날짜 시간 문자열을 Date 객체로 변환
-                    const updatedAt = new Date(
-                      promotions.updatedAt
-                        ? promotions.updatedAt
-                        : promotions.createdAt
-                    );
-                    // 연도, 월, 일을 추출
-                    const year = updatedAt.getFullYear();
-                    const month = updatedAt.getMonth() + 1; // 월은 0부터 시작
-                    const day = updatedAt.getDate();
-                    // 날짜 문자열을 형식화
-                    const formattedDate = `${year}-${
-                      month < 10 ? '0' + month : month
-                    }-${day < 10 ? '0' + day : day}`;
-                    return (
-                      <ItemContainer
-                        key={promotions.idx}
-                        onClick={() =>
-                          postNavigateHandler(
-                            studyData[currentIndex].userStudyIndex,
-                            promotions.idx
-                          )
-                        }
-                      >
-                        <First>{promotions.title}</First>
-                        <Second>{promotions.studyName}</Second>
-                        <Third>
-                          <div>{formattedDate}</div>
-                          <div>작성자</div>
-                        </Third>
-                      </ItemContainer>
-                    );
-                  })
-                ) : (
-                  <p>공지사항이 없습니다</p>
-                )}
-              </ThirdLine>
+              {studyData && studyData[currentIndex] && (
+                <ThirdLine>
+                  {currentItems && currentItems.length > 0 ? (
+                    currentItems.map((promotions) => {
+                      // 날짜 시간 문자열을 Date 객체로 변환
+                      const updatedAt = new Date(
+                        promotions.updatedAt
+                          ? promotions.updatedAt
+                          : promotions.createdAt
+                      );
+                      // 연도, 월, 일을 추출
+                      const year = updatedAt.getFullYear();
+                      const month = updatedAt.getMonth() + 1; // 월은 0부터 시작
+                      const day = updatedAt.getDate();
+                      // 날짜 문자열을 형식화
+                      const formattedDate = `${year}-${
+                        month < 10 ? '0' + month : month
+                      }-${day < 10 ? '0' + day : day}`;
+                      return (
+                        <ItemContainer key={promotions.idx}>
+                          <First>{promotions.title}</First>
+                          <Second>{promotions.studyName}</Second>
+                          <Third>
+                            <div>{formattedDate}</div>
+                            <div>작성자</div>
+                          </Third>
+                        </ItemContainer>
+                      );
+                    })
+                  ) : (
+                    <p>공지사항이 없습니다</p>
+                  )}
+                </ThirdLine>
+              )}
             </PromotionBox>
           )}
           {/* 페이지네이션 */}
-          {studyData && (
+          {studyData && studyData[currentIndex] && (
             <PaginationContainer>
               <PageButton
-                onClick={() => handlePageChange(currentPage - 1)}
+                onClick={handlePreviousPage}
                 disabled={currentPage === 1}
               >
                 이전
               </PageButton>
               {studyData && <PageNumber>{currentPage}</PageNumber>}
               <PageButton
-                onClick={() => handlePageChange(currentPage + 1)}
+                onClick={handleNextPage}
                 disabled={
                   indexOfLastItem >= studyData[currentIndex].promotions.length
                 }
