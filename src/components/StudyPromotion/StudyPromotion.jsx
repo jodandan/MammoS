@@ -214,7 +214,15 @@ export default function StudyPromotion({ currentIndex }) {
                         month < 10 ? '0' + month : month
                       }-${day < 10 ? '0' + day : day}`;
                       return (
-                        <ItemContainer key={promotions.idx}>
+                        <ItemContainer
+                          key={promotions.idx}
+                          onClick={() =>
+                            postNavigateHandler(
+                              studyData[currentIndex].userStudyIndex,
+                              promotions.idx
+                            )
+                          }
+                        >
                           <First>{promotions.title}</First>
                           <Second>{promotions.studyName}</Second>
                           <Third>
