@@ -19,9 +19,12 @@ const CountBadge = styled.div`
   background-color: red;
   color: white;
   text-align: center;
+  font-family: PretendardBold;
   border-radius: 50%;
   width: 1.5vw;
   height: 1.5vw;
+  margin-right: -0.3vw;
+  
 `;
 
 const ResponseButton = styled.button`

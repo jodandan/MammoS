@@ -51,11 +51,15 @@ const RankingCardFont = styled.p`
   margin: 0px;
 `;
 
+
 const FontBox = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: ${({ isTopRank }) =>
-    isTopRank ? '5vw' : '2vw'}; // 1등일 때 크기를 1.5배로 증가
+  margin-top: ${({ isTopRank, hasInfo }) =>
+    isTopRank ? '5vw' : hasInfo ? '2vw' : '2vw'}; 
+  align-items: center; 
+  justify-content: center; 
+  height: ${({ hasInfo }) => hasInfo ? 'auto' : '3vw'}; 
 `;
 
 const FontRow = styled.div`
@@ -65,6 +69,7 @@ const FontRow = styled.div`
 
 const RankingCard = ({ rank, pfp, id, name, weeklyStudyTime }) => {
   const isTopRank = rank === 1; // 1등인지 여부 확인
+  const hasInfo = name || id || Number.isFinite(weeklyStudyTime); // 정보의 유무를 확인
 
   const formatTime = (minutes) => {
     const totalTimeHour = String(Math.floor(minutes / 60)).padStart(2, '0');
@@ -82,7 +87,7 @@ const RankingCard = ({ rank, pfp, id, name, weeklyStudyTime }) => {
       <RankCard isTopRank={isTopRank}>
         <RankBadge>{rank}</RankBadge>
       </RankCard>
-      <FontBox isTopRank={isTopRank}>
+      <FontBox isTopRank={isTopRank} hasInfo={hasInfo}>
         <FontRow>
           <RankingCardFont>{name}</RankingCardFont>
           <RankingCardFont>{id}</RankingCardFont>

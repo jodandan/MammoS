@@ -46,15 +46,6 @@ const PlannerContainer = styled.div`
   margin-bottom: -3vw;
 `;
 
-// const ProjectBox = styled.div`
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   flex-direction: column;
-//   width: 25vw;
-//   height: 12vw;
-//   margin-left: 4.5vw;
-// `;
 
 const ProjectBox = styled.div`
   width: 32vw;
@@ -138,13 +129,12 @@ const Info = styled.p`
   }
 `;
 
-const BadgeCard = styled.div`
+const BadgeCard = styled.img`
   width: 5vw;
   height: 6vw;
   background-color: #D9D9D9;
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
   margin-left: 2vw;
-  
 `
 
 const PlanContainer = styled.div`
