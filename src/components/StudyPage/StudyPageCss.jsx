@@ -47,7 +47,6 @@ export const CheckContainer = styled(Container)`
 `;
 
 export const ContainerBox = styled.div`
-    border: 1px solid black; //이거 지울 시 가로 스크롤 사라짐
     margin: 0 auto;
     height: 150vh;
     width: 60%;

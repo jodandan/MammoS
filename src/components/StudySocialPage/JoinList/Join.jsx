@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { Icon } from '@iconify/react';
 import axios from 'axios';
 import {
@@ -13,7 +14,8 @@ import {
   RequestFriendCard,
   Title,
 } from './JoinCss.jsx';
-export default function Join() {
+export default function Join({ currentIndex }) {
+  const [studyData, setStudyData] = useState(null);
   const [currentTab, setCurrentTab] = useState('received'); // 'received' || 'sent'
   const [receivedRequests, setReceivedRequests] = useState([]);
   const [sentRequests, setSentRequests] = useState([]);
@@ -29,12 +31,12 @@ export default function Join() {
   };
 
   async function fetchSentRequests() { //getInviteMembers API로 바꿔야함
-    try { 
+    try {
       const token = localStorage.getItem('token');
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
       const response = await axios.get(
-        'http://3.38.7.193:8080/api/v1/study/join'
+        `http://3.38.7.193:8080/api/v1/study/members/invite/${studyData[currentIndex].studyIndex}`
       );
       console.log('Received Requests:', response.data);
 
@@ -45,7 +47,6 @@ export default function Join() {
       }
     } catch (error) {
       console.error('보낸 친구 요청 정보 받아오기 오류 발생:', error);
-      alert('에러');
     }
   };
 
@@ -55,7 +56,7 @@ export default function Join() {
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
       const response = await axios.get(
-        'http://3.38.7.193:8080/api/v1/study/invite'
+        `http://3.38.7.193:8080/api/v1/study/members/invite/${studyData[currentIndex].studyIndex}`
       );
       console.log('Received Requests:', response.data);
 
@@ -66,10 +67,30 @@ export default function Join() {
       }
     } catch (error) {
       console.error('보낸 친구 요청 정보 받아오기 오류 발생:', error);
-      alert('에러');
     }
   };
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        console.log(token);
+        const response = await axios.get(
+          'http://3.38.7.193:8080/api/v1/study',
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setStudyData(response.data.responseData);
+      } catch (error) {
+        console.error('Error fetching study information:', error);
+      }
+    };
+    // 메모이즈된 함수를 사용
+    fetchData();
+  }, [currentIndex]);
 
   return (
     <ModalBox onClick={(e) => e.stopPropagation()}>
@@ -88,11 +109,12 @@ export default function Join() {
         </TabButton>
       </TitleContainer>
       <ResponseContainer>
+        {/* 스터디 참가 요청을 받은 로직 */}
         {currentTab === 'received' && receivedRequests.map((request) => (
-          <RequestFriendCard key={request.userStudyIdx}>
+          <RequestFriendCard key={request.userIndex}>
             <InfoBox>
               <div style={{ display: 'flex', flexDirection: 'row' }}>
-                <Info className="bold">{request.studyName}</Info>
+                <Info className="bold">{request.userId}</Info>
                 <Info className="light">
                   {request.currentMemberCnt} / {request.maxMemberCnt}
                 </Info>
@@ -125,7 +147,7 @@ export default function Join() {
           </RequestFriendCard>
         ))}
         {currentTab === 'sent' && sentRequests.map((request) => (
-          // 보낸 친구 요청 렌더링 로직
+          // 스터디 참가 요청을 보낸 로직
           <RequestFriendCard key={request.userStudyIdx}>
             <InfoBox>
               <div style={{ display: 'flex', flexDirection: 'row' }}>
@@ -154,3 +176,7 @@ export default function Join() {
     </ModalBox>
   )
 }
+
+Join.propTypes = {
+  currentIndex: PropTypes.number.isRequired,
+};

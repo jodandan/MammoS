@@ -130,13 +130,13 @@ export default function StudySocial({ currentIndex }) {
             <SearchBox>
               <BoxText>스터디 초대</BoxText>
               <SearchList>
-                <Search />
+                <Search currentIndex={currentIndex}/>
               </SearchList>
             </SearchBox>
             <JoinBox>
               <BoxText>스터디 가입신청</BoxText>
               <JoinList>
-                <Join />
+                <Join currentIndex={currentIndex}/>
               </JoinList>
             </JoinBox>
           </StudyBox>
