@@ -67,7 +67,7 @@ export default function StudyContainer({ currentIndex }) {
   return (
     <TotalBox>
       <FirstBox>
-        <BoxTitle>최근스터디</BoxTitle>
+        <BoxTitle>최근 스터디</BoxTitle>
         <div style={{ display: 'flex', flexDirection: 'row' }}>
           <CountBox>1</CountBox>
           <InviteList
@@ -198,7 +198,7 @@ const customModalStyles = {
     backgroundColor: 'rgba(0, 0, 0, 0.4)',
     width: '100%',
     height: '100vh',
-    zIndex: '10',
+    zIndex: '150',
     position: 'fixed',
     top: '0',
     left: '0',
@@ -224,7 +224,7 @@ const customEditModalStyles = {
     backgroundColor: 'rgba(0, 0, 0, 0.4)',
     width: '100%',
     height: '100vh',
-    zIndex: '10',
+    zIndex: '200',
     position: 'fixed',
     top: '0',
     left: '0',

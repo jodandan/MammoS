@@ -60,17 +60,15 @@ export default function MemberContainer({ currentIndex }) {
 export const Name = styled.div`
   width: 10px;
   color: #000;
-  font-family: 'PretendardBold';
+  font-family: 'PretendardSemiBold';
   font-size: 16px;
-  font-style: normal;
-  font-weight: 800;
   line-height: normal;
   letter-spacing: -0.32px;
 `;
 
 export const UniversityName = styled.div`
   color: #595959;
-  font-family: 'PretendardBold';
+  font-family: 'PretendardSemiBold';
   font-size: 10px;
   font-style: normal;
   font-weight: 300;

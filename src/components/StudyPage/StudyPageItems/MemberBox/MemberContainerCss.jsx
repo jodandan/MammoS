@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-    width: 35%;
-    height: 60%;
+    width: 45%;
+    height: 70%;
     flex-shrink: 0;
     stroke-width: 4px;
     border-radius: 20px;
     background: #FFF;
-    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.25);
     display: flex;
     flex-direction: column;
 `;
@@ -53,11 +53,11 @@ export const MemberList = styled.div`
 export const MemberItem = styled.div`
   display: flex;
   padding: 0.5rem;
-  width: 94.5%;
+  width: 90%;
   align-items: center;
   justify-content: flex-end;
   border-bottom: 1px solid #9C9C9C;
-  margin-left: 5px;
+  margin-left: 2px;
   div {
     flex: 1;
   }

@@ -13,7 +13,7 @@ export const Container = styled.div`
     stroke-width: 4px;
     border-radius: 20px;
     background: #FFF;
-    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.25);
 `;
 
 export const BoxTitle = styled.div`
@@ -29,8 +29,7 @@ export const BoxTitle = styled.div`
 
 export const FirstLine = styled.div`
     display: flex;
-    flex-direction: row;
-    padding: 0.5rem;
+    padding: 1vw;
     //border: 1px solid blue;
 `;
 
@@ -74,7 +73,7 @@ export const SecondLine = styled.div`
 `;
 
 export const NoticeBox = styled.div`
-    width: 70%;
+    width: 60%;
     height: 100%;
     background-color: transparent;
     stroke-width: 4px;
@@ -183,14 +182,18 @@ export const FirstBox = styled.div`
 export const InviteList = styled.div`
     width: 100%;
     text-decoration: underline;
+  font-size: 18px;
+  margin-left: 0.3vw;
 `;
 
 export const CountBox = styled.div`
-    border-radius: 100%;
-    border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+    border-radius: 50%;
     background-color: red;
-    width: 26px;
-    height: 18px;
+    width: 1.8vw;
+    height: 1.3vw;
     text-align: center;
     color: white;
 `;

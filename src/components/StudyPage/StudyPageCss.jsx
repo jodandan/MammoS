@@ -13,33 +13,33 @@ export const FrameContainer = styled.div`
 
 export const SideMenuBar = styled.div`
     position: absolute;
-    top: 50%;
+    top: 90%;
     left: 13%;
-    width: 5%;
+    width: 12%;
     height: 150%;
     display: flex;
     flex-direction: column;
-    //border: 1px solid red;
-    gap: 50px;
-    z-index: 99;
+  align-items: center;
+  justify-content: center;
+    gap: 4vw;
+    z-index: 90;
 `;
 
 export const Img = styled.img`
-    width: 41px;
+    width: 40px;
     height: 40px;
     margin: auto;
+  padding-bottom: 3px;
+  padding-top: 3px;
     display: block;
-    padding-top: 5px;
     cursor: pointer;
 `;
 
 export const Container = styled.div`
-    width: 58px;
-    height: 57px;
-    flex-shrink: 0;
+    width: 50px;
+    height: 60px;
     border-radius: 15px;
     border: 3px solid #A7CF41;
-    text-align: center;
 `;
 
 export const CheckContainer = styled(Container)`
@@ -47,18 +47,20 @@ export const CheckContainer = styled(Container)`
 `;
 
 export const ContainerBox = styled.div`
-    border: 1px solid black; //이거 지울 시 가로 스크롤 사라짐
+    //border: 1px solid black; //이거 지울 시 가로 스크롤 사라짐
     margin: 0 auto;
     height: 150vh;
     width: 60%;
     display: flex;
     flex-direction: column;
     padding-top: 5vh;
-    font-family: 'PretendardBold';
+  margin-left: 25vw;
+    font-family: 'PretendardSemiBold';
 `;
 
 export const TextBox = styled.div`
     margin: 0 auto;
+  margin-bottom: -4.5vw;
     width: 100%;
     height: 20%;
     font-family: 'PretendardBold';
@@ -67,17 +69,13 @@ export const TextBox = styled.div`
 
 export const StudyTitle = styled.div`
     color: #000;
-    font-size: 48px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    letter-spacing: -0.96px;
-    padding-bottom: 2vh;
+    font-size: 43px;
     width: 40vw;
     font-family: 'PretendardBold';
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+  margin-bottom: 2vw;
 `;
 
 export const SubText = styled.div`
@@ -88,13 +86,13 @@ export const SubText = styled.div`
     line-height: normal;
     letter-spacing: -0.32px;
     width: 75%;
-    font-family: 'PretendardBold';
+    font-family: 'PretendardSemiBold';
 `;
 
 export const SecondLine = styled.div`
     display: flex;
     flex-direction: row;
-    gap: 20px;
+    gap: 50px;
     height: 30%;
 `;
 

@@ -38,6 +38,7 @@ import User from '../assets/User.png';
 import { ReactComponent as Notice } from '../assets/Notice.svg';
 import Edit from '../assets/Edit.png';
 import ClickPromotion from '../assets/ClickPromotion.png';
+import SearchButton from '../assets/SearchButton.png';
 import StudyCreatePopup from './StudyPromotionItems/StudyCreatePopup.jsx';
 
 export default function StudyPromotion({ currentIndex }) {
@@ -86,6 +87,11 @@ export default function StudyPromotion({ currentIndex }) {
     if (indexOfLastItem < studyData[currentIndex].promotions.length) {
       setCurrentPage(currentPage + 1);
     }
+  };
+
+  //홍보게시글 검색 핸들러 (미완성)
+  const SearchPromotion = () => {
+    console.log('검색버튼 클릭');
   };
 
   // 이전 페이지 버튼 클릭 핸들러
@@ -147,7 +153,6 @@ export default function StudyPromotion({ currentIndex }) {
             <Img
               onClick={() => navigate('/studyPromotion')}
               src={ClickPromotion}
-              alt="홍보"
             />
           </CheckContainer>
         </SideMenuBar>
@@ -184,7 +189,7 @@ export default function StudyPromotion({ currentIndex }) {
                     postNavigateHandler(studyData[currentIndex].userStudyIndex)
                   }
                 >
-                  글쓰기
+                  글 쓰기
                 </Text>
               </FirstLine>
               <SecondLine>
@@ -193,8 +198,14 @@ export default function StudyPromotion({ currentIndex }) {
                   onChange={onChange}
                   value={search}
                 />
+                <Img
+                    className='SearchButton'
+                    onClick={SearchPromotion}
+                    src={SearchButton}
+                    alt="검색버튼"
+                />
               </SecondLine>
-              <Text>최신순 스터디 모집글</Text>
+              <Text className='Study'>최신순 스터디 모집글</Text>
               {studyData && studyData[currentIndex] && (
                 <ThirdLine>
                   {currentItems && currentItems.length > 0 ? (
@@ -285,7 +296,7 @@ const customModalStyles = {
     backgroundColor: 'rgba(0, 0, 0, 0.4)',
     width: '100%',
     height: '100vh',
-    zIndex: '10',
+    zIndex: '100',
     position: 'fixed',
     top: '0',
     left: '0',
