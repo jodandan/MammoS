@@ -56,7 +56,7 @@ export default function SavingPost() {
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         // 정보 받아오기
         const response = await axios.get(
-          'http://localhost:8080/api/v1/post/' + postIdx
+          'http://3.38.7.193:8080/api/v1/post/' + postIdx
         );
         // 정보 저장
         if (response.data.httpResponseStatus === 'SUCCESS') {
@@ -141,7 +141,7 @@ export default function SavingPost() {
         console.log(typeof temp);
         // 글 생성할 때
         const response = await axios.post(
-          `http://localhost:8080/api/v1/study/${temp}/${userStudyIdx}`,
+          `http://3.38.7.193:8080/api/v1/study/${temp}/${userStudyIdx}`,
           formData,
           {
             headers: {
@@ -178,6 +178,8 @@ export default function SavingPost() {
     }
   }
 
+  useEffect(() => console.log(post));
+
   return (
     <PageFrame>
       <PageContainer>
@@ -194,7 +196,7 @@ export default function SavingPost() {
               type="text"
               defaultValue={post.postTitle}
               maxLength="40"
-            ></Title>
+            />
             <TitleLine />
             <Content
               defaultValue={post.postContents}

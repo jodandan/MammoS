@@ -53,6 +53,14 @@ export default function StudyPromotion({ currentIndex }) {
     setSearch(e.target.value);
   };
 
+  // 화면에 표시될 항목들을 필터링하여 반환하는 함수
+  const filteredItems = studyData && studyData[currentIndex]?.promotions
+    ? studyData[currentIndex].promotions.filter(item =>
+      // 대소문자 구분 없이 검색어가 포함된 제목을 찾음
+      item.title.toLowerCase().includes(search.toLowerCase())
+    )
+    : [];
+
   const setCreateStudyModalOpen = () => {
     setCreateStudyModalIsOpen(true);
   };
@@ -173,7 +181,7 @@ export default function StudyPromotion({ currentIndex }) {
               </StudyTitle>
               <SubText>
                 {studyData[currentIndex] &&
-                studyData[currentIndex].home.summary !== null
+                  studyData[currentIndex].home.summary !== null
                   ? studyData[currentIndex].home.summary
                   : '없음'}
               </SubText>
@@ -208,24 +216,26 @@ export default function StudyPromotion({ currentIndex }) {
               <Text className='Study'>최신순 스터디 모집글</Text>
               {studyData && studyData[currentIndex] && (
                 <ThirdLine>
-                  {currentItems && currentItems.length > 0 ? (
-                    currentItems.map((promotions) => {
-                      // 날짜 시간 문자열을 Date 객체로 변환
+                  {(search === '' ? currentItems : filteredItems).length > 0 ? (
+                    (search === '' ? currentItems : filteredItems).map((promotions) => {
                       const updatedAt = new Date(
-                        promotions.updatedAt
-                          ? promotions.updatedAt
-                          : promotions.createdAt
+                        promotions.updatedAt ? promotions.updatedAt : promotions.createdAt
                       );
-                      // 연도, 월, 일을 추출
                       const year = updatedAt.getFullYear();
-                      const month = updatedAt.getMonth() + 1; // 월은 0부터 시작
+                      const month = updatedAt.getMonth() + 1;
                       const day = updatedAt.getDate();
-                      // 날짜 문자열을 형식화
-                      const formattedDate = `${year}-${
-                        month < 10 ? '0' + month : month
-                      }-${day < 10 ? '0' + day : day}`;
+                      const formattedDate = `${year}-${month < 10 ? '0' + month : month
+                        }-${day < 10 ? '0' + day : day}`;
                       return (
-                        <ItemContainer key={promotions.idx}>
+                        <ItemContainer
+                          key={promotions.idx}
+                          onClick={() =>
+                            postNavigateHandler(
+                              studyData[currentIndex].userStudyIndex,
+                              promotions.idx
+                            )
+                          }
+                        >
                           <First>{promotions.title}</First>
                           <Second>{promotions.studyName}</Second>
                           <Third>
@@ -236,7 +246,7 @@ export default function StudyPromotion({ currentIndex }) {
                       );
                     })
                   ) : (
-                    <p>공지사항이 없습니다</p>
+                    <p>검색 결과가 없습니다</p>
                   )}
                 </ThirdLine>
               )}

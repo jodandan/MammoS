@@ -58,9 +58,29 @@ export const MemberList = styled.div`
 `;
 
 export const MemberBox = styled.div`
-    border: 1px solid grey;
+    border: 1px solid #D9D9D9;
     width: 350px;
+    border-radius: 5px;
 `;
+
+export const Button = styled.div`
+  width: 12px;
+  height: 12px;
+  display: flex;
+  float: right;
+  margin: auto;
+  padding-left: 100px;
+  cursor: pointer;
+`;
+
+export const InviteButton = styled.button`
+  background-color: #B9D967;
+  border: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 10px;
+`;
+
 
 
 

@@ -5,20 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e35a1992-5f70-4659-8dda-700344d0f0b7" name="변경" comment="chore: gitignore 수정">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/87e32e60-9115-45cb-b9fd-5dbce6501b1c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/87e32e60-9115-45cb-b9fd-5dbce6501b1c.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/2024-01-18__3_07__________.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/2024-01-18__3_07__________.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/2024-01-18__3_17__________.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/2024-01-18__3_17__________.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/assets/Plus.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PostPage/SavingPost.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PostPage/SavingPost.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/StudyCalenderPage/StudyCalenderCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyCalenderPage/StudyCalenderCss.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/StudyNoticePage/StudyNoticeCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyNoticePage/StudyNoticeCss.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/StudyPage/StudyPageCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyPage/StudyPageCss.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StudyPage/StudyPageItems/MemberBox/MemberContainer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyPage/StudyPageItems/MemberBox/MemberContainer.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StudyPage/StudyPageItems/MemberBox/MemberContainerCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyPage/StudyPageItems/MemberBox/MemberContainerCss.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StudyPage/StudyPageItems/NoticeBox/NoticeContainerCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyPage/StudyPageItems/NoticeBox/NoticeContainerCss.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StudyPage/StudyPageItems/StudyBox/StudyContainer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyPage/StudyPageItems/StudyBox/StudyContainer.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StudyPage/StudyPageItems/StudyBox/StudyContainerCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyPage/StudyPageItems/StudyBox/StudyContainerCss.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/StudyPromotion/StudyPromotion.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyPromotion/StudyPromotion.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/StudyPromotion/StudyPromotionCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyPromotion/StudyPromotionCss.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StudyPromotion/StudyPromotionItems/StudyCreatePopupCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyPromotion/StudyPromotionItems/StudyCreatePopupCss.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/assets/Notice.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/assets/Notice.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/StudySocialPage/JoinList/Join.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudySocialPage/JoinList/Join.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/StudySocialPage/SearchList/Search.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudySocialPage/SearchList/Search.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/StudySocialPage/SearchList/SearchCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudySocialPage/SearchList/SearchCss.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/StudySocialPage/StudySocial.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudySocialPage/StudySocial.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/StudySocialPage/StudySocialCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudySocialPage/StudySocialCss.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +43,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "android.gradle.sync.needed": "true",
-    "git-widget-placeholder": "feat/StudyPage",
+    "git-widget-placeholder": "feat/StudyPage 병합 중",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -98,7 +96,6 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/components/StudyPromotion/StudyPromotionItems/StudyCreatePopupCss.jsx</url>
           <line>11</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
