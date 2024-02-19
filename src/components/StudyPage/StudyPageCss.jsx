@@ -68,7 +68,7 @@ export const TextBox = styled.div`
 
 export const StudyTitle = styled.div`
     color: #000;
-    font-size: 43px;
+    font-size: 48px;
     width: 40vw;
     font-family: 'PretendardBold';
     display: flex;
@@ -97,8 +97,8 @@ export const SecondLine = styled.div`
 
 export const Pagingbox = styled.div`
     position: absolute;
-    top: 50%;
-    left: 3%;
+    top: 70%;
+    left: 5%;
     width: 90%;
     display: flex;
     justify-content: space-between;

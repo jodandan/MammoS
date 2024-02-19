@@ -5,18 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e35a1992-5f70-4659-8dda-700344d0f0b7" name="변경" comment="chore: gitignore 수정">
-      <change afterPath="$PROJECT_DIR$/src/components/assets/Plus.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PostPage/SavingPost.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PostPage/SavingPost.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/StudyCalenderPage/StudyCalenderCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyCalenderPage/StudyCalenderCss.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/StudyNoticePage/StudyNotice.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyNoticePage/StudyNotice.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/StudyNoticePage/StudyNoticeCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyNoticePage/StudyNoticeCss.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/StudyPage/StudyPageCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyPage/StudyPageCss.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StudyPromotion/StudyPromotion.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyPromotion/StudyPromotion.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StudyPromotion/StudyPromotionCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyPromotion/StudyPromotionCss.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StudySocialPage/JoinList/Join.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudySocialPage/JoinList/Join.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/StudySocialPage/JoinList/JoinCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudySocialPage/JoinList/JoinCss.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/StudySocialPage/SearchList/Search.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudySocialPage/SearchList/Search.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/StudySocialPage/SearchList/SearchCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudySocialPage/SearchList/SearchCss.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/StudySocialPage/StudySocial.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudySocialPage/StudySocial.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/StudySocialPage/StudySocialCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudySocialPage/StudySocialCss.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/assets/ClickUser.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/assets/ClickUser.svg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,21 +36,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "android.gradle.sync.needed": "true",
-    "git-widget-placeholder": "feat/StudyPage 병합 중",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2023.2.1\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;android.gradle.sync.needed&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feat/StudyPage&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2023.2.1\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="디폴트 작업">
@@ -69,6 +68,7 @@
       <workItem from="1707140310964" duration="9053000" />
       <workItem from="1707373355031" duration="848000" />
       <workItem from="1707393852996" duration="2070000" />
+      <workItem from="1708323689223" duration="3493000" />
     </task>
     <servers />
   </component>

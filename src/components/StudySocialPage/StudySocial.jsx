@@ -115,7 +115,7 @@ export default function StudySocial({ currentIndex }) {
               </SubText>
             </TextBox>
           )}
-          <Text>스터디 인원</Text>
+          <Text className='StudyNum'>스터디 인원</Text>
           <Box>
             <TitleBox>
               <NameText>이름 / 아이디</NameText>
@@ -160,6 +160,10 @@ export const Text = styled.div`
   line-height: normal;
   letter-spacing: -0.4px;
   width: 100%;
+  
+  &.StudyNum{
+    margin-bottom: 1vw;
+  }
 `;
 
 export const NameText = styled.div`
