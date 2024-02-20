@@ -4,9 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e35a1992-5f70-4659-8dda-700344d0f0b7" name="변경" comment="">
+    <list default="true" id="e35a1992-5f70-4659-8dda-700344d0f0b7" name="변경" comment="chore: gitignore 수정">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/RankingSection.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SocialPage/SocialItems/RankingSection.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/StudyCalenderPage/StudyCalenderCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyCalenderPage/StudyCalenderCss.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/StudyNoticePage/StudyNotice.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyNoticePage/StudyNotice.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/StudyNoticePage/StudyNoticeCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyNoticePage/StudyNoticeCss.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/StudyPage/StudyPageCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyPage/StudyPageCss.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/StudySocialPage/JoinList/JoinCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudySocialPage/JoinList/JoinCss.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/StudySocialPage/SearchList/Search.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudySocialPage/SearchList/Search.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/StudySocialPage/SearchList/SearchCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudySocialPage/SearchList/SearchCss.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/StudySocialPage/StudySocial.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudySocialPage/StudySocial.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/StudySocialPage/StudySocialCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudySocialPage/StudySocialCss.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/assets/ClickUser.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/assets/ClickUser.svg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +42,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;android.gradle.sync.needed&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feat/SocialPage&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feat/StudyPage&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
@@ -59,6 +68,7 @@
       <workItem from="1707140310964" duration="9053000" />
       <workItem from="1707373355031" duration="848000" />
       <workItem from="1707393852996" duration="2070000" />
+      <workItem from="1708323689223" duration="3493000" />
     </task>
     <servers />
   </component>
@@ -77,6 +87,18 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="chore: gitignore 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: gitignore 수정" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/components/StudyPromotion/StudyPromotionItems/StudyCreatePopupCss.jsx</url>
+          <line>11</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

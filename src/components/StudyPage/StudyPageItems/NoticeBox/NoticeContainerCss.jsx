@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-    width: 61%;
-    height: 60%;
+    width: 50%;
+    height: 70%;
     flex-shrink: 0;
     background-color: transparent;
     stroke-width: 4px;
     border-radius: 20px;
     background: #FFF;
-    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.25);
     display: flex;
     flex-direction: column;
 `;

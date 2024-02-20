@@ -19,10 +19,11 @@ export const TabButton = styled.button`
   background: none; 
   border: none; 
   outline: none;
-  margin: 10px;
   cursor: pointer; 
-  font-size: 25px; 
+  font-size: 24px; 
   color: #B3B3B3;
+  margin-left: 2vw;
+  margin-top: 1.2vw;
   &:hover {
     color: #000000; 
   }

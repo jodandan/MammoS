@@ -203,7 +203,9 @@ export default function StudyNotice({ currentIndex }) {
                         >
                           <Count>{index + 1}</Count>
                           <Title>{notice.title}</Title>
+                          <Img className='calendar' src={Calender}></Img>
                           <Data>{formattedDate}</Data>
+                          <Img className='edit' src={Edit}></Img>
                           <Writer>{notice.writer}</Writer>
                         </List>
                       );

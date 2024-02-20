@@ -21,48 +21,52 @@ export const Box = styled.div`
 
 
 export const SideMenuBar = styled.div`
-    position: absolute;
-    top: 50%;
-    left: 13%;
-    width: 5%;
-    height: 150%;
-    display: flex;
-    flex-direction: column;
-    //border: 1px solid red;
-    gap: 50px;
+  position: absolute;
+  top: 90%;
+  left: 13%;
+  width: 12%;
+  height: 150%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4vw;
+  z-index: 90;
 `;
 
 export const Img = styled.img`
-    width: 41px;
-    height: 40px;
-    margin: auto;
-    display: block;
-    padding-top: 5px;
-    cursor: pointer;
+  width: 40px;
+  height: 40px;
+  margin: auto;
+  padding-bottom: 3px;
+  padding-top: 3px;
+  display: block;
+  cursor: pointer;
 `;
 
 export const Container = styled.div`
-    width: 58px;
-    height: 57px;
-    flex-shrink: 0;
-    border-radius: 15px;
-    border: 3px solid #A7CF41;
-    text-align: center;
-    background-color: transparent;
+  width: 50px;
+  height: 60px;
+  border-radius: 15px;
+  border: 3px solid #A7CF41;
 `;
+
 
 export const CheckContainer = styled(Container)`
     background: #A7CF41;
 `;
 
 export const ContainerBox = styled.div`
-    margin: 0 auto;
-    height: 150vh;
-    width: 60%;
-    display: flex;
-    flex-direction: column;
-    padding-top: 5vh;
+  margin: 0 auto;
+  height: 150vh;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 5vh;
+  margin-left: 25vw;
+  font-family: 'PretendardSemiBold';
 `;
+
 
 export const TextBox = styled.div`
     margin: 0 auto;

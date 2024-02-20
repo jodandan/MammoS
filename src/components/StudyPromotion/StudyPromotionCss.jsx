@@ -11,34 +11,43 @@ export const FrameContainer = styled.div`
 `;
 
 export const Container = styled.div`
-    width: 58px;
-    height: 57px;
-    flex-shrink: 0;
-    border-radius: 15px;
-    border: 3px solid #A7CF41;
-    text-align: center;
-    background-color: transparent;
+  width: 50px;
+  height: 60px;
+  border-radius: 15px;
+  border: 3px solid #A7CF41;
 `;
+
 
 export const SideMenuBar = styled.div`
-    position: absolute;
-    top: 50%;
-    left: 13%;
-    width: 5%;
-    height: 150%;
-    display: flex;
-    flex-direction: column;
-    //border: 1px solid red;
-    gap: 50px;
+  position: absolute;
+  top: 90%;
+  left: 13%;
+  width: 12%;
+  height: 150%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4vw;
+  z-index: 90;
 `;
 
+
 export const Img = styled.img`
-    width: 41px;
-    height: 40px;
-    margin: auto;
-    display: block;
-    padding-top: 5px;
-    cursor: pointer;
+  width: 40px;
+  height: 40px;
+  margin: auto;
+  padding-bottom: 3px;
+  padding-top: 3px;
+  display: block;
+  cursor: pointer;
+  
+  &.SearchButton{
+    width: 1.5vw;
+    height: 1.5vw;
+    margin-left: -8vw;
+    
+  }
 `;
 
 export const CheckContainer = styled(Container)`
@@ -46,19 +55,25 @@ export const CheckContainer = styled(Container)`
 `;
 
 export const ContainerBox = styled.div`
-    margin: 0 auto;
-    height: 150vh;
-    width: 60%;
-    display: flex;
-    flex-direction: column;
-    padding-top: 5vh;
+  margin: 0 auto;
+  height: 150vh;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 5vh;
+  margin-left: 25vw;
+  font-family: 'PretendardSemiBold';
 `;
 
 export const TextBox = styled.div`
-    margin: 0 auto;
-    width: 100%;
-    height: 20%;
+  margin: 0 auto;
+  margin-bottom: -4.5vw;
+  width: 100%;
+  height: 20%;
+  font-family: 'PretendardBold';
 `;
+
+
 
 
 
@@ -70,6 +85,9 @@ export const Text = styled.div`
     line-height: normal;
     letter-spacing: -0.96px;
     font-family: 'PretendardBold';
+  &.Study{
+    margin-left: 3vw;
+  }
 `;
 
 export const MiddleText = styled(Text)`
@@ -124,6 +142,9 @@ export const FirstLine = styled.div`
 `;
 
 export const SecondLine = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
     width: 100%;
     height: 10%;
     text-align: center;
@@ -153,12 +174,12 @@ export const Searchbox = styled.input`
 
 export const ThirdLine = styled.div`
     width: 99%;
-    height: 80%;
+    height: 60%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
     padding-left: 5px;
     overflow: hidden;
+  margin-left: 2vw;
 `;
 
 
@@ -203,10 +224,12 @@ export const PageButton = styled.button`
 `;
 
 export const ItemContainer = styled.div`
-  width: 90%;
-  height: 80%;
-  background-color: #A7CF41;
-  margin: 10px;
+  width: 17vw;
+  height: 13vw;
+  background-color: rgba(170, 207, 65, 0.2); /* 'AACF41' 색상 코드와 20% 불투명도 */
+  margin-bottom: -10vw;
+  margin-top: 1vw;
+  margin-left: 0.5vw;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
@@ -215,11 +238,9 @@ export const ItemContainer = styled.div`
 export const First = styled.div`
   width: 100%;
   height: 10%;
-  margin: 10px;
+  margin: 1vw;
   color: #000;
   font-size: 20px;
-  font-style: normal;
-  font-weight: 500;
   line-height: normal;
   letter-spacing: -0.32px;
   width: 75%;
@@ -229,7 +250,7 @@ export const First = styled.div`
 export const Second = styled.div`
   width: 100%;
   height: 50%;
-  margin: 10px;
+  margin-left: 1vw;
 `;
 
 export const Third = styled.div`
@@ -238,8 +259,8 @@ export const Third = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 10px;
-  font-family: 'PretendardBold';
+  margin: 1vw;
+  font-family: 'PretendardSemiBold';
   font-size: 16px;
 `;
 

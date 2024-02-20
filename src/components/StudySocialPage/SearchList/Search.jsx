@@ -11,6 +11,8 @@ import {
   Button,
 } from './SearchCss.jsx';
 import Plus from '../../assets/Plus.png';
+
+import SearchButton from '../../assets/SearchButton.png';
 export default function Search({ currentIndex }) {
   const [Data, setData] = useState([]);
   const [studyData, setStudyData] = useState(null);
@@ -89,7 +91,12 @@ export default function Search({ currentIndex }) {
           onChange={onChange}
           value={friendId}
         />
-        <SearchButton onClick={handleSearchClick}>검색</SearchButton>
+        <Img
+            className='SearchButton'
+            onClick={handleSearchClick}
+            src={SearchButton}
+            alt="검색버튼"
+        />
       </div>
       <MemberList>
         {Data && Data.responseData && (
@@ -125,7 +132,6 @@ export const Text = styled.div`
   font-family: 'PretendardBold';
   font-size: 14px;
   font-style: normal;
-  font-weight: 600;
   line-height: normal;
   letter-spacing: -0.4px;
   margin: 3px;
@@ -138,11 +144,13 @@ export const SubText = styled(Text)`
   margin: 5px;
 `;
 
-const SearchButton = styled.button`
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  width: 20%;
+export const Img = styled.img`
+  &.SearchButton{
+    width: 1.5vw;
+    height: 1.5vw;
+    margin-top: 1vw;
+    margin-right:  1vw;
+    cursor: pointer;
+    
+  }
 `;
