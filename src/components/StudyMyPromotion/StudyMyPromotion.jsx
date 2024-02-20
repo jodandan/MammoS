@@ -31,7 +31,7 @@ import {
   ItemContainer,
   ButtonBox,
   CreateStudyButton,
-} from './StudyPromotionCss.jsx';
+} from './StudyMyPromotionCss.jsx';
 import home from '../assets/Home.png';
 import Calender from '../assets/Calender.png';
 import User from '../assets/User.png';
@@ -39,9 +39,9 @@ import { ReactComponent as Notice } from '../assets/Notice.svg';
 import Edit from '../assets/Edit.png';
 import ClickPromotion from '../assets/ClickPromotion.png';
 import SearchButton from '../assets/SearchButton.png';
-import StudyCreatePopup from './StudyPromotionItems/StudyCreatePopup.jsx';
+import StudyCreatePopup from '../StudyPromotion/StudyPromotionItems/StudyCreatePopup.jsx';
 
-export default function StudyPromotion({ currentIndex }) {
+export default function StudyMyPromotion({ currentIndex }) {
   const navigate = useNavigate();
   const [search, setSearch] = useState('');
   const [studyData, setStudyData] = useState(null);
@@ -54,8 +54,8 @@ export default function StudyPromotion({ currentIndex }) {
   };
 
   // 화면에 표시될 항목들을 필터링하여 반환하는 함수
-  const filteredItems = studyData && studyData[currentIndex]?.promotions
-    ? studyData[currentIndex].promotions.filter(item =>
+  const filteredItems = studyData && studyData[currentIndex]?.myStudyPromotions
+    ? studyData[currentIndex].myStudyPromotions.filter(item =>
       // 대소문자 구분 없이 검색어가 포함된 제목을 찾음
       item.title.toLowerCase().includes(search.toLowerCase())
     )
@@ -92,7 +92,7 @@ export default function StudyPromotion({ currentIndex }) {
 
   // 다음 페이지 버튼 클릭 핸들러
   const handleNextPage = () => {
-    if (indexOfLastItem < studyData[currentIndex].promotions.length) {
+    if (indexOfLastItem < studyData[currentIndex].myStudyPromotions.length) {
       setCurrentPage(currentPage + 1);
     }
   };
@@ -113,8 +113,8 @@ export default function StudyPromotion({ currentIndex }) {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems =
     studyData &&
-    studyData[currentIndex]?.promotions &&
-    studyData[currentIndex].promotions.slice(indexOfFirstItem, indexOfLastItem);
+    studyData[currentIndex]?.myStudyPromotions &&
+    studyData[currentIndex].myStudyPromotions.slice(indexOfFirstItem, indexOfLastItem);
 
   function postNavigateHandler(userStudyIdx, postIdx) {
     if (postIdx) {
@@ -190,10 +190,10 @@ export default function StudyPromotion({ currentIndex }) {
           {studyData && (
             <PromotionBox>
               <FirstLine>
-                <Text>홍보게시판</Text>
+                <Text>내가 쓴 글</Text>
                 <MiddleText
-                  onClick={() => navigate('/studyMyPromotion')}>
-                  내가 쓴 글
+                  onClick={() => navigate('/studyPromotion')}>
+                  홍보게시판
                 </MiddleText>
                 <Text
                   onClick={() =>
@@ -220,9 +220,9 @@ export default function StudyPromotion({ currentIndex }) {
               {studyData && studyData[currentIndex] && (
                 <ThirdLine>
                   {(search === '' ? currentItems : filteredItems).length > 0 ? (
-                    (search === '' ? currentItems : filteredItems).map((promotions) => {
+                    (search === '' ? currentItems : filteredItems).map((myStudyPromotions) => {
                       const updatedAt = new Date(
-                        promotions.updatedAt ? promotions.updatedAt : promotions.createdAt
+                        myStudyPromotions.updatedAt ? myStudyPromotions.updatedAt : myStudyPromotions.createdAt
                       );
                       const year = updatedAt.getFullYear();
                       const month = updatedAt.getMonth() + 1;
@@ -231,16 +231,16 @@ export default function StudyPromotion({ currentIndex }) {
                         }-${day < 10 ? '0' + day : day}`;
                       return (
                         <ItemContainer
-                          key={promotions.idx}
+                          key={myStudyPromotions.idx}
                           onClick={() =>
                             postNavigateHandler(
                               studyData[currentIndex].userStudyIndex,
-                              promotions.idx
+                              myStudyPromotions.idx
                             )
                           }
                         >
-                          <First>{promotions.title}</First>
-                          <Second>{promotions.studyName}</Second>
+                          <First>{myStudyPromotions.title}</First>
+                          <Second>{myStudyPromotions.studyName}</Second>
                           <Third>
                             <div>{formattedDate}</div>
                             <div>작성자</div>
@@ -268,7 +268,7 @@ export default function StudyPromotion({ currentIndex }) {
               <PageButton
                 onClick={handleNextPage}
                 disabled={
-                  indexOfLastItem >= studyData[currentIndex].promotions.length
+                  indexOfLastItem >= studyData[currentIndex].myStudyPromotions.length
                 }
               >
                 다음
@@ -299,7 +299,7 @@ export default function StudyPromotion({ currentIndex }) {
   );
 }
 
-StudyPromotion.propTypes = {
+StudyMyPromotion.propTypes = {
   currentIndex: PropTypes.number.isRequired,
   onIndexChange: PropTypes.func.isRequired,
 };
