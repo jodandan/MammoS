@@ -12,7 +12,7 @@ export const FrameContainer = styled.div`
 
 export const Container = styled.div`
   width: 50px;
-  height: 60px;
+  height: 50px;
   border-radius: 15px;
   border: 3px solid #A7CF41;
 `;
@@ -174,7 +174,7 @@ export const Searchbox = styled.input`
 
 export const ThirdLine = styled.div`
     width: 99%;
-    height: 60%;
+    height: 80%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     padding-left: 5px;

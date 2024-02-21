@@ -203,20 +203,6 @@ export default function StudyMyPromotion({ currentIndex }) {
                   글 쓰기
                 </Text>
               </FirstLine>
-              <SecondLine>
-                <Searchbox
-                  placeholder="함께할 스터디를 검색하세요!"
-                  onChange={onChange}
-                  value={search}
-                />
-                <Img
-                  className='SearchButton'
-                  onClick={SearchPromotion}
-                  src={SearchButton}
-                  alt="검색버튼"
-                />
-              </SecondLine>
-              <Text className='Study'>최신순 스터디 모집글</Text>
               {studyData && studyData[currentIndex] && (
                 <ThirdLine>
                   {(search === '' ? currentItems : filteredItems).length > 0 ? (
@@ -240,7 +226,7 @@ export default function StudyMyPromotion({ currentIndex }) {
                           }
                         >
                           <First>{myStudyPromotions.title}</First>
-                          <Second>{myStudyPromotions.studyName}</Second>
+                          <Second>{myStudyPromotions.content}</Second>
                           <Third>
                             <div>{formattedDate}</div>
                             <div>작성자</div>
@@ -249,7 +235,7 @@ export default function StudyMyPromotion({ currentIndex }) {
                       );
                     })
                   ) : (
-                    <p>검색 결과가 없습니다</p>
+                    <p> </p>
                   )}
                 </ThirdLine>
               )}
