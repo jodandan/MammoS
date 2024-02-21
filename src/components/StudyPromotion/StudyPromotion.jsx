@@ -78,6 +78,7 @@ export default function StudyPromotion({ currentIndex }) {
         );
         setStudyData(response.data.responseData);
         console.log('공지 페이지에서의 인덱스:', currentIndex);
+        console.log(response.data);
       } catch (error) {
         console.error('Error fetching study information:', error);
       }
@@ -252,7 +253,7 @@ export default function StudyPromotion({ currentIndex }) {
                           }
                         >
                           <First>{promotions.title}</First>
-                          <Second>{promotions.studyName}</Second>
+                          <Second>{promotions.content}</Second>
                           <Third>
                             <div>{formattedDate}</div>
                             <div>작성자</div>

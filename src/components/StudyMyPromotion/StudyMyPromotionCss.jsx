@@ -12,7 +12,7 @@ export const FrameContainer = styled.div`
 
 export const Container = styled.div`
   width: 50px;
-  height: 60px;
+  height: 50px;
   border-radius: 15px;
   border: 3px solid #A7CF41;
 `;

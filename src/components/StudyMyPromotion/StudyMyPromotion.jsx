@@ -227,7 +227,7 @@ export default function StudyMyPromotion({ currentIndex }) {
                           }
                         >
                           <First>{myStudyPromotions.title}</First>
-                          <Second>{myStudyPromotions.studyName}</Second>
+                          <Second>{myStudyPromotions.content}</Second>
                           <Third>
                             <div>{formattedDate}</div>
                             <div>작성자</div>
@@ -236,7 +236,7 @@ export default function StudyMyPromotion({ currentIndex }) {
                       );
                     })
                   ) : (
-                    <p>검색 결과가 없습니다</p>
+                    <p> </p>
                   )}
                 </ThirdLine>
               )}

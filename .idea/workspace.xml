@@ -7,15 +7,15 @@
     <list default="true" id="e35a1992-5f70-4659-8dda-700344d0f0b7" name="변경" comment="chore: gitignore 수정">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/StudyCalenderPage/StudyCalenderCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyCalenderPage/StudyCalenderCss.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StudyNoticePage/StudyNotice.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyNoticePage/StudyNotice.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/StudyMyPromotion/StudyMyPromotion.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyMyPromotion/StudyMyPromotion.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/StudyMyPromotion/StudyMyPromotionCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyMyPromotion/StudyMyPromotionCss.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/StudyNoticePage/StudyNoticeCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyNoticePage/StudyNoticeCss.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/StudyPage/StudyPageCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyPage/StudyPageCss.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StudySocialPage/JoinList/JoinCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudySocialPage/JoinList/JoinCss.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StudySocialPage/SearchList/Search.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudySocialPage/SearchList/Search.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StudySocialPage/SearchList/SearchCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudySocialPage/SearchList/SearchCss.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StudySocialPage/StudySocial.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudySocialPage/StudySocial.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/StudyPage/StudyPageItems/PopupBox/StudyInfoPopup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyPage/StudyPageItems/PopupBox/StudyInfoPopup.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/StudyPage/StudyPageItems/PopupBox/StudyRequestList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyPage/StudyPageItems/PopupBox/StudyRequestList.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/StudyPromotion/StudyPromotion.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyPromotion/StudyPromotion.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/StudyPromotion/StudyPromotionCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyPromotion/StudyPromotionCss.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/StudySocialPage/StudySocialCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudySocialPage/StudySocialCss.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/assets/ClickUser.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/assets/ClickUser.svg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +68,7 @@
       <workItem from="1707140310964" duration="9053000" />
       <workItem from="1707373355031" duration="848000" />
       <workItem from="1707393852996" duration="2070000" />
-      <workItem from="1708323689223" duration="3493000" />
+      <workItem from="1708323689223" duration="15759000" />
     </task>
     <servers />
   </component>
