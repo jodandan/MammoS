@@ -40,7 +40,7 @@ import Edit from '../assets/Edit.png';
 import ClickPromotion from '../assets/ClickPromotion.png';
 import SearchButton from '../assets/SearchButton.png';
 import StudyCreatePopup from './StudyPromotionItems/StudyCreatePopup.jsx';
-
+import InputDeleteButton from '../assets/InputDeleteButton.png';
 export default function StudyPromotion({ currentIndex }) {
   const navigate = useNavigate();
   const [search, setSearch] = useState('');
@@ -97,10 +97,16 @@ export default function StudyPromotion({ currentIndex }) {
     }
   };
 
-  //홍보게시글 검색 핸들러 (미완성)
-  const SearchPromotion = () => {
-    console.log('검색버튼 클릭');
+  //검색키워드 삭제 함수
+  const DeleteButton = () => {
+    clearSearch(); // 검색 내용을 초기화합니다.
   };
+
+  // 검색 내용 초기화 함수
+  const clearSearch = () => {
+    setSearch('');
+  };
+
 
   // 이전 페이지 버튼 클릭 핸들러
   const handlePreviousPage = () => {
@@ -209,11 +215,17 @@ export default function StudyPromotion({ currentIndex }) {
                   onChange={onChange}
                   value={search}
                 />
-                <Img
+                {/* <Img
                   className='SearchButton'
                   onClick={SearchPromotion}
                   src={SearchButton}
                   alt="검색버튼"
+                /> */}
+                <Img
+                  className='SearchButton'
+                  onClick={DeleteButton}
+                  alt="X버튼"
+                  src={InputDeleteButton}
                 />
               </SecondLine>
               <Text className='Study'>최신순 스터디 모집글</Text>
