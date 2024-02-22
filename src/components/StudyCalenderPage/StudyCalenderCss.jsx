@@ -12,34 +12,33 @@ export const FrameContainer = styled.div`
 `;
 
 export const SideMenuBar = styled.div`
-    position: absolute;
-    top: 50%;
-    left: 13%;
-    width: 5%;
-    height: 150%;
-    display: flex;
-    flex-direction: column;
-    //border: 1px solid red;
-    gap: 50px;
+  position: absolute;
+  top: 90%;
+  left: 13%;
+  width: 12%;
+  height: 150%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4vw;
+  z-index: 90;
 `;
-
 export const Img = styled.img`
-    width: 41px;
-    height: 40px;
-    margin: auto;
-    display: block;
-    padding-top: 5px;
-    cursor: pointer;
+  width: 40px;
+  height: 40px;
+  margin: auto;
+  padding-bottom: 3px;
+  padding-top: 3px;
+  display: block;
+  cursor: pointer;
 `;
 
 export const Container = styled.div`
-    width: 58px;
-    height: 57px;
-    flex-shrink: 0;
-    border-radius: 15px;
-    border: 3px solid #A7CF41;
-    text-align: center;
-    background-color: transparent;
+  width: 50px;
+  height: 50px;
+  border-radius: 15px;
+  border: 3px solid #A7CF41;
 `;
 
 export const CheckContainer = styled(Container)`
@@ -47,13 +46,16 @@ export const CheckContainer = styled(Container)`
 `;
 
 export const ContainerBox = styled.div`
-    margin: 0 auto;
-    height: 150vh;
-    width: 60%;
-    display: flex;
-    flex-direction: column;
-    padding-top: 5vh;
+  margin: 0 auto;
+  height: 150vh;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 5vh;
+  margin-left: 25vw;
+  font-family: 'PretendardSemiBold';
 `;
+
 
 export const TextBox = styled.div`
     margin: 0 auto;
@@ -220,7 +222,68 @@ export const Edit = styled.div`
     padding-right: 55%;
 `;
 
+export const UserProject = styled.div`
+  border-radius: 5px;
+  margin-bottom: 0.4vw;
+  height: ${({ ischecked }) => (ischecked === 'true' ? '1.6vw' : '2.5vw')};
+  background-color: ${({ ischecked, isvisible }) =>
+    ischecked === 'true'
+      ? '#454545'
+      : isvisible === 'true'
+        ? '#90C20D'
+        : '#C6EF5E'};
+  box-shadow: 0px 3px 3px 0px rgb(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
 
+`;
+
+export const ProjectContent = styled.p`
+  font-family: 'PretendardSemiBold';
+  margin-left: 0.5vw;
+
+  &.content {
+    width: 90%;
+    overflow: auto;
+
+    white-space: nowrap;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &.timespent {
+    font-size: 13px;
+    text-align: right;
+  }
+
+  &.time {
+    font-weight: bold;
+    text-align: right;
+    font-size: 18px;
+  }
+
+  &.add {
+    color: gray;
+    margin-left: 20px;
+    margin-right: 45%;
+  }
+`;
+
+export const AddBtn = styled.div`
+  cursor: pointer;
+  font-family: 'PretendardSemiBold';
+  display: flex;
+  width: 80px;
+  height: 20px;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px;
+  background-color: #b3e13e;
+  border-radius: 30px;
+  box-shadow: 1px 2px 3px 0px rgb(0, 0, 0, 0.25);
+`;
 
 
 

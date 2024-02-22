@@ -68,15 +68,65 @@ export default function StudyRequestList() {
             console.error('보낸 친구 요청 정보 받아오기 오류 발생:', error);
             alert('에러');
         }
-    };
-    
-    useEffect(() => {
-        if (currentTab === 'received') {
-            fetchReceivedRequests();
-        } else if (currentTab === 'sent') {
-            fetchSentRequests();
+    }
+
+    async function AcceptRequestHandler(userStudyIndex) {
+        try {
+            const token = localStorage.getItem('token');
+            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+            // 친구 추가 요청
+            const response = await axios.patch(
+                `http://3.38.7.193:8080/api/v1/study/members/invite/${userStudyIndex}`
+            );
+            console.log('Received Requests:', response.data);
+
+            if (response.data.httpResponseStatus === 'SUCCESS') {
+                alert('스터디 참가 요청 수락 성공');
+                fetchReceivedRequests();
+                // fetchPage();
+            } else {
+                alert(response.data.message);
+            }
+        } catch (error) {
+            console.error('스터디 요청 수락 중 오류 발생:', error);
+            alert('서버 송신 오류');
         }
-    }, [currentTab]);
+    }
+
+    async function RejectRequestHandler(input, userStudyIndex) {
+        try {
+            const token = localStorage.getItem('token');
+            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+            // 친구 추가 요청
+            const response = await axios.delete(
+                `http://3.38.7.193:8080/api/v1/study/members/invite/${userStudyIndex}`
+            );
+            console.log('Received Requests:', response.data);
+
+            if (response.data.httpResponseStatus === 'SUCCESS') {
+                alert('스터디 참가 요청 거절 성공');
+                if(input === 'sent'){
+                    fetchSentRequests();
+                }
+                else{
+                    fetchReceivedRequests();
+                }
+
+            } else {
+                alert(response.data.message);
+            }
+        } catch (error) {
+            console.error('스터디 요청 거절 중 오류 발생:', error);
+            alert('서버 송신 오류');
+        }
+    }
+
+    useEffect(() => {
+        fetchReceivedRequests();
+        fetchSentRequests();
+    }, []);
 
     return (
         <ModalBox onClick={(e) => e.stopPropagation()}>
@@ -94,7 +144,6 @@ export default function StudyRequestList() {
                     내가 보낸 요청
                 </TabButton>
             </TitleContainer>
-            <Title>스터디 가입 신청</Title>
             <ResponseContainer>
                 {currentTab === 'received' && receivedRequests.map((request) => (
                     <RequestFriendCard key={request.userStudyIdx}>
@@ -106,7 +155,7 @@ export default function StudyRequestList() {
                                 </Info>
                             </div>
                             <div style={{ display: 'flex', flexDirection: 'row' }}>
-                                <IconBox className="accept">
+                                <IconBox className="accept" onClick={() => AcceptRequestHandler(request.userStudyIdx)}>
                                     <Icon
                                         style={{
                                             height: '15px',
@@ -117,7 +166,7 @@ export default function StudyRequestList() {
                                         icon="fluent-mdl2:accept-medium"
                                     />
                                 </IconBox>
-                                <IconBox className="reject">
+                                <IconBox className="reject" onClick={() => RejectRequestHandler('recieve',request.userStudyIdx)}>
                                     <Icon
                                         style={{
                                             height: '15px',
@@ -143,7 +192,7 @@ export default function StudyRequestList() {
                                 </Info>
                             </div>
                             <div style={{ display: 'flex', flexDirection: 'row' }}>
-                                <IconBox className="reject">
+                                <IconBox className="reject" onClick={() => RejectRequestHandler('sent',request.userStudyIdx)}>
                                     <Icon
                                         style={{
                                             height: '15px',

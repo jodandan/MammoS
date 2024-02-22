@@ -31,7 +31,7 @@ import {
   ItemContainer,
   ButtonBox,
   CreateStudyButton,
-} from './StudyPromotionCss.jsx';
+} from './StudyMyPromotionCss.jsx';
 import home from '../assets/Home.png';
 import Calender from '../assets/Calender.png';
 import User from '../assets/User.png';
@@ -39,9 +39,9 @@ import { ReactComponent as Notice } from '../assets/Notice.svg';
 import Edit from '../assets/Edit.png';
 import ClickPromotion from '../assets/ClickPromotion.png';
 import SearchButton from '../assets/SearchButton.png';
-import StudyCreatePopup from './StudyPromotionItems/StudyCreatePopup.jsx';
-import InputDeleteButton from '../assets/InputDeleteButton.png';
-export default function StudyPromotion({ currentIndex }) {
+import StudyCreatePopup from '../StudyPromotion/StudyPromotionItems/StudyCreatePopup.jsx';
+
+export default function StudyMyPromotion({ currentIndex }) {
   const navigate = useNavigate();
   const [search, setSearch] = useState('');
   const [studyData, setStudyData] = useState(null);
@@ -54,8 +54,8 @@ export default function StudyPromotion({ currentIndex }) {
   };
 
   // 화면에 표시될 항목들을 필터링하여 반환하는 함수
-  const filteredItems = studyData && studyData[currentIndex]?.promotions
-    ? studyData[currentIndex].promotions.filter(item =>
+  const filteredItems = studyData && studyData[currentIndex]?.myStudyPromotions
+    ? studyData[currentIndex].myStudyPromotions.filter(item =>
       // 대소문자 구분 없이 검색어가 포함된 제목을 찾음
       item.title.toLowerCase().includes(search.toLowerCase())
     )
@@ -78,7 +78,6 @@ export default function StudyPromotion({ currentIndex }) {
         );
         setStudyData(response.data.responseData);
         console.log('공지 페이지에서의 인덱스:', currentIndex);
-        console.log(response.data);
       } catch (error) {
         console.error('Error fetching study information:', error);
       }
@@ -93,21 +92,15 @@ export default function StudyPromotion({ currentIndex }) {
 
   // 다음 페이지 버튼 클릭 핸들러
   const handleNextPage = () => {
-    if (indexOfLastItem < studyData[currentIndex].promotions.length) {
+    if (indexOfLastItem < studyData[currentIndex].myStudyPromotions.length) {
       setCurrentPage(currentPage + 1);
     }
   };
 
-  //검색키워드 삭제 함수
-  const DeleteButton = () => {
-    clearSearch(); // 검색 내용을 초기화합니다.
+  //홍보게시글 검색 핸들러 (미완성)
+  const SearchPromotion = () => {
+    console.log('검색버튼 클릭');
   };
-
-  // 검색 내용 초기화 함수
-  const clearSearch = () => {
-    setSearch('');
-  };
-
 
   // 이전 페이지 버튼 클릭 핸들러
   const handlePreviousPage = () => {
@@ -120,8 +113,8 @@ export default function StudyPromotion({ currentIndex }) {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems =
     studyData &&
-    studyData[currentIndex]?.promotions &&
-    studyData[currentIndex].promotions.slice(indexOfFirstItem, indexOfLastItem);
+    studyData[currentIndex]?.myStudyPromotions &&
+    studyData[currentIndex].myStudyPromotions.slice(indexOfFirstItem, indexOfLastItem);
 
   function postNavigateHandler(userStudyIdx, postIdx) {
     if (postIdx) {
@@ -197,10 +190,10 @@ export default function StudyPromotion({ currentIndex }) {
           {studyData && (
             <PromotionBox>
               <FirstLine>
-                <Text>홍보게시판</Text>
+                <Text>내가 쓴 글</Text>
                 <MiddleText
-                  onClick={() => navigate('/studyMyPromotion')}>
-                  내가 쓴 글
+                  onClick={() => navigate('/studyPromotion')}>
+                  홍보게시판
                 </MiddleText>
                 <Text
                   onClick={() =>
@@ -210,32 +203,13 @@ export default function StudyPromotion({ currentIndex }) {
                   글 쓰기
                 </Text>
               </FirstLine>
-              <SecondLine>
-                <Searchbox
-                  placeholder="함께할 스터디를 검색하세요!"
-                  onChange={onChange}
-                  value={search}
-                />
-                {/* <Img
-                  className='SearchButton'
-                  onClick={SearchPromotion}
-                  src={SearchButton}
-                  alt="검색버튼"
-                /> */}
-                <Img
-                  className='SearchButton'
-                  onClick={DeleteButton}
-                  alt="X버튼"
-                  src={InputDeleteButton}
-                />
-              </SecondLine>
               <Text className='Study'>최신순 스터디 모집글</Text>
               {studyData && studyData[currentIndex] && (
                 <ThirdLine>
                   {(search === '' ? currentItems : filteredItems).length > 0 ? (
-                    (search === '' ? currentItems : filteredItems).map((promotions) => {
+                    (search === '' ? currentItems : filteredItems).map((myStudyPromotions) => {
                       const updatedAt = new Date(
-                        promotions.updatedAt ? promotions.updatedAt : promotions.createdAt
+                        myStudyPromotions.updatedAt ? myStudyPromotions.updatedAt : myStudyPromotions.createdAt
                       );
                       const year = updatedAt.getFullYear();
                       const month = updatedAt.getMonth() + 1;
@@ -244,16 +218,16 @@ export default function StudyPromotion({ currentIndex }) {
                         }-${day < 10 ? '0' + day : day}`;
                       return (
                         <ItemContainer
-                          key={promotions.idx}
+                          key={myStudyPromotions.idx}
                           onClick={() =>
                             postNavigateHandler(
                               studyData[currentIndex].userStudyIndex,
-                              promotions.idx
+                              myStudyPromotions.idx
                             )
                           }
                         >
-                          <First>{promotions.title}</First>
-                          <Second>{promotions.content}</Second>
+                          <First>{myStudyPromotions.title}</First>
+                          <Second>{myStudyPromotions.content}</Second>
                           <Third>
                             <div>{formattedDate}</div>
                             <div>작성자</div>
@@ -262,7 +236,7 @@ export default function StudyPromotion({ currentIndex }) {
                       );
                     })
                   ) : (
-                    <p>검색 결과가 없습니다</p>
+                    <p> </p>
                   )}
                 </ThirdLine>
               )}
@@ -281,7 +255,7 @@ export default function StudyPromotion({ currentIndex }) {
               <PageButton
                 onClick={handleNextPage}
                 disabled={
-                  indexOfLastItem >= studyData[currentIndex].promotions.length
+                  indexOfLastItem >= studyData[currentIndex].myStudyPromotions.length
                 }
               >
                 다음
@@ -312,7 +286,7 @@ export default function StudyPromotion({ currentIndex }) {
   );
 }
 
-StudyPromotion.propTypes = {
+StudyMyPromotion.propTypes = {
   currentIndex: PropTypes.number.isRequired,
   onIndexChange: PropTypes.func.isRequired,
 };

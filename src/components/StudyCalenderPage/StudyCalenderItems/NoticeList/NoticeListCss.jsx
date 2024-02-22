@@ -37,7 +37,6 @@ export const NoticeListBox = styled.div`
 export const NoticeItem = styled.div`
     display: flex;
     flex-direction: row;
-    padding: 0.5rem;
     border: 2px solid #A7CF41;
     padding: 10px;
     margin-bottom: 10px;
@@ -63,3 +62,41 @@ export const TextBox = styled.div`
     letter-spacing: -0.2px;
 `;
 
+export const UserProject = styled.div`
+  border-radius: 10px;
+  margin-bottom: 0.4vw;
+  height: ${({ ischecked }) => (ischecked === 'true' ? '1.6vw' : '2.5vw')};
+  display: flex;
+  align-items: center;
+  border: 2px solid #A7CF41;
+  margin-left: 10px;
+  margin-right: 30px;
+  margin-top : 10px;
+`;
+
+export const ProjectContent = styled.p`
+  font-family: 'PretendardSemiBold';
+  margin-left: 0.5vw;
+
+  &.add {
+    color: gray;
+    margin-left: 10px;
+    margin-right: 45%;
+    width: 50%;
+  }
+`;
+
+export const AddBtn = styled.div`
+  cursor: pointer;
+  font-family: 'PretendardSemiBold';
+  display: flex;
+  width: 150px;
+  height: 20px;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px;
+  background-color: #b3e13e;
+  border-radius: 30px;
+  box-shadow: 1px 2px 3px 0px rgb(0, 0, 0, 0.25);
+  margin-right: 10px;
+`;

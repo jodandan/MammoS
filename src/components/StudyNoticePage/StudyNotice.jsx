@@ -37,6 +37,7 @@ import {
 export default function StudyNotice({ currentIndex }) {
   const navigate = useNavigate();
   const [studyData, setStudyData] = useState(null);
+  const [search, setSearch] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const noticesPerPage = 5;
 
@@ -177,8 +178,8 @@ export default function StudyNotice({ currentIndex }) {
               studyData[currentIndex] &&
               studyData[currentIndex].notices && (
                 <ListBox>
-                  {studyData[currentIndex].notices.length > 0 ? (
-                    studyData[currentIndex].notices.map((notice, index) => {
+                  {currentNotices.length > 0 ? (
+                    currentNotices.map((notice, index) => {
                       // 날짜 시간 문자열을 Date 객체로 변환
                       const updatedAt = new Date(
                         notice.updatedAt ? notice.updatedAt : notice.createdAt
@@ -201,9 +202,11 @@ export default function StudyNotice({ currentIndex }) {
                             )
                           }
                         >
-                          <Count>{index + 1}</Count>
+                          <Count>{notice.idx}</Count>
                           <Title>{notice.title}</Title>
+                          <Img className='calendar' src={Calender}></Img>
                           <Data>{formattedDate}</Data>
+                          <Img className='edit' src={Edit}></Img>
                           <Writer>{notice.writer}</Writer>
                         </List>
                       );
