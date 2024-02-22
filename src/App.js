@@ -15,7 +15,7 @@ import './App.css';
 import ChallengePage from './pages/ChallengePage';
 import PostPage from './pages/PostPage';
 import SavingPostPage from './pages/SavingPostPage';
-
+import StudyMyPromotionPage from './pages/StudyMyPromotionPage';
 function App() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -74,6 +74,16 @@ function App() {
             />
           }
         />
+        <Route
+          path="/studyMyPromotion"
+          element={
+            <StudyMyPromotionPage
+              currentIndex={currentIndex}
+              onIndexChange={handleIndexChange}
+            />
+          }
+        />
+
         <Route path="/Challenge" element={<ChallengePage />} />
         <Route path="/info" element={<MyPage />} />
         <Route path="/social" element={<SocialPage />} />

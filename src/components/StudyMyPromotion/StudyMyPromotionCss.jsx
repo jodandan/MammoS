@@ -174,7 +174,7 @@ export const Searchbox = styled.input`
 
 export const ThirdLine = styled.div`
     width: 99%;
-    height: 80%;
+    height: 60%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     padding-left: 5px;

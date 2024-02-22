@@ -28,7 +28,6 @@ export default function StudyInfoPopup({ setModalIsOpen, currentIndex }) {
   const [isPublic, setIsPublic] = useState(false);
   const [newName, setNewName] = useState('');
   const [newMemo, setNewMemo] = useState('');
-
   const ButtonClickHandler = () => {
     setSecondModalIsOpen(true);
     setIsPublic(!isPublic);
@@ -72,6 +71,7 @@ export default function StudyInfoPopup({ setModalIsOpen, currentIndex }) {
 
   //변경 버튼 로직
   const handleApiCall = async () => {
+
     try {
       const token = localStorage.getItem('token');
 
@@ -88,6 +88,7 @@ export default function StudyInfoPopup({ setModalIsOpen, currentIndex }) {
           },
         }
       );
+      console.log(response);
       alert('변경이 완료되었습니다.');
       modalClose();
       window.location.reload(); // 페이지 새로고침

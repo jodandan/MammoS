@@ -10,35 +10,44 @@ export const FrameContainer = styled.div`
   justify-content: center;
 `;
 
-export const Container = styled.div`
-  width: 58px;
-  height: 57px;
-  flex-shrink: 0;
-  border-radius: 15px;
-  border: 3px solid #a7cf41;
-  text-align: center;
-  background-color: transparent;
-`;
-
 export const SideMenuBar = styled.div`
   position: absolute;
-  top: 50%;
+  top: 90%;
   left: 13%;
-  width: 5%;
+  width: 12%;
   height: 150%;
   display: flex;
   flex-direction: column;
-  //border: 1px solid red;
-  gap: 50px;
+  align-items: center;
+  justify-content: center;
+  gap: 4vw;
+  z-index: 90;
 `;
 
 export const Img = styled.img`
-  width: 41px;
+  width: 40px;
   height: 40px;
   margin: auto;
+  padding-bottom: 3px;
+  padding-top: 3px;
   display: block;
-  padding-top: 5px;
   cursor: pointer;
+  &.calendar{
+    width: 1.3vw;
+    height: 1.3vw;
+  }
+  
+  &.edit{
+    width: 1vw;
+    height: 1vw;
+  }
+`;
+
+export const Container = styled.div`
+  width: 50px;
+  height: 50px;
+  border-radius: 15px;
+  border: 3px solid #A7CF41;
 `;
 
 export const CheckContainer = styled(Container)`
@@ -52,6 +61,8 @@ export const ContainerBox = styled.div`
   display: flex;
   flex-direction: column;
   padding-top: 5vh;
+  margin-left: 25vw;
+  font-family: 'PretendardSemiBold';
 `;
 
 export const TextBox = styled.div`
@@ -112,6 +123,8 @@ export const FirstLine = styled.div`
   width: 100%;
   height: 5%;
   padding-bottom: 20px;
+  margin-top: -3vw;
+  margin-bottom: 0.5vw;
 `;
 
 export const SecondLine = styled.div`
@@ -169,6 +182,7 @@ export const PaginationContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 2vw;
 `;
 
 export const PaginationButton = styled.button`

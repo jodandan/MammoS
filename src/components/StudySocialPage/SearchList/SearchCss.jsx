@@ -18,7 +18,7 @@ export const Searchbox = styled.input`
     border-bottom: 1px solid #CCC;
     color: #555;
     box-sizing: border-box;
-    font-size: 18px;
+    font-size: 17px;
     height: 50px;
     width: 350px;
 
