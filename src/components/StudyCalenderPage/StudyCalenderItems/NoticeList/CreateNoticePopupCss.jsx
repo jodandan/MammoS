@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import ReactDatePicker from 'react-datepicker';
 
 export const Box = styled.div`
     width: 100%;
@@ -24,7 +25,7 @@ export const Title = styled.div`
 `;
 
 export const ContainerBox = styled.div`
-    width: 60%;
+    width: 80%;
     height: 80%;
     margin: 0 auto;
 
@@ -128,11 +129,10 @@ export const TitleInput = styled.input`
         line-height: normal;
     }
 `;
-export const DataInput = styled.input`
+export const DataInput = styled.div`
     width: 30%;
     height: 100%;
     border-radius: 10px;
-    border: 2px solid #A7CF41;
     outline: none;
     
     &::placeholder { 
@@ -157,6 +157,16 @@ export const PlaceInput = styled.input`
     }
 `;
 
+export const StyledDatePicker = styled(ReactDatePicker)`
+  font-family: 'PretendardSemiBold';
+  width: 99%;
+  font-size: 15px;
+  border: none;
+  text-align: center;
+  padding-bottom: 5px;
+  border-radius: 10px;
+border: 2px solid #A7CF41;
+`;
 
 
 
