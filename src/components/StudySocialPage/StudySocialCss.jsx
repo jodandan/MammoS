@@ -204,7 +204,7 @@ export const TitleBox = styled.div`
 
 export const MemberListBox = styled.div`
     width: 100%;
-    height: 20%;
+    height: 80%;
     padding-top: 30px;
     overflow-y: auto; 
     &::-webkit-scrollbar {

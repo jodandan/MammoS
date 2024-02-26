@@ -5,7 +5,6 @@ export const ModalBox = styled.div`
   display: flex;
   flex-direction: column;
   border-radius: 40px;
-  z-index: 1001; // ModalFrame 위에 위치
 `;
 
 export const TitleContainer = styled.div`
@@ -35,24 +34,24 @@ export const TabButton = styled.button`
 
 export const ResponseContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  width: 100%;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 `;
 
 
 export const RequestFriendCard = styled.div`
   display: flex;
-  justify-content: center;
-  width: 100%;
-  height: 2.3vw;
+  justify-content: space-between;
+  align-items: center;
+  width: 25vw;
+  height: 2vw;
+  margin-top: 1.5vw;
   border: 2px solid #D9D9D9;
   border-radius: 5px;
-  background-origin: border-box;
-  background-clip: content-box,border-box;
   background-color: white;
 `;
+
 
 export const Info = styled.p`
   font-family: 'PretendardSemiBold';
@@ -71,39 +70,29 @@ export const Info = styled.p`
 export const InfoBox = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  gap: 270px;
+  margin-left: 1vw;
 `;
 
-
 export const IconBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1vw;
   
-  &.accept { 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  &.accept {
     padding: 1px;
     border: 2px solid #A7CF41;
     border-radius: 5px;
-    height: 15px;
-    width: 15px;
     cursor: pointer;
-    margin-left: 10px;
-    
   }
 
-  &.reject {  
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  &.reject {
     padding: 1px;
     border: 2px solid #FF1C1C;
     border-radius: 5px;
-    height: 15px;
-    width: 15px;
     cursor: pointer;
-    margin-left: 15px;
   }
 `;
 

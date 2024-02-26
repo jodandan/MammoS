@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const Box = styled.div`
+  display: flex;
+  flex-direction: column;
     width: 100%;
     height: 100%;
 `;
@@ -8,8 +10,9 @@ export const Box = styled.div`
 export const FirstLine = styled.div`
     width: 100%;
     display: flex;
-    flex-direction: row;
-    gap: 20px;  
+  align-items: center;
+  justify-content: flex-start;
+  margin: 1vw;
 `;
 
 export const Title = styled.div`
@@ -22,27 +25,16 @@ export const Title = styled.div`
     letter-spacing: -0.48px;
 `;
 
-export const ContainerBox = styled.div`
-    width: 60%;
-    height: 80%;
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-    padding-top: 20px;
-`;
-
 export const MemoContainer = styled.div`
     width: 100%;
-    height: 40%;
+  height: 30vw;
     display: flex;
-    flex-direction: row;
-    display: flex;
-    margin: 0 auto;
-    gap: 80px;
+  align-items: center;
+  justify-content: center;
 `;
 export const MemoInput = styled.input`
-    width: 70%;
-    height: 100%;
+  width: 30vw;
+  height: 20vw;
     border-radius: 10px;
     border: 1px solid #000;
 `;
@@ -53,7 +45,7 @@ export const ButtonBox = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 100px;
+  gap: 3vw;
 `;
 
 export const ChangeButton = styled.button`
