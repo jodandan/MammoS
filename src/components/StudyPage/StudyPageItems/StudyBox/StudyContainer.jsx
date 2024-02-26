@@ -66,33 +66,35 @@ export default function StudyContainer({ currentIndex }) {
   }, []);
   return (
     <TotalBox>
-      <FirstBox>
-        <BoxTitle>최근 스터디</BoxTitle>
-        <div style={{ display: 'flex', flexDirection: 'row' }}>
-          <CountBox>1</CountBox>
-          <InviteList
-            onClick={setModalOpen}
-            style={{
-              cursor: 'pointer',
-            }}
-          >
-            요청목록
-          </InviteList>
-          {modalIsOpen && (
-            <Modal
-              isOpen={true}
-              onRequestClose={() => setModalIsOpen(false)}
-              style={customModalStyles}
+      {studyData && studyData[currentIndex]?.home && (
+        <FirstBox>
+          <BoxTitle>최근 스터디</BoxTitle>
+          <div style={{ display: 'flex', flexDirection: 'row' }}>
+            <CountBox>{studyData[currentIndex].home.requestCnt}</CountBox>
+            <InviteList
+              onClick={setModalOpen}
+              style={{
+                cursor: 'pointer',
+              }}
             >
-              <StudyRequestList
-                modalIsOpen={modalIsOpen}
-                setModalIsOpen={setModalIsOpen}
-                currentIndex={currentIndex}
-              />
-            </Modal>
-          )}
-        </div>
-      </FirstBox>
+              요청목록
+            </InviteList>
+            {modalIsOpen && (
+              <Modal
+                isOpen={true}
+                onRequestClose={() => setModalIsOpen(false)}
+                style={customModalStyles}
+              >
+                <StudyRequestList
+                  modalIsOpen={modalIsOpen}
+                  setModalIsOpen={setModalIsOpen}
+                  currentIndex={currentIndex}
+                />
+              </Modal>
+            )}
+          </div>
+        </FirstBox>
+      )}
       <Container>
         {studyData && studyData[currentIndex]?.home && (
           <FirstLine>

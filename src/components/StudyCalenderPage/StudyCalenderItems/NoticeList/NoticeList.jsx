@@ -7,9 +7,26 @@ import {
   NoticeItem,
   NoticeListBox,
   TextBox,
+  UserProject,
+  ProjectContent,
+  AddBtn,
 } from './NoticeListCss.jsx';
+import Modal from 'react-modal';
+import CreateNoticePopup from './CreateNoticePopup';
 export default function NoticeList({ currentIndex, onProjectSelect }) {
   const [studyData, setStudyData] = useState(null);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+  const [projectName, setProjectName] = useState('');
+
+  function openModal() {
+    setModalIsOpen(true);
+  }
+
+  function closeModal() {
+    setModalIsOpen(false);
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,6 +51,23 @@ export default function NoticeList({ currentIndex, onProjectSelect }) {
   }, []);
   return (
     <Container>
+      <UserProject key="add" className="add">
+        <ProjectContent className="add">일정을 추가해주세요</ProjectContent>
+        <AddBtn onClick={openModal}>일정추가</AddBtn>
+      </UserProject>
+      {modalIsOpen && (
+        <Modal
+          isOpen={true}
+          onRequestClose={() => setModalIsOpen(false)}
+          style={customModalStyles}
+        >
+          <CreateNoticePopup
+            modalIsOpen={modalIsOpen}
+            setModalIsOpen={setModalIsOpen}
+            currentIndex={currentIndex}
+          />
+        </Modal>
+      )}
       {studyData && (
         <NoticeListBox>
           {studyData[currentIndex] &&
@@ -64,6 +98,33 @@ export const Text = styled.div`
   line-height: normal;
   letter-spacing: -0.32px;
 `;
+
+const customModalStyles = {
+  overlay: {
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
+    width: '100%',
+    height: '100vh',
+    zIndex: '150',
+    position: 'fixed',
+    top: '0',
+    left: '0',
+  },
+  content: {
+    width: '30%',
+    height: '65%',
+    zIndex: '150',
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    borderRadius: '10px',
+    boxShadow: '2px 2px 2px rgba(0, 0, 0, 0.25)',
+    backgroundColor: 'white',
+    justifyContent: 'center',
+    overflow: 'hidden',
+  },
+};
+
 
 NoticeList.propTypes = {
   currentIndex: PropTypes.number.isRequired,

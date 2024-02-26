@@ -27,6 +27,9 @@ import {
   MemberBox,
   Title,
   Edit,
+  UserProject,
+  ProjectContent,
+  AddBtn,
 } from './StudyCalenderCss.jsx';
 import home from '../assets/Home.png';
 import ClickCalender from '../assets/ClickCalender.png';
@@ -38,6 +41,7 @@ import MemberList from './StudyCalenderItems/MemberList/MemberList.jsx';
 import { ReactComponent as Notice } from '../assets/Notice.svg';
 
 export default function StudyCalender({ currentIndex, onIndexChange }) {
+  const [modalOpen, setModalOpen] = useState(false);
   const [studyData, setStudyData] = useState(null);
   const navigate = useNavigate();
   const [projectIndex, setProjectIndex] = useState(0);
@@ -45,6 +49,10 @@ export default function StudyCalender({ currentIndex, onIndexChange }) {
   const handleProjectSelect = (index) => {
     setProjectIndex(index);
   };
+
+  function openModal() {
+    setModalOpen(true);
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -187,6 +195,7 @@ export default function StudyCalender({ currentIndex, onIndexChange }) {
               </MemberBox>
             </LeftBox>
             <RightBox>
+
               <NoticeList
                 currentIndex={currentIndex}
                 onProjectSelect={handleProjectSelect}

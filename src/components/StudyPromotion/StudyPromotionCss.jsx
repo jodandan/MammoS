@@ -290,4 +290,3 @@ export const CreateStudyButton = styled.div`
 `;
 
 
-

@@ -222,7 +222,68 @@ export const Edit = styled.div`
     padding-right: 55%;
 `;
 
+export const UserProject = styled.div`
+  border-radius: 5px;
+  margin-bottom: 0.4vw;
+  height: ${({ ischecked }) => (ischecked === 'true' ? '1.6vw' : '2.5vw')};
+  background-color: ${({ ischecked, isvisible }) =>
+    ischecked === 'true'
+      ? '#454545'
+      : isvisible === 'true'
+        ? '#90C20D'
+        : '#C6EF5E'};
+  box-shadow: 0px 3px 3px 0px rgb(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
 
+`;
+
+export const ProjectContent = styled.p`
+  font-family: 'PretendardSemiBold';
+  margin-left: 0.5vw;
+
+  &.content {
+    width: 90%;
+    overflow: auto;
+
+    white-space: nowrap;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &.timespent {
+    font-size: 13px;
+    text-align: right;
+  }
+
+  &.time {
+    font-weight: bold;
+    text-align: right;
+    font-size: 18px;
+  }
+
+  &.add {
+    color: gray;
+    margin-left: 20px;
+    margin-right: 45%;
+  }
+`;
+
+export const AddBtn = styled.div`
+  cursor: pointer;
+  font-family: 'PretendardSemiBold';
+  display: flex;
+  width: 80px;
+  height: 20px;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px;
+  background-color: #b3e13e;
+  border-radius: 30px;
+  box-shadow: 1px 2px 3px 0px rgb(0, 0, 0, 0.25);
+`;
 
 
 
