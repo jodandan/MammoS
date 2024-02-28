@@ -70,6 +70,27 @@ export default function Join({ currentIndex }) {
     }
   };
 
+  // 스터디 초대 취소 -스터디 --> targetUserStudy를 어디서 얻어와야 할 지?
+  async function cancleInviteStudy() {
+    try {
+      const token = localStorage.getItem('token');
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+      const response = await axios.delete(
+          `http://3.38.7.193:8080/api/v1/study/members/invite/admin/${studyData[currentIndex].studyIndex}`
+      );
+      console.log('스터디 초대 취소 데이터', response.data);
+
+      if (response.data.httpResponseStatus === 'SUCCESS') {
+        setSentRequests(response.data.responseData);
+      } else {
+        alert(response.data.message);
+      }
+    } catch (error) {
+      console.error('스터디 초대 취소 오류 발생:', error);
+    }
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -152,7 +173,7 @@ export default function Join({ currentIndex }) {
               </div>
             </InfoBox>
             <div style={{ display: 'flex', flexDirection: 'row' }}>
-              <IconBox className="reject">
+              <IconBox className="reject" onClick={cancleInviteStudy}>
                 <Icon
                   style={{
                     height: '15px',

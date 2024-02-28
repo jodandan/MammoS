@@ -5,15 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e35a1992-5f70-4659-8dda-700344d0f0b7" name="변경" comment="chore: gitignore 수정">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StudyPage/StudyPageItems/PopupBox/StudyRequestList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyPage/StudyPageItems/PopupBox/StudyRequestList.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StudyPage/StudyPageItems/PopupBox/StudySummaryEditPopup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyPage/StudyPageItems/PopupBox/StudySummaryEditPopup.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StudyPage/StudyPageItems/PopupBox/StudySummaryEditPopupCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyPage/StudyPageItems/PopupBox/StudySummaryEditPopupCss.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/StudyCalenderPage/StudyCalender.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyCalenderPage/StudyCalender.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/StudyCalenderPage/StudyCalenderCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyCalenderPage/StudyCalenderCss.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/StudyCalenderPage/StudyCalenderItems/MemberList/MemberListCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyCalenderPage/StudyCalenderItems/MemberList/MemberListCss.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/StudyCalenderPage/StudyCalenderItems/NoticeList/CreateNoticePopupCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyCalenderPage/StudyCalenderItems/NoticeList/CreateNoticePopupCss.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/StudyPage/StudyHome.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyPage/StudyHome.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/StudySocialPage/JoinList/Join.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudySocialPage/JoinList/Join.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StudySocialPage/JoinList/JoinCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudySocialPage/JoinList/JoinCss.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StudySocialPage/StudySocialCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudySocialPage/StudySocialCss.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +75,8 @@
       <workItem from="1708776257655" duration="1271000" />
       <workItem from="1708778231996" duration="1868000" />
       <workItem from="1708845421203" duration="6058000" />
-      <workItem from="1708920754005" duration="8399000" />
+      <workItem from="1708920754005" duration="8741000" />
+      <workItem from="1709106161759" duration="13254000" />
     </task>
     <servers />
   </component>

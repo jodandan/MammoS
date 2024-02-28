@@ -18,15 +18,14 @@ export const ListTitle = styled.div`
     font-weight: 600;
     line-height: normal;
     letter-spacing: -0.32px;
-    padding: 10px;
+  padding: 1rem;
     
 `;
 
 export const PeopleList = styled.div`
     width: 100%;
     height: 80%;
-    padding-top: 10px;
-    padding-left: 5px;
+  padding: 1rem;
 
     //border: 1px solid black;
 `;

@@ -103,7 +103,7 @@ export const FirstLine = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 0.5rem;
+    padding: 1rem;
     //border: 1px solid blue;
 `;
 
@@ -111,7 +111,7 @@ export const LeftSide = styled.div`
     width: 60%;
     color: #000;
     font-family: 'PretendardBold';
-    font-size: 20px;
+    font-size: 22px;
     font-style: normal;
     font-weight: 600;
     letter-spacing: -0.4px;
@@ -124,7 +124,8 @@ export const DataandPlaceBox = styled.div`
     width: 95%;
     padding-top: 15px;
     text-align: center;
-    margin-left: 10px;
+    
+  padding: 1rem;
 `;
 
 export const DataBox = styled.div`
@@ -136,6 +137,7 @@ export const DataBox = styled.div`
     font-weight: 600;
     letter-spacing: -0.4px;
     text-align: left;
+  
 `;
 
 export const LocationBox = styled.div`
@@ -148,6 +150,7 @@ export const LocationBox = styled.div`
     letter-spacing: -0.32px;
     margin: auto;
     text-align: right;
+  
 `;
 
 export const NoticeBox = styled.div`
@@ -166,10 +169,10 @@ export const InputBox = styled.div`
     height: 50px;
     background-color: transparent;
     //border: 1px solid blue;
-    margin: 0.5rem;
+    margin: 1vw;
     color: #000;
-    font-family: 'PretendardBold';
-    font-size: 14px;
+    font-family: 'PretendardSemiBold';
+    font-size: 18px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
@@ -193,6 +196,7 @@ export const RightBox = styled.div`
     display: flex;
     flex-direction: column;
     margin: 0 auto;
+  
 `;
 
 export const LeftBox = styled.div`
@@ -205,6 +209,7 @@ export const MemberBox = styled.div`
     width: 100%;
     height: 50%;
     padding-top: 20px;
+  
 `;
 
 export const Title = styled.div`
@@ -216,6 +221,7 @@ export const Title = styled.div`
     line-height: normal;
     letter-spacing: -0.4px;
     padding-bottom: 20px;
+  
 `;
 
 export const Edit = styled.div`
