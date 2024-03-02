@@ -69,7 +69,6 @@ export default function StudyNotice({ currentIndex }) {
   };
 
   // 현재 페이지에 표시할 공지사항 목록 계산
-  // 현재 페이지에 표시할 공지사항 목록 계산
   const indexOfLastNotice = currentPage * noticesPerPage;
   const indexOfFirstNotice = indexOfLastNotice - noticesPerPage;
   const currentNotices =
