@@ -85,8 +85,9 @@ export default function StudyHome({ onIndexChange }) {
         );
 
         // myStatus가 3이 아닌 스터디만 필터링하여 상태 업데이트
-        const filteredData = response.data.responseData.filter(study => study.myStatus !== 3);
+        const filteredData = response.data.responseData.filter(study => !study.studyIsComplete);
         setStudyData(filteredData);
+        console.log(filteredData);
       } catch (error) {
         console.error('Error fetching study information:', error);
       }
@@ -140,7 +141,7 @@ export default function StudyHome({ onIndexChange }) {
           {studyData && (
             <TextBox>
               <StudyTitle>
-                {studyData[currentIndex] &&
+                {!studyData[currentIndex].studyIsComplete && studyData[currentIndex] &&
                   (studyData[currentIndex].home.title) || '없음'}
                 <EditBox>
                   <img
@@ -166,7 +167,7 @@ export default function StudyHome({ onIndexChange }) {
                 </EditBox>
               </StudyTitle>
               <SubText>
-                {studyData[currentIndex] &&
+                {studyData[currentIndex] && !studyData[currentIndex].studyIsComplete && 
                   (studyData[currentIndex].home.summary) || '없음'}
               </SubText>
             </TextBox>
@@ -174,8 +175,8 @@ export default function StudyHome({ onIndexChange }) {
           <StudyContainer currentIndex={currentIndex} />
           {studyData && (
             <SecondLine>
-              <MemberContainer currentIndex={currentIndex} />
-              <NoticeContainer currentIndex={currentIndex} />
+              <MemberContainer currentIndex={currentIndex} studyData={studyData} />
+              <NoticeContainer currentIndex={currentIndex} studyData={studyData} />
             </SecondLine>
           )}
         </ContainerBox>

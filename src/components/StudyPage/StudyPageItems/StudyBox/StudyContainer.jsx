@@ -96,7 +96,7 @@ export default function StudyContainer({ currentIndex }) {
         </FirstBox>
       )}
       <Container>
-        {studyData && studyData[currentIndex]?.home && (
+        {studyData && studyData[currentIndex]?.home && !studyData[currentIndex].studyIsComplete &&(
           <FirstLine>
             <LeftSide>
               {(studyData[currentIndex] &&
@@ -147,7 +147,7 @@ export default function StudyContainer({ currentIndex }) {
                 </Modal>
               )}
             </div>
-            {studyData && studyData[currentIndex]?.home && (
+            {studyData && studyData[currentIndex]?.home && !studyData[currentIndex].studyIsComplete &&(
               <InputBox>
                 {(studyData[currentIndex] &&
                   studyData[currentIndex].home.projectTabResponseDto
@@ -160,7 +160,7 @@ export default function StudyContainer({ currentIndex }) {
             <ListTitle>참여 인원</ListTitle>
             {studyData && studyData[currentIndex]?.home && (
               <PeopleList>
-                {studyData[currentIndex] &&
+                {studyData[currentIndex] && !studyData[currentIndex].studyIsComplete &&
                   studyData[currentIndex].home.projectTabResponseDto
                     .projectInMembers
                   ? studyData[

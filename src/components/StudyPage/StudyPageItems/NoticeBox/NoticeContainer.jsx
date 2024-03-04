@@ -43,7 +43,8 @@ export default function NoticeContainer({ currentIndex }) {
   return (
     <Container>
       <Title>Notice</Title>
-      {studyData.length !== 0 && studyData[currentIndex].home.notices && (
+      {studyData.length !== 0 && studyData[currentIndex].home.notices && 
+      !studyData[currentIndex].studyIsComplete && (
         <NoticeList>
           {studyData[currentIndex].home.notices.map((notice) => (
             <NoticeItem

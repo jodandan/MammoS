@@ -9,6 +9,7 @@ import {
   ModalBox,
   ResponseContainer,
   InfoBox,
+  InfoBox2,
   Info,
   IconBox,
   RequestFriendCard,
@@ -77,7 +78,7 @@ export default function Join({ currentIndex }) {
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
       const response = await axios.delete(
-          `http://3.38.7.193:8080/api/v1/study/members/invite/admin/${studyData[currentIndex].studyIndex}`
+        `http://3.38.7.193:8080/api/v1/study/members/invite/admin/${studyData[currentIndex].studyIndex}`
       );
       console.log('스터디 초대 취소 데이터', response.data);
 
@@ -131,6 +132,11 @@ export default function Join({ currentIndex }) {
       </TitleContainer>
       <ResponseContainer>
         {/* 참가 요청 */}
+        {currentTab === 'received' && receivedRequests.length === 0 && (
+          <InfoBox>
+            <Info className="gap">정보 없음</Info>
+          </InfoBox>
+        )}
         {currentTab === 'received' && receivedRequests.map((request) => (
           <RequestFriendCard key={request.userIndex}>
             <InfoBox>
@@ -138,30 +144,35 @@ export default function Join({ currentIndex }) {
                 <Info className="bold">{request.userId} | {request.name}</Info>
               </div>
             </InfoBox>
-              <IconBox>
-                <Icon
-                    style={{
-                      height: '15px',
-                      width: '15px',
-                      color: '#B9D967',
-                      cursor: 'pointer',
-                    }}
-                    icon="fluent-mdl2:accept-medium"
-                />
-              </IconBox>
-              <IconBox className="reject">
-                <Icon
-                  style={{
-                    height: '15px',
-                    width: '15px',
-                    color: '#FF1C1C',
-                    cursor: 'pointer',
-                  }}
-                  icon="bx:x"
-                />
-              </IconBox>
+            <IconBox>
+              <Icon
+                style={{
+                  height: '15px',
+                  width: '15px',
+                  color: '#B9D967',
+                  cursor: 'pointer',
+                }}
+                icon="fluent-mdl2:accept-medium"
+              />
+            </IconBox>
+            <IconBox className="reject">
+              <Icon
+                style={{
+                  height: '15px',
+                  width: '15px',
+                  color: '#FF1C1C',
+                  cursor: 'pointer',
+                }}
+                icon="bx:x"
+              />
+            </IconBox>
           </RequestFriendCard>
         ))}
+        {currentTab === 'sent' && sentRequests.length === 0 && (
+          <InfoBox>
+            <Info className="gap">정보 없음</Info>
+          </InfoBox>
+        )}
         {currentTab === 'sent' && sentRequests.map((request) => (
           // 초대 목록
           <RequestFriendCard key={request.userStudyIdx}>

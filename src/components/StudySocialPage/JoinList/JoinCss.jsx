@@ -65,6 +65,11 @@ export const Info = styled.p`
     font-size: 13px;
     color: #909090;
   }
+  &.gap { 
+    font-size : 24px;
+    position: absolute;
+    top: 280%;
+  }
 `;
 
 export const InfoBox = styled.div`
@@ -72,6 +77,12 @@ export const InfoBox = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  margin-left: 1vw;
+`;
+
+export const InfoBox2 = styled.div`
+  display: flex;
+  flex-direction: row;
   margin-left: 1vw;
 `;
 

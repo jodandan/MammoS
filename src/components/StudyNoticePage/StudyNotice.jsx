@@ -179,6 +179,8 @@ export default function StudyNotice({ currentIndex }) {
                 <ListBox>
                   {currentNotices.length > 0 ? (
                     currentNotices.map((notice, index) => {
+                      // 현재 페이지에서의 공지사항 번호 계산
+                      const noticeIndex = studyData[currentIndex].notices.length - (index + indexOfFirstNotice);
                       // 날짜 시간 문자열을 Date 객체로 변환
                       const updatedAt = new Date(
                         notice.updatedAt ? notice.updatedAt : notice.createdAt
@@ -197,11 +199,11 @@ export default function StudyNotice({ currentIndex }) {
                           onClick={() =>
                             postNavigateHandler(
                               studyData[currentIndex].userStudyIndex,
-                              notice.idx
+                              noticeIndex
                             )
                           }
                         >
-                          <Count>{notice.idx}</Count>
+                          <Count>{noticeIndex}</Count>
                           <Title>{notice.title}</Title>
                           <Img className='calendar' src={Calender}></Img>
                           <Data>{formattedDate}</Data>
