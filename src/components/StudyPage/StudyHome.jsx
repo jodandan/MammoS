@@ -83,7 +83,10 @@ export default function StudyHome({ onIndexChange }) {
             },
           }
         );
-        setStudyData(response.data.responseData);
+
+        // myStatus가 3이 아닌 스터디만 필터링하여 상태 업데이트
+        const filteredData = response.data.responseData.filter(study => study.myStatus !== 3);
+        setStudyData(filteredData);
       } catch (error) {
         console.error('Error fetching study information:', error);
       }

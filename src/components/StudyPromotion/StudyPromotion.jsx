@@ -91,9 +91,10 @@ export default function StudyPromotion({ currentIndex }) {
     setCurrentPage(pageNumber);
   };
 
-  // 다음 페이지 버튼 클릭 핸들러
+// 다음 페이지 버튼 클릭 핸들러
   const handleNextPage = () => {
-    if (indexOfLastItem < studyData[currentIndex].promotions.length) {
+    const totalItems = search === '' ? studyData[currentIndex].promotions.length : filteredItems.length;
+    if (indexOfLastItem < totalItems) {
       setCurrentPage(currentPage + 1);
     }
   };
@@ -108,20 +109,23 @@ export default function StudyPromotion({ currentIndex }) {
     setSearch('');
   };
 
-
-  // 이전 페이지 버튼 클릭 핸들러
+// 이전 페이지 버튼 클릭 핸들러
   const handlePreviousPage = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
     }
   };
-
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems =
     studyData &&
     studyData[currentIndex]?.promotions &&
     studyData[currentIndex].promotions.slice(indexOfFirstItem, indexOfLastItem);
+
+  // 검색 결과 페이징을 위한 계산
+  const indexOfLastSearchItem = currentPage * itemsPerPage;
+  const indexOfFirstSearchItem = indexOfLastSearchItem - itemsPerPage;
+  const currentSearchItems = filteredItems.slice(indexOfFirstSearchItem, indexOfLastSearchItem);
 
   function postNavigateHandler(userStudyIdx, postIdx) {
     if (postIdx) {
@@ -216,12 +220,6 @@ export default function StudyPromotion({ currentIndex }) {
                   onChange={onChange}
                   value={search}
                 />
-                {/* <Img
-                  className='SearchButton'
-                  onClick={SearchPromotion}
-                  src={SearchButton}
-                  alt="검색버튼"
-                /> */}
                 <Img
                   className='SearchButton'
                   onClick={DeleteButton}
@@ -232,8 +230,8 @@ export default function StudyPromotion({ currentIndex }) {
               <Text className='Study'>최신순 스터디 모집글</Text>
               {studyData && studyData[currentIndex] && (
                 <ThirdLine>
-                  {(search === '' ? currentItems : filteredItems).length > 0 ? (
-                    (search === '' ? currentItems : filteredItems).map((promotions) => {
+                  {(search === '' ? currentItems : currentSearchItems).length > 0 ? (
+                    (search === '' ? currentItems : currentSearchItems).map((promotions) => {
                       const updatedAt = new Date(
                         promotions.updatedAt ? promotions.updatedAt : promotions.createdAt
                       );

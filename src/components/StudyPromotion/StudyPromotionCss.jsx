@@ -243,7 +243,6 @@ export const First = styled.div`
   font-size: 20px;
   line-height: normal;
   letter-spacing: -0.32px;
-  width: 75%;
   font-family: 'PretendardBold';
 `;
 

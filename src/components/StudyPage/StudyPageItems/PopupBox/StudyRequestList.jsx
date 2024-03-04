@@ -135,13 +135,13 @@ export default function StudyRequestList() {
                     onClick={() => TabChangeHandler('received')}
                     className={currentTab === 'received' ? 'active' : ''}
                 >
-                    내가 받은 요청
+                    내가 받은 스터디 초대
                 </TabButton>
                 <TabButton
                     onClick={() => TabChangeHandler('sent')}
                     className={currentTab === 'sent' ? 'active' : ''}
                 >
-                    내가 보낸 요청
+                    스터디에서 유저에게 보낸 요청
                 </TabButton>
             </TitleContainer>
             <ResponseContainer>

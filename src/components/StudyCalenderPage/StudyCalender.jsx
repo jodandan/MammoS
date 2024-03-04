@@ -39,9 +39,11 @@ import edit from '../assets/Edit.png';
 import NoticeList from './StudyCalenderItems/NoticeList/NoticeList.jsx';
 import MemberList from './StudyCalenderItems/MemberList/MemberList.jsx';
 import { ReactComponent as Notice } from '../assets/Notice.svg';
+import Modal from 'react-modal';
+import EditNoticePopup from './StudyCalenderItems/NoticeList/EditNoticePopup';
 
 export default function StudyCalender({ currentIndex, onIndexChange }) {
-  const [modalOpen, setModalOpen] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const [studyData, setStudyData] = useState(null);
   const navigate = useNavigate();
   const [projectIndex, setProjectIndex] = useState(0);
@@ -51,7 +53,7 @@ export default function StudyCalender({ currentIndex, onIndexChange }) {
   };
 
   function openModal() {
-    setModalOpen(true);
+    setModalIsOpen(true);
   }
 
   useEffect(() => {
@@ -138,21 +140,36 @@ export default function StudyCalender({ currentIndex, onIndexChange }) {
             <LeftBox>
               <NoticeContainer>
                 {studyData && studyData[currentIndex] && (
-                  <FirstLine>
-                    <LeftSide>
-                      {(studyData[currentIndex].project[projectIndex] &&
-                        studyData[currentIndex].project[projectIndex]
-                          .projectTitle) ||
-                        '없음'}
-                    </LeftSide>
-                    <EditBox>
-                      <img
+                <FirstLine>
+                  <LeftSide>
+                    {(studyData[currentIndex].project[projectIndex] &&
+                      studyData[currentIndex].project[projectIndex]
+                        .projectTitle) ||
+                      '없음'}
+                  </LeftSide>
+                  <EditBox>
+                    <Img
                         src={edit}
                         alt="수정"
                         style={{ width: '12px', height: '12px' }}
-                      />
-                    </EditBox>
-                  </FirstLine>
+                        onClick={openModal}
+                    />
+                    {modalIsOpen && (
+                        <Modal
+                            isOpen={true}
+                            onRequestClose={() => setModalIsOpen(false)}
+                            style={customModalStyles}
+                        >
+                          <EditNoticePopup
+                              setModalIsOpen={setModalIsOpen}
+                              currentIndex={currentIndex}
+                              projectIndex={projectIndex} // 현재 선택된 프로젝트 인덱스를 prop으로 전달
+                          />
+
+                        </Modal>
+                    )}
+                  </EditBox>
+                </FirstLine>
                 )}
                 <NoticeBox>
                   {studyData && studyData[currentIndex] && (
@@ -195,7 +212,6 @@ export default function StudyCalender({ currentIndex, onIndexChange }) {
               </MemberBox>
             </LeftBox>
             <RightBox>
-
               <NoticeList
                 currentIndex={currentIndex}
                 onProjectSelect={handleProjectSelect}
@@ -207,6 +223,32 @@ export default function StudyCalender({ currentIndex, onIndexChange }) {
     </>
   );
 }
+
+const customModalStyles = {
+  overlay: {
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
+    width: '100%',
+    height: '100vh',
+    zIndex: '150',
+    position: 'fixed',
+    top: '0',
+    left: '0',
+  },
+  content: {
+    width: '30%',
+    height: '65%',
+    zIndex: '150',
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    borderRadius: '10px',
+    boxShadow: '2px 2px 2px rgba(0, 0, 0, 0.25)',
+    backgroundColor: 'white',
+    justifyContent: 'center',
+    overflow: 'hidden',
+  },
+};
 
 StudyCalender.propTypes = {
   currentIndex: PropTypes.number.isRequired,

@@ -6,16 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="e35a1992-5f70-4659-8dda-700344d0f0b7" name="변경" comment="chore: gitignore 수정">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StudyCalenderPage/StudyCalenderCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyCalenderPage/StudyCalenderCss.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StudyMyPromotion/StudyMyPromotion.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyMyPromotion/StudyMyPromotion.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StudyMyPromotion/StudyMyPromotionCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyMyPromotion/StudyMyPromotionCss.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StudyNoticePage/StudyNoticeCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyNoticePage/StudyNoticeCss.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StudyPage/StudyPageCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyPage/StudyPageCss.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StudyPage/StudyPageItems/PopupBox/StudyInfoPopup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyPage/StudyPageItems/PopupBox/StudyInfoPopup.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StudyPage/StudyPageItems/PopupBox/StudyRequestList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyPage/StudyPageItems/PopupBox/StudyRequestList.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/StudyNoticePage/StudyNotice.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyNoticePage/StudyNotice.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/StudyPromotion/StudyPromotion.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyPromotion/StudyPromotion.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/StudyPromotion/StudyPromotionCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudyPromotion/StudyPromotionCss.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StudySocialPage/StudySocialCss.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StudySocialPage/StudySocialCss.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +36,7 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;android.gradle.sync.needed&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;feat/StudyPage&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/kimch/가천대/WorkSpace/01-starting-project/01-starting-project&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
@@ -68,7 +62,19 @@
       <workItem from="1707140310964" duration="9053000" />
       <workItem from="1707373355031" duration="848000" />
       <workItem from="1707393852996" duration="2070000" />
-      <workItem from="1708323689223" duration="15759000" />
+      <workItem from="1708323689223" duration="16721000" />
+      <workItem from="1708603844203" duration="2437000" />
+      <workItem from="1708671040265" duration="2618000" />
+      <workItem from="1708762495335" duration="1042000" />
+      <workItem from="1708765047927" duration="57000" />
+      <workItem from="1708765167959" duration="21000" />
+      <workItem from="1708765276879" duration="372000" />
+      <workItem from="1708776257655" duration="1271000" />
+      <workItem from="1708778231996" duration="1868000" />
+      <workItem from="1708845421203" duration="6058000" />
+      <workItem from="1708920754005" duration="8741000" />
+      <workItem from="1709106161759" duration="13996000" />
+      <workItem from="1709356760080" duration="4653000" />
     </task>
     <servers />
   </component>

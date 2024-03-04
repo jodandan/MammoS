@@ -38,7 +38,7 @@ export default function Join({ currentIndex }) {
       const response = await axios.get(
         `http://3.38.7.193:8080/api/v1/study/members/invite/${studyData[currentIndex].studyIndex}`
       );
-      console.log('Received Requests:', response.data);
+      console.log('Invite:', response.data);
 
       if (response.data.httpResponseStatus === 'SUCCESS') {
         setSentRequests(response.data.responseData);
@@ -46,7 +46,7 @@ export default function Join({ currentIndex }) {
         alert(response.data.message);
       }
     } catch (error) {
-      console.error('보낸 친구 요청 정보 받아오기 오류 발생:', error);
+      console.error('보낸 스터디 요청 정보 받아오기 오류 발생:', error);
     }
   };
 
@@ -56,9 +56,9 @@ export default function Join({ currentIndex }) {
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
       const response = await axios.get(
-        `http://3.38.7.193:8080/api/v1/study/members/invite/${studyData[currentIndex].studyIndex}`
+        `http://3.38.7.193:8080/api/v1/study/members/enroll/${studyData[currentIndex].studyIndex}`
       );
-      console.log('Received Requests:', response.data);
+      console.log('Join:', response.data);
 
       if (response.data.httpResponseStatus === 'SUCCESS') {
         setReceivedRequests(response.data.responseData);
@@ -67,6 +67,27 @@ export default function Join({ currentIndex }) {
       }
     } catch (error) {
       console.error('보낸 친구 요청 정보 받아오기 오류 발생:', error);
+    }
+  };
+
+  // 스터디 초대 취소 -스터디 --> targetUserStudy를 어디서 얻어와야 할 지?
+  async function cancleInviteStudy() {
+    try {
+      const token = localStorage.getItem('token');
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+      const response = await axios.delete(
+          `http://3.38.7.193:8080/api/v1/study/members/invite/admin/${studyData[currentIndex].studyIndex}`
+      );
+      console.log('스터디 초대 취소 데이터', response.data);
+
+      if (response.data.httpResponseStatus === 'SUCCESS') {
+        setSentRequests(response.data.responseData);
+      } else {
+        alert(response.data.message);
+      }
+    } catch (error) {
+      console.error('스터디 초대 취소 오류 발생:', error);
     }
   };
 
@@ -109,19 +130,16 @@ export default function Join({ currentIndex }) {
         </TabButton>
       </TitleContainer>
       <ResponseContainer>
-        {/* 스터디 참가 요청을 받은 로직 */}
+        {/* 참가 요청 */}
         {currentTab === 'received' && receivedRequests.map((request) => (
           <RequestFriendCard key={request.userIndex}>
             <InfoBox>
               <div style={{ display: 'flex', flexDirection: 'row' }}>
-                <Info className="bold">{request.userId}</Info>
-                <Info className="light">
-                  {request.currentMemberCnt} / {request.maxMemberCnt}
-                </Info>
+                <Info className="bold">{request.userId} | {request.name}</Info>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'row' }}>
-                <IconBox className="accept">
-                  <Icon
+            </InfoBox>
+              <IconBox>
+                <Icon
                     style={{
                       height: '15px',
                       width: '15px',
@@ -129,47 +147,45 @@ export default function Join({ currentIndex }) {
                       cursor: 'pointer',
                     }}
                     icon="fluent-mdl2:accept-medium"
-                  />
-                </IconBox>
-                <IconBox className="reject">
-                  <Icon
-                    style={{
-                      height: '15px',
-                      width: '15px',
-                      color: '#FF1C1C',
-                      cursor: 'pointer',
-                    }}
-                    icon="bx:x"
-                  />
-                </IconBox>
-              </div>
-            </InfoBox>
+                />
+              </IconBox>
+              <IconBox className="reject">
+                <Icon
+                  style={{
+                    height: '15px',
+                    width: '15px',
+                    color: '#FF1C1C',
+                    cursor: 'pointer',
+                  }}
+                  icon="bx:x"
+                />
+              </IconBox>
           </RequestFriendCard>
         ))}
         {currentTab === 'sent' && sentRequests.map((request) => (
-          // 스터디 참가 요청을 보낸 로직
+          // 초대 목록
           <RequestFriendCard key={request.userStudyIdx}>
             <InfoBox>
               <div style={{ display: 'flex', flexDirection: 'row' }}>
-                <Info className="bold">{request.studyName}</Info>
-                <Info className="light">
-                  {request.currentMemberCnt} / {request.maxMemberCnt}
+                <Info className="bold">
+                  {request.userId} | {request.name}
                 </Info>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'row' }}>
-                <IconBox className="reject">
-                  <Icon
-                    style={{
-                      height: '15px',
-                      width: '15px',
-                      color: '#FF1C1C',
-                      cursor: 'pointer',
-                    }}
-                    icon="bx:x"
-                  />
-                </IconBox>
-              </div>
             </InfoBox>
+            <div style={{ display: 'flex', flexDirection: 'row' }}>
+              <IconBox className="reject" onClick={cancleInviteStudy}>
+                <Icon
+                  style={{
+                    height: '15px',
+                    width: '15px',
+                    color: '#FF1C1C',
+                    cursor: 'pointer',
+                  }}
+                  icon="bx:x"
+                />
+              </IconBox>
+            </div>
+
           </RequestFriendCard>
         ))}
       </ResponseContainer>

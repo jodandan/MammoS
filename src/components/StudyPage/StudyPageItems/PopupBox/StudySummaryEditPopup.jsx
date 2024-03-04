@@ -76,16 +76,14 @@ export default function StudySummaryEditPopup({ setEditModalIsOpen, currentIndex
             <FirstLine>
                 <Title>스터디 메모 변경</Title>
             </FirstLine>
-            <ContainerBox>
-                <MemoContainer>
-                    <MemoText>스터디메모</MemoText>
-                    <MemoInput
-                        placeholder="변경하실 메모를 입력해주세요"
-                        value={newSummary}
-                        onChange={handleMemoChange}
-                    />
-                </MemoContainer>
-            </ContainerBox>
+            <MemoContainer>
+                <MemoText>스터디메모</MemoText>
+                <MemoInput
+                    placeholder="변경하실 메모를 입력해주세요"
+                    value={newSummary}
+                    onChange={handleMemoChange}
+                />
+            </MemoContainer>
             <ButtonBox>
                 <ChangeButton onClick={handleApiCall}>변경</ChangeButton>
                 <CancelButton onClick={modalClose}>취소</CancelButton>
@@ -100,7 +98,8 @@ StudySummaryEditPopup.propTypes = {
 };
 
 export const MemoText = styled.div`
-  width: 38%;
+  width: 10vw;
+  height: 20vw;
   color: #000;
   font-family: 'PretendardBold';
   font-size: 24px;
